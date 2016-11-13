@@ -1,0 +1,31 @@
+package blTest;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import Login_bl_servlmpl.LoginBlServlmpl;
+import PO.UserPO;
+import credit_bl_servlpml.CreditBlServlmpl;
+import hotel_bl_servlmpl.HotelBlServlmpl;
+
+public class PersonInfoCheckTest {
+private UserPO user;
+private LoginBlServlmpl loginServ;
+private HotelBlServlmpl hotelServ;
+private CreditBlServlmpl creditServ;
+
+	@Before
+	private void setup(){
+		user=new UserPO("123456","123456");
+		loginBlServ=new LoginBlServlmpl();
+		
+	}
+
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
+
+}
