@@ -1,8 +1,7 @@
 package book_bl_serv;
 
-import PO.RoomPO;
-import PO.UserPO;
+import PO.*;
 
 public interface BookBlServ {
-	public void produceOrder(UserPO user,RoomPO room);
+	public void produceOrder(UserPO user, RoomPO room);
 }
