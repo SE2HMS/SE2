@@ -15,7 +15,39 @@ public class OrderVO {
     private final Date execTime;
     private final int total;
 
-    public OrderVO(UserInOrder user, HotelInOrder hotel, OrderState state, boolean children, Date inTime,Date outTime, Date execTime, int total) {
+    public UserInOrder getUser() {
+        return user;
+    }
+
+    public HotelInOrder getHotel() {
+        return hotel;
+    }
+
+    public OrderState getState() {
+        return state;
+    }
+
+    public boolean isChildren() {
+        return children;
+    }
+
+    public Date getInTime() {
+        return inTime;
+    }
+
+    public Date getOutTime() {
+        return outTime;
+    }
+
+    public Date getExecTime() {
+        return execTime;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public OrderVO(UserInOrder user, HotelInOrder hotel, OrderState state, boolean children, Date inTime, Date outTime, Date execTime, int total) {
         this.user = user;
         this.hotel = hotel;
         this.state = state;

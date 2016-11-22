@@ -11,4 +11,12 @@ public class RoomInOrder {
         this.type = type;
         this.num = num;
     }
+
+    public String getType() {
+        return type;
+    }
+
+    public int getNum() {
+        return num;
+    }
 }

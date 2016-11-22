@@ -13,4 +13,16 @@ public class UserInOrder {
         this.name = name;
         this.contact = contact;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public String getId() {
+        return id;
+    }
 }
