@@ -16,8 +16,8 @@ public class LoginTest {
 	public void setup(){
 		id="123456";
 		password="123456";
-		user1=new UserPO("123456","123456");
-		user2=new UserPO("654321","123456");
+//		user1=new UserPO("123456","123456");
+//		user2=new UserPO("654321","123456");
 		serv=new LoginBlServlmpl();
 	}
 

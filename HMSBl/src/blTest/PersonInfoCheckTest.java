@@ -27,13 +27,13 @@ private CreditBlServlmpl creditServ;
 		ArrayList list=new ArrayList();
 		list.add(1);
 		list.add(-2);
-		hotel=new HotelPO("nanj","n","h",list);
-		user=new UserPO("123456","123456");
-		user.addHote(hotel.getName());
+//		hotel=new HotelPO("nanj","n","h",list);
+//		user=new UserPO("123456","123456");
+//		user.addHote(hotel.getName());
 		loginServ=new LoginBlServlmpl();
 		hotelServ=new HotelBlServlmpl();
 		creditServ=new CreditBlServlmpl();
-		credit=new CreditPO(user.getID(),list,-1);
+//		credit=new CreditPO(user.getID(),list,-1);
 	}
 
 	@Test
