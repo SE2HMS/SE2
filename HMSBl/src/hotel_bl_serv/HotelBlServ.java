@@ -1,10 +1,10 @@
 package hotel_bl_serv;
 
-import PO.HotelPO;
+import VO.HotelVO;
 
 public interface HotelBlServ {
-	public HotelPO getHotelInfo(String name);
-	public boolean modifyHotelInfo(HotelPO hotel);
-	public HotelPO[] getHotelList(String id);
-	public HotelPO[] getAllHotel();
+	public HotelVO getHotelInfo(String name);
+	public boolean modifyHotelInfo(HotelVO hotel);
+	public HotelVO[] getHotelList(String id);
+	public HotelVO[] getAllHotel();
 }

@@ -1,7 +1,8 @@
 package comment_bl_serv;
 
-import PO.UserPO;
+import VO.HotelVO;
+import VO.UserVO;
 
 public interface CommentBlServ {
-	public void comment(UserPO user);
+	public void comment(UserVO user, HotelVO hotel, String comment);
 }

@@ -2,7 +2,6 @@ package book_bl_servlmpl;
 
 import VO.OrderVO;
 import book_bl_serv.BookBlServ;
-import oracle.jrockit.jfr.StringConstantPool;
 import rmi.*;
 import PO.*;
 
@@ -11,6 +10,9 @@ import java.util.Random;
 public class BookBlServlmpl implements BookBlServ {
 
 	@Override
+	/**
+	 * 这个方法由客户端调用用于生成一个订单
+	 */
 	public void produceOrder(OrderVO order) {
 		String userId = order.getUser().getId();
 		String userName = order.getUser().getName();
@@ -32,6 +34,10 @@ public class BookBlServlmpl implements BookBlServ {
 		}
 	}
 
+	/**
+	 * 生成一个随机长度为16的id
+	 * @return
+     */
 	private String generateId() {
 		String result = "";
 		final int length = 16;

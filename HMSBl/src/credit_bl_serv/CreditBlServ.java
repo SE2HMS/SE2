@@ -1,8 +1,9 @@
 package credit_bl_serv;
 
-import PO.CreditPO;
+import VO.CreditVO;
 
 public interface CreditBlServ {
-	public CreditPO getCreditInfo(String id);
-	public boolean modifyCredit(Operation operation);
+    public CreditVO getCreditInfo(String id);
+
+    public boolean modifyCredit(Operation operation);
 }
