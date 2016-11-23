@@ -34,6 +34,10 @@ public class BookBlServlmpl implements BookBlServ {
 		}
 	}
 
+	/**
+	 * 生成一个随机长度为16的id
+	 * @return
+     */
 	private String generateId() {
 		String result = "";
 		final int length = 16;

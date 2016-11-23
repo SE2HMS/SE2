@@ -9,8 +9,8 @@ public class CreditVO {
     private final Date time;
     private final String num;
     private final OrderAction action;
-    private final int creditChange;
-    private final int credit;
+    private final double creditChange;
+    private final double credit;
 
     /**
      * CreditVO的构造方法
@@ -20,7 +20,7 @@ public class CreditVO {
      * @param creditChange 信用值的变化
      * @param credit 变化后的信用值
      */
-    public CreditVO(Date time,String num,OrderAction action,int creditChange,int credit) {
+    public CreditVO(Date time,String num,OrderAction action,double creditChange,double credit) {
         this.time = time;
         this.num = num;
         this.action = action;
@@ -40,11 +40,11 @@ public class CreditVO {
         return action;
     }
 
-    public int getCreditChange() {
+    public double getCreditChange() {
         return creditChange;
     }
 
-    public int getCredit() {
+    public double getCredit() {
         return credit;
     }
 }
