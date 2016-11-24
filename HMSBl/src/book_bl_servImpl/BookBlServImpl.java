@@ -1,4 +1,4 @@
-package book_bl_servlmpl;
+package book_bl_servImpl;
 
 import VO.OrderVO;
 import book_bl_serv.BookBlServ;
@@ -7,7 +7,7 @@ import PO.*;
 
 import java.util.Random;
 
-public class BookBlServlmpl implements BookBlServ {
+public class BookBlServImpl implements BookBlServ {
 
 	@Override
 	/**

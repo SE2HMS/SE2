@@ -15,6 +15,7 @@ public class LoginBlServlmpl implements LoginBlServ{
 	 * 登录方法，如果没有这个用户，返回wrongId
 	 * 如果密码不正确，返回wrongPassword
 	 * 登录成功，返回success
+	 * 登录冲突尚未实现
 	 */
 	public LoginResult login(String id, String password) {
 		UserPO userPO = null;
