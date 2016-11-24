@@ -5,20 +5,20 @@ package blTest;
  */
 
 import static org.junit.Assert.*;
-import book_bl_servlmpl.BookBlServlmpl;
+import book_bl_servImpl.BookBlServImpl;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.lang.reflect.Method;
 
 public class BookBlServImplTest {
-    private BookBlServlmpl bookBlServlmpl;
+    private BookBlServImpl bookBlServImpl;
     private Method methods[];
 
     @Before
     public void setup() {
-        bookBlServlmpl = new BookBlServlmpl();
-        methods = BookBlServlmpl.class.getDeclaredMethods();
+        bookBlServImpl = new BookBlServImpl();
+        methods = BookBlServImpl.class.getDeclaredMethods();
     }
 
     @Test
@@ -27,7 +27,7 @@ public class BookBlServImplTest {
             if(method.getName().equals("generateId")) {
                 method.setAccessible(true);
                 try {
-                    String s = (String) method.invoke(bookBlServlmpl);
+                    String s = (String) method.invoke(bookBlServImpl);
                     assertEquals(16,s.length());
                 }catch (Exception e) {
                     e.printStackTrace();
