@@ -1,32 +1,30 @@
 package strategy_bl_servlmpl;
 
 import PO.StrategyPO;
+import VO.StrategyVO;
 import strategy_bl_serv.WebStrategyBlServ;
+
+import java.util.Iterator;
 
 public class WebStrategyBlServlmpl implements WebStrategyBlServ{
 
 	@Override
-	public StrategyPO[] getStrategy(String hotelName) {
-		// TODO Auto-generated method stub
+	public Iterator<StrategyVO> getStrategy() {
 		return null;
 	}
 
 	@Override
-	public boolean addStrategy(StrategyPO strategy) {
-		// TODO Auto-generated method stub
+	public boolean addStrategy(StrategyVO strategy) {
 		return false;
 	}
 
 	@Override
-	public boolean modifyStrategy(StrategyPO strategy) {
-		// TODO Auto-generated method stub
+	public boolean modifyStrategy(StrategyVO strategy) {
 		return false;
 	}
 
 	@Override
-	public boolean delStrategy(StrategyPO strategy) {
-		// TODO Auto-generated method stub
+	public boolean delStrategy(StrategyVO strategy) {
 		return false;
 	}
-
 }

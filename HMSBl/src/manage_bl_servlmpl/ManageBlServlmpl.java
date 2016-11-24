@@ -1,32 +1,30 @@
 package manage_bl_servlmpl;
 
 import PO.UserPO;
+import VO.UserVO;
 import manage_bl_serv.ManageBlServ;
+
+import java.util.Iterator;
 
 public class ManageBlServlmpl implements ManageBlServ{
 
 	@Override
-	public boolean getAllUserInfo(UserPO user) {
-		// TODO Auto-generated method stub
+	public Iterator<UserVO> getAllUserInfo() {
+		return null;
+	}
+
+	@Override
+	public boolean addUserInfo(UserVO user) {
 		return false;
 	}
 
 	@Override
-	public boolean addUserInfo(UserPO user) {
-		// TODO Auto-generated method stub
+	public boolean modifyUserInfo(UserVO user) {
 		return false;
 	}
 
 	@Override
-	public boolean modifyUserInfo(UserPO user) {
-		// TODO Auto-generated method stub
+	public boolean delUserInfo(String userId) {
 		return false;
 	}
-
-	@Override
-	public boolean delUserInfo(UserPO user) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
 }

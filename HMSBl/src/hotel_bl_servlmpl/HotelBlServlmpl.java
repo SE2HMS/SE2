@@ -3,7 +3,6 @@ package hotel_bl_servlmpl;
 import PO.HotelPO;
 import PO.HotelStrategyPO;
 import PO.RoomPO;
-import PO.StrategyPO;
 import VO.CommentVO;
 import VO.HotelVO;
 import VO.RoomVO;
@@ -12,6 +11,7 @@ import hotel_bl_serv.HotelBlServ;
 import rmi.RemoteHelper;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class HotelBlServlmpl implements HotelBlServ{
     @Override
@@ -44,13 +44,13 @@ public class HotelBlServlmpl implements HotelBlServ{
     }
 
     @Override
-    public HotelVO[] getHotelList(String id) {
-        return new HotelVO[0];
+    public Iterator<HotelVO> getHotelList(String id) {
+        return null;
     }
 
     @Override
-    public HotelVO[] getAllHotel() {
-        return new HotelVO[0];
+    public Iterator<HotelVO> getAllHotel() {
+        return null;
     }
 
     /**
