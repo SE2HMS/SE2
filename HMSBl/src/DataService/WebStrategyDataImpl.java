@@ -3,17 +3,17 @@ package DataService;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-import PO.StrategyPO;
+import PO.WebStrategyPO;
 
 public interface WebStrategyDataImpl extends Remote{
 	
-	public void insertStrategy(StrategyPO strategyPO) throws RemoteException;
+	public void insertStrategy(WebStrategyPO strategyPO) throws RemoteException;
 	
-	public StrategyPO[] getStrategyList () throws RemoteException;
+	public WebStrategyPO[] getStrategyList () throws RemoteException;
 	
 	public void deleteStrategy(String id) throws RemoteException;
 	
-	public void modifiedStrategy(StrategyPO strategy) throws RemoteException;
+	public void modifiedStrategy(WebStrategyPO strategy) throws RemoteException;
 	
 	public void init() throws RemoteException;
 	

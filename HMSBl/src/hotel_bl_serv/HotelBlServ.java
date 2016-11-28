@@ -1,10 +1,15 @@
 package hotel_bl_serv;
 
 import VO.HotelVO;
+import hotel_bl_servlmpl.HotelBlServImpl;
 
 import java.util.Iterator;
 
 public interface HotelBlServ {
+
+	public static HotelBlServ getInstance() {
+		return new HotelBlServImpl();
+	}
 
 	/**
 	 * 得到某个酒店的信息

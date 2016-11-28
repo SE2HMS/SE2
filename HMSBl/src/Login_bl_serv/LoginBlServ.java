@@ -1,4 +1,4 @@
-package Login_bl_serv;
+package login_bl_serv;
 
 import VO.LoginResult;
 import VO.UserVO;

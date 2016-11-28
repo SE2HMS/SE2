@@ -2,7 +2,7 @@ package blTest;
 
 import static org.junit.Assert.*;
 
-import Login_bl_servlmpl.LoginBlServlmpl;
+import login_bl_servlmpl.LoginBlServImpl;
 import VO.LoginResult;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,11 +12,11 @@ import org.junit.Test;
  * 这个测试只写了一部分，相当于还没实现
  */
 public class LoginBlServImplTest {
-    private LoginBlServlmpl loginBlServImpl;
+    private LoginBlServImpl loginBlServImpl;
 
     @Before
     public void setup() {
-        loginBlServImpl = new LoginBlServlmpl();
+        loginBlServImpl = new LoginBlServImpl();
     }
 
     @Test
