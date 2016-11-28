@@ -1,6 +1,5 @@
 package comment_bl_servlmpl;
 
-import PO.UserPO;
 import VO.HotelVO;
 import VO.UserVO;
 import comment_bl_serv.CommentBlServ;

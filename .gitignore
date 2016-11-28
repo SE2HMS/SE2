@@ -71,3 +71,7 @@ $RECYCLE.BIN/
 # profiles_settings.xml
 *.iml
 *.xml
+
+# ignore all files outside HMSBL
+HMSServer/*
+HMSUserClient/*

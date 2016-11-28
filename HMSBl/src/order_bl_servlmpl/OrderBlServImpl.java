@@ -8,6 +8,7 @@ import rmi.RemoteHelper;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 
@@ -66,22 +67,52 @@ public class OrderBlServImpl implements OrderBlServ {
     }
 
     /**
-     * 还没写
+     * 写好了，用来把字符串转成OrderState
      *
      * @param state
      * @return
      */
     private OrderState stringToState(String state) {
-        return null;
+        OrderState orderState = null;
+        switch (state) {
+            case "normal":
+                orderState = OrderState.normal;
+                break;
+            case "abnormal":
+                orderState = OrderState.abnormal;
+                break;
+            case "revoke":
+                orderState = OrderState.revoke;
+                break;
+        }
+        return orderState;
     }
 
     /**
-     * 还没写
+     * 用来把String转成Date
+     * 此处的String是直接由Date的toString方法得到的
      *
      * @param date
      * @return
      */
     private Date stringToDate(String date) {
-        return null;
+        String[] splitString = date.split(" ");
+        String[] months = {"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+        int month = 0;
+        for(int i = 0;i<months.length;i++) {
+            if(splitString[1].equals(months[i])) {
+                month = i;
+                break;
+            }
+        }
+        int day = Integer.parseInt(splitString[2]);
+        int year = Integer.parseInt(splitString[5]);
+        String[] splitTimeInDay = splitString[3].split(":");
+        int hour = Integer.parseInt(splitTimeInDay[0]);
+        int min = Integer.parseInt(splitTimeInDay[1]);
+        int sec = Integer.parseInt(splitTimeInDay[2]);
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year,month,day,hour,min,sec);
+        return calendar.getTime();
     }
 }
