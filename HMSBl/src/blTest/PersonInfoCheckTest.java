@@ -7,20 +7,20 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
-import Login_bl_servlmpl.LoginBlServlmpl;
+import login_bl_servlmpl.LoginBlServImpl;
 import PO.CreditPO;
 import PO.HotelPO;
 import PO.UserPO;
-import credit_bl_servlpml.CreditBlServlmpl;
-import hotel_bl_servlmpl.HotelBlServlmpl;
+import credit_bl_servlpml.CreditBlServImpl;
+import hotel_bl_servlmpl.HotelBlServImpl;
 
 public class PersonInfoCheckTest {
 private UserPO user;
 private CreditPO credit;
 private HotelPO hotel;
-private LoginBlServlmpl loginServ;
-private HotelBlServlmpl hotelServ;
-private CreditBlServlmpl creditServ;
+private LoginBlServImpl loginServ;
+private HotelBlServImpl hotelServ;
+private CreditBlServImpl creditServ;
 
 	@Before
 	private void setup(){
@@ -30,9 +30,9 @@ private CreditBlServlmpl creditServ;
 //		hotel=new HotelPO("nanj","n","h",list);
 //		user=new UserPO("123456","123456");
 //		user.addHote(hotel.getName());
-		loginServ=new LoginBlServlmpl();
-		hotelServ=new HotelBlServlmpl();
-		creditServ=new CreditBlServlmpl();
+		loginServ=new LoginBlServImpl();
+		hotelServ=new HotelBlServImpl();
+		creditServ=new CreditBlServImpl();
 //		credit=new CreditPO(user.getID(),list,-1);
 	}
 

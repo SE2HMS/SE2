@@ -48,13 +48,21 @@ public class OrderBlServImpl implements OrderBlServ {
     }
 
     /**
-     * 还没写
+     * 写好了，把字符串变成房间
+     * 这里的房间值RoomInOrder
+     * 包含类型和数量两个属性
+     * 不过目前默认数量都是一
      *
      * @param rooms
      * @return
      */
     private ArrayList<RoomInOrder> stringToRoom(ArrayList<String> rooms) {
-        return null;
+        ArrayList<RoomInOrder> roomInOrders = new ArrayList<>();
+        for(String room:rooms) {
+            RoomInOrder roomInOrder = new RoomInOrder(room,1);
+            roomInOrders.add(roomInOrder);
+        }
+        return roomInOrders;
     }
 
     /**
