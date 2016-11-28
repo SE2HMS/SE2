@@ -1,10 +1,15 @@
 package strategy_bl_serv;
 
 import VO.StrategyVO;
+import strategy_bl_servlmpl.HotelStrategyBlServlmpl;
 
 import java.util.Iterator;
 
 public interface HotelStrategyBlServ {
+
+	public static HotelStrategyBlServ getInstance() {
+		return new HotelStrategyBlServlmpl();
+	}
 
 	/**
 	 * 得到一个酒店的所有促销策略的迭代器

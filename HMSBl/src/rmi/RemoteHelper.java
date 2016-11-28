@@ -21,6 +21,10 @@ public class RemoteHelper {
 	public CreditDataServ getCreditDataServ() {
 		return (CreditDataServ) remote;
 	}
+
+	public CommentDataServ getCommentDataServ() {
+		return (CommentDataServ) remote;
+	}
 	
 	public HotalDataServ getHotelDataServ() {
 		return (HotalDataServ) remote;

@@ -2,8 +2,13 @@ package login_bl_serv;
 
 import VO.LoginResult;
 import VO.UserVO;
+import login_bl_servlmpl.LoginBlServImpl;
 
 public interface LoginBlServ {
+
+	public static LoginBlServ getInstance() {
+		return new LoginBlServImpl();
+	}
 
 	/**
 	 * 登录方法，如果没有这个用户，返回wrongId

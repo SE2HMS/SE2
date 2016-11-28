@@ -1,4 +1,4 @@
-package credit_bl_serv;
+package VO;
 
 /**
  * 也许应该放在VO里面

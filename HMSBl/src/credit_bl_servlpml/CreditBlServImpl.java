@@ -1,23 +1,30 @@
 package credit_bl_servlpml;
 
+import DataService.CreditDataServ;
 import PO.CreditPO;
 import VO.CreditVO;
 import VO.OrderAction;
 import credit_bl_serv.CreditBlServ;
-import credit_bl_serv.Operation;
+import VO.Operation;
 import rmi.RemoteHelper;
 
+import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 
 public class CreditBlServImpl implements CreditBlServ{
 
 	@Override
-	public CreditVO getCreditInfo(String id) {
+	public CreditVO getCreditInfo(String userId,String creditId) {
 		CreditPO creditPO = null;
 		try {
-			creditPO = RemoteHelper.getInstance().getCreditDataServ().getDetial(id);
+			ArrayList<CreditPO> creditPOs = RemoteHelper.getInstance().getCreditDataServ().getDetial(userId);
+			for(CreditPO oneCreditPO : creditPOs) {
+				if(creditPO.getID().equals(creditId));
+				creditPO = oneCreditPO;
+			}
 		}catch (Exception e) {
-			creditPO = null;
 			return null;
 		}
 		String date = creditPO.getTime();
@@ -30,11 +37,44 @@ public class CreditBlServImpl implements CreditBlServ{
 	}
 
 	@Override
+	public Iterator<CreditVO> getAllCreditInfo(String userId) {
+		ArrayList<CreditPO> creditPOs;
+		ArrayList<CreditVO> creditVOs = new ArrayList<>();
+		try {
+			creditPOs = RemoteHelper.getInstance().getCreditDataServ().getDetial(userId);
+			for(CreditPO creditPO:creditPOs) {
+				CreditVO creditVO = parsrCreditVO(creditPO);
+				creditVOs.add(creditVO);
+			}
+		}catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return creditVOs.iterator();
+	}
+
+	@Override
+	public boolean addCredit(CreditVO creditVO) {
+		return false;
+	}
+
+	@Override
+	public double getTotal(String userId) {
+		double total = 0;
+//		try {
+//			total = RemoteHelper.getInstance().getCreditDataServ().getTotel(userId);
+//		}catch (RemoteException e) {
+//			e.printStackTrace();
+//		}
+		return total;
+	}
+
 	/**
-	 * 还没写
-	 */
-	public boolean modifyCredit(Operation operation) {
-    	return false;
+	 * 这个还没写，写完要把第一个方法里的东西也改掉
+	 * @param creditPO
+	 * @return
+     */
+	private CreditVO parsrCreditVO(CreditPO creditPO) {
+		return null;
 	}
 
 	/**
@@ -54,5 +94,4 @@ public class CreditBlServImpl implements CreditBlServ{
 	private OrderAction stringToAction(String action) {
 		return OrderAction.abnormal;
 	}
-
 }
