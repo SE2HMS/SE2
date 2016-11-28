@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 
-public class OrderBlServlmpl implements OrderBlServ {
+public class OrderBlServImpl implements OrderBlServ {
 
     @Override
     public OrderVO getOrderInfo(String id) {

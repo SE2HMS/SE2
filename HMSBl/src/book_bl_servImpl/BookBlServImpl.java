@@ -22,12 +22,13 @@ public class BookBlServImpl implements BookBlServ {
 		String inTime = order.getInTime().toString();
 		String outTime = order.getOutTime().toString();
 		String execTime = order.getExecTime().toString();
+		double total = (double)order.getTotal();
 		try {
 			String id = generateId();
 			while(RemoteHelper.getInstance().getOrderDataServ().getOrder(id) != null) {
 				id = generateId();
 			}
-			OrderPO orderPO = new OrderPO(id,userId,hotel,userName,contact,type,outTime,execTime);
+			OrderPO orderPO = new OrderPO(id,userId,hotel,userName,contact,type,inTime,outTime,execTime,total);
 			RemoteHelper.getInstance().getOrderDataServ().insertOrder(orderPO);
 		}catch (Exception e) {
 			e.printStackTrace();

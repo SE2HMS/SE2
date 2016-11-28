@@ -1,24 +1,22 @@
 package blTest;
 
-import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.Test;
 
-import Login_bl_servlmpl.LoginBlServlmpl;
+import login_bl_servlmpl.LoginBlServImpl;
 import PO.UserPO;
 
 public class LoginTest {
 	private String id, password;
 	private UserPO user1,user2;
-	private LoginBlServlmpl serv;
+	private LoginBlServImpl serv;
 	@Before
 	public void setup(){
 		id="123456";
 		password="123456";
 //		user1=new UserPO("123456","123456");
 //		user2=new UserPO("654321","123456");
-		serv=new LoginBlServlmpl();
+		serv=new LoginBlServImpl();
 	}
 
 	@Test

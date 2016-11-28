@@ -14,7 +14,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class HotelBlServlmpl implements HotelBlServ{
+public class HotelBlServImpl implements HotelBlServ{
     @Override
     public HotelVO getHotelInfo(String name) {
         HotelPO hotelPO = null;
