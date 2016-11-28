@@ -1,6 +1,5 @@
 package strategy_bl_servlmpl;
 
-import PO.StrategyPO;
 import VO.StrategyVO;
 import strategy_bl_serv.HotelStrategyBlServ;
 

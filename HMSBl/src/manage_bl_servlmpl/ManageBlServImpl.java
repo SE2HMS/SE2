@@ -6,7 +6,7 @@ import manage_bl_serv.ManageBlServ;
 
 import java.util.Iterator;
 
-public class ManageBlServlmpl implements ManageBlServ{
+public class ManageBlServImpl implements ManageBlServ{
 
 	@Override
 	public Iterator<UserVO> getAllUserInfo() {

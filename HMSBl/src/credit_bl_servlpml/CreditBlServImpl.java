@@ -9,7 +9,7 @@ import rmi.RemoteHelper;
 
 import java.util.Date;
 
-public class CreditBlServlmpl implements CreditBlServ{
+public class CreditBlServImpl implements CreditBlServ{
 
 	@Override
 	public CreditVO getCreditInfo(String id) {

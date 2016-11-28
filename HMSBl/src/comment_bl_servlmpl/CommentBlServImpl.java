@@ -5,7 +5,7 @@ import VO.HotelVO;
 import VO.UserVO;
 import comment_bl_serv.CommentBlServ;
 
-public class CommentBlServlmpl implements CommentBlServ{
+public class CommentBlServImpl implements CommentBlServ{
 
 	/**
 	 * 暂时没动，数据层似乎木有接口

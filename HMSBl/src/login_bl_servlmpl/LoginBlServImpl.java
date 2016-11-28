@@ -1,6 +1,6 @@
-package Login_bl_servlmpl;
+package login_bl_servlmpl;
 
-import Login_bl_serv.LoginBlServ;
+import login_bl_serv.LoginBlServ;
 import PO.UserPO;
 import VO.LoginResult;
 import VO.UserVO;
@@ -8,7 +8,7 @@ import rmi.RemoteHelper;
 
 import java.rmi.RemoteException;
 
-public class LoginBlServlmpl implements LoginBlServ{
+public class LoginBlServImpl implements LoginBlServ{
 
 	@Override
 	/**
