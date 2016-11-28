@@ -1,10 +1,15 @@
 package order_bl_serv;
 
 import VO.OrderVO;
+import order_bl_servlmpl.OrderBlServImpl;
 
 import java.util.Iterator;
 
 public interface OrderBlServ {
+
+	public static OrderBlServ getInstance() {
+		return new OrderBlServImpl();
+	}
 
 	/**
 	 * 得到一个订单

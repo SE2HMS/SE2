@@ -1,10 +1,15 @@
 package strategy_bl_serv;
 
 import VO.StrategyVO;
+import strategy_bl_servlmpl.WebStrategyBlServlmpl;
 
 import java.util.Iterator;
 
 public interface WebStrategyBlServ {
+
+	public static WebStrategyBlServ getInstance() {
+		return new WebStrategyBlServlmpl();
+	}
 
 	/**
 	 * 得到所有网站促销策略

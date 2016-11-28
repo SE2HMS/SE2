@@ -1,10 +1,15 @@
 package manage_bl_serv;
 
 import VO.UserVO;
+import manage_bl_servlmpl.ManageBlServImpl;
 
 import java.util.Iterator;
 
 public interface ManageBlServ {
+
+	public static ManageBlServ getInstance() {
+		return new ManageBlServImpl();
+	}
 	/**
 	 * 得到所有用户的信息
 	 * @return 返回一个迭代器
