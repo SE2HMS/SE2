@@ -13,7 +13,7 @@ public class BookBlServImpl implements BookBlServ {
 	/**
 	 * 这个方法由客户端调用用于生成一个订单
 	 */
-	public void produceOrder(OrderVO order) {
+	public boolean produceOrder(OrderVO order) {
 		String userId = order.getUser().getId();
 		String userName = order.getUser().getName();
 		String contact = order.getUser().getContact();
@@ -23,16 +23,18 @@ public class BookBlServImpl implements BookBlServ {
 		String outTime = order.getOutTime().toString();
 		String execTime = order.getExecTime().toString();
 		double total = (double)order.getTotal();
+		boolean success = false;
 		try {
 			String id = generateId();
 			while(RemoteHelper.getInstance().getOrderDataServ().getOrder(id) != null) {
 				id = generateId();
 			}
 			OrderPO orderPO = new OrderPO(id,userId,hotel,userName,contact,type,inTime,outTime,execTime,total);
-			RemoteHelper.getInstance().getOrderDataServ().insertOrder(orderPO);
+			success = RemoteHelper.getInstance().getOrderDataServ().insertOrder(orderPO);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
+		return success;
 	}
 
 	/**

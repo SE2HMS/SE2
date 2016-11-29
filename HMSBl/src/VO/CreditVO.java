@@ -8,6 +8,7 @@ import java.util.Date;
 public class CreditVO {
     private final Date time;
     private final String num;
+    private final String userId;
     private final OrderAction action;
     private final double creditChange;
     private final double credit;
@@ -20,9 +21,10 @@ public class CreditVO {
      * @param creditChange 信用值的变化
      * @param credit 变化后的信用值
      */
-    public CreditVO(Date time,String num,OrderAction action,double creditChange,double credit) {
+    public CreditVO(Date time,String num,String userId,OrderAction action,double creditChange,double credit) {
         this.time = time;
         this.num = num;
+        this.userId = userId;
         this.action = action;
         this.creditChange = creditChange;
         this.credit = credit;
@@ -35,6 +37,8 @@ public class CreditVO {
     public String getNum() {
         return num;
     }
+
+    public String getUserId() {return userId;}
 
     public OrderAction getAction() {
         return action;
