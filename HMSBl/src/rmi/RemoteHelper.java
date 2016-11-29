@@ -58,7 +58,7 @@ public class RemoteHelper {
 		return (WebStrategyDataImpl) remote;
 	}
 	
-	public UserDataServ getUserDateServ() {
+	public UserDataServ getUserDataServ() {
 		return (UserDataServ) remote;
 	}
 }
