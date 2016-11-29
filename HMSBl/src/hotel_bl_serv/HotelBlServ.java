@@ -1,7 +1,9 @@
 package hotel_bl_serv;
 
 import VO.HotelVO;
+import VO.StrategyVO;
 import hotel_bl_servlmpl.HotelBlServImpl;
+import strategy_bl_serv.HotelStrategyBlServ;
 
 import java.util.Iterator;
 
@@ -27,14 +29,14 @@ public interface HotelBlServ {
 
 	/**
 	 * 得到所有的策略
-	 * @param id
+	 * @param hotelName
 	 * @return
      */
-	public Iterator<HotelVO> getHotelList(String id);
+	public Iterator<StrategyVO> getStrategyList(String hotelName);
 
 	/**
 	 * 得到所有酒店的信息
 	 * @return
      */
-	public Iterator<HotelVO> getAllHotel();
+	public Iterator<HotelVO> getAllHotel(String businessCircle);
 }

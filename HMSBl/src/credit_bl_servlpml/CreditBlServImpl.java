@@ -1,11 +1,9 @@
 package credit_bl_servlpml;
 
-import DataService.CreditDataServ;
 import PO.CreditPO;
 import VO.CreditVO;
 import VO.OrderAction;
 import credit_bl_serv.CreditBlServ;
-import VO.Operation;
 import rmi.RemoteHelper;
 
 import java.rmi.RemoteException;
@@ -54,18 +52,37 @@ public class CreditBlServImpl implements CreditBlServ{
 
 	@Override
 	public boolean addCredit(CreditVO creditVO) {
+		CreditPO creditPO = parseCreditPO(creditVO);
+		boolean success = false;
+		try {
+			success = RemoteHelper.getInstance().getCreditDataServ().insertCredit(creditPO);
+		}catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 
 	@Override
 	public double getTotal(String userId) {
 		double total = 0;
-//		try {
-//			total = RemoteHelper.getInstance().getCreditDataServ().getTotel(userId);
-//		}catch (RemoteException e) {
-//			e.printStackTrace();
-//		}
+		try {
+			ArrayList<CreditPO> creditPOs = RemoteHelper.getInstance().getCreditDataServ().getDetial(userId);
+			for(CreditPO creditPO:creditPOs) {
+				total += creditPO.getTotel();
+			}
+		}catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		return total;
+	}
+
+	/**
+	 * 这个还没写
+	 * @param creditVO
+	 * @return
+     */
+	private CreditPO parseCreditPO(CreditVO creditVO) {
+		return null;
 	}
 
 	/**
