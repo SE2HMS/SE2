@@ -22,4 +22,12 @@ public interface CommentBlServ {
      * @return
      */
 	public boolean comment(UserVO user, HotelVO hotel, String comment);
+
+	/**
+	 * 这个是匿名评论
+	 * @param hotel 酒店
+	 * @param comment 评论内容
+     * @return
+     */
+	public boolean comment(HotelVO hotel, String comment);
 }

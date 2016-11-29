@@ -3,10 +3,7 @@ package hotel_bl_servlmpl;
 import PO.HotelPO;
 import PO.HotelStrategyPO;
 import PO.RoomPO;
-import VO.CommentVO;
-import VO.HotelVO;
-import VO.RoomVO;
-import VO.StrategyVO;
+import VO.*;
 import hotel_bl_serv.HotelBlServ;
 import rmi.RemoteHelper;
 
@@ -102,19 +99,32 @@ public class HotelBlServImpl implements HotelBlServ {
         String intro = hotelPO.getINTRO();
         ArrayList<RoomVO> rooms = changeRoomToVO(hotelPO.getRoom());
         ArrayList<String> cooperativeEnterprise = hotelPO.getCompanies();
-        ArrayList<StrategyVO> strategys = changeStrategyToVO(hotelPO.getStrategy());
-        hotelVO = new HotelVO(name,CBD,location,comments,starLevel,intro,rooms,cooperativeEnterprise,strategys);
+        ArrayList<StrategyVO> strategies = changeStrategyToVO(hotelPO.getStrategy());
+        hotelVO = new HotelVO(name,CBD,location,comments,starLevel,intro,rooms,cooperativeEnterprise,strategies);
         return hotelVO;
     }
 
     /**
-     * 还没写
+     * 没写完，需要更多接口
      *
      * @param hotelStrategyPO
      * @return
      */
     private StrategyVO parseStrategyVO(HotelStrategyPO hotelStrategyPO) {
-
+        String type = hotelStrategyPO.getType();
+        StrategyVO strategyVO;
+        String name = hotelStrategyPO.getStrategyName();
+        double discount = hotelStrategyPO.getDiscount();
+        switch(type) {
+            case "birthday":
+                strategyVO = new BirthdayStrategy(name,discount);
+            case "double_eleven":
+//                strategyVO = new DoubleElevenStrategy();
+            case "room_number":
+                strategyVO = new RoomNumberStrategy();
+            case "cooperative":
+                strategyVO = new CooperativeStrategy();
+        }
         return null;
     }
 
@@ -155,7 +165,7 @@ public class HotelBlServImpl implements HotelBlServ {
     }
 
     /**
-     * 还没开始写，用来吧PO变成VO
+     * 写好了，用来吧PO变成VO
      *
      * @param strategys 需要变的策略类的PO
      * @return
@@ -163,8 +173,9 @@ public class HotelBlServImpl implements HotelBlServ {
     private ArrayList<StrategyVO> changeStrategyToVO(ArrayList<HotelStrategyPO> strategys) {
         ArrayList<StrategyVO> strategyVOs = new ArrayList<>();
         for (HotelStrategyPO hotelStrategyPO : strategys) {
-
+            StrategyVO strategyVO = parseStrategyVO(hotelStrategyPO);
+            strategyVOs.add(strategyVO);
         }
-        return new ArrayList<>();
+        return strategyVOs;
     }
 }

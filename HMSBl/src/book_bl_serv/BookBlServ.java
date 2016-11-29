@@ -11,6 +11,7 @@ public interface BookBlServ {
 	/**
 	 * 由客户端调用，用于生成一个订单
 	 * @param orderVO 需要生成的订单
+	 * @return 返回是否成功
      */
-	public void produceOrder(OrderVO orderVO);
+	public boolean produceOrder(OrderVO orderVO);
 }
