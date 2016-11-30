@@ -14,7 +14,8 @@ public class BookBlServImpl implements BookBlServ{
     public boolean produceOrder(OrderVO orderVO) {
         boolean success = false;
         try{
-            success = RemoteHelper.getInstance().getOrderDataServ().insertOrder(ParseHelper.toOrderPO(orderVO));
+            OrderPO orderPO = ParseHelper.toOrderPO(orderVO);
+            success = RemoteHelper.getInstance().getOrderDataServ().insertOrder(orderPO);
         }catch (Exception e) {
             e.printStackTrace();
         }
