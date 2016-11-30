@@ -85,7 +85,7 @@ public class HotelBlServImpl implements HotelBlServ {
     }
 
     /**
-     * 还没写
+     * 已经写好了
      * @param hotelPO
      * @return
      */
