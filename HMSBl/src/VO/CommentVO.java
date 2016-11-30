@@ -6,6 +6,10 @@ package VO;
 public class CommentVO {
     private final String content;
 
+    public String getContent() {
+        return content;
+    }
+
     public CommentVO(String content) {
         this.content = content;
     }

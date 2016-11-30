@@ -15,6 +15,7 @@ public interface CommentBlServ {
 	}
 
 	/**
+	 * @deprecated 不要用这个
 	 * 用户对酒店进行评论，返回是否成功
 	 * @param user 用户
 	 * @param hotel 酒店

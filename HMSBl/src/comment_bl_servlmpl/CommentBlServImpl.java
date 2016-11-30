@@ -12,6 +12,7 @@ import java.rmi.RemoteException;
 public class CommentBlServImpl implements CommentBlServ{
 
 	/**
+	 * @deprecated 这个不用了
 	 * 评论，需要改成匿名的评论，不过还是加上一个匿名评论吧，这个就不用了
 	 * @param user 用户
 	 * @param hotel 酒店
