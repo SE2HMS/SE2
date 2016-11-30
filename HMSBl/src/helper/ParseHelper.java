@@ -160,4 +160,37 @@ public abstract class ParseHelper {
     public static OrderVO toOrderVO(OrderPO orderPO) {
         return null;
     }
+
+
+    /**
+     * 用于将UserVO转成UserPO
+     * @param userVO
+     * @return
+     */
+    public UserPO parseUserPO(UserVO userVO, UserLoginInfo info) {
+        String id = info.getUserId();
+        String password = info.getPassword();
+        String contact = userVO.getContact();
+        String name = userVO.getName();
+        String specialInfo = userVO.getAdditionalInfo();
+        int credit = userVO.getCredit();
+        int vipLevel = userVO.getGrade();
+        int isLogin = 0;
+        String type = userVO.getType().toString(); //没测试，也许有问题
+        UserPO userPO = new UserPO(id,password,contact,name,specialInfo,credit,vipLevel,isLogin,type);
+        return userPO;
+    }
+
+    /**
+     * 显然还有问题
+     * @param hotelName
+     * @param strategyVO
+     * @return
+     */
+    public static HotelStrategyPO toHotelStrategyPO(String hotelName,StrategyVO strategyVO) {
+        String strategyName = strategyVO.getName();
+        double discount = strategyVO.getDiscount();
+        HotelStrategyPO hotelStrategyPO = new HotelStrategyPO(hotelName,strategyName,"spec",discount,"type");
+        return hotelStrategyPO;
+    }
 }

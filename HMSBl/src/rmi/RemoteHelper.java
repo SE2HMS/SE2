@@ -50,12 +50,12 @@ public class RemoteHelper {
 		return (RoomDataServ) remote;
 	}
 	
-	public hotelStrategyDataImpl getHotelStrategyDataImpl() {
-		return (hotelStrategyDataImpl) remote;
+	public HotelStrategyDataServ getHotelStrategyDataServ() {
+		return (HotelStrategyDataServ) remote;
 	}
 	
-	public WebStrategyDataImpl getMemberStrategyDataImpl() {
-		return (WebStrategyDataImpl) remote;
+	public WebStrategyDataServ getMemberStrategyDataImpl() {
+		return (WebStrategyDataServ) remote;
 	}
 	
 	public UserDataServ getUserDataServ() {

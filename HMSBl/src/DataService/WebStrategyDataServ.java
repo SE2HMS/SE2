@@ -5,7 +5,7 @@ import java.rmi.RemoteException;
 
 import PO.WebStrategyPO;
 
-public interface WebStrategyDataImpl extends Remote{
+public interface WebStrategyDataServ extends Remote{
 	
 	public void insertStrategy(WebStrategyPO strategyPO) throws RemoteException;
 	
