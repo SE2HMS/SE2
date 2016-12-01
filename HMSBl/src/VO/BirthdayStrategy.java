@@ -17,4 +17,9 @@ public class BirthdayStrategy implements StrategyVO{
     public double getDiscount() {
         return this.strategy.getDiscount();
     }
+
+    @Override
+    public String getType() {
+        return "birthday";
+    }
 }

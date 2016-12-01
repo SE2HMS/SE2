@@ -24,4 +24,9 @@ public class CBDStrategy implements StrategyVO{
     public double getDiscount() {
         return strategy.getDiscount();
     }
+
+    @Override
+    public String getType() {
+        return "CBD";
+    }
 }
