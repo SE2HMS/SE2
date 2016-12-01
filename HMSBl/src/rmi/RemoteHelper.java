@@ -34,18 +34,6 @@ public class RemoteHelper {
 		return (OrderDataServ) remote;
 	}
 	
-	public normalOrderDataServ getNormalOrderDataServ() {
-		return (normalOrderDataServ) remote;
-	}
-	
-	public abnormalOrderDataServ getAbnormalOrderDataServ() {
-		return (abnormalOrderDataServ) remote;
-	}
-	
-	public revokOrderDataServ getRevokOrderDataServ() {
-		return (revokOrderDataServ) remote;
-	}
-	
 	public RoomDataServ getRoomDataServ() {
 		return (RoomDataServ) remote;
 	}
@@ -54,7 +42,7 @@ public class RemoteHelper {
 		return (HotelStrategyDataServ) remote;
 	}
 	
-	public WebStrategyDataServ getMemberStrategyDataImpl() {
+	public WebStrategyDataServ getWebStrategyDataServ() {
 		return (WebStrategyDataServ) remote;
 	}
 	

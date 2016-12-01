@@ -2,20 +2,18 @@ package DataService;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import PO.WebStrategyPO;
 
 public interface WebStrategyDataServ extends Remote{
 	
-	public void insertStrategy(WebStrategyPO strategyPO) throws RemoteException;
+	public boolean insertStrategy(WebStrategyPO strategyPO) throws RemoteException;
 	
-	public WebStrategyPO[] getStrategyList () throws RemoteException;
+	public ArrayList<WebStrategyPO> getStrategyList () throws RemoteException;
 	
-	public void deleteStrategy(String id) throws RemoteException;
+	public boolean deleteStrategy(String id) throws RemoteException;
 	
-	public void modifiedStrategy(WebStrategyPO strategy) throws RemoteException;
+	public boolean modifiedStrategy(WebStrategyPO strategy) throws RemoteException;
 	
-	public void init() throws RemoteException;
-	
-	public void finish() throws RemoteException;
 }

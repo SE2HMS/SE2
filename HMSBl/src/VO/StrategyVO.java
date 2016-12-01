@@ -7,4 +7,6 @@ public interface StrategyVO {
     public String getName();
 
     public double getDiscount();
+
+    public String getType();
 }
