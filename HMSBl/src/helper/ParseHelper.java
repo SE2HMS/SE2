@@ -16,6 +16,10 @@ import java.util.Iterator;
  */
 public abstract class ParseHelper {
 
+    public static RoomInOrder stringToRoom(String room) {
+        return null;
+    }
+
     public static UserType stringToUserType(String type) {
         UserType userType = null;
         switch (type) {
@@ -189,12 +193,44 @@ public abstract class ParseHelper {
     }
 
     /**
-     * 还没写
+     * 好了
      * @param orderPO
      * @return
      */
     public static OrderVO toOrderVO(OrderPO orderPO) {
-        return null;
+        String userId = orderPO.getUserID();
+        String userName = orderPO.getUserName();
+        String userContact = orderPO.getUserContact();
+        UserInOrder user = new UserInOrder(userId, userName, userContact);
+        String hotelName = orderPO.getHotel();
+        ArrayList<String> rooms = orderPO.getRoom();
+        ArrayList<RoomInOrder> roomInOrders = new ArrayList<>();
+        rooms.forEach(room->roomInOrders.add(ParseHelper.stringToRoom(room)));
+        HotelInOrder hotel = new HotelInOrder(hotelName, roomInOrders);
+        OrderState state = ParseHelper.stringToOrderState(orderPO.getType());
+        boolean children = false;
+        String inTime = orderPO.getInTime();
+        String outTime = orderPO.getOutTime();
+        String execTime = orderPO.getLastTime();
+        int total = (int) orderPO.getTotel();
+        OrderVO orderVO = new OrderVO(user, hotel, state, children, stringToDate(inTime), stringToDate(outTime), stringToDate(execTime), total);
+        return orderVO;
+    }
+
+    public static OrderState stringToOrderState(String state) {
+        OrderState orderState = null;
+        switch (state) {
+            case "NORMAL":
+                orderState = OrderState.NORMAL;
+                break;
+            case "ABNORMAL":
+                orderState = OrderState.ABNORMAL;
+                break;
+            case "REVOKE":
+                orderState = OrderState.REVOKE;
+                break;
+        }
+        return orderState;
     }
 
 
