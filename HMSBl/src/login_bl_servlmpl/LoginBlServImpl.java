@@ -8,6 +8,9 @@ import rmi.RemoteHelper;
 
 import java.rmi.RemoteException;
 
+/**
+ * 12.2检查完毕
+ */
 public class LoginBlServImpl implements LoginBlServ {
 
     @Override

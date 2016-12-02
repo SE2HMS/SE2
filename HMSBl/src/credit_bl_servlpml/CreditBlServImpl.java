@@ -98,7 +98,7 @@ public class CreditBlServImpl implements CreditBlServ {
         String bh = "";
         switch (action) {
             case abnormal:
-                bh = "abnormal";
+                bh = "ABNORMAL";
                 break;
             case recharge:
                 bh = "recharge";
@@ -107,7 +107,7 @@ public class CreditBlServImpl implements CreditBlServ {
                 bh = "check_in";
                 break;
             case revoke:
-                bh = "revoke";
+                bh = "REVOKE";
                 break;
         }
         CreditPO creditPO = new CreditPO(id, time, userId, total, change, bh);
@@ -168,7 +168,7 @@ public class CreditBlServImpl implements CreditBlServ {
     private OrderAction stringToAction(String action) {
         OrderAction result = null;
         switch (action) {
-            case "abnormal":
+            case "ABNORMAL":
                 result = OrderAction.abnormal;
                 break;
             case "recharge":
@@ -177,7 +177,7 @@ public class CreditBlServImpl implements CreditBlServ {
             case "check_in":
                 result = OrderAction.check_in;
                 break;
-            case "revoke":
+            case "REVOKE":
                 result = OrderAction.revoke;
                 break;
         }
