@@ -5,7 +5,6 @@ import VO.*;
 import helper.ParseHelper;
 import login_bl_serv.LoginBlServ;
 import PO.UserPO;
-import order_bl_serv.OrderBlServ;
 import rmi.RemoteHelper;
 
 import java.rmi.RemoteException;
@@ -17,21 +16,43 @@ import java.util.ArrayList;
 public class LoginBlServImpl implements LoginBlServ {
 
     @Override
+    public LoginResult login(String id, String password) {
+        UserPO userPO = null;
+        LoginResult result = LoginResult.EXCEPTION;
+        try {
+            userPO = RemoteHelper.getInstance().getUserDataServ().getUser(id);
+            if(userPO == null) {
+                result = LoginResult.WRONG_ID;
+            }else if(!userPO.getPassword().equals(password)) {
+                result = LoginResult.WRONG_PASSWORD;
+            }else if(userPO.getIsLogin() > 0) {
+                result = LoginResult.ALREADY_LOGIN;
+            }else {
+                userPO.setIsLogin(1);
+                result = LoginResult.SUCCESS;
+            }
+        }catch (RemoteException e) {
+            result = LoginResult.EXCEPTION;
+        }
+        return result;
+    }
+
     /**
+     * @deprecated 不用了
      * 登录方法，如果没有这个用户，返回wrongId
      * 如果密码不正确，返回wrongPassword
      * 登录成功，返回success
      * 登录冲突,返回alreadyLogin
      */
-    public LoginResult login(String id, String password) {
+    public LoginResult oldLogin(String id, String password) {
         UserPO userPO = null;
         try {
             userPO = RemoteHelper.getInstance().getUserDataServ().getUser(id);
             if (userPO == null) {
-                return LoginResult.wrongId;
+                return LoginResult.WRONG_ID;
             }
             if (userPO.getIsLogin() > 0) {
-                return LoginResult.alreadyLogin;
+                return LoginResult.ALREADY_LOGIN;
             }
         } catch (RemoteException e) {
             e.printStackTrace();
@@ -44,9 +65,9 @@ public class LoginBlServImpl implements LoginBlServ {
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
-            return LoginResult.success;
+            return LoginResult.SUCCESS;
         } else {
-            return LoginResult.wrongPassword;
+            return LoginResult.WRONG_PASSWORD;
         }
     }
 

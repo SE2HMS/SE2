@@ -21,11 +21,11 @@ public class LoginBlServImplTest {
 
     @Test
     public void testLogin() {
-        assertEquals(LoginResult.wrongId,loginBlServImpl.login("wrong",""));
-        assertEquals(LoginResult.wrongPassword,loginBlServImpl.login("correct","wrong"));
-        assertEquals(LoginResult.success,loginBlServImpl.login("correct","correct"));
-        assertEquals(LoginResult.wrongPassword,loginBlServImpl.login("already","wrong"));
-        assertEquals(LoginResult.alreadyLogin,loginBlServImpl.login("already","correct"));
+        assertEquals(LoginResult.WRONG_ID,loginBlServImpl.oldLogin("wrong",""));
+        assertEquals(LoginResult.WRONG_PASSWORD,loginBlServImpl.oldLogin("correct","wrong"));
+        assertEquals(LoginResult.SUCCESS,loginBlServImpl.oldLogin("correct","correct"));
+        assertEquals(LoginResult.WRONG_PASSWORD,loginBlServImpl.oldLogin("already","wrong"));
+        assertEquals(LoginResult.ALREADY_LOGIN,loginBlServImpl.oldLogin("already","correct"));
     }
 
     @Test
