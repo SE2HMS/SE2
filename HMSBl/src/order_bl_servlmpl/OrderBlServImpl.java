@@ -75,7 +75,7 @@ public class OrderBlServImpl implements OrderBlServ {
     private OrderState stringToState(String state) {
         OrderState orderState = null;
         switch (state) {
-            case "normal":
+            case "NORMAL":
                 orderState = OrderState.normal;
                 break;
             case "abnormal":
