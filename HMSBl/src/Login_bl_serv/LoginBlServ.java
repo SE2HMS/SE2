@@ -12,10 +12,11 @@ public interface LoginBlServ {
 	}
 
 	/**
-	 * 登录方法，如果没有这个用户，返回wrongId
-	 * 如果密码不正确，返回wrongPassword
-	 * 登录成功，返回success
-	 * 登录冲突，返回alreadyLogin
+	 * 登录方法，如果没有这个用户，返回WRONG_ID
+	 * 如果密码不正确，返回WRONG_PASSWORD
+	 * 登录成功，返回SUCCESS
+	 * 登录冲突，返回ALREADY_LOGIN
+	 * 其他情况，返回EXCEPTION
 	 * @param id 用户的id
 	 * @param password 用户的密码
      * @return 返回一个登录结果
