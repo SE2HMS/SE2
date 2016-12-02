@@ -2,7 +2,9 @@ package helper;
 
 import PO.*;
 import VO.*;
+import rmi.RemoteHelper;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -15,7 +17,16 @@ import java.util.Iterator;
 public abstract class ParseHelper {
 
     public static UserType stringToUserType(String type) {
-        return null;
+        UserType userType = null;
+        switch (type) {
+            case "NORMAL":
+                userType = UserType.NORMAL;
+                break;
+            case "SPECIAL":
+                userType = UserType.SPECIAL;
+                break;
+        }
+        return userType;
     }
 
     /**
@@ -192,7 +203,10 @@ public abstract class ParseHelper {
      * @param userVO
      * @return
      */
-    public UserPO toUserPO(UserVO userVO, UserLoginInfo info) {
+    public static UserPO toUserPO(UserVO userVO, UserLoginInfo info) {
+        if(userVO == null || info == null) {
+            return null;
+        }
         String id = info.getUserId();
         String password = info.getPassword();
         String contact = userVO.getContact();
@@ -201,7 +215,7 @@ public abstract class ParseHelper {
         int credit = userVO.getCredit();
         int vipLevel = userVO.getGrade();
         int isLogin = 0;
-        String type = userVO.getType().toString(); //没测试，也许有问题
+        String type = userVO.getType().toString();
         UserPO userPO = new UserPO(id,password,contact,name,specialInfo,credit,vipLevel,isLogin,type);
         return userPO;
     }
@@ -250,5 +264,33 @@ public abstract class ParseHelper {
     public static WebStrategyPO toWebStrategyPO(StrategyVO strategyVO) {
 //        WebStrategyPO webStrategyPO = new WebStrategyPO();
         return null;
+    }
+
+
+    /**
+     * 还没写好，在考虑怎么把订单列表加进去，或者直接不要了
+     *
+     * @param userPO
+     * @return
+     */
+    public static UserVO toUserVO(UserPO userPO) {
+        if(userPO == null) {
+            return null;
+        }
+        String name = userPO.getName();
+        String contact = userPO.getContactInfo();
+        int credit = userPO.getCreditTol();
+        int grade = userPO.getVipLev();
+        ArrayList<OrderVO> orderVOs = new ArrayList<>();
+        UserType type = ParseHelper.stringToUserType(userPO.getType());
+        String additionalInfo = userPO.getSpecialInfo();
+        try {
+            ArrayList<OrderPO> orderPOs = RemoteHelper.getInstance().getOrderDataServ().getOrders(userPO.getID());
+            orderPOs.forEach(orderPO -> orderVOs.add(ParseHelper.toOrderVO(orderPO)));
+        }catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        UserVO userVO = new UserVO(name,contact,credit,grade,orderVOs,type,additionalInfo);
+        return userVO;
     }
 }

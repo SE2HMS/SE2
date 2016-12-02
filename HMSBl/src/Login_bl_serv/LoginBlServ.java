@@ -1,8 +1,6 @@
 package login_bl_serv;
 
-import VO.LoginResult;
-import VO.UserLoginInfo;
-import VO.UserVO;
+import VO.*;
 import login_bl_servlmpl.LoginBlServImpl;
 
 public interface LoginBlServ {
@@ -28,7 +26,7 @@ public interface LoginBlServ {
 	 * @param user 用户
 	 * @return 注册结果
      */
-	public boolean register(UserVO user, UserLoginInfo loginInfo);
+	public RegisterResult register(UserVO user, UserLoginInfo loginInfo);
 
 	/**
 	 * 得到用户信息
@@ -42,5 +40,5 @@ public interface LoginBlServ {
 	 * 注销登录
 	 * @return 返回是否成功
      */
-	public boolean logout(String id);
+	public LogoutResult logout(String id);
 }
