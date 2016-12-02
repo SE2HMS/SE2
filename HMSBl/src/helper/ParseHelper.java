@@ -14,6 +14,10 @@ import java.util.Iterator;
  */
 public abstract class ParseHelper {
 
+    public static UserType stringToUserType(String type) {
+        return null;
+    }
+
     /**
      * 把数据层的String类型的时间变成逻辑层的Date类型
      * @param date
