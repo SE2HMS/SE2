@@ -15,16 +15,6 @@ public interface CommentBlServ {
 	}
 
 	/**
-	 * @deprecated 不要用这个
-	 * 用户对酒店进行评论，返回是否成功
-	 * @param user 用户
-	 * @param hotel 酒店
-	 * @param comment 评论细节
-     * @return
-     */
-	public boolean comment(UserVO user, HotelVO hotel, String comment);
-
-	/**
 	 * 这个是匿名评论
 	 * @param hotel 酒店
 	 * @param comment 评论内容

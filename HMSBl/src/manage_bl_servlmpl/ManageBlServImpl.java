@@ -2,6 +2,7 @@ package manage_bl_servlmpl;
 
 import PO.UserPO;
 import VO.*;
+import helper.ParseHelper;
 import manage_bl_serv.ManageBlServ;
 import rmi.RemoteHelper;
 
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * 这个也差不多了
+ * 12.3更新
  */
 public class ManageBlServImpl implements ManageBlServ {
 
@@ -20,7 +21,7 @@ public class ManageBlServImpl implements ManageBlServ {
         ArrayList<UserPO> userPOs = null;
         try {
             userPOs = RemoteHelper.getInstance().getUserDataServ().getUserList();
-            userPOs.forEach(userPO -> userVOs.add(parseUserVO(userPO)));
+            userPOs.forEach(userPO -> userVOs.add(ParseHelper.toUserVO(userPO)));
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -29,7 +30,7 @@ public class ManageBlServImpl implements ManageBlServ {
 
     @Override
     public boolean addUserInfo(UserVO user, UserLoginInfo info) {
-        UserPO userPO = parseUserPO(user, info);
+        UserPO userPO = ParseHelper.toUserPO(user, info);
         boolean success = false;
         try {
             success = RemoteHelper.getInstance().getUserDataServ().insertUser(userPO);
@@ -43,7 +44,8 @@ public class ManageBlServImpl implements ManageBlServ {
     public boolean modifyUserInfo(UserVO user,UserLoginInfo info) {
         boolean success = false;
         try {
-            success = RemoteHelper.getInstance().getUserDataServ().modifiedUser(parseUserPO(user,info));
+            UserPO userPO = ParseHelper.toUserPO(user,info);
+            success = RemoteHelper.getInstance().getUserDataServ().modifiedUser(userPO);
         }catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -61,28 +63,4 @@ public class ManageBlServImpl implements ManageBlServ {
         return success;
     }
 
-    /**
-     * 这东西在loginblservimpl里面已经有一个了
-     *
-     * @param userVO
-     * @param info
-     * @return
-     */
-    private UserPO parseUserPO(UserVO userVO, UserLoginInfo info) {
-        String id = info.getUserId();
-        String password = info.getPassword();
-        String contact = userVO.getContact();
-        String name = userVO.getName();
-        String specialInfo = userVO.getAdditionalInfo();
-        int credit = userVO.getCredit();
-        int vipLevel = userVO.getGrade();
-        int isLogin = 0;
-        String type = userVO.getType().toString(); //没测试，也许有问题
-        UserPO userPO = new UserPO(id, password, contact, name, specialInfo, credit, vipLevel, isLogin, type);
-        return userPO;
-    }
-
-    private UserVO parseUserVO(UserPO userPO) {
-        return null;
-    }
 }

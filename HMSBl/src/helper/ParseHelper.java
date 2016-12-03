@@ -13,6 +13,7 @@ import java.util.Iterator;
 /**
  * Created by Administrator on 2016/11/30.
  * 在这里放了PO,VO之间互换的一堆方法
+ * 太大了，实现丢给别的类吧
  */
 public abstract class ParseHelper {
 
@@ -82,7 +83,7 @@ public abstract class ParseHelper {
         hotelPO.getRoom().forEach(roomPO -> rooms.add(toRoomVO(roomPO)));
         ArrayList<String> cooperativeEnterprise = hotelPO.getCompanies();
         ArrayList<StrategyVO> strategies = new ArrayList<>();
-        hotelPO.getStrategy().forEach(hotelStrategyPO -> strategies.add(toStrategyVO(hotelStrategyPO)));
+        hotelPO.getStrategy().forEach(hotelStrategyPO -> strategies.add(ParseHelper.toStrategyVO(hotelStrategyPO)));
         hotelVO = new HotelVO(name,CBD,location,comments,starLevel,intro,rooms,cooperativeEnterprise,strategies);
         return hotelVO;
     }
@@ -132,35 +133,6 @@ public abstract class ParseHelper {
      */
     public static RoomPO toRoomPO(RoomVO roomVO) {
         return null;
-    }
-
-    /**
-     * 算是写了一半
-     * @param hotelStrategyPO
-     * @return
-     */
-    public static StrategyVO toStrategyVO(HotelStrategyPO hotelStrategyPO) {
-        StrategyVO strategyVO = null;
-        String name = hotelStrategyPO.getStrategyName();
-        double discount = hotelStrategyPO.getDiscount();
-        switch (hotelStrategyPO.getType()) {
-            case "date":
-                //问一下先
-                Date startTime = ParseHelper.stringToDate(hotelStrategyPO.getSpecialInof());
-                Date endTime = ParseHelper.stringToDate(hotelStrategyPO.getSpecialInof());
-                strategyVO = new DoubleElevenStrategy(name,discount,startTime,endTime);
-                break;
-            case "birthday":
-                strategyVO = new BirthdayStrategy(name,discount);
-                break;
-            case "roomnum":
-                strategyVO = new RoomNumberStrategy(name,discount);
-                break;
-            case "companies":
-                strategyVO = new CooperativeStrategy(name,discount);
-                break;
-        }
-        return strategyVO;
     }
 
     /**
@@ -217,6 +189,11 @@ public abstract class ParseHelper {
         return orderVO;
     }
 
+    /**
+     * 把字符串变成OrderState
+     * @param state
+     * @return
+     */
     public static OrderState stringToOrderState(String state) {
         OrderState orderState = null;
         switch (state) {
@@ -329,4 +306,126 @@ public abstract class ParseHelper {
         UserVO userVO = new UserVO(name,contact,credit,grade,orderVOs,type,additionalInfo);
         return userVO;
     }
+
+    /**
+     * 用来把StrategyPO转成StrategyVO
+     * @param hotelStrategyPO
+     * @return
+     */
+    public static StrategyVO toStrategyVO(HotelStrategyPO hotelStrategyPO) {
+        String type = hotelStrategyPO.getType();
+        StrategyVO strategyVO = null;
+        String name = hotelStrategyPO.getStrategyName();
+        double discount = hotelStrategyPO.getDiscount();
+        switch (type) {
+            case "birthday":
+                strategyVO = new BirthdayStrategy(name, discount);
+                break;
+            case "double_eleven":
+                String[] dates = hotelStrategyPO.getSpecialInof().split("-");
+                Date startTime = ParseHelper.stringToDate(dates[0]);
+                Date endTime = ParseHelper.stringToDate(dates[1]);
+                strategyVO = new DoubleElevenStrategy(name,discount,startTime,endTime);
+                break;
+            case "room_number":
+                strategyVO = new RoomNumberStrategy(name,discount);
+                break;
+            case "cooperative":
+                String[] companies = hotelStrategyPO.getSpecialInof().split(",");
+                ArrayList<String> companiesList = new ArrayList<>();
+                for(String company:companies) {
+                    companiesList.add(company);
+                }
+                strategyVO = new CooperativeStrategy(name,discount,companiesList);
+                break;
+        }
+        return strategyVO;
+    }
+
+    /**
+     * 写好了，用来把creditPO变成VO
+     *
+     * @param creditPO
+     * @return
+     */
+    public static CreditVO toCreditVO(CreditPO creditPO) {
+        if (creditPO == null) {
+            return null;
+        }
+        String date = creditPO.getTime();
+        String orderId = creditPO.getID();
+        String userId = creditPO.getUserID();
+        String action = creditPO.getBehavior();
+        double creditChange = creditPO.getChange();
+        double credit = creditPO.getTotel();
+        CreditVO creditVO = new CreditVO(ParseHelper.stringToDate(date), orderId, userId, stringToOrderAction(action), creditChange, credit);
+        return creditVO;
+    }
+
+    /**
+     * 用来吧字符串转成OrderAction
+     * @param action
+     * @return
+     */
+    public static OrderAction stringToOrderAction(String action) {
+        OrderAction result = null;
+        switch (action) {
+            case "ABNORMAL":
+                result = OrderAction.ABNORMAL;
+                break;
+            case "RECHARGE":
+                result = OrderAction.RECHARGE;
+                break;
+            case "CHECK_IN":
+                result = OrderAction.CHECK_IN;
+                break;
+            case "REVOKE":
+                result = OrderAction.REVOKE;
+                break;
+        }
+        return result;
+    }
+
+
+    /**
+     * 写好了，把creditVO变成creditPO
+     * 需要看一下那边的字符串有哪些
+     *
+     * @param creditVO
+     * @return
+     */
+    public static CreditPO toCreditPO(CreditVO creditVO) {
+        if (creditVO == null) {
+            return null;
+        }
+        String id = creditVO.getNum();
+        String time = creditVO.getTime().toString();
+        String userId = creditVO.getUserId();
+        double total = creditVO.getCredit();
+        double change = creditVO.getCreditChange();
+        OrderAction action = creditVO.getAction();
+        String bh = orderActionToString(action);
+        CreditPO creditPO = new CreditPO(id, time, userId, total, change, bh);
+        return creditPO;
+    }
+
+    public static String orderActionToString(OrderAction action) {
+        String result = "";
+        switch (action) {
+            case ABNORMAL:
+                result = "ABNORMAL";
+                break;
+            case RECHARGE:
+                result = "RECHARGE";
+                break;
+            case CHECK_IN:
+                result = "CHECK_IN";
+                break;
+            case REVOKE:
+                result = "REVOKE";
+                break;
+        }
+        return result;
+    }
+
 }
