@@ -4,12 +4,14 @@ package VO;
  * Created by Administrator on 2016/11/22.
  */
 public class RoomVO {
+    private final String hotelName;
     private final String type;
-    private final int price;
+    private final double price;
     private final int total;
     private final int[] available;
 
-    public RoomVO(String type,int price,int total,int[] available) {
+    public RoomVO(String hotelName,String type,double price,int total,int[] available) {
+        this.hotelName = hotelName;
         this.type = type;
         this.price = price;
         this.total = total;
@@ -20,7 +22,7 @@ public class RoomVO {
         return type;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
@@ -30,5 +32,9 @@ public class RoomVO {
 
     public int[] getAvailable() {
         return available;
+    }
+
+    public String getHotelName() {
+        return hotelName;
     }
 }

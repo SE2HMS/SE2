@@ -2,15 +2,19 @@ package VO;
 
 /**
  * Created by Administrator on 2016/11/22.
- * 商圈促销策略，包含商圈名，折扣，策略名
+ * 商圈促销策略，包含商圈名，三级折扣，策略名
  */
 public class CBDStrategy implements StrategyVO{
-    private final BasicStrategy strategy;
+    private final String name;
+    private final double[] discount = new double[3];
     private final String CBD;
 
-    public CBDStrategy(String name,double discount,String CBD) {
+    public CBDStrategy(String name,double level0,double level1,double level2,String CBD) {
         this.CBD = CBD;
-        this.strategy = new BasicStrategy(name,discount);
+        this.name = name;
+        this.discount[0] = level0;
+        this.discount[1] = level1;
+        this.discount[2] = level2;
     }
 
     public String getCBD() {
@@ -18,11 +22,19 @@ public class CBDStrategy implements StrategyVO{
     }
 
     public String getName() {
-        return strategy.getName();
+        return name;
     }
 
-    public double getDiscount() {
-        return strategy.getDiscount();
+    public double getLevel0() {
+        return discount[0];
+    }
+
+    public double getLevel1() {
+        return discount[1];
+    }
+
+    public double getLevel2() {
+        return discount[2];
     }
 
     @Override
