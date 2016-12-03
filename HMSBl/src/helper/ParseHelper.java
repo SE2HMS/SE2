@@ -18,7 +18,10 @@ import java.util.Iterator;
 public abstract class ParseHelper {
 
     public static RoomInOrder stringToRoom(String room) {
-        return null;
+        String name = room;
+        int num = 1;
+        RoomInOrder roomInOrder = new RoomInOrder(name,num);
+        return roomInOrder;
     }
 
     public static UserType stringToUserType(String type) {
@@ -61,7 +64,7 @@ public abstract class ParseHelper {
         int year = calendar.get(Calendar.YEAR) - 2000;
         int month = calendar.get(Calendar.MONTH) + 1;
         int day = calendar.get(Calendar.DAY_OF_MONTH);
-        time += year + "/" + month + "/" + day;
+        time += year + "/" + month + "/" + (day < 10?"0":"") + day;
         return time;
     }
 
@@ -118,12 +121,18 @@ public abstract class ParseHelper {
     }
 
     /**
-     * 还没写
+     * 写完了
      * @param roomPO
      * @return
      */
     public static RoomVO toRoomVO(RoomPO roomPO) {
-        return null;
+        String hotelName = roomPO.getHn();
+        String type = roomPO.getType();
+        double price = roomPO.getPrice();
+        int total = roomPO.getTotel();
+        int[] available = roomPO.getNum();
+        RoomVO roomVO = new RoomVO(hotelName,type,price,total,available);
+        return roomVO;
     }
 
     /**
@@ -132,16 +141,44 @@ public abstract class ParseHelper {
      * @return
      */
     public static RoomPO toRoomPO(RoomVO roomVO) {
-        return null;
+        String hotelName = roomVO.getHotelName();
+        String type = roomVO.getType();
+        double price = roomVO.getPrice();
+        int total = roomVO.getTotal();
+        int[] available = roomVO.getAvailable();
+        RoomPO roomPO = new RoomPO(hotelName,type,available,total,price);
+        return roomPO;
     }
 
     /**
      * 还没写
-     * @param hotelStrategyPO
+     * @param webStrategyPO
      * @return
      */
-    public static StrategyVO toStrategyVO(WebStrategyPO hotelStrategyPO) {
-        return null;
+    public static StrategyVO toStrategyVO(WebStrategyPO webStrategyPO) {
+        StrategyVO strategyVO = null;
+        String name = webStrategyPO.getStrategyName();
+        switch (webStrategyPO.getType()) {
+            case "level":
+                int upgradeNum = (int)webStrategyPO.getLev0();
+                strategyVO = new LevelStrategy(name,upgradeNum);
+                break;
+            case "businesscircle":
+                double level0 = webStrategyPO.getLev0();
+                double level1 = webStrategyPO.getLev1();
+                double level2 = webStrategyPO.getDiscount();
+                String CBD = webStrategyPO.getBusinessCircle();
+                strategyVO = new CBDStrategy(name,level0,level1,level2,CBD);
+                break;
+            case "date":
+                double discount = webStrategyPO.getDiscount();
+                String[] time = webStrategyPO.getDate().split("-");
+                Date startTime = ParseHelper.stringToDate(time[0]);
+                Date endTime = ParseHelper.stringToDate(time[1]);
+                strategyVO = new DoubleElevenStrategy(name,discount,startTime,endTime);
+                break;
+        }
+        return strategyVO;
     }
 
     /**
@@ -240,28 +277,36 @@ public abstract class ParseHelper {
      * @return
      */
     public static HotelStrategyPO toHotelStrategyPO(String hotelName,StrategyVO strategyVO) {
-        String strategyName = strategyVO.getName();
-        double discount = strategyVO.getDiscount();
+        String strategyName = null;
+        double discount = 0;
         String specialInfo = null;
         String type = strategyVO.getType();
         switch (type) {
             case "birthday":
                 BirthdayStrategy birthdayStrategy = (BirthdayStrategy)strategyVO;
+                strategyName = birthdayStrategy.getName();
+                discount = birthdayStrategy.getDiscount();
                 break;
             case "date":
                 DoubleElevenStrategy doubleElevenStrategy = (DoubleElevenStrategy)strategyVO;
+                strategyName = doubleElevenStrategy.getName();
+                discount = doubleElevenStrategy.getDiscount();
                 String startTime = ParseHelper.dateToString(doubleElevenStrategy.getStartTime());
                 String endTime = ParseHelper.dateToString(doubleElevenStrategy.getEndTime());
                 specialInfo = startTime + "-" + endTime;
                 break;
             case "roomnum":
                 RoomNumberStrategy roomNumberStrategy = (RoomNumberStrategy)strategyVO;
+                strategyName = roomNumberStrategy.getName();
+                discount = roomNumberStrategy.getDiscount();
                 break;
             case "companies":
                 CooperativeStrategy cooperativeStrategy = (CooperativeStrategy)strategyVO;
                 Iterator<String> companies = cooperativeStrategy.getCompanies();
                 StringBuilder stringBuilder = new StringBuilder("");
                 companies.forEachRemaining(company -> stringBuilder.append(company));
+                strategyName = cooperativeStrategy.getName();
+                discount = cooperativeStrategy.getDiscount();
                 specialInfo = stringBuilder.toString();
                 break;
         }
@@ -270,13 +315,47 @@ public abstract class ParseHelper {
     }
 
     /**
-     * 还没写
+     * 好了
      * @param strategyVO
      * @return
      */
     public static WebStrategyPO toWebStrategyPO(StrategyVO strategyVO) {
-//        WebStrategyPO webStrategyPO = new WebStrategyPO();
-        return null;
+        WebStrategyPO webStrategyPO = null;
+        String strategyName = null;
+        String businessCircle = null;
+        String date = null;
+        double level0 = 0;
+        double level1 = 0;
+        double discount = 0;
+        String type = null;
+        switch (strategyVO.getType()) {
+            case "level":
+                LevelStrategy levelStrategy = (LevelStrategy) strategyVO;
+                strategyName = levelStrategy.getName();
+                level0 = levelStrategy.getUpgradeNum();
+                type = "level";
+                break;
+            case "CBD":
+                CBDStrategy cbdStrategy = (CBDStrategy) strategyVO;
+                strategyName = cbdStrategy.getName();
+                businessCircle = cbdStrategy.getCBD();
+                level0 = cbdStrategy.getLevel0();
+                level1 = cbdStrategy.getLevel1();
+                discount = cbdStrategy.getLevel2();
+                type = "businesscircle";
+                break;
+            case "date":
+                DoubleElevenStrategy doubleElevenStrategy = (DoubleElevenStrategy) strategyVO;
+                String startTime = ParseHelper.dateToString(doubleElevenStrategy.getStartTime());
+                String endTime = ParseHelper.dateToString(doubleElevenStrategy.getEndTime());
+                date = startTime + "-" + endTime;
+                discount = doubleElevenStrategy.getDiscount();
+                strategyName = doubleElevenStrategy.getName();
+                type = "date";
+                break;
+        }
+        webStrategyPO = new WebStrategyPO(strategyName,businessCircle,date,level0,level1,discount,type);
+        return webStrategyPO;
     }
 
 
