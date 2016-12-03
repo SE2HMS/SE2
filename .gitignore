@@ -75,3 +75,6 @@ $RECYCLE.BIN/
 # ignore all files outside HMSBL
 HMSServer/*
 HMSUserClient/*
+HMSHotelStaffClient/*
+HMSWebManagerClient/*
+HMSWebSalerClient/*

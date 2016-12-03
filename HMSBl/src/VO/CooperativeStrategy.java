@@ -7,19 +7,22 @@ import java.util.Iterator;
  * Created by Administrator on 2016/11/29.
  */
 public class CooperativeStrategy implements StrategyVO {
-    private BasicStrategy strategy;
-    private ArrayList<String> companies;
+    private final String name;
+    private final double discount;
+    private final ArrayList<String> companies;
 
-    public CooperativeStrategy(String name,double discount) {
-        this.strategy = new BasicStrategy(name,discount);
+    public CooperativeStrategy(String name,double discount,ArrayList<String> companies) {
+        this.name = name;
+        this.discount = discount;
+        this.companies = companies;
     }
 
     public String getName() {
-        return strategy.getName();
+        return name;
     }
 
     public double getDiscount() {
-        return strategy.getDiscount();
+        return discount;
     }
 
     public Iterator<String> getCompanies() {

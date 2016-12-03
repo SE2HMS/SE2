@@ -10,6 +10,9 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * 12.3更新
+ */
 public class OrderBlServImpl implements OrderBlServ {
 
     @Override
