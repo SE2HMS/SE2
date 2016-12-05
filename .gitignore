@@ -63,3 +63,6 @@ $RECYCLE.BIN/
 *.lnk
 
 # other files
+.idea/*
+.metadata/*
+.recommemders/*
