@@ -3,7 +3,6 @@ package hotel_bl_serv;
 import VO.HotelVO;
 import VO.StrategyVO;
 import hotel_bl_servlmpl.HotelBlServImpl;
-import strategy_bl_serv.HotelStrategyBlServ;
 
 import java.util.Iterator;
 
