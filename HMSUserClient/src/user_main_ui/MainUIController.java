@@ -10,9 +10,7 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 public class MainUIController {
-/*
- * just for test
- * */
+
 	@FXML
 	private Label idLabel;  //id
 	
