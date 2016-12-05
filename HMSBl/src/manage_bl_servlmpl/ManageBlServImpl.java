@@ -2,6 +2,7 @@ package manage_bl_servlmpl;
 
 import PO.UserPO;
 import VO.*;
+import helper.ParseHelper;
 import manage_bl_serv.ManageBlServ;
 import rmi.RemoteHelper;
 

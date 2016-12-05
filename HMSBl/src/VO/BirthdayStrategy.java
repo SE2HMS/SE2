@@ -4,10 +4,10 @@ package VO;
  * Created by Administrator on 2016/11/22.
  */
 public class BirthdayStrategy implements StrategyVO{
-    private final BasicStrategy strategy;
+    private final BirthdayStrategy strategy;
 
     public BirthdayStrategy(String name,double discount) {
-        this.strategy = new BasicStrategy(name,discount);
+        this.strategy = new BirthdayStrategy(name,discount);
     }
 
     public String getName() {

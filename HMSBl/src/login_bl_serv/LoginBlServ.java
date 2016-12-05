@@ -1,6 +1,7 @@
 package login_bl_serv;
 
 import VO.*;
+import login_bl_servlmpl.LoginBlServImpl;
 
 public interface LoginBlServ {
 
@@ -9,35 +10,35 @@ public interface LoginBlServ {
 	}
 
 	/**
-	 * 登录方法，如果没有这个用户，返回WRONG_ID
-	 * 如果密码不正确，返回WRONG_PASSWORD
-	 * 登录成功，返回SUCCESS
-	 * 登录冲突，返回ALREADY_LOGIN
-	 * 其他情况，返回EXCEPTION
-	 * @param id 用户的id
-	 * @param password 用户的密码
-     * @return 返回一个登录结果
+	 * 鐧诲綍鏂规硶锛屽鏋滄病鏈夎繖涓敤鎴凤紝杩斿洖WRONG_ID
+	 * 濡傛灉瀵嗙爜涓嶆纭紝杩斿洖WRONG_PASSWORD
+	 * 鐧诲綍鎴愬姛锛岃繑鍥濻UCCESS
+	 * 鐧诲綍鍐茬獊锛岃繑鍥濧LREADY_LOGIN
+	 * 鍏朵粬鎯呭喌锛岃繑鍥濫XCEPTION
+	 * @param id 鐢ㄦ埛鐨刬d
+	 * @param password 鐢ㄦ埛鐨勫瘑鐮�
+     * @return 杩斿洖涓�涓櫥褰曠粨鏋�
      */
 	public LoginResult login(String id, String password);
 
 	/**
-	 * 注册一个用户，返回是否注册成功
-	 * @param user 用户
-	 * @return 注册结果
+	 * 娉ㄥ唽涓�涓敤鎴凤紝杩斿洖鏄惁娉ㄥ唽鎴愬姛
+	 * @param user 鐢ㄦ埛
+	 * @return 娉ㄥ唽缁撴灉
      */
 	public RegisterResult register(UserVO user, UserLoginInfo loginInfo);
 
 	/**
-	 * 得到用户信息
-	 * 如果没登录或者没有这个id（不太可能出现）则返回null
-	 * @param id 用户的id
-	 * @return 返回用户的信息
+	 * 寰楀埌鐢ㄦ埛淇℃伅
+	 * 濡傛灉娌＄櫥褰曟垨鑰呮病鏈夎繖涓猧d锛堜笉澶彲鑳藉嚭鐜帮級鍒欒繑鍥瀗ull
+	 * @param id 鐢ㄦ埛鐨刬d
+	 * @return 杩斿洖鐢ㄦ埛鐨勪俊鎭�
      */
 	public UserVO getUserInfo(String id);
 
 	/**
-	 * 注销登录
-	 * @return 返回是否成功
+	 * 娉ㄩ攢鐧诲綍
+	 * @return 杩斿洖鏄惁鎴愬姛
      */
 	public LogoutResult logout(String id);
 }
