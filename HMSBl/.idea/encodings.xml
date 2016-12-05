@@ -3,6 +3,8 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/../HMSServer/src/PO/WebStrategyPO.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/../HMSServer/src/datahelper/CommentSqlDataHelper.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/../HMSServer/src/datahelper/CommentSqlDataHelper.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/../HMSServer/src/datahelper/CompaniesSqlDataHelper.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/../HMSServer/src/datahelper/RoomSqlDataHelper.java" charset="GBK" />
   </component>
 </project>
