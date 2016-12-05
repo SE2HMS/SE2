@@ -4,7 +4,8 @@ package VO;
  * Created by Administrator on 2016/11/29.
  */
 public class RoomNumberStrategy implements StrategyVO{
-    private final BasicStrategy strategy;
+    private final String name;
+    private final double discount;
 
     public RoomNumberStrategy(String name,double discount) {
         this.strategy = new BasicStrategy(name,discount);
@@ -12,7 +13,7 @@ public class RoomNumberStrategy implements StrategyVO{
 
     @Override
     public String getName() {
-        return strategy.getName();
+        return name;
     }
 
     @Override
@@ -22,6 +23,6 @@ public class RoomNumberStrategy implements StrategyVO{
 
     @Override
     public double getDiscount() {
-        return strategy.getDiscount();
+        return discount;
     }
 }
