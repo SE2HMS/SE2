@@ -61,17 +61,3 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
-
-# idea files
-# compiler.xml
-# misc.xml
-# modules.xml
-# SE2.iml
-# workspace.xml
-# profiles_settings.xml
-*.iml
-*.xml
-
-# ignore all files outside HMSBL
-HMSServer/*
-HMSUserClient/*

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="450.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="user_main_ui.MainUIController">
+   <children>
+      <SplitPane dividerPositions="0.14705882352941177" layoutX="96.0" layoutY="78.0" prefHeight="450.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" snapToPixel="false">
+               <children>
+                  <ImageView fitHeight="66.0" fitWidth="70.0" layoutX="19.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label layoutX="22.0" layoutY="14.0" text="User Name" />
+                  <Accordion layoutY="166.0" prefHeight="116.0" prefWidth="107.0" AnchorPane.bottomAnchor="159.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="173.0">
+                    <panes>
+                      <TitledPane alignment="CENTER" animated="false" collapsible="false" text="首页" />
+                      <TitledPane alignment="CENTER" animated="false" collapsible="false" text="个人资料" />
+                        <TitledPane alignment="CENTER" animated="false" collapsible="false" layoutX="10.0" layoutY="33.0" text="信用记录" />
+                        <TitledPane alignment="CENTER" animated="false" collapsible="false" layoutX="10.0" layoutY="56.0" text="订单信息" />
+                        <TitledPane alignment="CENTER" animated="false" collapsible="false" layoutX="10.0" layoutY="79.0" text="过往酒店信息" />
+                    </panes>
+                  </Accordion>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" snapToPixel="false">
+               <children>
+                  <Button layoutX="442.0" layoutY="391.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="113.0" text="编辑" />
+                  <GridPane layoutX="165.0" layoutY="89.0" prefHeight="270.0" prefWidth="406.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="        用户名" />
+                        <Label text="        姓名" GridPane.rowIndex="1" />
+                        <Label text="        出生日期" GridPane.rowIndex="2" />
+                        <Label text="        企业名称" GridPane.rowIndex="3" />
+                        <Label text="        手机号" GridPane.rowIndex="4" />
+                        <Label text="Label" GridPane.columnIndex="1" />
+                        <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label text="（普通会员则为无）" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                     </children>
+                  </GridPane>
+                  <ImageView fitHeight="85.0" fitWidth="99.0" layoutX="248.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label layoutX="403.0" layoutY="49.0" text="会员等级（点击头像可更换头像？）" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

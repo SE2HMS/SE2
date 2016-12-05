@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/HMSBl.iml" filepath="$PROJECT_DIR$/HMSBl.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../HMSHotelStaffClient/HMSHotelStaffClient.iml" filepath="$PROJECT_DIR$/../HMSHotelStaffClient/HMSHotelStaffClient.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../HMSServer/HMSServer.iml" filepath="$PROJECT_DIR$/../HMSServer/HMSServer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../HMSUserClient/HMSUserClient.iml" filepath="$PROJECT_DIR$/../HMSUserClient/HMSUserClient.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../HMSWebManagerClient/HMSWebManagerClient.iml" filepath="$PROJECT_DIR$/../HMSWebManagerClient/HMSWebManagerClient.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../HMSWebSalerClient/HMSWebSalerClient.iml" filepath="$PROJECT_DIR$/../HMSWebSalerClient/HMSWebSalerClient.iml" />
+    </modules>
+  </component>
+</project>
