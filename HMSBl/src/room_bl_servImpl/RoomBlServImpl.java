@@ -2,7 +2,6 @@ package room_bl_servImpl;
 
 import PO.RoomPO;
 import VO.RoomVO;
-import helper.ParseHelper;
 import rmi.RemoteHelper;
 import room_bl_serv.RoomBlServ;
 

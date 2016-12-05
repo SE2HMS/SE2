@@ -15,8 +15,8 @@ public class RemoteHelper {
 		DataRemoteObject dataRemoteObject;
 		try {
 			dataRemoteObject = new DataRemoteObject();
-			LocateRegistry.createRegistry(8888);
-			Naming.bind("rmi://localhost:8888/DataRemoteObject",
+			LocateRegistry.createRegistry(8080);
+			Naming.bind("rmi://localhost:8080/DataRemoteObject",
 					dataRemoteObject);
 		} catch (RemoteException e) {
 			e.printStackTrace();

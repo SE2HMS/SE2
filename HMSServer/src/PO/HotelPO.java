@@ -3,15 +3,20 @@ package PO;
 import java.util.ArrayList;
 
 public class HotelPO {
-	private String name,businesscircle,introduce;
-	private ArrayList comment;
+	private String name,businesscircle,introduce,address;
+	private double stars;
+	private ArrayList<String> comment,companies;
+	private ArrayList<RoomPO> rooms;
+	private ArrayList<HotelStrategyPO> strategy;
 	
-	public HotelPO(String name,String bc,String intro,ArrayList comment){
+	public HotelPO(String name,String bc,String intro,String address,double stars){
 		super();
 		this.name=name;
 		this.businesscircle=bc;
 		this.introduce=intro;
-		this.comment=comment;
+		this.address=address;
+		this.stars=stars;
+		//to be continue...
 	}
 	
 	public String getName(){
@@ -38,11 +43,52 @@ public class HotelPO {
 		this.introduce=intro;
 	}
 	
-	public ArrayList getComment(){
+	public void setAddress(String s){
+		this.address=s;
+	}
+	
+	public String getAddress(){
+		return this.address;
+	}
+	
+	public void setStars(double d){
+		this.stars=d;
+	}
+	
+	public double getStars(){
+		return this.stars;
+	}
+	
+	public ArrayList<String> getComment(){
 		return comment;
 	}
 	
-	public void setComment(ArrayList c){
-		this.comment=c;
+	
+	public ArrayList<String> getCompanies(){
+		return this.companies;
+	}
+	
+	public ArrayList<RoomPO> getRoom(){
+		return this.rooms;
+	}
+	
+	public ArrayList<HotelStrategyPO> getStrategy(){
+		return this.strategy;
+	}
+	
+	public void setComment(ArrayList<String> c){
+		
+	}
+	
+	public void setCompanies(ArrayList<String> c){
+		
+	}
+	
+	public void setRomm(ArrayList<RoomPO> r){
+		
+	}
+	
+	public void setStrategy(ArrayList<HotelStrategyPO> s){
+		
 	}
 }

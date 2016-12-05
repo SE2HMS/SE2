@@ -1,7 +1,6 @@
 package login_bl_serv;
 
 import VO.*;
-import login_bl_servlmpl.LoginBlServImpl;
 
 public interface LoginBlServ {
 

@@ -2,7 +2,6 @@ package strategy_bl_servlmpl;
 
 import PO.HotelStrategyPO;
 import VO.StrategyVO;
-import helper.ParseHelper;
 import rmi.RemoteHelper;
 import strategy_bl_serv.HotelStrategyBlServ;
 

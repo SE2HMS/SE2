@@ -2,7 +2,6 @@ package blTest;
 
 import static org.junit.Assert.*;
 
-import login_bl_servlmpl.LoginBlServImpl;
 import VO.LoginResult;
 import org.junit.Before;
 import org.junit.Test;

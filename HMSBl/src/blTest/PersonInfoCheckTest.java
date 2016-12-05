@@ -7,12 +7,10 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
-import login_bl_servlmpl.LoginBlServImpl;
 import PO.CreditPO;
 import PO.HotelPO;
 import PO.UserPO;
 import credit_bl_servlpml.CreditBlServImpl;
-import hotel_bl_servlmpl.HotelBlServImpl;
 
 public class PersonInfoCheckTest {
 private UserPO user;

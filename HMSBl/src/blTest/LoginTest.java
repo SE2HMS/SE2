@@ -3,7 +3,6 @@ package blTest;
 import org.junit.Before;
 import org.junit.Test;
 
-import login_bl_servlmpl.LoginBlServImpl;
 import PO.UserPO;
 
 public class LoginTest {
