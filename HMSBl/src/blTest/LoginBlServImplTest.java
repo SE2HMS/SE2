@@ -3,12 +3,14 @@ package blTest;
 import static org.junit.Assert.*;
 
 import VO.LoginResult;
+import login_bl_servlmpl.LoginBlServImpl;
+
 import org.junit.Before;
 import org.junit.Test;
 
 /**
  * Created by Administrator on 2016/11/24.
- * 这个测试只写了一部分，相当于还没实现
+ * 杩欎釜娴嬭瘯鍙啓浜嗕竴閮ㄥ垎锛岀浉褰撲簬杩樻病瀹炵幇
  */
 public class LoginBlServImplTest {
     private LoginBlServImpl loginBlServImpl;
@@ -20,11 +22,11 @@ public class LoginBlServImplTest {
 
     @Test
     public void testLogin() {
-        assertEquals(LoginResult.WRONG_ID,loginBlServImpl.oldLogin("wrong",""));
-        assertEquals(LoginResult.WRONG_PASSWORD,loginBlServImpl.oldLogin("correct","wrong"));
-        assertEquals(LoginResult.SUCCESS,loginBlServImpl.oldLogin("correct","correct"));
-        assertEquals(LoginResult.WRONG_PASSWORD,loginBlServImpl.oldLogin("already","wrong"));
-        assertEquals(LoginResult.ALREADY_LOGIN,loginBlServImpl.oldLogin("already","correct"));
+        assertEquals(LoginResult.WRONG_ID,loginBlServImpl.login("wrong",""));
+        assertEquals(LoginResult.WRONG_PASSWORD,loginBlServImpl.login("correct","wrong"));
+        assertEquals(LoginResult.SUCCESS,loginBlServImpl.login("correct","correct"));
+        assertEquals(LoginResult.WRONG_PASSWORD,loginBlServImpl.login("already","wrong"));
+        assertEquals(LoginResult.ALREADY_LOGIN,loginBlServImpl.login("already","correct"));
     }
 
     @Test
@@ -36,9 +38,9 @@ public class LoginBlServImplTest {
     @Test
     public void testLogout() {
         assertEquals(false,loginBlServImpl.logout("wrong"));
-        //已经登录的情况
+        //宸茬粡鐧诲綍鐨勬儏鍐�
         assertEquals(true,loginBlServImpl.logout("correct"));
-        //登出之后再来一次
+        //鐧诲嚭涔嬪悗鍐嶆潵涓�娆�
         assertEquals(false,loginBlServImpl.logout("notLogin"));
     }
 }

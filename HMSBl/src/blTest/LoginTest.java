@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import PO.UserPO;
+import login_bl_servlmpl.LoginBlServImpl;
 
 public class LoginTest {
 	private String id, password;
