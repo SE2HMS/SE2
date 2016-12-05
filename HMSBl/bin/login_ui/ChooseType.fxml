@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="266.0" prefWidth="180.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login_ui.ChooseTypeController">
+   <children>
+      <Button fx:id="Normal" layoutX="22.0" layoutY="70.0" mnemonicParsing="false" onAction="#normal" prefHeight="42.0" prefWidth="136.0">
+         <effect>
+            <ImageInput>
+               <source>
+                  <Image url="file:/F:/大二上/SE2/朱晨乾/按钮第一部分/普通会员.png" />
+               </source>
+            </ImageInput>
+         </effect></Button>
+      <Button fx:id="Busi" layoutX="22.0" layoutY="163.0" mnemonicParsing="false" onAction="#busi" prefHeight="28.0" prefWidth="136.0">
+         <effect>
+            <ImageInput>
+               <source>
+                  <Image url="file:/F:/大二上/SE2/朱晨乾/按钮第一部分/企业会员.png" />
+               </source>
+            </ImageInput>
+         </effect></Button>
+   </children>
+</AnchorPane>

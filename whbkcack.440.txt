@@ -1,0 +1,214 @@
+﻿Merge branch 'master' of https://github.com/Fullcreammilk/SE2-1 into Fullcreammilk-master
+
+# Conflicts:
+#	HMSBl/src/VO/BirthdayStrategy.java
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch Fullcreammilk-master
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	modified:   .metadata/.log
+#	modified:   .metadata/.mylyn/tasks.xml.zip
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/0/d0a715a1ffa2001613b4a619e78e92e2
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/14/d0dd0a54fea2001613b4a619e78e92e2
+#	new file:   .metadata/.plugins/org.eclipse.core.resources/.history/1d/c0b3ead3c0ba00161a9cafa345dafb7e
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/28/90b177ff70a2001612daae35e2706f20
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/2a/e08b7cc5c2a100161d9fe58f8b665066
+#	new file:   .metadata/.plugins/org.eclipse.core.resources/.history/2c/609f7611c1ba00161a9cafa345dafb7e
+#	new file:   .metadata/.plugins/org.eclipse.core.resources/.history/3/101b5d09c1ba00161a9cafa345dafb7e
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/33/80a4c80569a2001612daae35e2706f20
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/34/5040577cfca2001613b4a619e78e92e2
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/35/1096b8eafda2001613b4a619e78e92e2
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/36/20960549fca2001613b4a619e78e92e2
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/36/c0b457daffa2001613b4a619e78e92e2
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/39/6053bd34fca2001613b4a619e78e92e2
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/39/f0548bc4fda2001613b4a619e78e92e2
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/3c/30db93ecfca2001613b4a619e78e92e2
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/3c/60a99a04f9a2001613b4a619e78e92e2
+#	new file:   .metadata/.plugins/org.eclipse.core.resources/.history/40/909e6525c1ba00161a9cafa345dafb7e
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/41/20fd96dafea2001613b4a619e78e92e2
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/48/401594e2fda2001613b4a619e78e92e2
+#	new file:   .metadata/.plugins/org.eclipse.core.resources/.history/4e/30332d51c1ba00161a9cafa345dafb7e
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/5/805e8d71fba2001613b4a619e78e92e2
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/5/d03e9a54f9a2001613b4a619e78e92e2
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/5a/800455516da2001612daae35e2706f20
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/5e/109ab101c3a100161d9fe58f8b665066
+#	new file:   .metadata/.plugins/org.eclipse.core.resources/.history/6/30d01c4cc1ba00161a9cafa345dafb7e
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/63/10579c04f9a2001613b4a619e78e92e2
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/65/60a208f6ffa2001613b4a619e78e92e2
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/69/90081e3ffca2001613b4a619e78e92e2
+#	copied:     HMSBl/src/login_bl_serv/LoginBlServ.java -> .metadata/.plugins/org.eclipse.core.resources/.history/6a/a0896f25c1ba00161a9cafa345dafb7e
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/6c/005a83736aa2001612daae35e2706f20
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/7/400d0754fea2001613b4a619e78e92e2
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/7/90b155ed6da2001612daae35e2706f20
+#	renamed:    HMSBl/src/VO/BirthdayStrategy.java -> .metadata/.plugins/org.eclipse.core.resources/.history/73/00146392c1ba00161a9cafa345dafb7e
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/73/803eb48afea2001613b4a619e78e92e2
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/77/600bb9b7bca100161d9fe58f8b665066
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/78/40b8b1df6da2001612daae35e2706f20
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/80/502af50f69a2001612daae35e2706f20
+#	new file:   .metadata/.plugins/org.eclipse.core.resources/.history/90/9044b705c1ba00161a9cafa345dafb7e
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/90/f081521e00a3001613b4a619e78e92e2
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/92/c0450854fea2001613b4a619e78e92e2
+#	renamed:    .metadata/.plugins/org.eclipse.core.resources/.history/77/201d1139fca2001613b4a619e78e92e2 -> .metadata/.plugins/org.eclipse.core.resources/.history/93/60e4ecf1c0ba00161a9cafa345dafb7e
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/96/700a45d0fda2001613b4a619e78e92e2
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/98/1099a71efba2001613b4a619e78e92e2
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/98/901ddff3fda2001613b4a619e78e92e2
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/9a/e00d12e6fca2001613b4a619e78e92e2
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/9f/00a61254fea2001613b4a619e78e92e2
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/a/5070fd53fea2001613b4a619e78e92e2
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/a3/f05c9383fca2001613b4a619e78e92e2
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/a6/d037fc53fea2001613b4a619e78e92e2
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/a8/40b1d711fea2001613b4a619e78e92e2
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/a9/30dffc05fea2001613b4a619e78e92e2
+#	new file:   .metadata/.plugins/org.eclipse.core.resources/.history/a9/c0b92a5bc1ba00161a9cafa345dafb7e
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/aa/c06acbb2fda2001613b4a619e78e92e2
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/ac/a0ac738dfea2001613b4a619e78e92e2
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/b7/401f9c7171a2001612daae35e2706f20
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/b8/30f88b02faa2001613b4a619e78e92e2
+#	new file:   .metadata/.plugins/org.eclipse.core.resources/.history/b8/a0694f47c1ba00161a9cafa345dafb7e
+#	renamed:    .metadata/.plugins/org.eclipse.core.resources/.history/1d/707535dcffa2001613b4a619e78e92e2 -> .metadata/.plugins/org.eclipse.core.resources/.history/c0/b0abdf0fc1ba00161a9cafa345dafb7e
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/c0/f0662e50fea2001613b4a619e78e92e2
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/c3/203d08fdfda2001613b4a619e78e92e2
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/c6/508c697bf9a2001613b4a619e78e92e2
+#	renamed:    HMSBl/src/VO/RoomNumberStrategy.java -> .metadata/.plugins/org.eclipse.core.resources/.history/c8/d04b4481c1ba00161a9cafa345dafb7e
+#	new file:   .metadata/.plugins/org.eclipse.core.resources/.history/c8/e0e02e51c1ba00161a9cafa345dafb7e
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/cf/80de1354fea2001613b4a619e78e92e2
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/d1/70b7194dffa2001613b4a619e78e92e2
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/d7/e0446eb568a2001612daae35e2706f20
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/e6/801d0dc6fea2001613b4a619e78e92e2
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/e8/402d43dafda2001613b4a619e78e92e2
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/e8/908e4a1bffa2001613b4a619e78e92e2
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/eb/50e8b01200a3001613b4a619e78e92e2
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/f/00171554fea2001613b4a619e78e92e2
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/f/1027593dfca2001613b4a619e78e92e2
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/f9/808df7a169a2001612daae35e2706f20
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/f9/c0939b04f9a2001613b4a619e78e92e2
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.history/fa/30570954fea2001613b4a619e78e92e2
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.projects/HMS/.indexes/af/history.index
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.projects/HMS/.indexes/e4/92/22/fc/history.index
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.projects/HMS/.indexes/e4/b9/22/7c/history.index
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.projects/HMS/.indexes/e4/b9/22/bc/history.index
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.projects/HMS/.indexes/e4/b9/22/d0/history.index
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.projects/HMS/.indexes/e4/b9/22/d8/history.index
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.projects/HMS/.indexes/e4/b9/22/e4/history.index
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.projects/HMS/.indexes/history.index
+#	modified:   .metadata/.plugins/org.eclipse.core.resources/.projects/HMS/.markers
+#	modified:   .metadata/.plugins/org.eclipse.core.resources/.projects/HMS/org.eclipse.jdt.core/state.dat
+#	new file:   .metadata/.plugins/org.eclipse.core.resources/.projects/HMSBl/.indexes/af/history.index
+#	new file:   .metadata/.plugins/org.eclipse.core.resources/.projects/HMSBl/.indexes/e4/15/history.index
+#	new file:   .metadata/.plugins/org.eclipse.core.resources/.projects/HMSBl/.indexes/e4/24/history.index
+#	new file:   .metadata/.plugins/org.eclipse.core.resources/.projects/HMSBl/.indexes/e4/37/history.index
+#	modified:   .metadata/.plugins/org.eclipse.core.resources/.projects/HMSBl/.indexes/e4/4/history.index
+#	new file:   .metadata/.plugins/org.eclipse.core.resources/.projects/HMSBl/.indexes/e4/47/history.index
+#	new file:   .metadata/.plugins/org.eclipse.core.resources/.projects/HMSBl/.indexes/e4/48/history.index
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.projects/HMSBl/.indexes/e4/8e/history.index
+#	new file:   .metadata/.plugins/org.eclipse.core.resources/.projects/HMSBl/.indexes/e4/b9/history.index
+#	new file:   .metadata/.plugins/org.eclipse.core.resources/.projects/HMSBl/.indexes/e4/ce/history.index
+#	modified:   .metadata/.plugins/org.eclipse.core.resources/.projects/HMSBl/.markers
+#	modified:   .metadata/.plugins/org.eclipse.core.resources/.projects/HMSBl/org.eclipse.jdt.core/state.dat
+#	modified:   .metadata/.plugins/org.eclipse.core.resources/.projects/HMSHotelStaffClient/org.eclipse.jdt.core/state.dat
+#	new file:   .metadata/.plugins/org.eclipse.core.resources/.projects/HMSServer/.indexes/e4/7e/history.index
+#	modified:   .metadata/.plugins/org.eclipse.core.resources/.projects/HMSServer/.markers
+#	modified:   .metadata/.plugins/org.eclipse.core.resources/.projects/HMSServer/org.eclipse.jdt.core/state.dat
+#	new file:   .metadata/.plugins/org.eclipse.core.resources/.projects/HMSUserClient/.markers
+#	modified:   .metadata/.plugins/org.eclipse.core.resources/.projects/HMSUserClient/org.eclipse.jdt.core/state.dat
+#	modified:   .metadata/.plugins/org.eclipse.core.resources/.projects/HMSWebManagerClient/org.eclipse.jdt.core/state.dat
+#	modified:   .metadata/.plugins/org.eclipse.core.resources/.projects/HMSWebSalerClient/org.eclipse.jdt.core/state.dat
+#	modified:   .metadata/.plugins/org.eclipse.core.resources/.root/.indexes/properties.index
+#	deleted:    .metadata/.plugins/org.eclipse.core.resources/.root/11.tree
+#	new file:   .metadata/.plugins/org.eclipse.core.resources/.root/12.tree
+#	modified:   .metadata/.plugins/org.eclipse.core.resources/.safetable/org.eclipse.core.resources
+#	new file:   .metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.egit.core.prefs
+#	modified:   .metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.jdt.ui.prefs
+#	new file:   .metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.search.prefs
+#	modified:   .metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.ide.prefs
+#	modified:   .metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.wst.sse.ui.prefs
+#	new file:   .metadata/.plugins/org.eclipse.debug.core/.launches/MainApp.launch
+#	modified:   .metadata/.plugins/org.eclipse.debug.ui/launchConfigurationHistory.xml
+#	modified:   .metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi
+#	new file:   .metadata/.plugins/org.eclipse.egit.ui/dialog_settings.xml
+#	modified:   .metadata/.plugins/org.eclipse.epp.logging.aeri.ide/org.eclipse.epp.logging.aeri.ide.server/server-config.json
+#	new file:   .metadata/.plugins/org.eclipse.fx.ide.css.cssext.ui/dialog_settings.xml
+#	new file:   .metadata/.plugins/org.eclipse.fx.ide.css.ui/dialog_settings.xml
+#	modified:   .metadata/.plugins/org.eclipse.jdt.core/1097704492.index
+#	modified:   .metadata/.plugins/org.eclipse.jdt.core/1766783706.index
+#	modified:   .metadata/.plugins/org.eclipse.jdt.core/1772323448.index
+#	modified:   .metadata/.plugins/org.eclipse.jdt.core/1889407371.index
+#	new file:   .metadata/.plugins/org.eclipse.jdt.core/3667083760.index
+#	new file:   .metadata/.plugins/org.eclipse.jdt.core/414778100.index
+#	modified:   .metadata/.plugins/org.eclipse.jdt.core/599943770.index
+#	new file:   .metadata/.plugins/org.eclipse.jdt.core/625919139.index
+#	modified:   .metadata/.plugins/org.eclipse.jdt.core/externalFilesCache
+#	modified:   .metadata/.plugins/org.eclipse.jdt.core/externalLibsTimeStamps
+#	modified:   .metadata/.plugins/org.eclipse.jdt.core/nonChainingJarsCache
+#	modified:   .metadata/.plugins/org.eclipse.jdt.core/savedIndexNames.txt
+#	modified:   .metadata/.plugins/org.eclipse.jdt.core/variablesAndContainers.dat
+#	modified:   .metadata/.plugins/org.eclipse.jdt.ui/QualifiedTypeNameHistory.xml
+#	modified:   .metadata/.plugins/org.eclipse.jdt.ui/dialog_settings.xml
+#	new file:   .metadata/.plugins/org.eclipse.ltk.core.refactoring/.refactorings/HMSBl/2016/12/50/refactorings.history
+#	new file:   .metadata/.plugins/org.eclipse.ltk.core.refactoring/.refactorings/HMSBl/2016/12/50/refactorings.index
+#	new file:   .metadata/.plugins/org.eclipse.m2e.core/nexus/0330f35fd3dec08cfa47bd61bafc76be/_0_1.del
+#	new file:   .metadata/.plugins/org.eclipse.m2e.core/nexus/0330f35fd3dec08cfa47bd61bafc76be/_1.cfs
+#	modified:   .metadata/.plugins/org.eclipse.m2e.core/nexus/0330f35fd3dec08cfa47bd61bafc76be/segments.gen
+#	deleted:    .metadata/.plugins/org.eclipse.m2e.core/nexus/0330f35fd3dec08cfa47bd61bafc76be/segments_2
+#	new file:   .metadata/.plugins/org.eclipse.m2e.core/nexus/0330f35fd3dec08cfa47bd61bafc76be/segments_3
+#	new file:   .metadata/.plugins/org.eclipse.m2e.core/nexus/05b0fe8524860bd73cbb07ef30fb34cc/_2_1.del
+#	new file:   .metadata/.plugins/org.eclipse.m2e.core/nexus/05b0fe8524860bd73cbb07ef30fb34cc/_3.cfs
+#	modified:   .metadata/.plugins/org.eclipse.m2e.core/nexus/05b0fe8524860bd73cbb07ef30fb34cc/segments.gen
+#	deleted:    .metadata/.plugins/org.eclipse.m2e.core/nexus/05b0fe8524860bd73cbb07ef30fb34cc/segments_4
+#	new file:   .metadata/.plugins/org.eclipse.m2e.core/nexus/05b0fe8524860bd73cbb07ef30fb34cc/segments_5
+#	deleted:    .metadata/.plugins/org.eclipse.m2e.core/nexus/830bc118332e77292949ed1e6d2fabe0/_a_2.del
+#	new file:   .metadata/.plugins/org.eclipse.m2e.core/nexus/830bc118332e77292949ed1e6d2fabe0/_a_4.del
+#	new file:   .metadata/.plugins/org.eclipse.m2e.core/nexus/830bc118332e77292949ed1e6d2fabe0/_e_1.del
+#	new file:   .metadata/.plugins/org.eclipse.m2e.core/nexus/830bc118332e77292949ed1e6d2fabe0/_f.cfs
+#	new file:   .metadata/.plugins/org.eclipse.m2e.core/nexus/830bc118332e77292949ed1e6d2fabe0/_g.cfs
+#	new file:   .metadata/.plugins/org.eclipse.m2e.core/nexus/830bc118332e77292949ed1e6d2fabe0/_h.cfs
+#	modified:   .metadata/.plugins/org.eclipse.m2e.core/nexus/830bc118332e77292949ed1e6d2fabe0/segments.gen
+#	deleted:    .metadata/.plugins/org.eclipse.m2e.core/nexus/830bc118332e77292949ed1e6d2fabe0/segments_f
+#	new file:   .metadata/.plugins/org.eclipse.m2e.core/nexus/830bc118332e77292949ed1e6d2fabe0/segments_i
+#	modified:   .metadata/.plugins/org.eclipse.m2e.core/workspaceState.ser
+#	modified:   .metadata/.plugins/org.eclipse.m2e.core/workspacestate.properties
+#	modified:   .metadata/.plugins/org.eclipse.m2e.jdt/HMS.container
+#	modified:   .metadata/.plugins/org.eclipse.m2e.logback.configuration/0.log
+#	new file:   .metadata/.plugins/org.eclipse.pde.core/.cache/clean-cache.properties
+#	new file:   .metadata/.plugins/org.eclipse.search/dialog_settings.xml
+#	modified:   .metadata/.plugins/org.eclipse.wst.sse.core/task-tags.properties
+#	new file:   .metadata/.plugins/org.eclipse.xtend.ide/dialog_settings.xml
+#	new file:   .metadata/.plugins/org.eclipse.xtend.ide/resource.change.registry
+#	new file:   .metadata/.plugins/org.eclipse.xtext.builder/builder.state
+#	modified:   .metadata/version.ini
+#	modified:   HMSBl/.classpath
+#	new file:   HMSBl/.settings/org.eclipse.core.resources.prefs
+#	new file:   HMSBl/bin/login_ui/1480575083_messagebox_warning.png
+#	new file:   HMSBl/bin/login_ui/AlertDialog.css
+#	new file:   HMSBl/bin/login_ui/AlertDialog_css.fxml
+#	new file:   HMSBl/bin/login_ui/ChooseType.fxml
+#	new file:   HMSBl/bin/login_ui/Login.fxml
+#	new file:   HMSBl/bin/login_ui/Register(Busi).fxml
+#	new file:   HMSBl/bin/login_ui/Register(Normal).fxml
+#	new file:   HMSBl/bin/login_ui/login.png
+#	new file:   HMSBl/bin/login_ui/test.jpg
+#	new file:   "HMSBl/bin/login_ui/\344\274\201\344\270\232\344\274\232\345\221\230.png"
+#	new file:   "HMSBl/bin/login_ui/\346\231\256\351\200\232\344\274\232\345\221\230.png"
+#	modified:   HMSBl/src/blTest/LoginBlServImplTest.java
+#	modified:   HMSBl/src/blTest/LoginTest.java
+#	modified:   HMSBl/src/blTest/PersonInfoCheckTest.java
+#	modified:   HMSBl/src/credit_bl_servlpml/CreditBlServImpl.java
+#	modified:   HMSBl/src/login_bl_serv/LoginBlServ.java
+#	modified:   HMSBl/src/manage_bl_servlmpl/ManageBlServImpl.java
+#	modified:   HMSBl/src/order_bl_servlmpl/OrderBlServImpl.java
+#	modified:   HMSBl/src/room_bl_servImpl/RoomBlServImpl.java
+#	modified:   HMSBl/src/strategy_bl_servlmpl/HotelStrategyBlServlmpl.java
+#	modified:   HMSHotelStaffClient/.classpath
+#	modified:   HMSWebManagerClient/.classpath
+#	modified:   HMSWebSalerClient/.classpath
+#
+

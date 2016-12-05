@@ -48,4 +48,11 @@
 <fullyQualifiedTypeName name="HMSBl.LoginBlServlmpl"/>
 <fullyQualifiedTypeName name="HMSBl.HotelBlServlmpl"/>
 <fullyQualifiedTypeName name="HMSBl.CreditBlServlmpl"/>
+<fullyQualifiedTypeName name="DataService.CreditDataServ"/>
+<fullyQualifiedTypeName name="datahelperinterface.CreditDataHelper"/>
+<fullyQualifiedTypeName name="datahelperinterface.DataFactory"/>
+<fullyQualifiedTypeName name="datahelper.DataFactorylmpl"/>
+<fullyQualifiedTypeName name="hotel_bl_servlmpl.HotelBlServImpl"/>
+<fullyQualifiedTypeName name="login_bl_servlmpl.LoginBlServImpl"/>
+<fullyQualifiedTypeName name="helper.ParseHelper"/>
 </qualifiedTypeNameHistroy>
