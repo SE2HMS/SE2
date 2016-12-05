@@ -10,35 +10,37 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 public class MainUIController {
-
+/*
+ * just for test
+ * */
 	@FXML
 	private Label idLabel;  //id
 	
 	@FXML
-	private Label userNameLabel; //用户名
+	private Label userNameLabel; //鐢ㄦ埛鍚�
 	
 	@FXML
-	private Label nameLabel; //姓名
+	private Label nameLabel; //濮撳悕
 	
 	
 	@FXML
-	private Label birthdayLabel; //出生日期
+	private Label birthdayLabel; //鍑虹敓鏃ユ湡
 	
 	@FXML
-	private Label BusiLabel;  //企业名称
+	private Label BusiLabel;  //浼佷笟鍚嶇О
 	
 	@FXML
-	private Label phoneLabel;  //手机号
+	private Label phoneLabel;  //鎵嬫満鍙�
 	
 	@FXML
-	private Label memberLevelLabel; //会员等级
+	private Label memberLevelLabel; //浼氬憳绛夌骇
 	
 
 	
 	
-//	//用户主界面的可选项，首页，个人资料，信用记录，订单信息，过往酒店信息
-//	private ObservableList<String> options = FXCollections.observableArrayList("首页",
-//			"个人资料","信用记录","订单信息","过往酒店信息");
+//	//鐢ㄦ埛涓荤晫闈㈢殑鍙�夐」锛岄椤碉紝涓汉璧勬枡锛屼俊鐢ㄨ褰曪紝璁㈠崟淇℃伅锛岃繃寰�閰掑簵淇℃伅
+//	private ObservableList<String> options = FXCollections.observableArrayList("棣栭〉",
+//			"涓汉璧勬枡","淇＄敤璁板綍","璁㈠崟淇℃伅","杩囧線閰掑簵淇℃伅");
 //	
 //	@FXML
 //	private ListView<String> listView = new ListView<>(options);
