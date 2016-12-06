@@ -31,6 +31,11 @@ public class HotelBlServImpl implements HotelBlServ {
     }
 
     @Override
+    public Iterator<HotelVO> search(String name, double starLevel, double commentLevel, String businessCircle) {
+        return null;
+    }
+
+    @Override
     public boolean modifyHotelInfo(HotelVO hotel) {
         HotelPO hotelPO = ParseHelper.toHotelPO(hotel);
         boolean success = false;

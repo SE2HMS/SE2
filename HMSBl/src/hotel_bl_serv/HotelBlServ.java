@@ -19,6 +19,8 @@ public interface HotelBlServ {
      */
 	public HotelVO getHotelInfo(String name);
 
+	public Iterator<HotelVO> search(String name,double starLevel,double commentLevel, String businessCircle);
+
 	/**
 	 * 修改酒店信息，意思很明显。。
 	 * @param hotel
