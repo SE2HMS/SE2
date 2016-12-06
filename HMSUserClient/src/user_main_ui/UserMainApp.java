@@ -3,33 +3,32 @@ package user_main_ui;
 import java.io.IOException;
 
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class UserMainApp extends Application {//看我能不能push
+public class UserMainApp extends Application {//锟斤拷锟斤拷锟杰诧拷锟斤拷push
 
 	private Stage primaryStage;
-//	privtae AnchorPane
+
 	@Override
 	public void start(Stage primaryStage) {
 		
 		this.primaryStage = primaryStage;
-		showUI();
+		showMain();
 	}
 
-	public void showUI(){
+	public void showMain(){
 		 try {
 	            // Load person overview.
 	            FXMLLoader loader = new FXMLLoader();
-	            loader.setLocation(UserMainApp.class.getResource("MainUI.fxml"));
+	            loader.setLocation(UserMainApp.class.getResource("Main.fxml"));
 	            AnchorPane Overview = (AnchorPane) loader.load();
 
+	            MainController mainController = loader.getController();
+	            mainController.setMainApp(this);
 	            // Show the scene containing the root layout.
 	            Scene scene = new Scene(Overview);
 	            primaryStage.setScene(scene);
@@ -40,7 +39,7 @@ public class UserMainApp extends Application {//看我能不能push
 	        }		
 	}
 	
-	
+
     /**
      * Returns the main stage.
      * @return

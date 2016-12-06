@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="450.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="user_main_ui.MainController">
+   <children>
+      <VBox layoutY="124.0">
+         <children>
+            <Button fx:id="mainUIButton" layoutY="124.0" mnemonicParsing="false" onAction="#showMainUI" prefHeight="34.0" prefWidth="107.0" text="首页" />
+            <Button fx:id="personalInfoButton" layoutY="158.0" mnemonicParsing="false" onAction="#showPersonalInfo" prefHeight="34.0" prefWidth="107.0" text="个人资料" />
+            <Button fx:id="creditUIButton" layoutY="192.0" mnemonicParsing="false" onAction="#showCreditUIPane" prefHeight="34.0" prefWidth="107.0" text="信用记录" />
+            <Button fx:id="orderInfoButton" layoutY="226.0" mnemonicParsing="false" onAction="#showOrderInfoPane" prefHeight="34.0" prefWidth="107.0" text="订单信息" />
+            <Button fx:id="pastHotelInfoButton" layoutY="260.0" mnemonicParsing="false" onAction="#showPastHotelInfoPane" prefHeight="34.0" prefWidth="107.0" text="过往酒店信息" />
+         </children>
+      </VBox>
+      <Label layoutX="22.0" layoutY="26.0" text="User Name" />
+      <ImageView fitHeight="66.0" fitWidth="70.0" layoutX="19.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true" />
+      <Separator layoutX="108.0" layoutY="2.0" orientation="VERTICAL" prefHeight="450.0" prefWidth="6.0" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="108.0" AnchorPane.topAnchor="2.0" />
+      <AnchorPane fx:id="mainUIPane" layoutX="105.0" layoutY="4.0" minHeight="0.0" minWidth="0.0" prefHeight="410.0" prefWidth="636.0" snapToPixel="false" visible="false" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="105.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="4.0">
+         <children>
+            <fx:include source="MainUI.fxml" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="personalInfoPane" layoutX="111.0" layoutY="5.0" minHeight="0.0" minWidth="0.0" prefHeight="438.0" prefWidth="636.0" snapToPixel="false" visible="false">
+         <children>
+            <fx:include source="PersonalInfo.fxml" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="creditUIPane" layoutX="109.0" layoutY="8.0" minHeight="0.0" minWidth="0.0" prefHeight="438.0" prefWidth="636.0" snapToPixel="false" visible="false">
+         <children>
+            <fx:include source="CreditUI.fxml" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="orderInfoPane" layoutX="108.0" layoutY="5.0" minHeight="0.0" minWidth="0.0" prefHeight="438.0" prefWidth="636.0" snapToPixel="false" visible="false">
+         <children>
+            <fx:include source="OrderInfo.fxml" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="pastHotelInfoPane" layoutX="108.0" minHeight="0.0" minWidth="0.0" prefHeight="438.0" prefWidth="630.0" snapToPixel="false" visible="false">
+         <children>
+            <fx:include source="PastHotelInfo.fxml" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
