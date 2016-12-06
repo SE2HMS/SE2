@@ -3,83 +3,76 @@ package login_ui;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import rmi.RemoteRunner;
+import user_main_ui.MainController;
 
 import java.io.IOException;
+import java.io.InputStream;
+
+import com.sun.javafx.logging.Logger;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 
 
 public class MainApp extends Application {
 
-	private Stage primaryStage;
+	private Stage primaryStage,diaStage;
 
 	@Override
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Hotel Management System");
-		
-		//灞曠ず鐧诲綍鐣岄潰
+		this.diaStage=new Stage();
+		//鐏炴洜銇氶惂璇茬秿閻ｅ矂娼�
 		showLoginUI();
 	}
 	
 	
 	/**
-	 * 灞曠ず鐧诲綍鐣岄潰
+	 * 鐏炴洜銇氶惂璇茬秿閻ｅ矂娼�
 	 */
 	public void showLoginUI(){
-		try{
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainApp.class.getResource("Login.fxml"));
-			AnchorPane loginUI = (AnchorPane) loader.load();
-		
-			//Give the controller access to the main app
-			LoginController controller = loader.getController();
+		try {  
+            LoginController login = (LoginController) replaceSceneContent("Login.fxml");  
+            login.setMainApp(this);  
+        } catch (Exception ex) {  
+            ex.printStackTrace();
+        }	
+	}
+	
+	public void showUserMain(String userid){
+		try {
+			MainController controller=(MainController) replaceSceneContent("Main.fxml");
 			controller.setMainApp(this);
-			
-			//Show the scene containing the loginUI
-			Scene scene = new Scene(loginUI);
-			primaryStage.setScene(scene);
-			primaryStage.show();
-		
-		}catch(IOException e){
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}		
+		}
 	}
 	
 
 	/**
-	 * 鏄剧ず閫夋嫨娉ㄥ唽绫诲瀷鐣岄潰
+	 * 閺勫墽銇氶柅澶嬪濞夈劌鍞界猾璇茬�烽悾宀勬桨
+	 * 
 	 */
-	public MemberType showRegisterUI(){
-		try{
-	
-			// Load the fxml file and create a new stage for the choosetype dialog.
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainApp.class.getResource("ChooseType.fxml"));
-			AnchorPane page = (AnchorPane) loader.load();
-			
-			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Register");
-			
-			ChooseTypeController controller = loader.getController();
-			controller.setDialogStage(dialogStage);
-			Scene scene = new Scene(page);
-			dialogStage.setScene(scene);
-			dialogStage.showAndWait();
-			
-			return controller.getType();
-		}catch(IOException e){
+	public void showRegisterUI() {
+		ChooseTypeController controller;
+		try {
+			controller = (ChooseTypeController) replaceDiaSceneContent("ChooseType.fxml");
+			controller.setDialogStage(diaStage);
+			controller.setMainApp(this);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;		
 	}
 	
 	
 	/**
-	 * 鏄剧ず鏅�氫細鍛樻敞鍐岀晫闈�
+	 * 閺勫墽銇氶弲顕�锟芥矮绱伴崨妯绘暈閸愬瞼鏅棃锟�
 	 */
 	public void showNormalUI(){
 		try{
@@ -102,7 +95,7 @@ public class MainApp extends Application {
 	
 	
 	/**
-	 * 鏄剧ず浼佷笟浼氬憳娉ㄥ唽鐣岄潰
+	 * 閺勫墽銇氭导浣风瑹娴兼艾鎲冲▔銊ュ斀閻ｅ矂娼�
 	 */
 	public void showBusiUI(){
 		try{
@@ -125,7 +118,7 @@ public class MainApp extends Application {
 	
 	
 	/**
-	 * 杈撳叆淇℃伅涓嶅畬鏁达紝鏄剧ず閿欒淇℃伅
+	 * 鏉堟挸鍙嗘穱鈩冧紖娑撳秴鐣弫杈剧礉閺勫墽銇氶柨娆掝嚖娣団剝浼�
 	 */
 	public void showErrorMessage(){
 	
@@ -139,6 +132,41 @@ public class MainApp extends Application {
     public Stage getPrimaryStage() {
         return primaryStage;
     }
+    
+    private Initializable replaceSceneContent(String fxml) throws Exception {  
+        FXMLLoader loader = new FXMLLoader();  
+        InputStream in = MainApp.class.getResourceAsStream(fxml);  
+        loader.setBuilderFactory(new JavaFXBuilderFactory());  
+        loader.setLocation(MainApp.class.getResource(fxml));  
+        AnchorPane page;  
+        try {  
+            page = (AnchorPane) loader.load(in);  
+        } finally {  
+            in.close();  
+        }   
+        Scene scene = new Scene(page);  
+        primaryStage.setScene(scene);  
+        primaryStage.show();
+        return (Initializable) loader.getController();  
+    }
+    
+    private Initializable replaceDiaSceneContent(String fxml) throws Exception {  
+        FXMLLoader loader = new FXMLLoader();  
+        InputStream in = MainApp.class.getResourceAsStream(fxml);  
+        loader.setBuilderFactory(new JavaFXBuilderFactory());  
+        loader.setLocation(MainApp.class.getResource(fxml));  
+        AnchorPane page;  
+        try {  
+            page = (AnchorPane) loader.load(in);  
+        } finally {  
+            in.close();  
+        }   
+        Scene scene = new Scene(page);  
+        diaStage.setScene(scene);  
+        diaStage.show();
+        return (Initializable) loader.getController();  
+    }
+
     
     
 	public static void main(String[] args) {

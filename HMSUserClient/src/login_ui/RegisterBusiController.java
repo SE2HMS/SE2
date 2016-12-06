@@ -1,6 +1,6 @@
 package login_ui;
 
-import org.controlsfx.dialog.Dialogs;
+
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -30,7 +30,6 @@ public class RegisterBusiController {
 			String contact = contactField.getText();
 			String password = passwordField.getText();
 //			UserVO = new UserVO();
-			MemberType type = MemberType.BUSI;
 			String enterprise = enterpriseField.getText();
 			
 			
@@ -39,7 +38,7 @@ public class RegisterBusiController {
 	
 	
  	/**
- 	 *检查输入是否完整
+ 	 *妫�鏌ヨ緭鍏ユ槸鍚﹀畬鏁�
  	 */
  	private boolean isInputValid(){
  		String errorMessage = "";
@@ -64,11 +63,11 @@ public class RegisterBusiController {
  		if(errorMessage.length()==0){
  			return true;
  		}else{
- 			Dialogs.create()
- 			.title("Invalid fields")
- 			.masthead("Please fill in the invalid fields")
- 			.message(errorMessage)
- 			.showError();
+// 			Dialogs.create()
+// 			.title("Invalid fields")
+// 			.masthead("Please fill in the invalid fields")
+// 			.message(errorMessage)
+// 			.showError();
  			return false;
  		}	
  	}

@@ -1,22 +1,27 @@
 package login_ui;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class ChooseTypeController {
+public class ChooseTypeController implements Initializable{
 
 
 	@FXML
-	private Button Normal;  //普通会员
+	private Button Normal;  //鏅�氫細鍛�?
 	
 	@FXML
-	private Button Busi; //企业会员
+	private Button Busi; //浼佷笟浼氬憳
 	
 	@FXML
 	private Stage dialogStage;
 	
-	MemberType type;
+
+	private MainApp mainApp;
 	
     /**
      * Sets the stage of this dialog.
@@ -27,22 +32,30 @@ public class ChooseTypeController {
         this.dialogStage = dialogStage;
     }
 
-    public MemberType getType(){
-    	return type;
-    }
+
     
     @FXML
     private void normal() {
-    	type = MemberType.NORMAL;
+    	mainApp.showNormalUI();
     	dialogStage.close();
     }	
     
 
     @FXML
     private void busi() {
-    	type = MemberType.BUSI;
+    	mainApp.showBusiUI();
     	dialogStage.close();    	
     }
  
- 
+    public void setMainApp(MainApp mainApp){
+    	this.mainApp=mainApp;
+    }
+
+
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+		
+	}
 }
