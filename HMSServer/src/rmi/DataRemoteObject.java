@@ -222,5 +222,10 @@ public class DataRemoteObject extends UnicastRemoteObject implements
 	@Override
 	public ArrayList<OrderPO> getAllOrders() throws RemoteException {
 		return orderDataServ.getAllOrders();
+	}
+
+	@Override
+	public ArrayList<HotelPO> getAllHotel() throws RemoteException {
+		return hotelDataServ.getAllHotel();
 	}	
 }

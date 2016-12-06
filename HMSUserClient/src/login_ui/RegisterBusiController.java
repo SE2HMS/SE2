@@ -1,6 +1,6 @@
 package login_ui;
 
-import org.controlsfx.dialog.Dialogs;
+
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -64,11 +64,11 @@ public class RegisterBusiController {
  		if(errorMessage.length()==0){
  			return true;
  		}else{
- 			Dialogs.create()
- 			.title("Invalid fields")
- 			.masthead("Please fill in the invalid fields")
- 			.message(errorMessage)
- 			.showError();
+// 			Dialogs.create()
+// 			.title("Invalid fields")
+// 			.masthead("Please fill in the invalid fields")
+// 			.message(errorMessage)
+// 			.showError();
  			return false;
  		}	
  	}
