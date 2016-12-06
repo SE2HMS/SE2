@@ -32,6 +32,16 @@ public class HotelBlServImpl implements HotelBlServ {
 
     @Override
     public Iterator<HotelVO> search(String name, double starLevel, double commentLevel, String businessCircle) {
+        ArrayList<HotelPO> hotelPOs = null;
+        ArrayList<HotelVO> hotelVOs = new ArrayList<>();
+        try {
+            hotelPOs = RemoteHelper.getInstance().getHotelDataServ().getAllHotel();
+        }catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        for(HotelPO hotelPO:hotelPOs) {
+
+        }
         return null;
     }
 
