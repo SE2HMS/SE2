@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="448.0" prefWidth="635.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="user_main_ui.MainUIController">
+   <children>
+      <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="448.0" prefWidth="635.0" snapToPixel="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <TextField layoutX="180.0" layoutY="30.0" prefHeight="23.0" prefWidth="248.0" promptText="search" />
+            <Button layoutX="469.0" layoutY="30.0" mnemonicParsing="false" text="搜索" />
+            <HBox layoutX="190.0" layoutY="66.0" spacing="30.0">
+               <children>
+                  <MenuButton layoutX="199.0" layoutY="74.0" mnemonicParsing="false" text="星级">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Action 1" />
+                        <MenuItem mnemonicParsing="false" text="Action 2" />
+                     </items>
+                  </MenuButton>
+                  <MenuButton layoutX="276.0" layoutY="74.0" mnemonicParsing="false" text="评分">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Action 1" />
+                        <MenuItem mnemonicParsing="false" text="Action 2" />
+                     </items>
+                  </MenuButton>
+                  <MenuButton layoutX="372.0" layoutY="74.0" mnemonicParsing="false" text="商圈">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Action 1" />
+                        <MenuItem mnemonicParsing="false" text="Action 2" />
+                     </items>
+                  </MenuButton>
+               </children>
+            </HBox>
+            <TitledPane animated="false" collapsible="false" layoutX="79.0" layoutY="106.0" prefHeight="159.0" prefWidth="465.0" text="折扣信息">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="105.0" prefWidth="486.0">
+                  </AnchorPane>
+               </content>
+            </TitledPane>
+            <TitledPane animated="false" collapsible="false" layoutX="79.0" layoutY="267.0" prefHeight="159.0" prefWidth="465.0" text="推荐酒店">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="150.0" prefWidth="486.0">
+                  </AnchorPane>
+               </content>
+            </TitledPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="448.0" prefWidth="635.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="user_main_ui.CreditUIController">
+   <children>
+      <Label layoutX="544.0" layoutY="413.0" text="Label" />
+      <ScrollPane layoutX="61.0" layoutY="35.0" prefHeight="357.0" prefWidth="514.0">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="378.0" prefWidth="503.0">
+               <children>
+                  <TreeTableView prefHeight="363.0" prefWidth="503.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <columns>
+                        <TreeTableColumn prefWidth="49.0" text="ID" />
+                        <TreeTableColumn prefWidth="198.0" text="酒店" />
+                        <TreeTableColumn prefWidth="146.0" text="日期" />
+                        <TreeTableColumn prefWidth="109.0" text="信用值变化" />
+                     </columns>
+                  </TreeTableView>
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+      <Label layoutX="481.0" layoutY="413.0" text="Total:" />
+   </children>
+</AnchorPane>

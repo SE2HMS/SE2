@@ -1,15 +1,11 @@
 package user_main_ui;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
+import login_ui.MainApp;
+
 public class MainUIController {
+
 /*
  * just for test
  * */
@@ -46,7 +42,7 @@ public class MainUIController {
 //	private ListView<String> listView = new ListView<>(options);
 
     // Reference to the main application.
-    private UserMainApp mainApp;
+    private MainApp mainApp;
     
     
     /**
@@ -64,7 +60,7 @@ public class MainUIController {
      * 
      * @param mainApp
      */
-    public void setMainApp(UserMainApp mainApp) {
+    public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
 
         // Add observable list data to the table
@@ -121,5 +117,6 @@ public class MainUIController {
     public void scorefive(){
     	
     }
+
 
 }

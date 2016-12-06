@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="448.0" prefWidth="635.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="user_main_ui.OrderInfoController">
+   <children>
+      <Button layoutX="441.0" layoutY="21.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="77.0" text="搜索" />
+      <TextField layoutX="175.0" layoutY="21.0" prefHeight="23.0" prefWidth="229.0" />
+      <TabPane layoutX="5.0" layoutY="55.0" prefHeight="379.0" prefWidth="626.0" tabClosingPolicy="UNAVAILABLE">
+         <tabs>
+            <Tab text="所有">
+               <content>
+                  <ScrollPane prefHeight="302.0" prefWidth="576.0">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="373.0" prefWidth="616.0">
+                           <children>
+                              <TreeTableView prefHeight="378.0" prefWidth="572.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <columns>
+                                    <TreeTableColumn prefWidth="49.0" text="ID" />
+                                    <TreeTableColumn prefWidth="198.0" text="酒店" />
+                                    <TreeTableColumn prefWidth="146.0" text="日期" />
+                                    <TreeTableColumn prefWidth="62.0" text="价格" />
+                                    <TreeTableColumn prefWidth="52.0" text="状态" />
+                                    <TreeTableColumn prefWidth="108.0" text="操作" />
+                                 </columns>
+                              </TreeTableView>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+               </content>
+            </Tab>
+            <Tab text="未执行">
+               <content>
+                  <ScrollPane prefHeight="302.0" prefWidth="576.0">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="373.0" prefWidth="616.0">
+                           <children>
+                              <TreeTableView prefHeight="378.0" prefWidth="572.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <columns>
+                                    <TreeTableColumn prefWidth="49.0" text="ID" />
+                                    <TreeTableColumn prefWidth="198.0" text="酒店" />
+                                    <TreeTableColumn prefWidth="146.0" text="日期" />
+                                    <TreeTableColumn prefWidth="62.0" text="价格" />
+                                    <TreeTableColumn prefWidth="52.0" text="状态" />
+                                    <TreeTableColumn prefWidth="108.0" text="操作" />
+                                 </columns>
+                              </TreeTableView>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+               </content>
+            </Tab>
+            <Tab text="已执行">
+               <content>
+                  <ScrollPane prefHeight="302.0" prefWidth="576.0">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="373.0" prefWidth="616.0">
+                           <children>
+                              <TreeTableView prefHeight="378.0" prefWidth="572.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <columns>
+                                    <TreeTableColumn prefWidth="49.0" text="ID" />
+                                    <TreeTableColumn prefWidth="198.0" text="酒店" />
+                                    <TreeTableColumn prefWidth="146.0" text="日期" />
+                                    <TreeTableColumn prefWidth="62.0" text="价格" />
+                                    <TreeTableColumn prefWidth="52.0" text="状态" />
+                                    <TreeTableColumn prefWidth="108.0" text="操作" />
+                                 </columns>
+                              </TreeTableView>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+               </content>
+            </Tab>
+            <Tab text="已撤销">
+               <content>
+                  <ScrollPane prefHeight="302.0" prefWidth="576.0">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="373.0" prefWidth="616.0">
+                           <children>
+                              <TreeTableView prefHeight="378.0" prefWidth="572.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <columns>
+                                    <TreeTableColumn prefWidth="49.0" text="ID" />
+                                    <TreeTableColumn prefWidth="198.0" text="酒店" />
+                                    <TreeTableColumn prefWidth="146.0" text="日期" />
+                                    <TreeTableColumn prefWidth="62.0" text="价格" />
+                                    <TreeTableColumn prefWidth="52.0" text="状态" />
+                                    <TreeTableColumn prefWidth="108.0" text="操作" />
+                                 </columns>
+                              </TreeTableView>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+               </content>
+            </Tab>
+            <Tab text="异常">
+               <content>
+                  <ScrollPane prefHeight="302.0" prefWidth="576.0">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="373.0" prefWidth="616.0">
+                           <children>
+                              <TreeTableView prefHeight="378.0" prefWidth="572.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <columns>
+                                    <TreeTableColumn prefWidth="49.0" text="ID" />
+                                    <TreeTableColumn prefWidth="198.0" text="酒店" />
+                                    <TreeTableColumn prefWidth="146.0" text="日期" />
+                                    <TreeTableColumn prefWidth="62.0" text="价格" />
+                                    <TreeTableColumn prefWidth="52.0" text="状态" />
+                                    <TreeTableColumn prefWidth="108.0" text="操作" />
+                                 </columns>
+                              </TreeTableView>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
