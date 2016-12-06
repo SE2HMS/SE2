@@ -72,4 +72,54 @@ public class MainUIController {
 //        listView.getSelectionModel().get
     }
     
+    @FXML
+    public void starone(){
+    	System.out.println("1");
+    }
+    
+    @FXML
+    public void startwo(){
+    	
+    }
+    
+    @FXML
+    public void starthree(){
+    	
+    }
+    
+    @FXML
+    public void starfour(){
+    	
+    }
+    
+    @FXML
+    public void starfive(){
+    	
+    }
+    
+    @FXML
+    public void scoreone(){
+    	System.out.println("1");
+    }
+    
+    @FXML
+    public void scoretwo(){
+    	
+    }
+    
+    @FXML
+    public void scorethree(){
+    	
+    }
+    
+    @FXML
+    public void scorefour(){
+    	
+    }
+    
+    @FXML
+    public void scorefive(){
+    	
+    }
+
 }

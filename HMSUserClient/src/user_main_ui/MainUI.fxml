@@ -18,50 +18,20 @@
                   <Label layoutX="22.0" layoutY="14.0" text="User Name" />
                   <VBox layoutY="124.0">
                      <children>
-                        <Button layoutY="124.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="107.0" text="Button">
-                           <effect>
-                              <ImageInput>
-                                 <source>
-                                    <Image url="file:/F:/大二上/SE2/朱晨乾/按钮第一部分/首页2.png" />
-                                 </source>
-                              </ImageInput>
-                           </effect>
+                        <Button layoutY="124.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="108.0" text="首页">
+                          
                         </Button>
-                        <Button layoutY="158.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="99.0" text="Button">
-                           <effect>
-                              <ImageInput>
-                                 <source>
-                                    <Image url="file:/F:/大二上/SE2/朱晨乾/按钮第一部分/个人资料.png" />
-                                 </source>
-                              </ImageInput>
-                           </effect>
+                        <Button layoutY="158.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="108.0" text="个人资料">
+                          
                         </Button>
-                        <Button layoutY="192.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="99.0" text="Button">
-                           <effect>
-                              <ImageInput>
-                                 <source>
-                                    <Image url="file:/F:/大二上/SE2/朱晨乾/按钮第一部分/信用记录.png" />
-                                 </source>
-                              </ImageInput>
-                           </effect>
+                        <Button layoutY="192.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="108.0" text="信用记录">
+                          
                         </Button>
-                        <Button layoutY="226.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="108.0" text="Button">
-                           <effect>
-                              <ImageInput>
-                                 <source>
-                                    <Image url="file:/F:/大二上/SE2/朱晨乾/按钮第一部分/订单信息.png" />
-                                 </source>
-                              </ImageInput>
-                           </effect>
+                        <Button layoutY="226.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="108.0" text="订单信息">
+                          
                         </Button>
-                        <Button layoutY="260.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="108.0" text="Button">
-                           <effect>
-                              <ImageInput>
-                                 <source>
-                                    <Image url="file:/F:/大二上/SE2/朱晨乾/按钮第一部分/过往酒店信息.png" />
-                                 </source>
-                              </ImageInput>
-                           </effect>
+                        <Button layoutY="260.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="108.0" text="过往酒店信息">
+                           
                         </Button>
                      </children>
                   </VBox>
@@ -75,14 +45,20 @@
                      <children>
                         <MenuButton layoutX="199.0" layoutY="74.0" mnemonicParsing="false" text="星级">
                           <items>
-                            <MenuItem mnemonicParsing="false" text="Action 1" />
-                            <MenuItem mnemonicParsing="false" text="Action 2" />
+                            <MenuItem mnemonicParsing="false" onAction="#starone" text="一" />
+                            <MenuItem mnemonicParsing="false" onAction="#startwo" text="二" />
+                              <MenuItem mnemonicParsing="false" onAction="#starthree" text="三" />
+                              <MenuItem mnemonicParsing="false" onAction="#starfour" text="四" />
+                              <MenuItem mnemonicParsing="false" onAction="#starfive" text="五" />
                           </items>
                         </MenuButton>
                         <MenuButton layoutX="276.0" layoutY="74.0" mnemonicParsing="false" text="评分">
                            <items>
-                              <MenuItem mnemonicParsing="false" text="Action 1" />
-                              <MenuItem mnemonicParsing="false" text="Action 2" />
+                              <MenuItem mnemonicParsing="false" onAction="#scoreone" text="一" />
+                              <MenuItem mnemonicParsing="false" onAction="#scoretwo" text="二" />
+                              <MenuItem mnemonicParsing="false" onAction="#scorethree" text="三" />
+                              <MenuItem mnemonicParsing="false" onAction="#scorefour" text="四" />
+                              <MenuItem mnemonicParsing="false" onAction="#scorefive" text="五" />
                            </items>
                         </MenuButton>
                         <MenuButton layoutX="372.0" layoutY="74.0" mnemonicParsing="false" text="商圈">
@@ -97,7 +73,7 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="105.0" prefWidth="486.0">
                            <children>
-                              <ScrollBar layoutX="465.0" layoutY="18.0" orientation="VERTICAL" />
+                              <ListView prefHeight="138.0" prefWidth="488.0" />
                            </children>
                         </AnchorPane>
                     </content>
@@ -106,7 +82,7 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="150.0" prefWidth="486.0">
                            <children>
-                              <ScrollBar layoutX="465.0" layoutY="14.0" orientation="VERTICAL" />
+                              <ListView prefHeight="143.0" prefWidth="488.0" />
                            </children>
                         </AnchorPane>
                      </content>

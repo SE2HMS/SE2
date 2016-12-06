@@ -15,4 +15,6 @@ public interface HotelDataServ extends Remote {
 	public boolean modifiedHotel (HotelPO hotel) throws RemoteException;
 	
 	public ArrayList<HotelPO> getHotelList (String businesscircle) throws RemoteException;
+	
+	public ArrayList<HotelPO> getAllHotel () throws RemoteException;
 }

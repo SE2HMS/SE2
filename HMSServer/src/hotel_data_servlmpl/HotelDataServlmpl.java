@@ -140,4 +140,10 @@ public class HotelDataServlmpl implements HotelDataServ{
 		return res;
 	}
 
+	@Override
+	public ArrayList<HotelPO> getAllHotel() throws RemoteException {
+		ArrayList<HotelPO> res=this.list;
+		return res;
+	}
+
 }
