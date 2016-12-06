@@ -50,7 +50,32 @@ public class MainController implements Initializable{
 	
 	
 	@FXML
-	private Label userNameLabel;  
+	private Label idLabel;  
+	
+	@FXML
+	private Label userNameLabel; 
+	
+	@FXML
+	private Label nameLabel; 
+	
+	
+	@FXML
+	private Label birthdayLabel; 
+	
+	@FXML
+	private Label BusiLabel;  
+	
+	@FXML
+	private Label phoneLabel; 
+	
+	@FXML
+	private Label memberLevelLabel; 
+	
+
+	
+	
+
+
 
     // Reference to the main application.
     private MainApp mainApp;
@@ -62,7 +87,6 @@ public class MainController implements Initializable{
      */
 	@FXML
 	public void initialize(){
-		this.userNameLabel.setText("hehe");
 		mainUIPane.setVisible(true);
 		
 	}
@@ -123,9 +147,10 @@ public class MainController implements Initializable{
         this.mainApp = mainApp;
     }
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {
+	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		
 	}
+
     
 }

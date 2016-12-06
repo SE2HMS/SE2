@@ -38,7 +38,7 @@ public class RegisterBusiController {
 	
 	
  	/**
- 	 *妫�鏌ヨ緭鍏ユ槸鍚﹀畬鏁�
+ 	 *妫�鏌ヨ緭鍏ユ槸鍚﹀畬鏁�?
  	 */
  	private boolean isInputValid(){
  		String errorMessage = "";

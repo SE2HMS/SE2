@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import rmi.RemoteRunner;
 import user_main_ui.MainController;
+import user_main_ui.MainUIController;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -56,7 +57,7 @@ public class MainApp extends Application {
 	
 
 	/**
-	 * 閺勫墽銇氶柅澶嬪濞夈劌鍞界猾璇茬�烽悾宀勬桨
+	 * 閺勫墽銇氶柅澶嬪濞夈劌鍞界猾璇茬�烽悾�?勬桨
 	 * 
 	 */
 	public void showRegisterUI() {
@@ -72,7 +73,7 @@ public class MainApp extends Application {
 	
 	
 	/**
-	 * 閺勫墽銇氶弲顕�锟芥矮绱伴崨妯绘暈閸愬瞼鏅棃锟�
+	 * 閺勫墽銇氶弲顕�锟芥矮绱伴崨妯绘暈閸愬瞼鏅棃锟�?
 	 */
 	public void showNormalUI(){
 		try{
@@ -95,7 +96,7 @@ public class MainApp extends Application {
 	
 	
 	/**
-	 * 閺勫墽銇氭导浣风瑹娴兼艾鎲冲▔銊ュ斀閻ｅ矂娼�
+	 * 閺勫墽銇氭导浣风瑹娴兼艾鎲冲▔銊ュ斀閻ｅ矂娼�?
 	 */
 	public void showBusiUI(){
 		try{
