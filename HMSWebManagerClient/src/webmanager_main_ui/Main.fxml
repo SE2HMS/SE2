@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="450.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="webmanager_main_ui.MainController">
+   <children>
+      <VBox layoutY="150.0">
+         <children>
+            <Button fx:id="memberManageButton" layoutX="-3.0" layoutY="154.0" mnemonicParsing="false" onAction="#showMemberManagePane" prefHeight="34.0" prefWidth="112.0" text="会员管理" />
+            <Button fx:id="hotelStaffManageButton" layoutX="-2.0" layoutY="201.0" mnemonicParsing="false" onAction="#showHotelStaffManagePane" prefHeight="34.0" prefWidth="112.0" text="酒店工作人员管理" />
+            <Button fx:id="webSalerManageButton" layoutX="2.0" layoutY="328.0" mnemonicParsing="false" onAction="#showWebSalerManagePane" prefHeight="34.0" prefWidth="112.0" text="网站营销人员管理" />
+         </children>
+      </VBox>
+      <ImageView fitHeight="66.0" fitWidth="70.0" layoutX="24.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="14.0" layoutY="26.0" text="Manager Name" />
+      <Separator layoutX="112.0" orientation="VERTICAL" prefHeight="450.0" prefWidth="6.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="112.0" AnchorPane.topAnchor="0.0" />
+      <AnchorPane fx:id="memberManagePane" layoutX="118.0" prefHeight="450.0" prefWidth="635.0" visible="false">
+         <children>
+            <fx:include source="MemberManage.fxml" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="hotelStaffManagePane" layoutX="128.0" layoutY="10.0" prefHeight="450.0" prefWidth="635.0" visible="false">
+         <children>
+            <fx:include source="HotelStaffManage.fxml" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="webSalerManagePane" layoutX="118.0" prefHeight="450.0" prefWidth="635.0" visible="false">
+         <children>
+            <fx:include source="WebSalerManage.fxml" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
