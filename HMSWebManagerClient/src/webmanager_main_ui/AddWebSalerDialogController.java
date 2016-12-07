@@ -22,7 +22,7 @@ public class AddWebSalerDialogController {
 
 
     private Stage dialogStage;
-    private WebSalerVO staff;
+    private WebSalerVO staff; //
     private boolean okClicked = false;
 
     /**
