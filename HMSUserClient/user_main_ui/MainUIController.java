@@ -2,6 +2,8 @@ package user_main_ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import login_ui.MainApp;
+
 
 public class MainUIController {
 
@@ -41,7 +43,7 @@ public class MainUIController {
 //	private ListView<String> listView = new ListView<>(options);
 
     // Reference to the main application.
-    private UserMainApp mainApp;
+    private MainApp mainApp;
     
     
     /**
@@ -59,7 +61,7 @@ public class MainUIController {
      * 
      * @param mainApp
      */
-    public void setMainApp(UserMainApp mainApp) {
+    public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
 
         // Add observable list data to the table

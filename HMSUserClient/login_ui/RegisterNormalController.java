@@ -23,7 +23,7 @@ public class RegisterNormalController {
 	private TextField contactField;
 	
  	/**
- 	 *检查输入是否完整
+ 	 *�?查输入是否完�?
  	 */
  	private boolean isInputValid(){
  		String errorMessage = "";

@@ -37,7 +37,6 @@
                </rowConstraints>
             </GridPane>
             <ImageView fitHeight="85.0" fitWidth="99.0" layoutX="248.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-            <Label layoutX="403.0" layoutY="49.0" text="会员等级（点击头像可更换头像？）" />
          </children>
       </AnchorPane>
    </children>

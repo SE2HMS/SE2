@@ -1,11 +1,14 @@
 package login_ui;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import VO.LoginResult;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
@@ -15,7 +18,7 @@ import javafx.stage.Stage;
 import login_bl_serv.LoginBlServ;
 import login_bl_servlmpl.LoginBlServImpl;
 
-public class LoginController {
+public class LoginController implements Initializable{
 
 	@FXML
 	private Button Confirm;
@@ -31,27 +34,21 @@ public class LoginController {
 	private Hyperlink signUp;
 	
 	@FXML
-	private Button okButton = new Button("OK"); //閿欒鎻愮ず鐨凮K鎸夐挳
+	private Button okButton ; //闁挎瑨顕ら幓鎰仛閻ㄥ嚠K閹稿鎸�?
 	
 	
-	public Stage errorStage = new Stage();//閿欒鎻愮ず鐨凷tage
+	public Stage errorStage = new Stage();//闁挎瑨顕ら幓鎰仛閻ㄥ嚪tage
 	
-	//瀵筸ain application鐨勫紩鐢�
+	//鐎电ain application閻ㄥ嫬绱╅悽锟�
 	private MainApp mainApp;
 
 
     /**
-     * 鐐瑰嚮鈥滄敞鍐屾柊璐﹀彿鈥濇墦寮�娉ㄥ唽鐣岄潰
+     * 閻愮懓鍤�?垾婊勬暈閸愬本鏌婄拹锕�褰块垾婵囧ⅵ瀵拷濞夈劌鍞介悾宀勬桨
      */
     @FXML
     public void register(){
-    	MemberType tp = mainApp.showRegisterUI();
-    	
-    	if(tp==MemberType.NORMAL){
-    		mainApp.showNormalUI();
-    	}else{
-    		mainApp.showBusiUI();
-    	}
+    	 mainApp.showRegisterUI();
     }
     
 
@@ -61,29 +58,23 @@ public class LoginController {
     	 if(isInputValid()){
     		 LoginBlServ l=new LoginBlServImpl();
     		 LoginResult result=l.login(userNameField.getText(), passwordField.getText());
-    		 if(result.equals(LoginResult.SUCCESS))
-    			 System.out.println("success"); 
+    		 if(result.equals(LoginResult.SUCCESS)){
+    			 mainApp.showUserMain(userNameField.getText());
+    		 }
     		 else
     			 System.out.println(result);
     	 }
     	 else{
     		 try{
     				
-    			// Load the fxml file and create a new stage for the choosetype dialog.
     			FXMLLoader loader = new FXMLLoader();
    				loader.setLocation(MainApp.class.getResource("AlertDialog_css.fxml"));
    				GridPane page = (GridPane) loader.load();
     				
-   				errorStage.setTitle("Message");
+   				this.errorStage.setTitle("Message");
    				Scene scene = new Scene(page);
-    			errorStage.setScene(scene);
-    			errorStage.show();
-    			okButton.setOnAction(new EventHandler<ActionEvent>(){
-    		        @Override
-    		        public void handle(ActionEvent event) {
-    		        	errorStage.close();
-    		        }
-    		    });
+   				this.errorStage.setScene(scene);
+   				this.errorStage.show();
     			
     		}catch(IOException e){
     			e.printStackTrace();
@@ -93,7 +84,8 @@ public class LoginController {
      
      @FXML
      public void closeErrorMessage(){
-    	 errorStage.close();
+    	//bug
+    	 this.errorStage.close();
      }
      
      /**
@@ -105,7 +97,7 @@ public class LoginController {
  	}
  	
  	/**
- 	 *妫�鏌ヨ緭鍏ユ槸鍚﹀畬鏁�
+ 	 *濡拷閺屻儴绶崗銉︽Ц閸氾箑鐣弫锟�?
  	 */
  	private boolean isInputValid(){
  		String errorMessage = "";
@@ -132,4 +124,13 @@ public class LoginController {
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
+   
+
+
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+		
+	}
 }

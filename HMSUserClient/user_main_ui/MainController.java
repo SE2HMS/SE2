@@ -1,13 +1,18 @@
 package user_main_ui;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-public class MainController {
+import login_ui.MainApp;
+public class MainController implements Initializable{
 
 	/*
-	 * 左侧菜单栏
+	 * 宸︿晶鑿滃崟鏍�
 	 */
 	@FXML
 	private Button mainUIButton;
@@ -73,7 +78,7 @@ public class MainController {
 
 
     // Reference to the main application.
-    private UserMainApp mainApp;
+    private MainApp mainApp;
     
     
     /**
@@ -138,8 +143,14 @@ public class MainController {
      * 
      * @param mainApp
      */
-    public void setMainApp(UserMainApp mainApp) {
+    public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
     
 }
