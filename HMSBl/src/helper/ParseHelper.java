@@ -107,7 +107,7 @@ public abstract class ParseHelper {
      * @return
      */
     public static CommentVO stringToComment(String comment) {
-        CommentVO commentVO = new CommentVO(comment);
+        CommentVO commentVO = new CommentVO(comment,0);
         return commentVO;
     }
 

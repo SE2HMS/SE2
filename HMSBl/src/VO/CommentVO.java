@@ -5,12 +5,18 @@ package VO;
  */
 public class CommentVO {
     private final String content;
+    private final double level;
 
     public String getContent() {
         return content;
     }
 
-    public CommentVO(String content) {
+    public CommentVO(String content,double level) {
         this.content = content;
+        this.level = level;
+    }
+
+    public double getLevel() {
+        return level;
     }
 }
