@@ -48,7 +48,7 @@ public interface LoginBlServ {
 	 * @param contact
      * @return
      */
-	public RegisterResult registerWebSaler(String name ,String contact);
+	public RegisterResult registerWebSaler(String id,String password,String name ,String contact);
 
 	/**
 	 * 注册酒店工作人员
@@ -56,5 +56,5 @@ public interface LoginBlServ {
 	 * @param contact
      * @return
      */
-	public RegisterResult registerHotelStaff(String hotelName,String contact);
+	public RegisterResult registerHotelStaff(String id,String password,String hotelName,String contact);
 }

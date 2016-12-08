@@ -96,12 +96,15 @@ public class LoginBlServImpl implements LoginBlServ {
     }
 
     @Override
-    public RegisterResult registerWebSaler(String name, String contact) {
+    public RegisterResult registerWebSaler(String id,String password,String name, String contact) {
+        WebSaler webSaler = new WebSaler(name,contact);
+        UserLoginInfo userLoginInfo = new UserLoginInfo(id,password);
         return null;
     }
 
     @Override
-    public RegisterResult registerHotelStaff(String hotelName, String contact) {
+    public RegisterResult registerHotelStaff(String id ,String password,String hotelName, String contact) {
+
         return null;
     }
 }

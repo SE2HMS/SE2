@@ -40,7 +40,52 @@ public class HotelBlServImpl implements HotelBlServ {
     }
 
     @Override
-    public Iterator<HotelVO> search(int location, int businesscircle, String name, boolean haveOrdered,int roomType, double minPrice, double maxPrice, int roomNum, int inTime, int outTime, int starLevel, double minComment, double maxComment) {
+    public Iterator<HotelVO> search(int location, int businesscircle, String name, boolean haveOrdered, int roomType, int price, int roomNum, int inTime, int outTime, int starLevel, int commentLevel) {
+        double minPrice = 0;
+        double maxPrice = 0;
+        double minComment = 0;
+        double maxComment = 0;
+        switch (price) {
+            case 0:
+                break;
+            case 1:
+                maxPrice = 100;
+                break;
+            case 2:
+                minPrice = 100;
+                maxPrice = 200;
+                break;
+            case 3:
+                minPrice = 200;
+                maxPrice = 300;
+                break;
+            case 4:
+                minPrice = 300;
+                break;
+        }
+        switch (commentLevel) {
+            case 0:
+                break;
+            case 1:
+                minComment = 1;
+                maxComment = 2;
+                break;
+            case 2:
+                minComment = 2;
+                maxComment = 3;
+                break;
+            case 3:
+                minComment = 3;
+                maxComment = 4;
+                break;
+            case 4:
+                minComment = 4;
+                break;
+        }
+        return this.search(location,businesscircle,name,haveOrdered,roomType,minPrice,maxPrice,roomNum,inTime,outTime,starLevel,minComment,maxComment);
+    }
+
+    private Iterator<HotelVO> search(int location, int businesscircle, String name, boolean haveOrdered, int roomType, double minPrice, double maxPrice, int roomNum, int inTime, int outTime, int starLevel, double minComment, double maxComment) {
         ArrayList<HotelPO> hotelPOs = null;
         try {
             hotelPOs = RemoteHelper.getInstance().getHotelDataServ().getAllHotel();

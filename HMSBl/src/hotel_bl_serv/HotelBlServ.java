@@ -39,7 +39,7 @@ public interface HotelBlServ {
      * @param maxComment 最高评价星数
      * @return 返回符合条件的酒店的迭代器
      */
-	public Iterator<HotelVO> search(int location, int businesscircle, String name, boolean haveOrdered,int roomType, double minPrice, double maxPrice, int roomNum, int inTime, int outTime, int starLevel, double minComment, double maxComment);
+	public Iterator<HotelVO> search(int location, int businesscircle, String name, boolean haveOrdered,int roomType, int price, int roomNum, int inTime, int outTime, int starLevel, int commentLevel);
 
 	/**
 	 * 修改酒店信息，意思很明显。。
