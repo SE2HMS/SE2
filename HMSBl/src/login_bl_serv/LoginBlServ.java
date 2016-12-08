@@ -41,4 +41,20 @@ public interface LoginBlServ {
 	 * @return 杩斿洖鏄惁鎴愬姛
      */
 	public LogoutResult logout(String id);
+
+	/**
+	 * 注册网站营销人员
+	 * @param name
+	 * @param contact
+     * @return
+     */
+	public RegisterResult registerWebSaler(String name ,String contact);
+
+	/**
+	 * 注册酒店工作人员
+	 * @param hotelName
+	 * @param contact
+     * @return
+     */
+	public RegisterResult registerHotelStaff(String hotelName,String contact);
 }

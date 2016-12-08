@@ -94,4 +94,14 @@ public class LoginBlServImpl implements LoginBlServ {
         }
         return userVO;
     }
+
+    @Override
+    public RegisterResult registerWebSaler(String name, String contact) {
+        return null;
+    }
+
+    @Override
+    public RegisterResult registerHotelStaff(String hotelName, String contact) {
+        return null;
+    }
 }
