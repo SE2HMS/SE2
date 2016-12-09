@@ -293,6 +293,4 @@ public class HotelBlServImpl implements HotelBlServ {
         return hotelVOs.iterator();
     }
 
-
-
 }
