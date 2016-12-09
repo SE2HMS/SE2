@@ -2,6 +2,8 @@ package helper;
 
 import PO.*;
 import VO.*;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -44,7 +46,9 @@ public abstract class ParseHelper {
         int year = Integer.parseInt(splitString[0]) + 2000;
         int month = Integer.parseInt(splitString[1]) - 1;
         int day = Integer.parseInt(splitString[2]);
-        calendar.set(year,month,day);
+        int hour = Integer.parseInt(splitString[3]);
+        int min = Integer.parseInt(splitString[4]);
+        calendar.set(year,month,day,hour,min);
         return calendar.getTime();
     }
 
@@ -54,13 +58,15 @@ public abstract class ParseHelper {
      * @return
      */
     public static String dateToString(Date date) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        String time = "";
-        int year = calendar.get(Calendar.YEAR) - 2000;
-        int month = calendar.get(Calendar.MONTH) + 1;
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
-        time += year + "/" + month + "/" + (day < 10?"0":"") + day;
+        SimpleDateFormat format = new SimpleDateFormat("yy/MM/dd/hh/mm");
+        String time = format.format(date);
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.setTime(date);
+//        String time = "";
+//        int year = calendar.get(Calendar.YEAR) - 2000;
+//        int month = calendar.get(Calendar.MONTH) + 1;
+//        int day = calendar.get(Calendar.DAY_OF_MONTH);
+//        time += year + "/" + month + "/" + (day < 10?"0":"") + day;
         return time;
     }
 

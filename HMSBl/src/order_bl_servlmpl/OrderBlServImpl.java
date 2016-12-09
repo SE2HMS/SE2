@@ -30,6 +30,26 @@ public class OrderBlServImpl implements OrderBlServ {
     }
 
     @Override
+    public Iterator<OrderVO> getNotInOrderList(String userId) {
+        return null;
+    }
+
+    @Override
+    public Iterator<OrderVO> getAbnormalOrderList(String userId) {
+        return null;
+    }
+
+    @Override
+    public Iterator<OrderVO> getRevokeOrderList(String userId) {
+        return null;
+    }
+
+    @Override
+    public Iterator<OrderVO> getFinishOrderList(String userId) {
+        return null;
+    }
+
+    @Override
     public Iterator<OrderVO> getOrderList(String userId) {
         ArrayList<OrderPO> orderPOs = null;
         ArrayList<OrderVO> orderVOs = new ArrayList<>();
