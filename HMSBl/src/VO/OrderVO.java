@@ -6,6 +6,7 @@ import java.util.Date;
  * Created by Administrator on 2016/11/22.
  */
 public class OrderVO {
+    private final String id;
     private final UserInOrder user;
     private final HotelInOrder hotel;
     private final OrderState state;
@@ -14,6 +15,10 @@ public class OrderVO {
     private final Date outTime;
     private final Date execTime;
     private final int total;
+
+    public String getId() {
+        return id;
+    }
 
     public UserInOrder getUser() {
         return user;
@@ -47,7 +52,8 @@ public class OrderVO {
         return total;
     }
 
-    public OrderVO(UserInOrder user, HotelInOrder hotel, OrderState state, boolean children, Date inTime, Date outTime, Date execTime, int total) {
+    public OrderVO(String id,UserInOrder user, HotelInOrder hotel, OrderState state, boolean children, Date inTime, Date outTime, Date execTime, int total) {
+        this.id = id;
         this.user = user;
         this.hotel = hotel;
         this.state = state;

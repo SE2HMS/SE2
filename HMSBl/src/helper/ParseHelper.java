@@ -25,7 +25,7 @@ public abstract class ParseHelper {
     public static UserType stringToUserType(String type) {
         UserType userType = null;
         switch (type) {
-            case "NORMAL":
+            case "FINISH":
                 userType = UserType.NORMAL;
                 break;
             case "SPECIAL":
@@ -46,8 +46,12 @@ public abstract class ParseHelper {
         int year = Integer.parseInt(splitString[0]) + 2000;
         int month = Integer.parseInt(splitString[1]) - 1;
         int day = Integer.parseInt(splitString[2]);
-        int hour = Integer.parseInt(splitString[3]);
-        int min = Integer.parseInt(splitString[4]);
+        int hour = 0;
+        int min = 0;
+        if(splitString.length >= 4) {
+            hour = Integer.parseInt(splitString[3]);
+            min = Integer.parseInt(splitString[4]);
+        }
         calendar.set(year,month,day,hour,min);
         return calendar.getTime();
     }
@@ -187,8 +191,8 @@ public abstract class ParseHelper {
     public static OrderState stringToOrderState(String state) {
         OrderState orderState = null;
         switch (state) {
-            case "NORMAL":
-                orderState = OrderState.NORMAL;
+            case "FINISH":
+                orderState = OrderState.FINISH;
                 break;
             case "ABNORMAL":
                 orderState = OrderState.ABNORMAL;

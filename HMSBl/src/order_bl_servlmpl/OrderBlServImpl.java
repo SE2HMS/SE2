@@ -31,22 +31,34 @@ public class OrderBlServImpl implements OrderBlServ {
 
     @Override
     public Iterator<OrderVO> getNotInOrderList(String userId) {
-        return null;
+        return this.getOrderByState(OrderState.WAITING,userId);
+    }
+
+    private Iterator<OrderVO> getOrderByState(OrderState state,String userId) {
+        Iterator<OrderVO> orderVOIterator = this.getOrderList(userId);
+        ArrayList<OrderVO> orderVOs = new ArrayList<>();
+        while(orderVOIterator.hasNext()) {
+            OrderVO orderVO = orderVOIterator.next();
+            if(orderVO.getState().equals(state)) {
+                orderVOs.add(orderVO);
+            }
+        }
+        return orderVOs.iterator();
     }
 
     @Override
     public Iterator<OrderVO> getAbnormalOrderList(String userId) {
-        return null;
+        return this.getOrderByState(OrderState.ABNORMAL,userId);
     }
 
     @Override
     public Iterator<OrderVO> getRevokeOrderList(String userId) {
-        return null;
+        return this.getOrderByState(OrderState.REVOKE,userId);
     }
 
     @Override
     public Iterator<OrderVO> getFinishOrderList(String userId) {
-        return null;
+        return this.getOrderByState(OrderState.FINISH,userId);
     }
 
     @Override
