@@ -1,9 +1,14 @@
-package webmanager_main_ui;
+package login_ui;
 
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import VO.WebSaler;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -15,7 +20,7 @@ import login_bl_servlmpl.LoginBlServImpl;
  * 
  * @author ObserverZQ
  */
-public class AddWebSalerDialogController {
+public class AddWebSalerDialogController implements Initializable{
 
     @FXML
     private TextField nameField;
@@ -24,7 +29,12 @@ public class AddWebSalerDialogController {
     private TextField contactField;
 
 
-
+    @FXML
+    private Button confirm;
+    @FXML
+    private Button cancel;
+    
+    private MainApp mainApp;
     private Stage dialogStage;
     public WebSaler saler; //
     private boolean okClicked = false;
@@ -122,4 +132,14 @@ public class AddWebSalerDialogController {
             return false;
         }
     }
+    
+    public void setMainApp(MainApp mainApp){
+    	this.mainApp = mainApp;
+    }
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+		
+	}
 }

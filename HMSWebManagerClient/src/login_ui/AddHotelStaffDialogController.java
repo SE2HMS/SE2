@@ -1,8 +1,13 @@
-package webmanager_main_ui;
+package login_ui;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -11,7 +16,7 @@ import javafx.stage.Stage;
  * 
  * @author ObserverZQ
  */
-public class AddHotelStaffDialogController {
+public class AddHotelStaffDialogController implements Initializable{
 
     @FXML
     private TextField hotelNameField;
@@ -20,17 +25,27 @@ public class AddHotelStaffDialogController {
     private TextField contactField;
 
 
-
+    @FXML
+    private Button confirm;
+    @FXML
+    private Button cancel;
+    
     private Stage dialogStage;
 //    private HotelStaffVO staff;
     private boolean okClicked = false;
 
+    private MainApp mainApp;
     /**
      * Initializes the controller class. This method is automatically called
      * after the fxml file has been loaded.
      */
     @FXML
     private void initialize() {
+    }
+
+    
+    public void setMainApp(MainApp mainApp){
+    	this.mainApp = mainApp;
     }
 
     /**
@@ -118,4 +133,11 @@ public class AddHotelStaffDialogController {
             return false;
         }
     }
+
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+		
+	}
 }

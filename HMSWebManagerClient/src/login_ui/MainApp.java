@@ -4,7 +4,6 @@ import javafx.application.Application;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import rmi.RemoteRunner;
-import webmanager_main_ui.AddWebSalerDialogController;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -51,6 +50,9 @@ public class MainApp extends Application {
 	 */
 	public void showWebManagerMain(){
 		try {
+			HotelStaffManageController.setMainApp(this);
+			WebSalerManageController.setMainApp(this);
+			
 			MainController controller=(MainController) replaceSceneContent("Main.fxml");
 			controller.setMainApp(this);
 		} catch (Exception e) {
@@ -60,35 +62,50 @@ public class MainApp extends Application {
 	}
 	
 	
-	public boolean showAddWebSalerDialog(WebSaler saler) {
-    try {
-        // Load the fxml file and create a new stage for the popup dialog.
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(MainApp.class.getResource("AddWebSalerDialog.fxml"));
-        AnchorPane page = (AnchorPane) loader.load();
+	
+	
+	public void showAddHotelStaffDialog() { //括号内应为WebSaler saler
+		AddHotelStaffDialogController controller;
+		try {
+			// Set the person into the controller.
+			controller = (AddHotelStaffDialogController)replaceDiaSceneContent("AddHotelStaffDialog.fxml");
+			controller.setDialogStage(this.diaStage);
+			controller.setMainApp(this);
+			
 
-        // Create the dialog Stage.
-        Stage dialogStage = new Stage();
-        dialogStage.setTitle("Edit WebSaler");
-        dialogStage.initModality(Modality.WINDOW_MODAL);
-        dialogStage.initOwner(primaryStage);
-        Scene scene = new Scene(page);
-        dialogStage.setScene(scene);
+//        return controller.isOkClicked();
+		} catch (Exception e) {
+			e.printStackTrace();
+//        return false;
+		}
+	}
+	
+	
+	
+	
+	public void showAddWebSalerDialog() { //括号内应为WebSaler saler
+		AddWebSalerDialogController controller;
+		try {
+			// Set the person into the controller.
+			controller = (AddWebSalerDialogController)replaceDiaSceneContent("AddWebSalerDialog.fxml");
+			controller.setDialogStage(this.diaStage);
+			controller.setMainApp(this);
+			
+//        controller.setWebSaler(saler);
 
-        // Set the person into the controller.
-        AddWebSalerDialogController controller = loader.getController();
-        controller.setDialogStage(dialogStage);
-        controller.setWebSaler(saler);
+			
 
-        // Show the dialog and wait until the user closes it
-        dialogStage.showAndWait();
-
-        return controller.isOkClicked();
-    } catch (IOException e) {
-        e.printStackTrace();
-        return false;
-    }
-}
+//        return controller.isOkClicked();
+		} catch (Exception e) {
+			e.printStackTrace();
+//        return false;
+		}
+	}
+	
+	
+	
+	
+	
 	
 	/**
      * Returns the main stage.

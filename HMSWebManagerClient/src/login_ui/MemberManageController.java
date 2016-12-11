@@ -1,4 +1,4 @@
-package webmanager_main_ui;
+package login_ui;
 
 public class MemberManageController {
 

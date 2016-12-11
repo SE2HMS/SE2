@@ -5,25 +5,27 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="236.0" prefWidth="469.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="webmanager_main_ui.AddWebSalerDialogController">
+<AnchorPane prefHeight="236.0" prefWidth="469.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login_ui.AddWebSalerDialogController">
    <children>
-      <GridPane layoutX="99.0" layoutY="56.0" prefHeight="94.0" prefWidth="271.0">
+      <GridPane layoutX="98.0" layoutY="47.0" prefHeight="106.0" prefWidth="273.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label text="用户名" />
-            <Label text="联系方式" GridPane.rowIndex="1" />
+            <Label text="联系方式" GridPane.rowIndex="2" />
             <TextField GridPane.columnIndex="1" />
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="密码" GridPane.rowIndex="1" />
             <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <Button layoutX="119.0" layoutY="185.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="86.0" text="确认" />
-      <Button layoutX="265.0" layoutY="185.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="86.0" text="取消" />
+      <Button fx:id="confirm" layoutX="167.0" layoutY="183.0" mnemonicParsing="false" onAction="#handleOk" prefHeight="23.0" prefWidth="136.0" text="确认" />
    </children>
 </AnchorPane>

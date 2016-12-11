@@ -17,7 +17,7 @@ public class WebSalerManageController {
 	private Button search;
 	
 	//Reference to the main application
-	private MainApp mainApp;
+	private static MainApp mainApp;
 	
 	/**
 	 * Called when the user clicks the new button. Opens a dialog to edit
@@ -25,11 +25,16 @@ public class WebSalerManageController {
 	 */
 	@FXML
 	private void handleNewWebSaler() {
-	    WebSaler tempSaler = new WebSaler();
-//	    boolean okClicked = mainApp.showAddWebSalerDialog(tempSaler);
-		boolean okClicked = true;
-	    if (okClicked) {
-	    	//往list中添加一个staff
-	    }
+//	    WebSaler tempSaler = new WebSaler();
+//	    boolean okClicked = mainApp.showAddWebSalerDialog(); //括号内应为tempSaler
+		mainApp.showAddWebSalerDialog();
+//		okClicked = true;
+//	    if (okClicked) {
+//	    	//往list中添加一个staff
+//	    }
+	}
+	
+	public static void setMainApp(MainApp mainApp){
+		WebSalerManageController.mainApp = mainApp;
 	}
 }
