@@ -1,5 +1,8 @@
 package VO;
 
+import rmi.RemoteHelper;
+
+import java.rmi.RemoteException;
 import java.util.Date;
 
 /**
@@ -14,7 +17,7 @@ public class OrderVO {
     private final Date inTime;
     private final Date outTime;
     private final Date execTime;
-    private final int total;
+    private final double total;
 
     public String getId() {
         return id;
@@ -29,8 +32,21 @@ public class OrderVO {
     }
 
     public OrderState getState() {
+//        updateState();
         return state;
     }
+
+    /**
+     * 还没写
+     */
+//    private void updateState() {
+//        Date sysTime;
+//        try {
+//            sysTime = RemoteHelper.getInstance().getTimeServ().getTime();
+//        }catch (RemoteException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     public boolean isChildren() {
         return children;
@@ -48,11 +64,11 @@ public class OrderVO {
         return execTime;
     }
 
-    public int getTotal() {
+    public double getTotal() {
         return total;
     }
 
-    public OrderVO(String id,UserInOrder user, HotelInOrder hotel, OrderState state, boolean children, Date inTime, Date outTime, Date execTime, int total) {
+    public OrderVO(String id,UserInOrder user, HotelInOrder hotel, OrderState state, boolean children, Date inTime, Date outTime, Date execTime, double total) {
         this.id = id;
         this.user = user;
         this.hotel = hotel;

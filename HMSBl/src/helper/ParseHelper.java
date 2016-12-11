@@ -15,10 +15,9 @@ import java.util.Date;
  */
 public abstract class ParseHelper {
 
-    public static RoomInOrder stringToRoom(String room) {
+    public static RoomInOrder stringToRoom(String room,int num,double price,double total) {
         String name = room;
-        int num = 1;
-        RoomInOrder roomInOrder = new RoomInOrder(name,num);
+        RoomInOrder roomInOrder = new RoomInOrder(name,num,price,total);
         return roomInOrder;
     }
 
@@ -90,10 +89,16 @@ public abstract class ParseHelper {
         String intro = hotelPO.getINTRO();
         ArrayList<RoomVO> rooms = new ArrayList<>();
         hotelPO.getRoom().forEach(roomPO -> rooms.add(toRoomVO(roomPO)));
+        double minPrice = 0;
+        for(RoomVO roomVO:rooms) {
+            if(roomVO.getPrice() < minPrice || minPrice == 0) {
+                minPrice = roomVO.getPrice();
+            }
+        }
         ArrayList<String> cooperativeEnterprise = hotelPO.getCompanies();
         ArrayList<StrategyVO> strategies = new ArrayList<>();
         hotelPO.getStrategy().forEach(hotelStrategyPO -> strategies.add(ParseHelper.toStrategyVO(hotelStrategyPO)));
-        hotelVO = new HotelVO(name,CBD,location,comments,starLevel,intro,rooms,cooperativeEnterprise,strategies);
+        hotelVO = new HotelVO(name,CBD,location,comments,starLevel,intro,rooms,minPrice,cooperativeEnterprise,strategies);
         return hotelVO;
     }
 

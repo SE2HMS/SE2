@@ -32,22 +32,29 @@ public class OrderHelper {
      * @return
      */
     public static OrderVO toOrderVO(OrderPO orderPO) {
+        String orderId = orderPO.getID();
         String userId = orderPO.getUserID();
         String userName = orderPO.getUserName();
         String userContact = orderPO.getUserContact();
         UserInOrder user = new UserInOrder(userId, userName, userContact);
         String hotelName = orderPO.getHotel();
         ArrayList<String> rooms = orderPO.getRoom();
+        ArrayList<Integer> roomNums = orderPO.getNum();
+        ArrayList<Double> prices = orderPO.getPrice();
+        ArrayList<Double> subTotals = orderPO.getSubtotel();
         ArrayList<RoomInOrder> roomInOrders = new ArrayList<>();
-        rooms.forEach(room -> roomInOrders.add(ParseHelper.stringToRoom(room)));
+        for(int i = 0;i<rooms.size();i++) {
+            RoomInOrder roomInOrder = ParseHelper.stringToRoom(rooms.get(i),roomNums.get(i),prices.get(i),subTotals.get(i));
+            roomInOrders.add(roomInOrder);
+        }
         HotelInOrder hotel = new HotelInOrder(hotelName, roomInOrders);
         OrderState state = ParseHelper.stringToOrderState(orderPO.getType());
         boolean children = false;
         String inTime = orderPO.getInTime();
         String outTime = orderPO.getOutTime();
         String execTime = orderPO.getLastTime();
-        int total = (int) orderPO.getTotel();
-        OrderVO orderVO = new OrderVO(user, hotel, state, children, stringToDate(inTime), stringToDate(outTime), stringToDate(execTime), total);
+        double total = orderPO.getTotel();
+        OrderVO orderVO = new OrderVO(orderId,user, hotel, state, children, stringToDate(inTime), stringToDate(outTime), stringToDate(execTime), total);
         return orderVO;
     }
 }

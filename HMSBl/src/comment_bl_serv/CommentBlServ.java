@@ -15,10 +15,11 @@ public interface CommentBlServ {
 	}
 
 	/**
-	 * 这个是匿名评论
-	 * @param hotel 酒店
-	 * @param comment 评论内容
+	 * 评论
+	 * @param hotelName
+	 * @param comment
+	 * @param commentLevel
      * @return
      */
-	public boolean comment(HotelVO hotel, String comment);
+	public boolean comment(String hotelName,String comment,double commentLevel);
 }

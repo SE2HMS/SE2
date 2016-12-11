@@ -281,6 +281,19 @@ public class HotelBlServImpl implements HotelBlServ {
     }
 
     @Override
+    public Iterator<OrderVO> getOrderInHotel(String userId, String hotelName) {
+        Iterator<OrderVO> orderVOIterator = OrderBlServ.getInstance().getOrderList(userId);
+        ArrayList<OrderVO> orderVOs = new ArrayList<>();
+        while(orderVOIterator.hasNext()) {
+            OrderVO orderVO = orderVOIterator.next();
+            if(orderVO.getHotel().getHotelName().equals(hotelName)) {
+                orderVOs.add(orderVO);
+            }
+        }
+        return orderVOs.iterator();
+    }
+
+    @Override
     public Iterator<HotelVO> getAllHotel(String businessCircle) {
         ArrayList<HotelPO> hotelPOs;
         ArrayList<HotelVO> hotelVOs = new ArrayList<>();

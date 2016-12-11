@@ -14,18 +14,20 @@ public class HotelVO {
     private final ArrayList<CommentVO> comments;
     private final int starLevel;
     private final String intro;
+    private final double minPrice;
     private final ArrayList<RoomVO> rooms;
     private final ArrayList<String> cooperativeEnterprise;
     private final ArrayList<StrategyVO> strategies;
 
     public HotelVO(String name,String CBD, String location, ArrayList<CommentVO> comments, int starLevel, String intro, ArrayList<RoomVO> rooms
-            , ArrayList<String> cooperativeEnterprise, ArrayList<StrategyVO> strategies) {
+            ,double minPrice, ArrayList<String> cooperativeEnterprise, ArrayList<StrategyVO> strategies) {
         this.name = name;
         this.CBD = CBD;
         this.location = location;
         this.comments = comments;
         this.starLevel = starLevel;
         this.intro = intro;
+        this.minPrice = minPrice;
         this.rooms = rooms;
         this.cooperativeEnterprise = cooperativeEnterprise;
         this.strategies = strategies;
@@ -51,6 +53,10 @@ public class HotelVO {
 
     public String getIntro() {
         return intro;
+    }
+
+    public double getMinPrice() {
+        return minPrice;
     }
 
     public Iterator<RoomVO> getRooms() {

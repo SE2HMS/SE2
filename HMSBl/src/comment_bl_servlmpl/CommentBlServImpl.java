@@ -13,14 +13,28 @@ import java.rmi.RemoteException;
  */
 public class CommentBlServImpl implements CommentBlServ{
 
-	@Override
-	public boolean comment(HotelVO hotel, String comment) {
+	private boolean comment(HotelVO hotel, String comment) {
 		CommentDataServ commentDataServ;
 		boolean success = false;
 		try {
 			commentDataServ = RemoteHelper.getInstance().getCommentDataServ();
 			CommentPO commentPO = new CommentPO(hotel.getName(),comment);
 			success = commentDataServ.insert(commentPO);
+		}catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return success;
+	}
+
+	@Override
+	/**
+	 * 分数还要加上去
+	 */
+	public boolean comment(String hotelName, String comment, double commentLevel) {
+		boolean success = false;
+		try {
+			CommentPO commentPO = new CommentPO(hotelName,comment);
+			success = RemoteHelper.getInstance().getCommentDataServ().insert(commentPO);
 		}catch (RemoteException e) {
 			e.printStackTrace();
 		}
