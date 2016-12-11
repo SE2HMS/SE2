@@ -1,11 +1,15 @@
-package webmanager_main_ui;
+package login_ui;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
-
-public class MainController {
+public class MainController implements Initializable{
 
 	/*
 	 * 左侧菜单栏
@@ -30,16 +34,15 @@ public class MainController {
 	
 	
 	//Reference to the main application
-	private WebManagerMainApp mainApp;
+	private MainApp mainApp;
 	
-	AddHotelStaffDialogController controller;
+
     /**
      * Initializes the controller class. This method is automatically called
      * after the fxml file has been loaded.
      */
 	@FXML
 	public void initialize(){
-		controller = new AddHotelStaffDialogController();
 		memberManagePane.setVisible(true);
 	}
 	
@@ -64,8 +67,7 @@ public class MainController {
 	public void showWebSalerManagePane(){
 		memberManagePane.setVisible(false);
 		hotelStaffManagePane.setVisible(false);
-		webSalerManagePane.setVisible(true);
-		
+		webSalerManagePane.setVisible(true);		
 	}
 	
 	
@@ -80,8 +82,14 @@ public class MainController {
      * 
      * @param mainApp
      */
-    public void setMainApp(WebManagerMainApp mainApp) {
+    public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+		
+	}
     
 }

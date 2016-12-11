@@ -1,9 +1,10 @@
-package webmanager_main_ui;
+package login_ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
+import VO.*;
 
 public class WebSalerManageController {
 	@FXML
@@ -16,7 +17,7 @@ public class WebSalerManageController {
 	private Button search;
 	
 	//Reference to the main application
-	private WebManagerMainApp mainApp;
+	private MainApp mainApp;
 	
 	/**
 	 * Called when the user clicks the new button. Opens a dialog to edit
@@ -24,8 +25,9 @@ public class WebSalerManageController {
 	 */
 	@FXML
 	private void handleNewWebSaler() {
-	    WebSalerVO tempSaler = new WebSalerVO();
-	    boolean okClicked = mainApp.showAddWebSalerDialog(tempSaler);
+	    WebSaler tempSaler = new WebSaler();
+//	    boolean okClicked = mainApp.showAddWebSalerDialog(tempSaler);
+		boolean okClicked = true;
 	    if (okClicked) {
 	    	//往list中添加一个staff
 	    }

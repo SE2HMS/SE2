@@ -8,12 +8,12 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="450.0" prefWidth="635.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="450.0" prefWidth="635.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login_ui.WebSalerManageController">
 	<!-- TODO Add Nodes -->
 	<children>
-      <TextField layoutX="128.0" layoutY="58.0" prefHeight="23.0" prefWidth="282.0" promptText="网站营销人员ID" />
-      <Button layoutX="424.0" layoutY="58.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="89.0" text="搜索" />
-      <Hyperlink layoutX="538.0" layoutY="59.0" text="新增..." />
+      <TextField fx:id="inputField" layoutX="128.0" layoutY="58.0" prefHeight="23.0" prefWidth="282.0" promptText="网站营销人员ID" />
+      <Button fx:id="search" layoutX="424.0" layoutY="58.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="89.0" text="搜索" />
+      <Hyperlink fx:id="addNew" layoutX="538.0" layoutY="59.0" text="新增..." />
       <AnchorPane layoutX="142.0" layoutY="105.0" prefHeight="283.0" prefWidth="403.0">
          <children>
             <GridPane layoutX="28.0" layoutY="51.0" prefHeight="137.0" prefWidth="339.0">

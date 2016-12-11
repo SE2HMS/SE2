@@ -1,10 +1,14 @@
 package webmanager_main_ui;
 
+
+import VO.WebSaler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import login_bl_serv.LoginBlServ;
+import login_bl_servlmpl.LoginBlServImpl;
 
 /**
  * Dialog to edit details of a person.
@@ -22,7 +26,7 @@ public class AddWebSalerDialogController {
 
 
     private Stage dialogStage;
-    private WebSalerVO staff; //
+    public WebSaler saler; //
     private boolean okClicked = false;
 
     /**
@@ -47,7 +51,7 @@ public class AddWebSalerDialogController {
      * 
      * @param hotelStaff
      */
-    public void setWebSaler(WebSalerVO saler) {
+    public void setWebSaler(WebSaler saler) {
         this.saler = saler;
 
         nameField.setText(saler.getName());
@@ -70,8 +74,8 @@ public class AddWebSalerDialogController {
     @FXML
     private void handleOk() {
         if (isInputValid()) {
-            saler.setHotelName(nameField.getText());
-            saler.setContact(contactField.getText());
+//           setName(nameField.getText());
+//           setContact(contactField.getText());
 
             okClicked = true;
             dialogStage.close();
@@ -93,13 +97,14 @@ public class AddWebSalerDialogController {
      */
     private boolean isInputValid() {
         String errorMessage = "";
-
+        LoginBlServ bl = new LoginBlServImpl();
         if (nameField.getText() == null || nameField.getText().length() == 0) {
             errorMessage += "No valid name!\n"; 
         }
         if (contactField.getText() == null || contactField.getText().length() == 0) {
             errorMessage += "No valid contact!\n"; 
         }
+//        RegisterResult result = bl.registerWebSaler(id, password, name, contact);
 
 
         if (errorMessage.length() == 0) {

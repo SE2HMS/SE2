@@ -22,7 +22,7 @@ public class AddHotelStaffDialogController {
 
 
     private Stage dialogStage;
-    private HotelStaffVO staff;
+//    private HotelStaffVO staff;
     private boolean okClicked = false;
 
     /**
@@ -47,13 +47,13 @@ public class AddHotelStaffDialogController {
      * 
      * @param hotelStaff
      */
-    public void setHotelStaff(HotelStaffVO staff) {
-        this.staff = staff;
-
-        hotelNameField.setText(staff.getHotelName());
-        contactField.setText(staff.getContact());
-  
-    }
+//    public void setHotelStaff(HotelStaffVO staff) {
+//        this.staff = staff;
+//
+//        hotelNameField.setText(staff.getHotelName());
+//        contactField.setText(staff.getContact());
+//  
+//    }
 
     /**
      * Returns true if the user clicked OK, false otherwise.
@@ -70,8 +70,8 @@ public class AddHotelStaffDialogController {
     @FXML
     private void handleOk() {
         if (isInputValid()) {
-            staff.setHotelName(hotelNameField.getText());
-            staff.setContact(contactField.getText());
+//            staff.setHotelName(hotelNameField.getText());
+//            staff.setContact(contactField.getText());
 
             okClicked = true;
             dialogStage.close();
@@ -89,7 +89,7 @@ public class AddHotelStaffDialogController {
     /**
      * Validates the user input in the text fields.
      * **一个酒店只能有一个工作人员**
-     * 要检查看酒店名称是否已存在~~~~~~~~这个逻辑记得写吖！！！
+     * 要检查看酒店名称是否已存在~~~~~~~~！！！
      * @return true if the input is valid
      */
     private boolean isInputValid() {
