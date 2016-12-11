@@ -27,8 +27,7 @@ public class AddHotelStaffDialogController implements Initializable{
 
     @FXML
     private Button confirm;
-    @FXML
-    private Button cancel;
+
     
     private Stage dialogStage;
 //    private HotelStaffVO staff;
@@ -93,13 +92,6 @@ public class AddHotelStaffDialogController implements Initializable{
         }
     }
 
-    /**
-     * Called when the user clicks cancel.
-     */
-    @FXML
-    private void handleCancel() {
-        dialogStage.close();
-    }
 
     /**
      * Validates the user input in the text fields.
