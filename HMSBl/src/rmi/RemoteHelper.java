@@ -49,4 +49,8 @@ public class RemoteHelper {
 	public UserDataServ getUserDataServ() {
 		return (UserDataServ) remote;
 	}
+
+	public TimeServ getTimeServ() {
+		return (TimeServ) remote;
+	}
 }

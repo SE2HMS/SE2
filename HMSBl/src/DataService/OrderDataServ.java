@@ -5,8 +5,10 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import PO.OrderPO;
+import VO.OrderState;
 
 public interface OrderDataServ extends Remote {
+
     public boolean insertOrder(OrderPO po) throws RemoteException;
 
     public boolean modifiedOrder(OrderPO po) throws RemoteException;

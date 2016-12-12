@@ -19,9 +19,9 @@ public class CommentTest {
 	@Before
 	public void setup(){
 		commentDataServ=CommentDataServlmpl.getInstance();
-		c1=new CommentPO("hotel","good");
-		c2=new CommentPO("hotel","bad");
-		c3=new CommentPO("hotel1","hehe");
+		c1=new CommentPO("hotel","good",5);
+		c2=new CommentPO("hotel","bad",5);
+		c3=new CommentPO("hotel1","hehe",5);
 	}
 	
 	@Test

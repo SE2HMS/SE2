@@ -18,4 +18,6 @@ public interface UserDataServ extends Remote {
 
 	public ArrayList<UserPO> getUserList() throws RemoteException;
 
+	public UserPO getUser(String userName,String contact) throws RemoteException;
+
 }

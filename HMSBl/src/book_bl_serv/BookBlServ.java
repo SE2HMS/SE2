@@ -1,9 +1,11 @@
 package book_bl_serv;
 
+import VO.BookResult;
 import VO.OrderVO;
 import VO.RoomAndNum;
 import book_bl_servImpl.BookBlServImpl;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public interface BookBlServ {
@@ -17,6 +19,8 @@ public interface BookBlServ {
 	 * @return 返回是否成功
      */
 	public boolean produceOrder(OrderVO orderVO);
+
+	public BookResult book(String hotelName, String userId, ArrayList<RoomAndNum> roomAndNums, boolean children, int persons, int inTime, int outTime, int execTime);
 
 	/**
 	 *

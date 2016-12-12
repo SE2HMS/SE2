@@ -19,9 +19,9 @@ public class OrderTest {
 	@Before
 	public void setup(){
 		orderDataServ=OrderDataServlmpl.getIntanse();
-		o1=new OrderPO(null,"1","jinling","wanger","11","in","16/11/30","16/12/01","16/11/30/20/30",240);
-		o2=new OrderPO(null,"1","jinling","wanger","11","out","16/11/29","16/11/30","16/11/29/20/30",1200);
-		o3=new OrderPO(null,"2","yinling","zhangsan","22","in","16/11/30","16/12/01","16/11/30/20/30",240);
+		o1=new OrderPO(null,"1","jinling","wanger","11","in","16/11/30","16/12/01","16/11/30/20/30",240,false,1);
+		o2=new OrderPO(null,"1","jinling","wanger","11","out","16/11/29","16/11/30","16/11/29/20/30",1200,false,1);
+		o3=new OrderPO(null,"2","yinling","zhangsan","22","in","16/11/30","16/12/01","16/11/30/20/30",240,false,1);
 	}
 	@Test
 	public void test1() throws RemoteException {

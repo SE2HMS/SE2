@@ -3,15 +3,9 @@ package rmi;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.Date;
 
-import DataService.CommentDataServ;
-import DataService.CreditDataServ;
-import DataService.HotelDataServ;
-import DataService.HotelStrategyDataServ;
-import DataService.OrderDataServ;
-import DataService.RoomDataServ;
-import DataService.UserDataServ;
-import DataService.WebStrategyDataServ;
+import DataService.*;
 import PO.CommentPO;
 import PO.CreditPO;
 import PO.HotelPO;
@@ -27,10 +21,11 @@ import order_data_servlmpl.OrderDataServlmpl;
 import room_data_servlmpl.RoomDataServlmpl;
 import strategy_data_servlmpl.HotelStrategyDataServlmpl;
 import strategy_data_servlmpl.WebStrategyDataServlmpl;
+import time_serv_impl.TimeServImpl;
 import user_data_servlmpl.UserDataServlmpl;
 
 public class DataRemoteObject extends UnicastRemoteObject implements
-	CreditDataServ,HotelDataServ,OrderDataServ,RoomDataServ,HotelStrategyDataServ,WebStrategyDataServ,UserDataServ,CommentDataServ{
+	CreditDataServ,HotelDataServ,OrderDataServ,RoomDataServ,HotelStrategyDataServ,WebStrategyDataServ,UserDataServ,CommentDataServ, TimeServ{
 
 
 	/**
@@ -45,6 +40,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements
 	private WebStrategyDataServ webStrategyDataServ;
 	private UserDataServ userDataServ;
 	private CommentDataServ commentDataServ;
+	private TimeServ timeServ;
 	
 
 	protected DataRemoteObject() throws RemoteException {
@@ -54,8 +50,9 @@ public class DataRemoteObject extends UnicastRemoteObject implements
 		roomDataServ=RoomDataServlmpl.getInstance();
 		hotelStrategyDataServ=HotelStrategyDataServlmpl.getInstance();
 		webStrategyDataServ=WebStrategyDataServlmpl.getInstance();
-		userDataServ=UserDataServlmpl.getInstance();
+		userDataServ= UserDataServlmpl.getInstance();
 		commentDataServ=CommentDataServlmpl.getInstance();
+		timeServ = TimeServImpl.getInstance();
 	}
 
 	@Override
@@ -225,7 +222,17 @@ public class DataRemoteObject extends UnicastRemoteObject implements
 	}
 
 	@Override
+	public UserPO getUser(String userName, String contact) throws RemoteException {
+		return userDataServ.getUser(userName,contact);
+	}
+
+	@Override
 	public ArrayList<HotelPO> getAllHotel() throws RemoteException {
 		return hotelDataServ.getAllHotel();
-	}	
+	}
+
+	@Override
+	public Date getTime() throws RemoteException {
+		return timeServ.getTime();
+	}
 }

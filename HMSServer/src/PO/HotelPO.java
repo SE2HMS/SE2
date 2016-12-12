@@ -5,7 +5,8 @@ import java.util.ArrayList;
 public class HotelPO {
 	private String name,businesscircle,introduce,address;
 	private double stars;
-	private ArrayList<String> comment,companies;
+	private ArrayList<CommentPO> comment;
+	private ArrayList<String> companies;
 	private ArrayList<RoomPO> rooms;
 	private ArrayList<HotelStrategyPO> strategy;
 	
@@ -59,7 +60,7 @@ public class HotelPO {
 		return this.stars;
 	}
 	
-	public ArrayList<String> getComment(){
+	public ArrayList<CommentPO> getComment(){
 		return comment;
 	}
 	

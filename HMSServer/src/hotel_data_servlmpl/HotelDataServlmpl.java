@@ -55,7 +55,7 @@ public class HotelDataServlmpl implements HotelDataServ{
 		for(int i=0;i<hotel.getComment().size();i++){
 			if(!tag)
 				break;
-			tag=commentDataServ.insert(new CommentPO(hotel.getName(),hotel.getComment().get(i)));
+			tag=commentDataServ.insert(new CommentPO(hotel.getName(),hotel.getComment().get(i).getDetials(),hotel.getComment().get(i).getCommentLevel()));
 		}
 		
 		if(hotel.getCompanies()!=null)

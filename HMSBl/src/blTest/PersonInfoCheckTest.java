@@ -31,7 +31,7 @@ private CreditBlServImpl creditServ;
 //		user=new UserPO("123456","123456");
 //		user.addHote(hotel.getName());
 		loginServ=new LoginBlServImpl();
-		hotelServ=new HotelBlServImpl();
+//		hotelServ=new HotelBlServImpl();
 		creditServ=new CreditBlServImpl();
 //		credit=new CreditPO(user.getID(),list,-1);
 	}

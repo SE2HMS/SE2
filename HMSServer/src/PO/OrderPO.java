@@ -9,9 +9,11 @@ public class OrderPO {
 	private ArrayList<Double> price,subtotel;
 	private double totel;
 	private String type;
+	private boolean children;
+	private int personNum;
 	
 	public OrderPO(String id,String userid,String hotel,String username,
-			String usercontact,String t,String intime,String outtime,String lasttime,double totel){
+			String usercontact,String t,String intime,String outtime,String lasttime,double totel,boolean children,int personNum){
 		super();
 		this.id=id;
 		this.username=username;
@@ -23,6 +25,8 @@ public class OrderPO {
 		this.outtime=outtime;
 		this.lasttime=lasttime;
 		this.totel=totel;
+		this.children = children;
+		this.personNum = personNum;
 	}
 	
 	public String getID(){
@@ -69,6 +73,14 @@ public class OrderPO {
 		return type;
 	}
 	
+	public boolean getChildren() {
+		return children;
+	}
+
+	public int getPersonNum() {
+		return personNum;
+	}
+
 	public void setType(String t){
 		this.type=t;
 	}

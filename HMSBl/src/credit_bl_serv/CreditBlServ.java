@@ -1,6 +1,8 @@
 package credit_bl_serv;
 
 import VO.CreditVO;
+import VO.OrderState;
+import VO.OrderVO;
 import credit_bl_servlpml.CreditBlServImpl;
 
 import java.util.Iterator;
@@ -22,6 +24,12 @@ public interface CreditBlServ {
      * @return
      */
     public CreditVO getCreditInfo(String userId,String creditId);
+
+    /**
+     * 每次订单状态更改都要调用这个
+     * @param orderVO
+     */
+    public void changeCredit(OrderVO orderVO);
 
     /**
      * 得到一个用户的所有信用记录

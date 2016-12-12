@@ -13,7 +13,10 @@ import org.junit.Test;
  * 杩欎釜娴嬭瘯鍙啓浜嗕竴閮ㄥ垎锛岀浉褰撲簬杩樻病瀹炵幇
  */
 public class LoginBlServImplTest {
+
     private LoginBlServImpl loginBlServImpl;
+
+
 
     @Before
     public void setup() {

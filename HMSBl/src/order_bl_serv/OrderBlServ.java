@@ -1,5 +1,6 @@
 package order_bl_serv;
 
+import VO.OrderState;
 import VO.OrderVO;
 import com.sun.org.apache.xpath.internal.operations.Or;
 import order_bl_servlmpl.OrderBlServImpl;
@@ -19,6 +20,8 @@ public interface OrderBlServ {
      */
 	public OrderVO getOrderInfo(String id);
 
+	public boolean modifyOrderState(String orderId, OrderState state);
+
 	public Iterator<OrderVO> getNotInOrderList(String userId);
 
 	public Iterator<OrderVO> getAbnormalOrderList(String userId);
@@ -33,4 +36,6 @@ public interface OrderBlServ {
 	 * @return
      */
 	public Iterator<OrderVO> getOrderList(String userId);
+
+	public OrderVO getLatestOrder(String userId);
 }

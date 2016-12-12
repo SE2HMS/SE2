@@ -39,7 +39,7 @@ public class CommentSqlDataHelper implements CommentDataHelper{
 	        ResultSet rs = pstmt.executeQuery();
 	        ArrayList<CommentPO> list=new ArrayList<CommentPO>();
 	        while(rs.next()){
-	        	CommentPO c=new CommentPO(rs.getString("hotelname"),rs.getString("details"));
+	        	CommentPO c=new CommentPO(rs.getString("hotelname"),rs.getString("details"),rs.getDouble("commentlevel"));
 	        	list.add(c);
 	        }
 	        conn.close();

@@ -40,7 +40,7 @@ public class OrderSqlDataHelper implements OrderDataHelper{
 	        while(rs.next()){
 	        	OrderPO o=new OrderPO(rs.getInt("id")+"",rs.getInt("userid")+"",rs.getString("hotel"),
 	        			rs.getString("username"),rs.getString("usercontact"),rs.getString("type"),rs.getString("intime"),
-	        			rs.getString("outtime"),rs.getString("lasttime"),rs.getDouble("totel"));
+	        			rs.getString("outtime"),rs.getString("lasttime"),rs.getDouble("totel"),rs.getBoolean("children"),rs.getInt("person"));
 	        	list.add(o);
 	        }
 	        pstmt.close();

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import DataService.CreditDataServ;
 import DataService.UserDataServ;
 import PO.UserPO;
+import com.sun.org.apache.regexp.internal.RE;
 import credit_data_servlmpl.CreditDataServlmpl;
 import datahelper.DataFactorylmpl;
 import datahelperinterface.DataFactory;
@@ -64,6 +65,20 @@ public class UserDataServlmpl implements UserDataServ {
 			return user;
 		user.setCredit(creditDataServ.getDetial(user.getID()));
 		return user;
+	}
+
+
+
+
+	public UserPO getUser(String userName,String contact) throws RemoteException {
+		UserPO usr = null;
+		for(int i = 0;i<list.size();i++) {
+			if(list.get(i).getName().equals(userName) && list.get(i).getContactInfo().equals(contact)) {
+				usr = list.get(i);
+				break;
+			}
+		}
+		return usr;
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package order_bl_servlmpl;
 
 import PO.OrderPO;
 import VO.*;
+import credit_bl_serv.CreditBlServ;
 import helper.ParseHelper;
 import order_bl_serv.OrderBlServ;
 import rmi.RemoteHelper;
@@ -14,6 +15,23 @@ import java.util.Iterator;
  * 12.3更新
  */
 public class OrderBlServImpl implements OrderBlServ {
+
+    @Override
+    //加上修改信用
+    public boolean modifyOrderState(String orderId,OrderState state) {
+        OrderPO orderPO = null;
+        boolean success = false;
+        try {
+            orderPO  =RemoteHelper.getInstance().getOrderDataServ().getOrder(orderId);
+            orderPO.setType(state.toString());
+            success = RemoteHelper.getInstance().getOrderDataServ().modifiedOrder(orderPO);
+            OrderVO orderVO = ParseHelper.toOrderVO(orderPO);
+            CreditBlServ.getInstance().changeCredit(orderVO);
+        }catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return success;
+    }
 
     @Override
     public OrderVO getOrderInfo(String id) {
@@ -76,6 +94,20 @@ public class OrderBlServImpl implements OrderBlServ {
             orderPOs.forEach(orderPO -> orderVOs.add(ParseHelper.toOrderVO(orderPO)));
         }
         return orderVOs.iterator();
+    }
+
+    public OrderVO getLatestOrder(String userId) {
+        Iterator<OrderVO> orderVOIterator = this.getOrderList(userId);
+        OrderVO latest = null;
+        while(orderVOIterator.hasNext()) {
+            OrderVO orderVO = orderVOIterator.next();
+            if(latest == null) {
+                latest = orderVO;
+            }else if( Integer.parseInt(orderVO.getId()) > Integer.parseInt(latest.getId())) {
+                latest = orderVO;
+            }
+        }
+        return latest;
     }
 
 }

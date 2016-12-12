@@ -35,25 +35,30 @@ public class LoginBlServImpl implements LoginBlServ {
         return result;
     }
 
-
     @Override
     public RegisterResult register(UserVO user, UserLoginInfo userLoginInfo) {
-        RegisterResult result;
+        RegisterResult result = null;
         try {
-            UserPO userPO = RemoteHelper.getInstance().getUserDataServ().getUser(userLoginInfo.getUserId());
+            UserPO userPO = RemoteHelper.getInstance().getUserDataServ().getUser(user.getName(),user.getContact());
             if(userPO != null) {
-                result = RegisterResult.ALREADY_REGISTERED;
+                result = new RegisterResult(RegisterState.ALREADY_REGISTERED,null);
             }else {
                 userPO = ParseHelper.toUserPO(user,userLoginInfo);
                 boolean success = RemoteHelper.getInstance().getUserDataServ().insertUser(userPO);
                 if(success) {
-                    result = RegisterResult.SUCCESS;
+                    String id = null;
+                    try {
+                        id = RemoteHelper.getInstance().getUserDataServ().getUser(user.getName(), user.getContact()).getID();
+                        result = new RegisterResult(RegisterState.SUCCESS,id);
+                    }catch (RemoteException e) {
+                        e.printStackTrace();
+                    }
                 }else {
-                    result = RegisterResult.FAIL;
+                    result = new RegisterResult(RegisterState.FAIL,null);
                 }
             }
         } catch (RemoteException e) {
-            result = RegisterResult.EXCEPTION;
+            result = new RegisterResult(RegisterState.EXCEPTION,null);
         }
         return result;
     }

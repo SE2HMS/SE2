@@ -2,8 +2,12 @@ package helper;
 
 import PO.OrderPO;
 import VO.*;
+import order_bl_serv.OrderBlServ;
+import rmi.RemoteHelper;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import static helper.ParseHelper.stringToDate;
 
@@ -22,7 +26,9 @@ public class OrderHelper {
         String outTime = orderVO.getOutTime().toString();
         String execTime = orderVO.getExecTime().toString();
         double total = orderVO.getTotal();
-        OrderPO orderPO = new OrderPO(id,userId,hotel,userName,contact,type,inTime,outTime,execTime,total);
+        boolean children = orderVO.isChildren();
+        int person = orderVO.getPerson();
+        OrderPO orderPO = new OrderPO(id,userId,hotel,userName,contact,type,inTime,outTime,execTime,total,children,person);
         return orderPO;
     }
 
@@ -49,12 +55,23 @@ public class OrderHelper {
         }
         HotelInOrder hotel = new HotelInOrder(hotelName, roomInOrders);
         OrderState state = ParseHelper.stringToOrderState(orderPO.getType());
-        boolean children = false;
-        String inTime = orderPO.getInTime();
-        String outTime = orderPO.getOutTime();
-        String execTime = orderPO.getLastTime();
+        boolean children = orderPO.getChildren();
+        Date inTime = ParseHelper.stringToDate(orderPO.getInTime());
+        Date outTime = ParseHelper.stringToDate(orderPO.getOutTime());
+        Date execTime = ParseHelper.stringToDate(orderPO.getLastTime());
+        try {
+            Date sysTime = RemoteHelper.getInstance().getTimeServ().getTime();
+            if (state == OrderState.WAITING && execTime.compareTo(sysTime) == 1) {
+                state = OrderState.ABNORMAL;
+                orderPO.setType("ABNORMAL");
+                OrderBlServ.getInstance().modifyOrderState(orderId,state);
+            }
+        }catch (RemoteException e) {
+            e.printStackTrace();
+        }
         double total = orderPO.getTotel();
-        OrderVO orderVO = new OrderVO(orderId,user, hotel, state, children, stringToDate(inTime), stringToDate(outTime), stringToDate(execTime), total);
+        int person = orderPO.getPersonNum(); // 去那边改
+        OrderVO orderVO = new OrderVO(orderId,user, hotel, state, children, inTime, outTime, execTime, person,total);
         return orderVO;
     }
 }

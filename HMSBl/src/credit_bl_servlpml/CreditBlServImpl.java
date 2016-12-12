@@ -2,12 +2,17 @@ package credit_bl_servlpml;
 
 import PO.CreditPO;
 import VO.CreditVO;
+import VO.OrderAction;
+import VO.OrderState;
+import VO.OrderVO;
 import credit_bl_serv.CreditBlServ;
 import helper.ParseHelper;
 import rmi.RemoteHelper;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 
 /**
@@ -73,4 +78,26 @@ public class CreditBlServImpl implements CreditBlServ {
         return total;
     }
 
+    @Override
+    public void changeCredit(OrderVO orderVO) {
+        Date time = Calendar.getInstance().getTime();
+        String userId = orderVO.getUser().getId();
+        String num = orderVO.getId();
+        OrderAction orderAction = null;
+        double change = 0;
+        double total = this.getTotal(userId);
+        if(orderVO.getState() == OrderState.FINISH) {
+            change = orderVO.getTotal();
+            orderAction = OrderAction.CHECK_IN;
+        }else if(orderVO.getState() == OrderState.REVOKE) {
+            change = orderVO.getTotal()/2;
+            orderAction = OrderAction.REVOKE;
+        }else if(orderVO.getState() == OrderState.ABNORMAL) {
+            change = -orderVO.getTotal();
+            orderAction = OrderAction.ABNORMAL;
+        }
+        total += change;
+        CreditVO creditVO = new CreditVO(time,num,userId,orderAction,change,total);
+        this.addCredit(creditVO);
+    }
 }

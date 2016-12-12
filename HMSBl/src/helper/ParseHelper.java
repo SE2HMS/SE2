@@ -73,6 +73,13 @@ public abstract class ParseHelper {
         return time;
     }
 
+    public static CommentVO toCommentVO(CommentPO commentPO) {
+        String detail = commentPO.getDetials();
+        double commentLevel = commentPO.getCommentLevel();
+        CommentVO commentVO = new CommentVO(detail,commentLevel);
+        return commentVO;
+    }
+
     /**
      * 把HotelPO转成HotelVO
      * @param hotelPO
@@ -84,7 +91,7 @@ public abstract class ParseHelper {
         String CBD = hotelPO.getBC();
         String location = hotelPO.getAddress();
         ArrayList<CommentVO> comments = new ArrayList<>();
-        hotelPO.getComment().forEach(comment -> comments.add(stringToComment(comment)));
+        hotelPO.getComment().forEach(comment -> comments.add(toCommentVO(comment)));
         int starLevel = (int)hotelPO.getStars();
         String intro = hotelPO.getINTRO();
         ArrayList<RoomVO> rooms = new ArrayList<>();
