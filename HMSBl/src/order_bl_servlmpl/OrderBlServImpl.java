@@ -110,4 +110,45 @@ public class OrderBlServImpl implements OrderBlServ {
         return latest;
     }
 
+    @Override
+    public Iterator<OrderVO> getAllOrderList() {
+        ArrayList<OrderVO> orderVOs = new ArrayList<>();
+        try {
+            ArrayList<OrderPO> orderPOs = RemoteHelper.getInstance().getOrderDataServ().getAllOrders();
+            orderPOs.forEach(orderPO -> orderVOs.add(ParseHelper.toOrderVO(orderPO)));
+        }catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return orderVOs.iterator();
+    }
+
+    private Iterator<OrderVO> getStateAllOrderList(OrderState state) {
+        Iterator<OrderVO> orderVOIterator = this.getAllOrderList();
+        ArrayList<OrderVO> orderVOs = new ArrayList<>();
+        orderVOIterator.forEachRemaining(orderVO -> {
+            if(orderVO.getState().equals(state))
+                orderVOs.add(orderVO);
+        });
+        return orderVOs.iterator();
+    }
+
+    @Override
+    public Iterator<OrderVO> getAllNotInOrderList() {
+        return this.getStateAllOrderList(OrderState.WAITING);
+    }
+
+    @Override
+    public Iterator<OrderVO> getAllAbnormalOrderList() {
+        return this.getStateAllOrderList(OrderState.ABNORMAL);
+    }
+
+    @Override
+    public Iterator<OrderVO> getAllRevokeOrderList() {
+        return this.getStateAllOrderList(OrderState.REVOKE);
+    }
+
+    @Override
+    public Iterator<OrderVO> getAllFinishOrderList() {
+        return this.getStateAllOrderList(OrderState.FINISH);
+    }
 }

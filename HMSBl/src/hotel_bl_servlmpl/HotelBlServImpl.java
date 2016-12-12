@@ -3,6 +3,7 @@ package hotel_bl_servlmpl;
 import PO.HotelPO;
 import PO.HotelStrategyPO;
 import VO.*;
+import comment_bl_serv.CommentBlServ;
 import helper.ParseHelper;
 import hotel_bl_serv.HotelBlServ;
 import order_bl_serv.OrderBlServ;
@@ -21,11 +22,6 @@ public class HotelBlServImpl implements HotelBlServ {
     private String[] locations = new String[]{"南京"};
     private String[][] businessCIrcles = new String[][]{{"仙林大学城","新街口"},{},{}};
     private String[] roomTypes = new String[]{"单人间","双人间"};
-    private String userId;
-
-    public HotelBlServImpl(String userId) {
-        this.userId = userId;
-    }
 
     private String getLocationString(int i) {
         return locations[i];
@@ -40,52 +36,216 @@ public class HotelBlServImpl implements HotelBlServ {
     }
 
     @Override
-    public Iterator<HotelVO> search(int location, int businesscircle, String name, boolean haveOrdered, int roomType, int price, int roomNum, int inTime, int outTime, int starLevel, int commentLevel) {
-        double minPrice = 0;
-        double maxPrice = 0;
-        double minComment = 0;
-        double maxComment = 0;
-        switch (price) {
-            case 0:
-                break;
-            case 1:
-                maxPrice = 100;
-                break;
-            case 2:
-                minPrice = 100;
-                maxPrice = 200;
-                break;
-            case 3:
-                minPrice = 200;
-                maxPrice = 300;
-                break;
-            case 4:
-                minPrice = 300;
-                break;
-        }
-        switch (commentLevel) {
-            case 0:
-                break;
-            case 1:
-                minComment = 1;
-                maxComment = 2;
-                break;
-            case 2:
-                minComment = 2;
-                maxComment = 3;
-                break;
-            case 3:
-                minComment = 3;
-                maxComment = 4;
-                break;
-            case 4:
-                minComment = 4;
-                break;
-        }
-        return this.search(location,businesscircle,name,haveOrdered,roomType,minPrice,maxPrice,roomNum,inTime,outTime,starLevel,minComment,maxComment);
+    public Iterator<HotelVO> search(String userId,int location, int businesscircle, String name, boolean haveOrdered, int roomType, int price, int roomNum, int inTime, int outTime, int starLevel, int commentLevel) {
+        double minPrice = price > 1?(price-1)*100:0;
+        double maxPrice = price < 4?price*100:0;
+        double minComment = commentLevel;
+        double maxComment = commentLevel%4 == 0?0:(commentLevel+1);
+        return this.search(userId,location,businesscircle,name,haveOrdered,roomType,minPrice,maxPrice,roomNum,inTime,outTime,starLevel,minComment,maxComment);
     }
 
-    private Iterator<HotelVO> search(int location, int businesscircle, String name, boolean haveOrdered, int roomType, double minPrice, double maxPrice, int roomNum, int inTime, int outTime, int starLevel, double minComment, double maxComment) {
+    private Iterator<HotelVO> matchLocation(Iterator<HotelVO> hotelVOIterator,String location) {
+        if(hotelVOIterator == null) {
+            return null;
+        }
+        ArrayList<HotelVO> hotelVOs = new ArrayList<>();
+        while(hotelVOIterator.hasNext()) {
+            HotelVO hotelVO = hotelVOIterator.next();
+            if(hotelVO.getLocation().equals(location)) {
+                hotelVOs.add(hotelVO);
+            }
+        }
+        return hotelVOs.iterator();
+    }
+
+    private Iterator<HotelVO> matchBusinessCircle(Iterator<HotelVO> hotelVOIterator,String businessCircle) {
+        if(hotelVOIterator == null) {
+            return null;
+        }
+        ArrayList<HotelVO> hotelVOs = new ArrayList<>();
+        while(hotelVOIterator.hasNext()) {
+            HotelVO hotelVO = hotelVOIterator.next();
+            if(hotelVO.getCBD().equals(businessCircle)) {
+                hotelVOs.add(hotelVO);
+            }
+        }
+        return hotelVOs.iterator();
+    }
+
+    private Iterator<HotelVO> matchRoomType(Iterator<HotelVO> hotelVOIterator,String roomType) {
+        if(hotelVOIterator == null) {
+            return null;
+        }else if(roomType == null) {
+            return hotelVOIterator;
+        }
+        ArrayList<HotelVO> hotelVOs = new ArrayList<>();
+        while(hotelVOIterator.hasNext()) {
+            HotelVO hotelVO = hotelVOIterator.next();
+            boolean roomIsOk = false;
+            while(hotelVO.getRooms().hasNext()) {
+                RoomVO roomVO = hotelVO.getRooms().next();
+                if(roomVO.getType().equals(roomType)) {
+                    roomIsOk = true;
+                    break;
+                }
+            }
+            if(roomIsOk) {
+                hotelVOs.add(hotelVO);
+            }
+        }
+        return hotelVOs.iterator();
+    }
+
+    private Iterator<HotelVO> matchPrice(Iterator<HotelVO> hotelVOIterator,double min,double max) {
+        if(hotelVOIterator == null) {
+            return null;
+        }else if(min == 0&& max == 0) {
+            return hotelVOIterator;
+        }
+        ArrayList<HotelVO> hotelVOs = new ArrayList<>();
+        while(hotelVOIterator.hasNext()) {
+            HotelVO hotelVO = hotelVOIterator.next();
+            boolean priceIsOk = false;
+            while(hotelVO.getRooms().hasNext()) {
+                RoomVO roomVO = hotelVO.getRooms().next();
+                if(min == 0 && roomVO.getPrice() <= max) {
+                    priceIsOk = true;
+                }else if(max == 0 && roomVO.getPrice() >= min) {
+                    priceIsOk = true;
+                }else if(roomVO.getPrice() >= min && roomVO.getPrice() <= max){
+                    priceIsOk = true;
+                }
+            }
+            if(priceIsOk) {
+                hotelVOs.add(hotelVO);
+            }
+        }
+        return hotelVOs.iterator();
+    }
+
+    private Iterator<HotelVO> matchComment(Iterator<HotelVO> hotelVOIterator,double min,double max) {
+        if(hotelVOIterator == null) {
+            return null;
+        }else if(min == 0 && max == 0) {
+            return hotelVOIterator;
+        }
+        ArrayList<HotelVO> hotelVOs = new ArrayList<>();
+        while(hotelVOIterator.hasNext()) {
+            HotelVO hotelVO = hotelVOIterator.next();
+            boolean commentIsOk = false;
+            double total = 0;
+            int num = 0;
+            while(hotelVO.getComments().hasNext()) {
+                CommentVO commentVO = hotelVO.getComments().next();
+                total += commentVO.getLevel();
+                num++;
+            }
+            double commentLevel = total / num;
+            if(min == 0 && commentLevel <= max) {
+                commentIsOk = true;
+            }else if(max == 0 && commentLevel >= min) {
+                commentIsOk = true;
+            }
+            if(commentIsOk) {
+                hotelVOs.add(hotelVO);
+            }
+        }
+        return hotelVOs.iterator();
+    }
+
+    private Iterator<HotelVO> matchName(Iterator<HotelVO> hotelVOIterator,String name) {
+        if(hotelVOIterator == null) {
+            return null;
+        }else if(name == null) {
+            return hotelVOIterator;
+        }
+        ArrayList<HotelVO> hotelVOs = new ArrayList<>();
+        while(hotelVOIterator.hasNext()) {
+            HotelVO hotelVO = hotelVOIterator.next();
+            if(hotelVO.getName().matches("*" + name + "*")) {
+                hotelVOs.add(hotelVO);
+            }
+        }
+        return hotelVOs.iterator();
+    }
+
+    private Iterator<HotelVO> matchOrdered(Iterator<HotelVO> hotelVOIterator,boolean ordered,String userId) {
+        if(hotelVOIterator == null) {
+            return null;
+        }else if(ordered == false) {
+            return hotelVOIterator;
+        }
+        ArrayList<HotelVO> hotelVOs = new ArrayList<>();
+        while(hotelVOIterator.hasNext()) {
+            HotelVO hotelVO = hotelVOIterator.next();
+            boolean orderedIsOk = false;
+            Iterator<OrderVO> orderList = OrderBlServ.getInstance().getOrderList(userId);
+            while(orderList.hasNext()) {
+                OrderVO orderVO = orderList.next();
+                if(orderVO.getHotel().equals(hotelVO.getName())) {
+                    orderedIsOk = true;
+                    break;
+                }
+            }
+            if(orderedIsOk) {
+                hotelVOs.add(hotelVO);
+            }
+        }
+        return hotelVOs.iterator();
+    }
+
+    private Iterator<HotelVO> matchRoomNum(Iterator<HotelVO> hotelVOIterator,int num,int inTime,int outTime) {
+        if(hotelVOIterator == null) {
+            return null;
+        }else if(num == 0) {
+            return hotelVOIterator;
+        }else if(inTime == 0 && outTime == 0) {
+            return hotelVOIterator;
+        }else if(inTime > outTime) {
+            return null;
+        }
+        ArrayList<HotelVO> hotelVOs = new ArrayList<>();
+        while(hotelVOIterator.hasNext()) {
+            HotelVO hotelVO = hotelVOIterator.next();
+            Iterator<RoomVO> rooms = hotelVO.getRooms();
+            boolean roomNumIsOk = false;
+            while(rooms.hasNext()) {
+                RoomVO roomVO = rooms.next();
+                int[] avail = roomVO.getAvailable();
+                if(outTime == 0) {
+                    roomNumIsOk = avail[inTime] >= num;
+                }else {
+                    boolean ok = true;
+                    for(int i = inTime;i < outTime;i++) {
+                        ok = avail[i] < num?false:ok;
+                    }
+                    roomNumIsOk = ok?true:roomNumIsOk;
+                }
+            }
+            if(roomNumIsOk) {
+                hotelVOs.add(hotelVO);
+            }
+        }
+        return hotelVOs.iterator();
+    }
+
+    private Iterator<HotelVO> matchStar(Iterator<HotelVO> hotelVOIterator,double star) {
+        if(hotelVOIterator == null) {
+            return null;
+        }else if(star == 0) {
+            return hotelVOIterator;
+        }
+        ArrayList<HotelVO> hotelVOs = new ArrayList<>();
+        while(hotelVOIterator.hasNext()) {
+            HotelVO hotelVO = hotelVOIterator.next();
+            if(hotelVO.getStarLevel() >= star) {
+                hotelVOs.add(hotelVO);
+            }
+        }
+        return hotelVOs.iterator();
+    }
+
+    private Iterator<HotelVO> search(String userId,int location, int businesscircle, String name, boolean haveOrdered, int roomType, double minPrice, double maxPrice, int roomNum, int inTime, int outTime, int starLevel, double minComment, double maxComment) {
         ArrayList<HotelPO> hotelPOs = null;
         try {
             hotelPOs = RemoteHelper.getInstance().getHotelDataServ().getAllHotel();
@@ -94,108 +254,17 @@ public class HotelBlServImpl implements HotelBlServ {
         }
         ArrayList<HotelVO> hotelVOs = new ArrayList<>();
         hotelPOs.forEach(hotelPO -> hotelVOs.add(ParseHelper.toHotelVO(hotelPO)));
-        for(HotelVO hotelVO:hotelVOs) {
-            if(!hotelVO.getLocation().equals(getLocationString(location))) {
-                hotelVOs.remove(hotelVO);
-                break;
-            }
-            if(!hotelVO.getCBD().equals(getBusinessCircle(location,businesscircle))) {
-                hotelVOs.remove(hotelVO);
-                break;
-            }
-            if(name != null && !hotelVO.getName().matches("*" + name + "*")) {
-                hotelVOs.remove(hotelVO);
-                break;
-            }
-            if(haveOrdered) {
-                boolean orderOK = false;
-                Iterator<OrderVO> orders = new OrderBlServImpl().getOrderList(userId);
-                while(orders.hasNext()) {
-                    OrderVO orderVO = orders.next();
-                    if(orderVO.getHotel().getHotelName().equals(hotelVO.getName())) {
-                        orderOK = true;
-                    }
-                }
-                if(!orderOK) {
-                    hotelVOs.remove(hotelVO);
-                    break;
-                }
-            }
-            Iterator<RoomVO> roomVOIterator = hotelVO.getRooms();
-            boolean roomIsOK = false;
-            while(roomVOIterator.hasNext()) {
-                boolean[] check = new boolean[4];
-                for(boolean b:check) {
-                    b = false;
-                }
-                RoomVO roomVO = roomVOIterator.next();
-                if(roomType > 0 && roomVO.getType().equals(getRoomTypeString(roomType))) {
-                    check[0] = true;
-                }
-                if(minPrice > 0 && roomVO.getPrice() >= minPrice) {
-                    check[1] = true;
-                }
-                if(maxPrice > 0 && roomVO.getPrice() <= maxPrice) {
-                    check[2] = true;
-                }
-                int[] available = roomVO.getAvailable();
-                if(roomNum > 0) {
-                    boolean enough = false;
-                    if(inTime == 0 && outTime == 0) {
-                        for(int num:available) {
-                            if(num >= roomNum) {
-                                enough = true;
-                            }
-                        }
-                    }else if(inTime == 0) {
-                        enough = true;
-                        for(int i = 0;i<outTime;i++) {
-                            if(available[i] < roomNum) {
-                                enough = false;
-                            }
-                        }
-                    }else if(outTime == 0) {
-                        if(available[inTime - 1] >= roomNum) {
-                            enough = true;
-                        }
-                    }
-                    check[3] = enough;
-                }
-                if(check[0] && check[1] && check[2] && check[3]) {
-                    roomIsOK = true;
-                }
-            }
-            if(!roomIsOK) {
-                hotelVOs.remove(hotelVO);
-                break;
-            }
-            if(starLevel > 0 && hotelVO.getStarLevel() < starLevel) {
-                hotelVOs.remove(hotelVO);
-                break;
-            }
-            boolean commentIsOK = true;
-            double totalLv = 0;
-            int num = 0;
-            double commentLv = 0;
-            Iterator<CommentVO> commentVOIterator = hotelVO.getComments();
-            while(commentVOIterator.hasNext()) {
-                CommentVO commentVO = commentVOIterator.next();
-                totalLv += commentVO.getLevel();
-                num ++;
-            }
-            commentLv = totalLv/num;
-            if(minComment > 0 && commentLv < minComment) {
-                commentIsOK = false;
-            }
-            if(maxComment > 0 && commentLv > maxComment) {
-                commentIsOK = false;
-            }
-            if(!commentIsOK) {
-                hotelVOs.remove(hotelVO);
-                break;
-            }
-        }
-        return hotelVOs.iterator();
+        Iterator<HotelVO> hotelVOIterator = hotelVOs.iterator();
+        hotelVOIterator = this.matchLocation(hotelVOIterator,this.getLocationString(location));
+        hotelVOIterator = this.matchBusinessCircle(hotelVOIterator,this.getBusinessCircle(location,businesscircle));
+        hotelVOIterator = this.matchRoomType(hotelVOIterator,this.getRoomTypeString(roomType));
+        hotelVOIterator = this.matchPrice(hotelVOIterator,minPrice,maxPrice);
+        hotelVOIterator = this.matchComment(hotelVOIterator,minComment,maxComment);
+        hotelVOIterator = this.matchName(hotelVOIterator,name);
+        hotelVOIterator = this.matchOrdered(hotelVOIterator,haveOrdered,userId);
+        hotelVOIterator = this.matchRoomNum(hotelVOIterator,roomNum,inTime,outTime);
+        hotelVOIterator = this.matchStar(hotelVOIterator,starLevel);
+        return hotelVOIterator;
     }
 
     @Override
@@ -212,47 +281,6 @@ public class HotelBlServImpl implements HotelBlServ {
         return ParseHelper.toHotelVO(hotelPO);
     }
 
-    /**
-     * @deprecated 没用了
-     * @param name
-     * @param starLevel
-     * @param commentLevel
-     * @param businessCircle
-     * @return
-     */
-    public Iterator<HotelVO> search(String name, double starLevel, double commentLevel, String businessCircle) {
-        ArrayList<HotelPO> hotelPOs = null;
-        ArrayList<HotelVO> hotelVOs = new ArrayList<>();
-        try {
-            if(businessCircle == null) {
-                hotelPOs = RemoteHelper.getInstance().getHotelDataServ().getAllHotel();
-            }else {
-                hotelPOs = RemoteHelper.getInstance().getHotelDataServ().getHotelList(businessCircle);
-            }
-        }catch (RemoteException e) {
-            e.printStackTrace();
-        }
-        for(HotelPO hotelPO:hotelPOs) {
-            if(starLevel > 0&&hotelPO.getStars() < starLevel) {
-                break;
-            }
-            if(commentLevel > 0/*&&hotelPO.getComment().getCommentLevel() < commentLevel*/) {
-                break;
-            }
-            if(name != null || !hotelPO.getName().matches("*" + name + "")) {
-                break;
-            }
-            hotelVOs.add(ParseHelper.toHotelVO(hotelPO));
-        }
-        hotelVOs.sort((o1,o2) -> {
-            if(o1.getStarLevel() > o2.getStarLevel()) {
-                return 1;
-            }else {
-                return -1;
-            }
-        });
-        return hotelVOs.iterator();
-    }
 
     @Override
     public boolean modifyHotelInfo(HotelVO hotel) {
@@ -306,4 +334,16 @@ public class HotelBlServImpl implements HotelBlServ {
         return hotelVOs.iterator();
     }
 
+    @Override
+    public boolean addHotel(String hotelName, int businessCIrcle, int location, String intro,double star) {
+        String lc = this.getLocationString(location);
+        String bc = this.getBusinessCircle(location,businessCIrcle);
+        HotelPO hotelPO = new HotelPO(hotelName,bc,intro,lc,star);
+        try {
+            RemoteHelper.getInstance().getHotelDataServ().insertHotel(hotelPO);
+        }catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
 }

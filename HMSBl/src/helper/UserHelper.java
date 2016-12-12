@@ -21,7 +21,7 @@ public class UserHelper {
         int credit = 0;
         int vip = 0;
         int isLogin = 0;
-        String type = "webSaler";
+        String type = webSaler.getType().toString();
         UserPO userPO = new UserPO(id,password,name,contact,spec,credit,vip,isLogin,type);
         return userPO;
     }
@@ -35,7 +35,7 @@ public class UserHelper {
         int credit = 0;
         int vip = 0;
         int isLogin = 0;
-        String type = "hotelStaff";
+        String type = hotelStaff.getType().toString();
         UserPO userPO = new UserPO(id,password,name,contact,spec,credit,vip,isLogin,type);
         return userPO;
     }
@@ -86,9 +86,34 @@ public class UserHelper {
     }
 
     public static HotelStaff toHotelStaff(UserPO userPO) {
-        String hotelName = userPO.getName();
+        String hotelName = userPO.getSpecialInfo();
         String contact = userPO.getContactInfo();
-        HotelStaff hotelStaff = new HotelStaff(hotelName,contact);
+        String userName = userPO.getName();
+        HotelStaff hotelStaff = new HotelStaff(hotelName,contact,userName);
         return hotelStaff;
+    }
+
+    public static WebManager toWebManager(UserPO userPO) {
+        String name = userPO.getName();
+        String contact = userPO.getContactInfo();
+        WebManager manager = new WebManager(name,contact);
+        return manager;
+    }
+
+    public static UserPO toUserPO(WebManager manager,UserLoginInfo info) {
+        if(manager == null || info == null) {
+            return null;
+        }
+        String id = info.getUserId();
+        String password = info.getPassword();
+        String contact = manager.getContact();
+        String name = manager.getUserName();
+        String specialInfo = null;
+        int credit = 0;
+        int vipLevel = 0;
+        int isLogin = 0;
+        String type = manager.getUserType().toString();
+        UserPO userPO = new UserPO(id,password,contact,name,specialInfo,credit,vipLevel,isLogin,type);
+        return userPO;
     }
 }

@@ -367,4 +367,12 @@ public abstract class ParseHelper {
         return result;
     }
 
+    public static WebManager toWebManager(UserPO userPO) {
+        return UserHelper.toWebManager(userPO);
+    }
+
+    public static UserPO toUserPO(WebManager webManager,UserLoginInfo info) {
+        return UserHelper.toUserPO(webManager,info);
+    }
+
 }

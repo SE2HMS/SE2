@@ -9,6 +9,13 @@ import java.util.Iterator;
 
 public interface OrderBlServ {
 
+	public Iterator<OrderVO> getAllOrderList();
+
+	public Iterator<OrderVO> getAllNotInOrderList();
+	public Iterator<OrderVO> getAllAbnormalOrderList();
+	public Iterator<OrderVO> getAllRevokeOrderList();
+	public Iterator<OrderVO> getAllFinishOrderList();
+
 	public static OrderBlServ getInstance() {
 		return new OrderBlServImpl();
 	}

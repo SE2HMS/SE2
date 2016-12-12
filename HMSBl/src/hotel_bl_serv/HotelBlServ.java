@@ -10,8 +10,8 @@ import java.util.Iterator;
 
 public interface HotelBlServ {
 
-	public static HotelBlServ getInstance(String userId) {
-		return new HotelBlServImpl(userId);
+	public static HotelBlServ getInstance() {
+		return new HotelBlServImpl();
 	}
 
 	/**
@@ -20,6 +20,8 @@ public interface HotelBlServ {
 	 * @return
      */
 	public HotelVO getHotelInfo(String name);
+
+	public boolean addHotel(String hotelName,int businessCIrcle,int location,String intro,double star);
 
 	public Iterator<OrderVO> getOrderInHotel(String userId,String hotelName);
 
@@ -40,7 +42,7 @@ public interface HotelBlServ {
      * @param commentLevel
      * @return 返回符合条件的酒店的迭代器
      */
-	public Iterator<HotelVO> search(int location, int businesscircle, String name, boolean haveOrdered,int roomType, int price, int roomNum, int inTime, int outTime, int starLevel, int commentLevel);
+	public Iterator<HotelVO> search(String userId,int location, int businesscircle, String name, boolean haveOrdered,int roomType, int price, int roomNum, int inTime, int outTime, int starLevel, int commentLevel);
 
 	/**
 	 * 修改酒店信息，意思很明显。。
