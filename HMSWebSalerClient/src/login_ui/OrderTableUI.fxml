@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="347.0" prefWidth="628.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="websaler_main_ui.OrderTableController">
+   <children>
+      <TableView fx:id="table" prefHeight="347.0" prefWidth="628.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columns>
+          <TableColumn fx:id="idcol" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="hotelnamecol" prefWidth="75.0" text="酒店" />
+            <TableColumn fx:id="intimecol" prefWidth="92.0" text="入住时间" />
+            <TableColumn fx:id="outtimecol" prefWidth="85.0" text="离开时间" />
+            <TableColumn fx:id="lasttimecol" prefWidth="113.0" text="最晚抵达时间" />
+            <TableColumn fx:id="totelcol" prefWidth="95.0" text="总价" />
+            <TableColumn fx:id="statecol" prefWidth="92.0" text="状态" />
+        </columns>
+      </TableView>
+      <Button layoutX="294.0" layoutY="317.0" mnemonicParsing="false" onAction="#check" text="查看" />
+   </children>
+</AnchorPane>

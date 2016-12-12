@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="user_main_ui.OrderDetailsController">
+   <children>
+      <GridPane layoutX="38.0" layoutY="30.0" prefHeight="210.0" prefWidth="274.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="订单号" />
+            <Label fx:id="orderidlabel" text="Label" GridPane.columnIndex="1" />
+            <Label text="预订人" GridPane.rowIndex="1" />
+            <Label fx:id="usernamelabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="酒店名" GridPane.rowIndex="2" />
+            <Label fx:id="hotelnamelabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="起订时间" GridPane.rowIndex="3" />
+            <Label text="结订时间" GridPane.rowIndex="4" />
+            <Label fx:id="intimelabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="outtimelabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label fx:id="changeablelabel" text="最晚到店时间" GridPane.rowIndex="5" />
+            <Label fx:id="lasttimelabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label text="订单状态" GridPane.rowIndex="6" />
+            <Label fx:id="orderstatelabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+         </children>
+      </GridPane>
+      <TableView fx:id="table" layoutX="38.0" layoutY="240.0" prefHeight="171.0" prefWidth="274.0">
+        <columns>
+          <TableColumn fx:id="roomtypecol" prefWidth="69.0" text="房间类型" />
+          <TableColumn fx:id="roomnumcol" prefWidth="76.0" text="预定数目" />
+            <TableColumn fx:id="pricecol" prefWidth="67.0" text="房间价格" />
+            <TableColumn fx:id="subtotelcol" prefWidth="61.0" text="小计" />
+        </columns>
+      </TableView>
+      <Label layoutX="184.0" layoutY="411.0" text="折后价" />
+      <Label fx:id="totellabel" layoutX="281.0" layoutY="411.0" text="Label" />
+      <Button fx:id="revokebutton" layoutX="74.0" layoutY="443.0" mnemonicParsing="false" text="撤销" onAction="#revoke"/>
+      <Button fx:id="commentbutton" layoutX="202.0" layoutY="443.0" mnemonicParsing="false" text="评论" onAction="#comment"/>
+   </children>
+</AnchorPane>

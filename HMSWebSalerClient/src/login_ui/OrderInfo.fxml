@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="461.0" prefWidth="629.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="websaler_main_ui.OrderCheckController">
+   <children>
+      <Button fx:id="searchbutton" layoutX="441.0" layoutY="21.0" mnemonicParsing="false" onAction="#search" prefHeight="23.0" prefWidth="77.0" text="搜索" />
+      <TextField fx:id="idfield" layoutX="175.0" layoutY="21.0" prefHeight="23.0" prefWidth="229.0" />
+      <HBox layoutY="69.0" prefHeight="30.0" prefWidth="614.0">
+         <children>
+            <Button fx:id="undobutton" mnemonicParsing="false" onAction="#undo" text="未执行订单" />
+            <Button fx:id="abnormalbutton" mnemonicParsing="false" onAction="#abnormal" text="异常订单" />
+         </children>
+      </HBox>
+      <AnchorPane fx:id="OrderTable" layoutY="92.0" prefHeight="347.0" prefWidth="614.0">
+         <children>
+            <fx:include source="OrderTableUI.fxml" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
