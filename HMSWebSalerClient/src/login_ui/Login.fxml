@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login_ui.LoginController">
+   <children>
+      <Button fx:id="Confirm" layoutX="193.0" layoutY="313.0" mnemonicParsing="false" onAction="#checkLoginInfo" prefHeight="35.0" prefWidth="300.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <effect>
+            <ImageInput>
+               <source>
+                  <Image url="@login.png" />
+               </source>
+            </ImageInput>
+         </effect>
+      </Button>
+      <TextField fx:id="userNameField" layoutX="193.0" layoutY="134.0" prefHeight="35.0" prefWidth="300.0" promptText="用户名" />
+      <Label layoutX="283.0" layoutY="71.0" text="酒店管理系统">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <PasswordField fx:id="passwordField" layoutX="193.0" layoutY="220.0" prefHeight="35.0" prefWidth="300.0" promptText="密码" />
+   </children>
+</AnchorPane>

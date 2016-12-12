@@ -24,15 +24,15 @@ public class AddWebSalerDialogController implements Initializable{
 
     @FXML
     private TextField nameField;
-  
+    @FXML
+    private TextField passwordField;
     @FXML
     private TextField contactField;
 
 
     @FXML
     private Button confirm;
-    @FXML
-    private Button cancel;
+
     
     private MainApp mainApp;
     private Stage dialogStage;
@@ -92,13 +92,7 @@ public class AddWebSalerDialogController implements Initializable{
         }
     }
 
-    /**
-     * Called when the user clicks cancel.
-     */
-    @FXML
-    private void handleCancel() {
-        dialogStage.close();
-    }
+
 
     /**
      * Validates the user input in the text fields.

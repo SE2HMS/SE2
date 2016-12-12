@@ -7,31 +7,10 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="450.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="450.0" prefWidth="635.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="websaler_main_ui.CreditRechargeController">
 	<!-- TODO Add Nodes -->
 	<children>
-      <SplitPane dividerPositions="0.14705882352941177" layoutX="96.0" layoutY="78.0" prefHeight="450.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" snapToPixel="false">
-               <children>
-                  <ImageView fitHeight="66.0" fitWidth="70.0" layoutX="19.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label layoutX="22.0" layoutY="14.0" text="Hotel Name" />
-                  <Accordion layoutY="166.0" prefHeight="72.0" prefWidth="107.0" AnchorPane.bottomAnchor="210.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="166.0">
-                    <panes>
-                      <TitledPane alignment="CENTER" animated="false" collapsible="false" expanded="false" text="信用充值" />
-                      <TitledPane alignment="CENTER" animated="false" collapsible="false" expanded="false" text="订单查看" />
-                        <TitledPane alignment="CENTER" animated="false" collapsible="false" expanded="false" layoutX="10.0" layoutY="33.0" prefHeight="0.0" prefWidth="108.0" text="促销策略" />
-                    </panes>
-                  </Accordion>
-               </children>
-            </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" snapToPixel="false">
-               <children>
-                  <TextField layoutX="127.0" layoutY="164.0" prefHeight="23.0" prefWidth="324.0" promptText="用户ID" />
-                  <Button layoutX="215.0" layoutY="271.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="148.0" text="搜索" />
-               </children>
-            </AnchorPane>
-        </items>
-      </SplitPane>
+      <TextField layoutX="171.0" layoutY="138.0" prefHeight="23.0" prefWidth="294.0" promptText="用户ID" />
+      <Button layoutX="244.0" layoutY="225.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="148.0" text="搜索" />
    </children>
 </AnchorPane>
