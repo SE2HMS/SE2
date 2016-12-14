@@ -2,6 +2,8 @@ package room_data_servlmpl;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import DataService.RoomDataServ;
 import PO.RoomPO;
@@ -14,6 +16,7 @@ public class RoomDataServlmpl implements RoomDataServ{
 	private DataFactory dataFactory;
 	private RoomDataHelper roomDataHelper;
 	private static RoomDataServlmpl roomDataServlmpl;
+	private static int updateDate;
 	
 	public static RoomDataServlmpl getInstance(){
 		if(roomDataServlmpl==null)
@@ -27,6 +30,28 @@ public class RoomDataServlmpl implements RoomDataServ{
 			roomDataHelper=dataFactory.getRoomDataHelper();
 			list=roomDataHelper.getAll();
 		}
+		updateDate = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+		new Thread(() -> {
+			Calendar calendar = Calendar.getInstance();
+			if(calendar.get(Calendar.HOUR_OF_DAY) < 1 && calendar.get(Calendar.MINUTE) < 1) {
+				if(calendar.get(Calendar.DAY_OF_MONTH) != updateDate) {
+					updateDate = calendar.get(Calendar.DAY_OF_MONTH);
+					for(RoomPO roomPO:list) {
+						int[] avail = roomPO.getNum();
+						avail[0] = avail[1];
+						avail[1] = avail[2];
+						avail[3] = roomPO.getTotel() - roomPO.getOfflineOrdered();
+						roomPO.setNum(avail);
+						roomDataHelper.update(roomPO);
+					}
+				}
+			}
+			try {
+				Thread.sleep(1000);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}).start();
 	}
 	
 	

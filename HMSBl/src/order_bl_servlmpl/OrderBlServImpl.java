@@ -17,7 +17,7 @@ import java.util.Iterator;
 public class OrderBlServImpl implements OrderBlServ {
 
     @Override
-    //加上修改信用
+    //加上修改信用,已添加
     public boolean modifyOrderState(String orderId,OrderState state) {
         OrderPO orderPO = null;
         boolean success = false;

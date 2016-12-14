@@ -30,17 +30,18 @@ public class RegisterTest {
         }
     }
 
-//    public static void main(String[] args) {
-//        new RegisterTest().testLogin();
-//    }
-
-    @Test
-    public void testLogin() {
+    public static void main(String[] args) {
         new RemoteRunner();
-        LoginResult result = LoginBlServ.getInstance().login("7","hello");
-//        assertEquals(result.toString(),LoginResult.SUCCESS.toString());
-        assertEquals("hello","j");
+        new RegisterTest().register();
     }
+
+//    @Test
+//    public void testLogin() {
+//        new RemoteRunner();
+//        LoginResult result = LoginBlServ.getInstance().login("7","hello");
+//        assertEquals(result.toString(),LoginResult.SUCCESS.toString());
+//        assertEquals("hello","j");
+//    }
 
     private void register() {
         String id = null;

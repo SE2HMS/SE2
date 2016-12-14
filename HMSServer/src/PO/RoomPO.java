@@ -3,22 +3,30 @@ package PO;
 public class RoomPO {
 	private String hotelname,type;
 	private int[] number;
-	private int totel;
+	private int totel,offlineOrdered;
 	private double price;
 	
-	public RoomPO(String hn,String t,int[] num,int totel,double price){
+	public RoomPO(String hn,String t,int[] num,int totel,int offlineOrdered,double price){
 		super();
 		this.hotelname=hn;
 		this.type=t;
 		this.number=num;
 		this.totel=totel;
+		this.offlineOrdered = offlineOrdered;
 		this.price=price;
 	}
 	
 	public String getHn(){
 		return hotelname;
 	}
-	
+
+	public int getOfflineOrdered() {
+		return offlineOrdered;
+	}
+
+	public void setOfflineOrdered(int num) {
+		this.offlineOrdered = num;
+	}
 	
 	public String getType(){
 		return type;

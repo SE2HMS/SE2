@@ -149,7 +149,8 @@ public abstract class ParseHelper {
         double price = roomPO.getPrice();
         int total = roomPO.getTotel();
         int[] available = roomPO.getNum();
-        RoomVO roomVO = new RoomVO(hotelName,type,price,total,available);
+        int offlineOrdered = roomPO.getOfflineOrdered();
+        RoomVO roomVO = new RoomVO(hotelName,type,price,total,offlineOrdered,available);
         return roomVO;
     }
 
@@ -164,7 +165,8 @@ public abstract class ParseHelper {
         double price = roomVO.getPrice();
         int total = roomVO.getTotal();
         int[] available = roomVO.getAvailable();
-        RoomPO roomPO = new RoomPO(hotelName,type,available,total,price);
+        int offlineOrdered = roomVO.getOfflineOrdered();
+        RoomPO roomPO = new RoomPO(hotelName,type,available,total,offlineOrdered,price);
         return roomPO;
     }
 

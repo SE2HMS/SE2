@@ -28,4 +28,69 @@ public class RoomBlServImpl implements RoomBlServ{
 		return roomVO;
 	}
 
+	@Override
+	public boolean addRoom(String hotelName, String type,int total,double price) {
+		if(hotelName == null|| type == null) {
+			return false;
+		}
+		boolean success = false;
+		try {
+			RoomPO roomPO = new RoomPO(hotelName,type,new int[]{total,total,total},total,0,price);
+			success = RemoteHelper.getInstance().getRoomDataServ().insertRoom(roomPO);
+		}catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return success;
+	}
+
+	@Override
+	public boolean deleteRoom(String hotelName, String type) {
+		if(hotelName == null || type == null) {
+			return false;
+		}
+		boolean success = false;
+		try {
+			RoomPO roomPO = RemoteHelper.getInstance().getRoomDataServ().getRoom(hotelName,type);
+			if(roomPO == null) {
+				return false;
+			}
+			success = RemoteHelper.getInstance().getRoomDataServ().deleteRoom(hotelName,type);
+		}catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return success;
+	}
+
+	@Override
+	public boolean changeRoomNum(String hotelName, String type, int num,int inTime,int outTime) {
+		if(inTime == 0||outTime == 0 || hotelName == null || type == null) {
+			return false;
+		}
+		boolean success = false;
+		try {
+			RoomPO roomPO = RemoteHelper.getInstance().getRoomDataServ().getRoom(hotelName,type);
+			int avail[] = roomPO.getNum();
+			for(int i = inTime;i<outTime;i++) {
+				avail[i] += num;
+			}
+			roomPO.setNum(avail);
+			success = RemoteHelper.getInstance().getRoomDataServ().modifiedRoom(roomPO);
+		}catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return success;
+	}
+
+	@Override
+	public boolean offlineOrder(String hotelName, String type, int num) {
+		boolean success = false;
+		try {
+			RoomPO roomPO = RemoteHelper.getInstance().getRoomDataServ().getRoom(hotelName,type);
+			roomPO.setOfflineOrdered(roomPO.getOfflineOrdered() + num);
+			success = RemoteHelper.getInstance().getRoomDataServ().modifiedRoom(roomPO);
+		}catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return success;
+	}
 }

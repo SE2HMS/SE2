@@ -15,4 +15,33 @@ public interface RoomBlServ {
      * @return
      */
 	public RoomVO getRoomInfo(String hotelName, String type);
+
+	public boolean addRoom(String hotelName, String type,int total,double price);
+
+	public boolean deleteRoom(String hotelName, String type);
+
+	/**
+	 * 这个是线上预定的用
+	 * 入住了减一（传-1）
+	 * 退房了加一
+	 * inTime和outTime不要传0进来= =
+	 * @param hotelName
+	 * @param type
+	 * @param num
+	 * @param inTime
+	 * @param outTime
+     * @return
+     */
+	public boolean changeRoomNum(String hotelName, String type,int num,int inTime,int outTime);
+
+	/**
+	 * 这个是用来手动改的时候调用的
+	 * （线下有人入住的时候用这个）
+	 * num可以是负的（入住的时候传负数，退房的时候传正数）
+	 * @param hotelName
+	 * @param type
+	 * @param num
+     * @return
+     */
+	public boolean offlineOrder(String hotelName,String type,int num);
 }

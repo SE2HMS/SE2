@@ -61,7 +61,7 @@ public class OrderSqlDataHelper implements OrderDataHelper{
 				", username='"+o.getUserName()+"', usercontact='"+o.getUserContact()+
 				"',hotel='"+o.getHotel()+"',totel="+o.getTotel()+
 				",type='"+o.getType()+"',intime='"+o.getInTime()+"',outtime='"+o.getOutTime()+
-				"',lasttime='"+o.getLastTime()+"' where id='" + o.getID()+ "'";
+				"',lasttime='"+o.getLastTime() + "',chlidren='" + o.getChildren() + "',person='" + o.getPersonNum()+"' where id='" + o.getID()+ "'";
 		try {
 	        pstmt = (PreparedStatement) conn.prepareStatement(sql);
 	        i = pstmt.executeUpdate();
@@ -77,9 +77,9 @@ public class OrderSqlDataHelper implements OrderDataHelper{
 		Connection conn=getConn();
 		int i=0;
 		PreparedStatement pstmt;
-		String sql="insert into orders(userid,username,usercontact,hotel,totel,type,intime,outtime,lasttime) values("+
+		String sql="insert into orders(userid,username,usercontact,hotel,totel,type,intime,outtime,lasttime,children,person) values("+
 		Integer.parseInt(o.getUserID())+",'"+o.getUserName()+"','"+o.getUserContact()+"','"+o.getHotel()+"',"+o.getTotel()+
-		",'"+o.getType()+"','"+o.getInTime()+"','"+o.getOutTime()+"','"+o.getLastTime()+"')";
+		",'"+o.getType()+"','"+o.getInTime()+"','"+o.getOutTime()+"','"+o.getLastTime()+"','" +o.getChildren() + "','" + o.getPersonNum() + "')";
 		 try {
 		        pstmt = (PreparedStatement) conn.prepareStatement(sql);
 		        i = pstmt.executeUpdate();
