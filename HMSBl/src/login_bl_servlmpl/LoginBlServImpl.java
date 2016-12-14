@@ -163,7 +163,25 @@ public class LoginBlServImpl implements LoginBlServ {
         if(this.getUser(userName, contact) != null) {
             return new RegisterResult(RegisterState.ALREADY_REGISTERED,"");
         }
-        return null;
+        HotelStaff hotelStaff = new HotelStaff(hotelName,contact,userName);
+        UserLoginInfo userLoginInfo = new UserLoginInfo(null,password);
+        UserPO userPO = ParseHelper.toUserPO(hotelStaff,userLoginInfo);
+        boolean success = false;
+        try {
+            success = RemoteHelper.getInstance().getUserDataServ().insertUser(userPO);
+        }catch (RemoteException e){
+            e.printStackTrace();
+        }
+        if(success) {
+            String id = null;
+            try {
+                id = RemoteHelper.getInstance().getUserDataServ().getUser(userName, contact).getID();
+            }catch (RemoteException e ){
+                e.printStackTrace();
+            }
+            return new RegisterResult(RegisterState.SUCCESS,id);
+        }
+        return new RegisterResult(RegisterState.EXCEPTION,null);
     }
 
     private UserVO getUser(String userName,String contact) {

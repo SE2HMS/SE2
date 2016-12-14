@@ -1,13 +1,15 @@
 package room_bl_servImpl;
 
 import PO.RoomPO;
-import VO.RoomVO;
+import VO.*;
 import helper.ParseHelper;
 import rmi.RemoteHelper;
 import room_bl_serv.RoomBlServ;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * 12.3妫�鏌�
@@ -97,5 +99,30 @@ public class RoomBlServImpl implements RoomBlServ{
 			e.printStackTrace();
 		}
 		return success;
+	}
+
+	@Override
+	public boolean changeRoomNum(OrderVO orderVO) {
+		if(orderVO == null) {
+			return false;
+		}
+		if(orderVO.getState().equals(OrderState.FINISH)) {
+			return false;
+		}
+		String hotelName = orderVO.getHotel().getHotelName();
+		ArrayList<RoomInOrder> rooms = orderVO.getHotel().getRooms();
+		ArrayList<String> types = new ArrayList<>();
+		ArrayList<Integer> nums = new ArrayList<>();
+		for(int i = 0;i<rooms.size();i++) {
+			RoomInOrder roomInOrder = rooms.get(i);
+			types.add(roomInOrder.getType());
+			nums.add(roomInOrder.getNum());
+		}
+		long millis = Calendar.getInstance().getTimeInMillis();
+		Date inDate = orderVO.getInTime();
+		Date outDate = orderVO.getOutTime();
+		int inTime = (int)(inDate.getTime() % 86400 - millis % 86400);
+		int outTime = (int)(outDate.getTime() % 86400 - millis % 86400);
+		return this.changeRoomNum(hotelName,types,nums,inTime,outTime);
 	}
 }

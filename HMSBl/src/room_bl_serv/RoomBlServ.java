@@ -1,5 +1,6 @@
 package room_bl_serv;
 
+import VO.OrderVO;
 import VO.RoomVO;
 import room_bl_servImpl.RoomBlServImpl;
 
@@ -47,4 +48,6 @@ public interface RoomBlServ {
      * @return
      */
 	public boolean offlineOrder(String hotelName,String type,int num);
+
+	public boolean changeRoomNum(OrderVO orderVO);
 }

@@ -31,6 +31,7 @@ public class OrderBlServImpl implements OrderBlServ {
             success = RemoteHelper.getInstance().getOrderDataServ().modifiedOrder(orderPO);
             OrderVO orderVO = ParseHelper.toOrderVO(orderPO);
             CreditBlServ.getInstance().changeCredit(orderVO);
+            RoomBlServ.getInstance().changeRoomNum(orderVO);
         }catch (RemoteException e) {
             e.printStackTrace();
         }

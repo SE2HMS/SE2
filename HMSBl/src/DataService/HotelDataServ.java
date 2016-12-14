@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import PO.HotelPO;
 
-public interface HotalDataServ extends Remote {
+public interface HotelDataServ extends Remote {
 	
 	public boolean insertHotel(HotelPO hotel) throws RemoteException;
 	

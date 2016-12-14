@@ -29,14 +29,14 @@ public class UserHelper {
     public static UserPO toUserPO(HotelStaff hotelStaff,UserLoginInfo info) {
         String id = info.getUserId();
         String password = info.getPassword();
-        String name = hotelStaff.getHotelName();
+        String name = hotelStaff.getName();
         String contact = hotelStaff.getContact();
-        String spec = null;
+        String spec = hotelStaff.getHotelName();
         int credit = 0;
         int vip = 0;
         int isLogin = 0;
         String type = hotelStaff.getType().toString();
-        UserPO userPO = new UserPO(id,password,name,contact,spec,credit,vip,isLogin,type);
+        UserPO userPO = new UserPO(id,password,contact,name,spec,credit,vip,isLogin,type);
         return userPO;
     }
 
@@ -59,6 +59,9 @@ public class UserHelper {
 
     public static UserVO toUserVO(UserPO userPO) {
         if(userPO == null) {
+            return null;
+        }
+        if(!(userPO.getType().equals("NORMAL") || userPO.getType().equals("SPECIAL"))) {
             return null;
         }
         String name = userPO.getName();

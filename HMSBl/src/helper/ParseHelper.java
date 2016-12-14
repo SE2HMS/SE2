@@ -24,7 +24,7 @@ public abstract class ParseHelper {
     public static UserType stringToUserType(String type) {
         UserType userType = null;
         switch (type) {
-            case "FINISH":
+            case "NORMAL":
                 userType = UserType.NORMAL;
                 break;
             case "SPECIAL":

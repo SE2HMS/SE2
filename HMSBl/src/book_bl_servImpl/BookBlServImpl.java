@@ -108,6 +108,8 @@ public class BookBlServImpl implements BookBlServ{
             boolean success = this.produceOrder(orderVO); //留着用
             if(!success) {
                 return new FailBookResult("Exception");
+            }else {
+                RoomBlServ.getInstance().changeRoomNum(orderVO);
             }
             id = OrderBlServ.getInstance().getLatestOrder(userId).getId();
         }catch (RemoteException e) {
