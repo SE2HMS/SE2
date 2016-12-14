@@ -3,6 +3,8 @@ package room_bl_serv;
 import VO.RoomVO;
 import room_bl_servImpl.RoomBlServImpl;
 
+import java.util.ArrayList;
+
 public interface RoomBlServ {
 	public static RoomBlServ getInstance() {
 		return new RoomBlServImpl();
@@ -24,6 +26,7 @@ public interface RoomBlServ {
 	 * 这个是线上预定的用
 	 * 入住了减一（传-1）
 	 * 退房了加一
+	 * 撤销了也加
 	 * inTime和outTime不要传0进来= =
 	 * @param hotelName
 	 * @param type
@@ -32,7 +35,7 @@ public interface RoomBlServ {
 	 * @param outTime
      * @return
      */
-	public boolean changeRoomNum(String hotelName, String type,int num,int inTime,int outTime);
+	public boolean changeRoomNum(String hotelName, ArrayList<String> type, ArrayList<Integer> num, int inTime, int outTime);
 
 	/**
 	 * 这个是用来手动改的时候调用的

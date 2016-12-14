@@ -44,5 +44,7 @@ public interface OrderBlServ {
      */
 	public Iterator<OrderVO> getOrderList(String userId);
 
+	public boolean revokeOrder(String orderId);
+
 	public OrderVO getLatestOrder(String userId);
 }

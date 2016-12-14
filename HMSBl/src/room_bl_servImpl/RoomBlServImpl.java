@@ -7,6 +7,7 @@ import rmi.RemoteHelper;
 import room_bl_serv.RoomBlServ;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 /**
  * 12.3妫�鏌�
@@ -62,19 +63,23 @@ public class RoomBlServImpl implements RoomBlServ{
 	}
 
 	@Override
-	public boolean changeRoomNum(String hotelName, String type, int num,int inTime,int outTime) {
+	public boolean changeRoomNum(String hotelName, ArrayList<String> type, ArrayList<Integer> num, int inTime, int outTime) {
 		if(inTime == 0||outTime == 0 || hotelName == null || type == null) {
 			return false;
 		}
-		boolean success = false;
+		boolean success = true;
 		try {
-			RoomPO roomPO = RemoteHelper.getInstance().getRoomDataServ().getRoom(hotelName,type);
-			int avail[] = roomPO.getNum();
-			for(int i = inTime;i<outTime;i++) {
-				avail[i] += num;
+			for(int i = 0;i<type.size();i++) {
+				String aType = type.get(i);
+				int aNum = num.get(i);
+				RoomPO roomPO = RemoteHelper.getInstance().getRoomDataServ().getRoom(hotelName, aType);
+				int avail[] = roomPO.getNum();
+				for (int j = inTime; j < outTime; j++) {
+					avail[i] += aNum;
+				}
+				roomPO.setNum(avail);
+				success = success && RemoteHelper.getInstance().getRoomDataServ().modifiedRoom(roomPO);
 			}
-			roomPO.setNum(avail);
-			success = RemoteHelper.getInstance().getRoomDataServ().modifiedRoom(roomPO);
 		}catch (RemoteException e) {
 			e.printStackTrace();
 		}

@@ -5,8 +5,10 @@ import VO.CreditVO;
 import VO.OrderAction;
 import VO.OrderState;
 import VO.OrderVO;
+import book_bl_serv.BookBlServ;
 import credit_bl_serv.CreditBlServ;
 import helper.ParseHelper;
+import order_bl_serv.OrderBlServ;
 import rmi.RemoteHelper;
 
 import java.rmi.RemoteException;
@@ -99,5 +101,24 @@ public class CreditBlServImpl implements CreditBlServ {
         total += change;
         CreditVO creditVO = new CreditVO(time,num,userId,orderAction,change,total);
         this.addCredit(creditVO);
+    }
+
+    @Override
+    public boolean addCredit(String userId, String action,double num) {
+        if(userId == null) {
+            return false;
+        }
+        boolean success = false;
+        try {
+            Date time = RemoteHelper.getInstance().getTimeServ().getTime();
+            String timeString = ParseHelper.dateToString(time);
+            double total = CreditBlServ.getInstance().getTotal(userId);
+            total += num;
+            CreditPO creditPO = new CreditPO(null,timeString,userId,total,num,action);
+            success = RemoteHelper.getInstance().getCreditDataServ().insertCredit(creditPO);
+        }catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return success;
     }
 }

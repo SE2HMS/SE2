@@ -17,6 +17,8 @@ public interface CreditBlServ {
         return new CreditBlServImpl();
     }
 
+    public boolean addCredit(String userId,String action,double num);
+
     /**
      * 得到一条具体的信用记录
      * @param userId 用户id

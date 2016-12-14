@@ -1,14 +1,18 @@
 package order_bl_servlmpl;
 
+import PO.CreditPO;
 import PO.OrderPO;
 import VO.*;
 import credit_bl_serv.CreditBlServ;
 import helper.ParseHelper;
 import order_bl_serv.OrderBlServ;
 import rmi.RemoteHelper;
+import room_bl_serv.RoomBlServ;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 
 /**
@@ -130,6 +134,31 @@ public class OrderBlServImpl implements OrderBlServ {
                 orderVOs.add(orderVO);
         });
         return orderVOs.iterator();
+    }
+
+    @Override
+    public boolean revokeOrder(String orderId) {
+        boolean success = false;
+        try {
+            OrderPO orderPO = RemoteHelper.getInstance().getOrderDataServ().getOrder(orderId);
+            orderPO.setType("REVOKE");
+            String userId = orderPO.getUserID();
+            CreditBlServ.getInstance().addCredit(userId,"REVOKE",orderPO.getTotel()/2);
+            String hotelName = orderPO.getHotel();
+            ArrayList<String> roomType = orderPO.getRoom();
+            ArrayList<Integer> roomNum = orderPO.getNum();
+            Calendar calendar = Calendar.getInstance();
+            long millis = calendar.getTimeInMillis();
+            Date inDate = ParseHelper.stringToDate(orderPO.getInTime());
+            Date outDate = ParseHelper.stringToDate(orderPO.getOutTime());
+            int inTime = (int)(inDate.getTime() % 86400 - millis % 86400);
+            int outTime = (int)(outDate.getTime() % 86400 - millis % 86400);
+            RoomBlServ.getInstance().changeRoomNum(hotelName,roomType,roomNum,inTime,outTime);
+            success = RemoteHelper.getInstance().getOrderDataServ().modifiedOrder(orderPO);
+        }catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return  success;
     }
 
     @Override
