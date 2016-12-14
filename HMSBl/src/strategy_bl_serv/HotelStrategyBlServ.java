@@ -18,6 +18,8 @@ public interface HotelStrategyBlServ {
      */
 	public Iterator<StrategyVO> getStrategy(String hotelName);
 
+	public StrategyVO getOneStrategy(String hotelName,String strategyName);
+
 	public double getMinDiscount(String hotelName,String userId,int inTime,int outTime);
 
 	/**

@@ -10,7 +10,7 @@ public interface HotelStrategyDataServ extends Remote{
 	
 	public boolean insertStrategy(HotelStrategyPO strategyPO) throws RemoteException;
 	
-	public ArrayList<HotelStrategyPO> getStrategyList () throws RemoteException;
+	public ArrayList<HotelStrategyPO> getStrategyList (String hotelName) throws RemoteException;
 	
 	public boolean deleteStrategy(String id) throws RemoteException;
 	

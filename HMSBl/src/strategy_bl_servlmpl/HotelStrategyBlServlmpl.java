@@ -94,4 +94,23 @@ public class HotelStrategyBlServlmpl implements HotelStrategyBlServ{
 		}
 		return min;
 	}
+
+	@Override
+	public StrategyVO getOneStrategy(String hotelName, String strategyName) {
+		if(hotelName == null || strategyName == null) {
+			return null;
+		}
+		ArrayList<HotelStrategyPO> strategyPOs = new ArrayList<>();
+		try {
+			strategyPOs = RemoteHelper.getInstance().getHotelStrategyDataServ().getStrategyList(hotelName);
+		}catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		StrategyVO strategyVO = null;
+		for(HotelStrategyPO hotelStrategyPO:strategyPOs) {
+			if(hotelStrategyPO.getStrategyName().equals(strategyName));
+			strategyVO = ParseHelper.toStrategyVO(hotelStrategyPO);
+		}
+		return strategyVO;
+	}
 }
