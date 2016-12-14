@@ -32,6 +32,11 @@ public interface LoginBlServ {
      */
 	public UserVO getUserInfo(String id);
 
+	public WebSaler getWebSaler(String id);
+
+	public HotelStaff getHotelStaff(String id);
+
+	public WebManager getWebManager(String id);
 	/**
 	 * 登出
 	 * @param id

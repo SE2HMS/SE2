@@ -176,4 +176,49 @@ public class LoginBlServImpl implements LoginBlServ {
         }
         return userVO;
     }
+
+    @Override
+    public WebSaler getWebSaler(String id) {
+        if(id == null) {
+            return null;
+        }
+        WebSaler webSaler = null;
+        try {
+            UserPO userPO = RemoteHelper.getInstance().getUserDataServ().getUser(id);
+            webSaler = ParseHelper.toWebSaler(userPO);
+        }catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return webSaler;
+    }
+
+    @Override
+    public HotelStaff getHotelStaff(String id) {
+        if(id == null) {
+            return null;
+        }
+        HotelStaff hotelStaff = null;
+        try {
+            UserPO userPO = RemoteHelper.getInstance().getUserDataServ().getUser(id);
+            hotelStaff = ParseHelper.toHotelStaff(userPO);
+        }catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return hotelStaff;
+    }
+
+    @Override
+    public WebManager getWebManager(String id) {
+        if(id == null) {
+            return null;
+        }
+        WebManager webManager = null;
+        try {
+            UserPO userPO = RemoteHelper.getInstance().getUserDataServ().getUser(id);
+            webManager = ParseHelper.toWebManager(userPO);
+        }catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return webManager;
+    }
 }
