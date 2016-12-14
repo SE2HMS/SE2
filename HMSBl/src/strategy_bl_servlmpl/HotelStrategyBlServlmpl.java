@@ -20,7 +20,7 @@ public class HotelStrategyBlServlmpl implements HotelStrategyBlServ{
 		ArrayList<StrategyVO> strategyVOs = new ArrayList<>();
 		ArrayList<HotelStrategyPO> hotelStrategyPOs;
 		try {
-			hotelStrategyPOs = RemoteHelper.getInstance().getHotelStrategyDataServ().getStrategyList();
+			hotelStrategyPOs = RemoteHelper.getInstance().getHotelStrategyDataServ().getStrategyList(hotelName);
 			hotelStrategyPOs.forEach(hotelStrategyPO -> strategyVOs.add(ParseHelper.toStrategyVO(hotelStrategyPO)));
 		}catch (RemoteException e) {
 			e.printStackTrace();
