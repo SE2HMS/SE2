@@ -63,4 +63,9 @@ public class WebStrategyBlServlmpl implements WebStrategyBlServ{
 		}
 		return success;
 	}
+
+	@Override
+	public double getMinDiscount(String useId) {
+		return 0;
+	}
 }

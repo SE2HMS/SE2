@@ -18,6 +18,8 @@ public interface HotelStrategyBlServ {
      */
 	public Iterator<StrategyVO> getStrategy(String hotelName);
 
+	public double getMinDiscount(String hotelName,String userId,int inTime,int outTime);
+
 	/**
 	 * 给某个酒店增加一条促销策略
 	 * @param hotelName 策略所属酒店名

@@ -44,10 +44,13 @@ public class ManageBlServImpl implements ManageBlServ {
     }
 
     @Override
-    public boolean modifyUserInfo(UserVO user,UserLoginInfo info) {
+    public boolean modifyUserInfo(UserVO user) {
         boolean success = false;
         try {
-            UserPO userPO = ParseHelper.toUserPO(user,info);
+            UserPO userPO = RemoteHelper.getInstance().getUserDataServ().getUser(user.getName(),user.getContact());
+            String password = userPO.getPassword();
+            String id = userPO.getID();
+            userPO = ParseHelper.toUserPO(user,new UserLoginInfo(id,password));
             success = RemoteHelper.getInstance().getUserDataServ().modifiedUser(userPO);
         }catch (RemoteException e) {
             e.printStackTrace();
@@ -94,14 +97,14 @@ public class ManageBlServImpl implements ManageBlServ {
     }
 
     @Override
-    public boolean modifyWebSaler(WebSaler webSaler, UserLoginInfo info) {
-        if(webSaler == null || info == null) {
+    public boolean modifyWebSaler(WebSaler webSaler) {
+        if(webSaler == null) {
             return false;
         }
         boolean success = false;
         try {
             UserPO userPO = RemoteHelper.getInstance().getUserDataServ().getUser(webSaler.getName(),webSaler.getContact());
-            UserLoginInfo userLoginInfo = new UserLoginInfo(userPO.getID(),info.getPassword());
+            UserLoginInfo userLoginInfo = new UserLoginInfo(userPO.getID(),userPO.getPassword());
             userPO = ParseHelper.toUserPO(webSaler,userLoginInfo);
             success = RemoteHelper.getInstance().getUserDataServ().insertUser(userPO);
         }catch (RemoteException e) {
@@ -111,14 +114,14 @@ public class ManageBlServImpl implements ManageBlServ {
     }
 
     @Override
-    public boolean modifyHotelStaff(HotelStaff hotelStaff, UserLoginInfo info) {
-        if(hotelStaff == null || info == null) {
+    public boolean modifyHotelStaff(HotelStaff hotelStaff) {
+        if(hotelStaff == null) {
             return false;
         }
         boolean success = false;
         try {
             UserPO userPO = RemoteHelper.getInstance().getUserDataServ().getUser(hotelStaff.getName(),hotelStaff.getContact());
-            UserLoginInfo userLoginInfo = new UserLoginInfo(userPO.getID(),info.getPassword());
+            UserLoginInfo userLoginInfo = new UserLoginInfo(userPO.getID(),userPO.getPassword());
             userPO = ParseHelper.toUserPO(hotelStaff,userLoginInfo);
             success = RemoteHelper.getInstance().getUserDataServ().insertUser(userPO);
         }catch (RemoteException e) {

@@ -17,6 +17,8 @@ public interface WebStrategyBlServ {
      */
 	public Iterator<StrategyVO> getStrategy();
 
+	public double getMinDiscount(String useId);
+
 	/**
 	 * 增加一条策略
 	 * @param strategy

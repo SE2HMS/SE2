@@ -9,6 +9,8 @@ import helper.ParseHelper;
 import order_bl_serv.OrderBlServ;
 import rmi.RemoteHelper;
 import room_bl_serv.RoomBlServ;
+import strategy_bl_serv.HotelStrategyBlServ;
+import strategy_bl_serv.WebStrategyBlServ;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -87,6 +89,7 @@ public class BookBlServImpl implements BookBlServ{
                 RoomInOrder roomInOrder = new RoomInOrder(type,num,price,subTotal);
                 roomInOrders.add(roomInOrder);
             }
+            double discount = Math.min(HotelStrategyBlServ.getInstance().getMinDiscount(hotelName,userId,inTime,outTime), WebStrategyBlServ.getInstance().getMinDiscount(userId));
             HotelInOrder hotelInOrder = new HotelInOrder(hotelName,roomInOrders);
             OrderState state = OrderState.WAITING;
             Date inTimeDate,outTimeDate,execTimeDate;

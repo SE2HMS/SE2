@@ -1,13 +1,17 @@
 package strategy_bl_servlmpl;
 
 import PO.HotelStrategyPO;
+import VO.BirthdayStrategy;
 import VO.StrategyVO;
+import VO.UserVO;
 import helper.ParseHelper;
+import login_bl_serv.LoginBlServ;
 import rmi.RemoteHelper;
 import strategy_bl_serv.HotelStrategyBlServ;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 
 public class HotelStrategyBlServlmpl implements HotelStrategyBlServ{
@@ -61,5 +65,33 @@ public class HotelStrategyBlServlmpl implements HotelStrategyBlServ{
 			e.printStackTrace();
 		}
 		return success;
+	}
+
+	@Override
+	public double getMinDiscount(String hotelName, String userId,int inTime,int outTime) {
+		Iterator<StrategyVO> strategyVOIterator = this.getStrategy(hotelName);
+		double min = 1;
+		while(strategyVOIterator.hasNext()) {
+			StrategyVO strategyVO = strategyVOIterator.next();
+			if(strategyVO.getType().equals("birthday")) {
+				UserVO userVO = LoginBlServ.getInstance().getUserInfo(userId);
+				Date date = ParseHelper.stringToDate(userVO.getAdditionalInfo());
+				Date today = null;
+				try {
+					today = RemoteHelper.getInstance().getTimeServ().getTime();
+				}catch (RemoteException e) {
+					e.printStackTrace();
+				}
+				int days = (int)(date.getTime() / 86400 - today.getTime() / 86400);
+				if(days >= inTime && days <= outTime) {
+					min = Math.min(min,((BirthdayStrategy) strategyVO).getDiscount());
+				}
+			}else if(strategyVO.getType().equals("companies")) {
+
+			}else if(strategyVO.getType().equals("date")) {
+
+			}
+		}
+		return min;
 	}
 }
