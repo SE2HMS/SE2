@@ -1,8 +1,9 @@
 package PO;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class HotelPO {
+public class HotelPO implements Serializable{
 	private String name,businesscircle,introduce,address;
 	private double stars;
 	private ArrayList<CommentPO> comment;

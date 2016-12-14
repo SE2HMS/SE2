@@ -1,8 +1,9 @@
 package PO;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class OrderPO {
+public class OrderPO implements Serializable{
 	private String id,userid,username,usercontact,hotel,intime,outtime,lasttime;
 	private ArrayList<String> room;
 	private ArrayList<Integer> num;

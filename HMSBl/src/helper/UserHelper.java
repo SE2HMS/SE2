@@ -82,6 +82,9 @@ public class UserHelper {
     }
 
     public static WebSaler toWebSaler(UserPO userPO) {
+        if(!userPO.getType().equals("WEB_SALER")) {
+            return null;
+        }
         String name = userPO.getName();
         String contact = userPO.getName();
         WebSaler webSaler = new WebSaler(name,contact);
@@ -89,6 +92,9 @@ public class UserHelper {
     }
 
     public static HotelStaff toHotelStaff(UserPO userPO) {
+        if(!userPO.getType().equals("HOTEL_STAFF")) {
+            return null;
+        }
         String hotelName = userPO.getSpecialInfo();
         String contact = userPO.getContactInfo();
         String userName = userPO.getName();

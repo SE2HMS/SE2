@@ -19,9 +19,9 @@ import java.util.Iterator;
  */
 public class HotelBlServImpl implements HotelBlServ {
 
-    private String[] locations = new String[]{"南京"};
-    private String[][] businessCIrcles = new String[][]{{"仙林大学城","新街口"},{},{}};
-    private String[] roomTypes = new String[]{"单人间","双人间"};
+    private String[] locations = new String[]{"NANJING"};
+    private String[][] businessCIrcles = new String[][]{{"XIANLIN","XINJIEKOU"},{},{}};
+    private String[] roomTypes = new String[]{"SINGLE","DOUBLE"};
 
     private String getLocationString(int i) {
         return locations[i];

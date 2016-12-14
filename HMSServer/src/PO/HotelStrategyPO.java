@@ -1,5 +1,8 @@
 package PO;
-public class HotelStrategyPO {
+
+import java.io.Serializable;
+
+public class HotelStrategyPO implements Serializable{
 	private String hotelname,strategyname,specialInfo;
 	double discount;
 	String type;

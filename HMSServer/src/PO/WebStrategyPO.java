@@ -1,6 +1,8 @@
 package PO;
 
-public class WebStrategyPO {
+import java.io.Serializable;
+
+public class WebStrategyPO implements Serializable{
 	String strategyname,businesscircle,date;
 	double lev0,lev1,discount;//type为level的时候，lev0指的是会员升级所需信用，type为businesscircle时，lev0指的是当前该商圈该会员等级的折扣，会员分为低中高三级，第三级会员的折扣存储在discount里，最后type为date的时候，lev为缺省，discount记录这个日期的折扣，注释看不懂就问我
 	String type;

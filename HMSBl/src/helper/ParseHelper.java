@@ -91,11 +91,15 @@ public abstract class ParseHelper {
         String CBD = hotelPO.getBC();
         String location = hotelPO.getAddress();
         ArrayList<CommentVO> comments = new ArrayList<>();
-        hotelPO.getComment().forEach(comment -> comments.add(toCommentVO(comment)));
+        if(hotelPO.getComment() != null) {
+            hotelPO.getComment().forEach(comment -> comments.add(toCommentVO(comment)));
+        }
         int starLevel = (int)hotelPO.getStars();
         String intro = hotelPO.getINTRO();
         ArrayList<RoomVO> rooms = new ArrayList<>();
-        hotelPO.getRoom().forEach(roomPO -> rooms.add(toRoomVO(roomPO)));
+        if(hotelPO.getRoom() != null) {
+            hotelPO.getRoom().forEach(roomPO -> rooms.add(toRoomVO(roomPO)));
+        }
         double minPrice = 0;
         for(RoomVO roomVO:rooms) {
             if(roomVO.getPrice() < minPrice || minPrice == 0) {
@@ -104,7 +108,9 @@ public abstract class ParseHelper {
         }
         ArrayList<String> cooperativeEnterprise = hotelPO.getCompanies();
         ArrayList<StrategyVO> strategies = new ArrayList<>();
-        hotelPO.getStrategy().forEach(hotelStrategyPO -> strategies.add(ParseHelper.toStrategyVO(hotelStrategyPO)));
+        if(hotelPO.getStrategy() != null) {
+            hotelPO.getStrategy().forEach(hotelStrategyPO -> strategies.add(ParseHelper.toStrategyVO(hotelStrategyPO)));
+        }
         hotelVO = new HotelVO(name,CBD,location,comments,starLevel,intro,rooms,minPrice,cooperativeEnterprise,strategies);
         return hotelVO;
     }

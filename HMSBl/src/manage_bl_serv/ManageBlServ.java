@@ -19,6 +19,10 @@ public interface ManageBlServ {
      */
     public Iterator<UserVO> getAllUserInfo();
 
+    public Iterator<HotelStaff> getAllHotelStaff();
+
+    public Iterator<WebSaler> getAllWebSaler();
+
     /**
      * 增加一条用户信息
      *

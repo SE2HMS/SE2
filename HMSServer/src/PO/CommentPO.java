@@ -1,6 +1,8 @@
 package PO;
 
-public class CommentPO {
+import java.io.Serializable;
+
+public class CommentPO implements Serializable{
 	private String hotelname,detials;
 	private double commentLevel;
 

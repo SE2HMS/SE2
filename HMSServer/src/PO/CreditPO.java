@@ -1,8 +1,9 @@
 package PO;
 
 
+import java.io.Serializable;
 
-public class CreditPO {
+public class CreditPO implements Serializable{
 	private String id,time,userid;
 	private double totel,change;
 	private String bh;

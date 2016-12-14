@@ -17,7 +17,18 @@ import java.util.Iterator;
 public class AllTest {
     public static void main(String[] args) {
         new RemoteRunner();
-        new AllTest().deleteUser();
+        new AllTest().showHotel();
+    }
+
+    private void showHotel() {
+        HotelVO hotelVO = HotelBlServ.getInstance().getHotelInfo("dontlala");
+        System.out.println(hotelVO.getName());
+        System.out.println(hotelVO.getCBD());
+        System.out.println(hotelVO.getLocation());
+    }
+
+    private void addHotel() {
+        HotelBlServ.getInstance().addHotel("dontlala",0,0,"nothing",5);
     }
 
     private void deleteUser() {

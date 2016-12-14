@@ -1,6 +1,8 @@
 package PO;
 
-public class RoomPO {
+import java.io.Serializable;
+
+public class RoomPO implements Serializable{
 	private String hotelname,type;
 	private int[] number;
 	private int totel,offlineOrdered;

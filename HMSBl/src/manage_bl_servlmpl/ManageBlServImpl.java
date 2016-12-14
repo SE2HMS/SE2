@@ -126,4 +126,28 @@ public class ManageBlServImpl implements ManageBlServ {
         }
         return success;
     }
+
+    @Override
+    public Iterator<HotelStaff> getAllHotelStaff() {
+        ArrayList<HotelStaff> hotelStaffs = new ArrayList<>();
+        try {
+            ArrayList<UserPO> userPOs = RemoteHelper.getInstance().getUserDataServ().getUserList();
+            userPOs.forEach(userPO -> hotelStaffs.add(ParseHelper.toHotelStaff(userPO)));
+        }catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return hotelStaffs.iterator();
+    }
+
+    @Override
+    public Iterator<WebSaler> getAllWebSaler() {
+        ArrayList<WebSaler> webSalers = new ArrayList<>();
+        try {
+            ArrayList<UserPO> userPOs = RemoteHelper.getInstance().getUserDataServ().getUserList();
+            userPOs.forEach(userPO -> webSalers.add(ParseHelper.toWebSaler(userPO)));
+        }catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return webSalers.iterator();
+    }
 }
