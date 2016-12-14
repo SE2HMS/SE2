@@ -60,16 +60,16 @@ public class StrategyHelper {
             case "birthday":
                 strategyVO = new BirthdayStrategy(name, discount);
                 break;
-            case "double_eleven":
+            case "date":
                 String[] dates = hotelStrategyPO.getSpecialInof().split("-");
                 Date startTime = ParseHelper.stringToDate(dates[0]);
                 Date endTime = ParseHelper.stringToDate(dates[1]);
                 strategyVO = new DoubleElevenStrategy(name,discount,startTime,endTime);
                 break;
-            case "room_number":
+            case "roomnum":
                 strategyVO = new RoomNumberStrategy(name,discount);
                 break;
-            case "cooperative":
+            case "companies":
                 String[] companies = hotelStrategyPO.getSpecialInof().split(",");
                 ArrayList<String> companiesList = new ArrayList<>();
                 for(String company:companies) {

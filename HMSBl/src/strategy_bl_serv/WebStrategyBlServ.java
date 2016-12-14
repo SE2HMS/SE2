@@ -3,6 +3,7 @@ package strategy_bl_serv;
 import VO.StrategyVO;
 import strategy_bl_servlmpl.WebStrategyBlServlmpl;
 
+import java.util.Date;
 import java.util.Iterator;
 
 public interface WebStrategyBlServ {
@@ -17,7 +18,7 @@ public interface WebStrategyBlServ {
      */
 	public Iterator<StrategyVO> getStrategy();
 
-	public double getMinDiscount(String useId);
+	public double getMinDiscount(String useId, Date inTime,String CBD);
 
 	/**
 	 * 增加一条策略

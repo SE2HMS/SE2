@@ -6,6 +6,7 @@ import PO.UserPO;
 import VO.*;
 import book_bl_serv.BookBlServ;
 import helper.ParseHelper;
+import hotel_bl_serv.HotelBlServ;
 import order_bl_serv.OrderBlServ;
 import rmi.RemoteHelper;
 import room_bl_serv.RoomBlServ;
@@ -80,16 +81,29 @@ public class BookBlServImpl implements BookBlServ{
             ArrayList<RoomInOrder> roomInOrders = new ArrayList<>();
             double total = 0;
             for(RoomAndNum roomAndNum:roomAndNums) {
-                String type = roomAndNum.getName();
-                int num = roomAndNum.getNum();
-                RoomVO roomVO = RoomBlServ.getInstance().getRoomInfo(hotelName,type);
-                double price = roomVO.getPrice();
-                double subTotal = num*price;
-                total += subTotal;
-                RoomInOrder roomInOrder = new RoomInOrder(type,num,price,subTotal);
-                roomInOrders.add(roomInOrder);
+                for(int i = inTime;i<outTime;i++) {
+                    String type = roomAndNum.getName();
+                    int num = roomAndNum.getNum();
+                    RoomVO roomVO = RoomBlServ.getInstance().getRoomInfo(hotelName, type);
+                    double price = roomVO.getPrice();
+                    Date curTime = null;
+                    try {
+                        curTime = RemoteHelper.getInstance().getTimeServ().getTime();
+                    }catch (RemoteException e) {
+                        e.printStackTrace();
+                    }
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTime(curTime);
+                    calendar.add(Calendar.DATE,i);
+                    Date inTimeDate = calendar.getTime();
+                    HotelVO hotelVO = HotelBlServ.getInstance().getHotelInfo(hotelName);
+                    double discount = Math.min(HotelStrategyBlServ.getInstance().getMinDiscount(hotelName, userId, inTimeDate,num), WebStrategyBlServ.getInstance().getMinDiscount(userId,inTimeDate,hotelVO.getCBD()));
+                    double subTotal = num * price * discount;
+                    total += subTotal;
+                    RoomInOrder roomInOrder = new RoomInOrder(type, num, price, subTotal);
+                    roomInOrders.add(roomInOrder);
+                }
             }
-            double discount = Math.min(HotelStrategyBlServ.getInstance().getMinDiscount(hotelName,userId,inTime,outTime), WebStrategyBlServ.getInstance().getMinDiscount(userId));
             HotelInOrder hotelInOrder = new HotelInOrder(hotelName,roomInOrders);
             OrderState state = OrderState.WAITING;
             Date inTimeDate,outTimeDate,execTimeDate;

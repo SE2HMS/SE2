@@ -3,6 +3,7 @@ package strategy_bl_serv;
 import VO.StrategyVO;
 import strategy_bl_servlmpl.HotelStrategyBlServlmpl;
 
+import java.util.Date;
 import java.util.Iterator;
 
 public interface HotelStrategyBlServ {
@@ -20,7 +21,7 @@ public interface HotelStrategyBlServ {
 
 	public StrategyVO getOneStrategy(String hotelName,String strategyName);
 
-	public double getMinDiscount(String hotelName,String userId,int inTime,int outTime);
+	public double getMinDiscount(String hotelName,String userId,Date inTime,int roomNum);
 
 	/**
 	 * 给某个酒店增加一条促销策略
