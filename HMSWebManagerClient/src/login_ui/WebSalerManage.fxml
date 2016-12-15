@@ -12,9 +12,9 @@
 	<!-- TODO Add Nodes -->
 	<children>
       <TextField fx:id="inputField" layoutX="128.0" layoutY="58.0" prefHeight="23.0" prefWidth="282.0" promptText="网站营销人员ID" />
-      <Button fx:id="search" layoutX="424.0" layoutY="58.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="89.0" text="搜索" />
+      <Button fx:id="search" layoutX="424.0" layoutY="58.0" mnemonicParsing="false" onAction="#search" prefHeight="23.0" prefWidth="89.0" text="搜索" />
       <Hyperlink fx:id="addNew" layoutX="538.0" layoutY="59.0" onAction="#handleNewWebSaler" text="新增..." />
-      <AnchorPane layoutX="142.0" layoutY="105.0" prefHeight="283.0" prefWidth="403.0">
+      <AnchorPane fx:id="infoPane" layoutX="142.0" layoutY="105.0" prefHeight="283.0" prefWidth="403.0">
          <children>
             <GridPane layoutX="28.0" layoutY="51.0" prefHeight="137.0" prefWidth="339.0">
               <columnConstraints>
@@ -24,15 +24,18 @@
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Label text="ID" />
-                  <Label text="Label" GridPane.columnIndex="1" />
-                  <Label text="联系方式" GridPane.rowIndex="1" />
-                  <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="idLabel" text="Label" GridPane.columnIndex="1" />
+                  <Label text="联系方式" GridPane.rowIndex="2" />
+                  <Label fx:id="contactLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label text="用户名" GridPane.rowIndex="1" />
+                  <Label fx:id="nameLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
-            <Button layoutX="320.0" layoutY="235.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="74.0" text="编辑" />
+            <Button fx:id="edit" layoutX="320.0" layoutY="235.0" mnemonicParsing="false" onAction="#editWebSalerInfo" prefHeight="23.0" prefWidth="74.0" text="编辑" />
          </children>
       </AnchorPane>
    </children>

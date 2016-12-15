@@ -2,16 +2,12 @@ package login_ui;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import VO.LoginResult;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
-import login_bl_serv.LoginBlServ;
-import login_bl_servlmpl.LoginBlServImpl;
 
 public class LoginController implements Initializable{
 
@@ -51,7 +47,7 @@ public class LoginController implements Initializable{
 //    			 System.out.println(result);
     	 }
     	 else{
-    		 // Nothing selected.
+    	
     	     Alert alert = new Alert(AlertType.INFORMATION);
     	     alert.initOwner(mainApp.getPrimaryStage());
     	     alert.setTitle("Message");

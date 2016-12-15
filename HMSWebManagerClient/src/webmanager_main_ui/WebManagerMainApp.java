@@ -29,7 +29,6 @@ public class WebManagerMainApp extends Application {
             AnchorPane Overview = (AnchorPane) loader.load();
 
             MainController mainController = loader.getController();
-            mainController.setMainApp(this);
             // Show the scene containing the root layout.
             Scene scene = new Scene(Overview);
             primaryStage.setScene(scene);

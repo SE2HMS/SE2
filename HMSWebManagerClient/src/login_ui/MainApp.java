@@ -1,17 +1,9 @@
 package login_ui;
 
 import javafx.application.Application;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import rmi.RemoteRunner;
-
-import java.io.IOException;
 import java.io.InputStream;
 
-import com.sun.javafx.logging.Logger;
-
-import VO.*;
-import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
@@ -61,10 +53,27 @@ public class MainApp extends Application {
 		}
 	}
 	
+	/**
+	 * @param id 要编辑信息的会员的id
+	 */
+	public void editMemberInfo(String userID){
+		EditMemberInfoDialogController controller;
+		EditMemberInfoDialogController.setID(userID);
+		try {
+			// Set the person into the controller.
+			controller = (EditMemberInfoDialogController)replaceDiaSceneContent("EditMemberInfoDialog.fxml");
+			controller.setDialogStage(this.diaStage);
+			controller.setMainApp(this);
+
+
+//        return controller.isOkClicked();
+		} catch (Exception e) {
+			e.printStackTrace();
+//        return false;
+		}
+	}
 	
-	
-	
-	public void showAddHotelStaffDialog() { //括号内应为WebSaler saler
+	public void showAddHotelStaffDialog() { 
 		AddHotelStaffDialogController controller;
 		try {
 			// Set the person into the controller.
@@ -80,7 +89,20 @@ public class MainApp extends Application {
 		}
 	}
 	
-	
+	public void editHotelStaff(String id) { 
+		EditHotelStaffInfoController controller;
+		try {
+			// Set the person into the controller.
+			controller = (EditHotelStaffInfoController)replaceDiaSceneContent("EditHotelStaffInfo.fxml");
+			controller.setDialogStage(this.diaStage);
+			controller.setMainApp(this);
+			controller.setID(id);
+//        return controller.isOkClicked();
+		} catch (Exception e) {
+			e.printStackTrace();
+//        return false;
+		}
+	}
 	
 	
 	public void showAddWebSalerDialog() { //括号内应为WebSaler saler
@@ -93,8 +115,6 @@ public class MainApp extends Application {
 			
 //        controller.setWebSaler(saler);
 
-			
-
 //        return controller.isOkClicked();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -102,7 +122,20 @@ public class MainApp extends Application {
 		}
 	}
 	
-	
+	public void editWebSaler(String id) { 
+		EditWebSalerInfoController controller;
+		try {
+			// Set the person into the controller.
+			controller = (EditWebSalerInfoController)replaceDiaSceneContent("EditWebSalerInfo.fxml");
+			controller.setDialogStage(this.diaStage);
+			controller.setMainApp(this);
+			controller.setID(id);
+//        return controller.isOkClicked();
+		} catch (Exception e) {
+			e.printStackTrace();
+//        return false;
+		}
+	}
 	
 	
 	
