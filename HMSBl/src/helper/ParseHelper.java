@@ -220,6 +220,9 @@ public abstract class ParseHelper {
             case "REVOKE":
                 orderState = OrderState.REVOKE;
                 break;
+            case "WAITING":
+                orderState = OrderState.WAITING;
+                break;
         }
         return orderState;
     }

@@ -29,6 +29,11 @@ public class LoginBlServImpl implements LoginBlServ {
                 result = LoginResult.ALREADY_LOGIN;
             }else {
                 userPO.setIsLogin(1);
+                try {
+                    RemoteHelper.getInstance().getUserDataServ().modifiedUser(userPO);
+                }catch (RemoteException e) {
+                    e.printStackTrace();
+                }
                 result = LoginResult.SUCCESS;
             }
         }catch (RemoteException e) {
