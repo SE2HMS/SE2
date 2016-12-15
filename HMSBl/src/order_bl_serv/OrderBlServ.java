@@ -2,7 +2,6 @@ package order_bl_serv;
 
 import VO.OrderState;
 import VO.OrderVO;
-import com.sun.org.apache.xpath.internal.operations.Or;
 import order_bl_servlmpl.OrderBlServImpl;
 
 import java.util.Iterator;

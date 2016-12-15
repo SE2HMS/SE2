@@ -5,7 +5,6 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import PO.OrderPO;
-import VO.OrderState;
 
 public interface OrderDataServ extends Remote {
 

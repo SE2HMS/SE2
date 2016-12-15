@@ -1,8 +1,6 @@
 package comment_bl_servlmpl;
 
-import DataService.CommentDataServ;
 import PO.CommentPO;
-import VO.HotelVO;
 import comment_bl_serv.CommentBlServ;
 import rmi.RemoteHelper;
 

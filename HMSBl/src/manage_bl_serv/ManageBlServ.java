@@ -3,7 +3,6 @@ package manage_bl_serv;
 import VO.*;
 import manage_bl_servlmpl.ManageBlServImpl;
 
-import java.util.HashMap;
 import java.util.Iterator;
 
 public interface ManageBlServ {

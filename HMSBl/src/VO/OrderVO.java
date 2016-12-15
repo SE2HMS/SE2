@@ -1,8 +1,5 @@
 package VO;
 
-import rmi.RemoteHelper;
-
-import java.rmi.RemoteException;
 import java.util.Date;
 
 /**

@@ -3,10 +3,8 @@ package hotel_bl_serv;
 import VO.HotelVO;
 import VO.OrderVO;
 import VO.StrategyVO;
-import VO.UserVO;
 import hotel_bl_servlmpl.HotelBlServImpl;
 
-import java.util.Date;
 import java.util.Iterator;
 
 public interface HotelBlServ {

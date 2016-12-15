@@ -34,10 +34,10 @@ public interface BookBlServ {
 	 * @param roomAndNums 房间以及数量的表
 	 * @param children 有无儿童
 	 * @param persons 入住人数
-	 * @param inTime
-	 * @param outTime
-     * @param execTime
-     * @return
+	 * @param inTime 入住时间，0，1，2分别表示今天，明天，后天
+	 * @param outTime 退房时间，0，1，2分别表示明天，后天，大后天
+     * @param execTime 执行时间，0，1分别表示入住当天的18点和22点
+     * @return 返回预定结果，成功的时候会包含id，不成功的时候会有错误类型，以及错误信息
      */
 	public BookResult book(String hotelName, String userId, ArrayList<RoomAndNum> roomAndNums, boolean children, int persons, int inTime, int outTime, int execTime);
 
