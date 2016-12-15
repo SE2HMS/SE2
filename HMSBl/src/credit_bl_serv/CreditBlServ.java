@@ -40,6 +40,8 @@ public interface CreditBlServ {
      */
     public Iterator<CreditVO> getAllCreditInfo(String userId);
 
+    public boolean charge(String userId,double num);
+
     /**
      * 增加一条信用记录
      * @param creditVO

@@ -1,6 +1,8 @@
 package blTest;
 
 import VO.HotelVO;
+import VO.UserLoginInfo;
+import VO.UserType;
 import VO.UserVO;
 import hotel_bl_serv.HotelBlServ;
 import login_bl_serv.LoginBlServ;
@@ -17,7 +19,13 @@ import java.util.Iterator;
 public class AllTest {
     public static void main(String[] args) {
         new RemoteRunner();
-        new AllTest().showHotel();
+        new AllTest().getUser();
+    }
+
+    private void getUser() {
+        LoginBlServ.getInstance().register(new UserVO("ni","12332112321", UserType.NORMAL,"12/2/3"),new UserLoginInfo(null,"wasd"));
+        UserVO userVO = LoginBlServ.getInstance().getUserInfo("3");
+        System.out.println(userVO.getName());
     }
 
     private void showHotel() {

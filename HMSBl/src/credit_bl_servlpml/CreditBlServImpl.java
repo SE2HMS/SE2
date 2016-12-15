@@ -121,4 +121,25 @@ public class CreditBlServImpl implements CreditBlServ {
         }
         return success;
     }
+
+    @Override
+    public boolean charge(String userId, double num) {
+        double total = this.getTotal(userId);
+        total += num;
+        Date time = null;
+        try {
+            time = RemoteHelper.getInstance().getTimeServ().getTime();
+        }catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        String timeString = ParseHelper.dateToString(time);
+        CreditPO creditPO = new CreditPO(null,timeString,userId,total,num,OrderAction.RECHARGE.toString());
+        boolean success = false;
+        try {
+            success = RemoteHelper.getInstance().getCreditDataServ().insertCredit(creditPO);
+        }catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return success;
+    }
 }
