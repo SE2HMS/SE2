@@ -7,10 +7,34 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="450.0" prefWidth="635.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="websaler_main_ui.CreditRechargeController">
+<AnchorPane prefHeight="450.0" prefWidth="635.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login_ui.CreditRechargeController">
 	<!-- TODO Add Nodes -->
 	<children>
-      <TextField layoutX="171.0" layoutY="138.0" prefHeight="23.0" prefWidth="294.0" promptText="用户ID" />
-      <Button layoutX="244.0" layoutY="225.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="148.0" text="搜索" />
+      <TextField fx:id="inputField" layoutX="191.0" layoutY="60.0" prefHeight="23.0" prefWidth="174.0" promptText="用户ID" />
+      <Button fx:id="search" layoutX="427.0" layoutY="60.0" mnemonicParsing="false" onAction="#search" prefHeight="23.0" prefWidth="68.0" text="搜索" />
+      <AnchorPane fx:id="infoPane" layoutX="127.0" layoutY="120.0" prefHeight="269.0" prefWidth="398.0">
+         <children>
+            <GridPane layoutX="110.0" layoutY="50.0" prefHeight="147.0" prefWidth="189.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="id" />
+                  <Label text="用户名" GridPane.rowIndex="1" />
+                  <Label text="信用值" GridPane.rowIndex="2" />
+                  <Label fx:id="idLabel" text="Label" GridPane.columnIndex="1" />
+                  <Label fx:id="nameLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="creditLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+               </children>
+            </GridPane>
+            <Button fx:id="recharge" layoutX="316.0" layoutY="232.0" mnemonicParsing="false" onAction="#openCreditRecharge" prefHeight="23.0" prefWidth="68.0" text="充值" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

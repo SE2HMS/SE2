@@ -1,4 +1,4 @@
-package websaler_main_ui;
+package login_ui;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -8,7 +8,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import login_ui.MainApp;
 
 
 public class MainController implements Initializable{

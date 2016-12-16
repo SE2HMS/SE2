@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="450.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="websaler_main_ui.MainController">
+<AnchorPane prefHeight="450.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login_ui.MainController">
 	<!-- TODO Add Nodes -->
 	<children>
       <ImageView fitHeight="66.0" fitWidth="70.0" layoutX="19.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true" />
@@ -21,9 +21,9 @@
             <fx:include source="CreditRecharge.fxml" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="orderCheckPane" layoutX="107.0" prefHeight="200.0" prefWidth="200.0" visible="false">
+      <AnchorPane fx:id="orderCheckPane" layoutX="113.0" prefHeight="200.0" prefWidth="200.0" visible="false">
          <children>
-            <fx:include source="OrderCheck.fxml" />
+            <fx:include source="OrderInfo.fxml" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="webStrategyPane" layoutX="107.0" prefHeight="200.0" prefWidth="200.0" visible="false">

@@ -5,19 +5,18 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="280.0" prefWidth="407.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<AnchorPane prefHeight="280.0" prefWidth="407.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login_ui.CreditRechargeDialogController">
    <children>
-      <GridPane layoutX="109.0" layoutY="59.0">
+      <GridPane layoutX="110.0" layoutY="42.0" prefHeight="151.0" prefWidth="187.0">
          <children>
             <Label text="id" />
             <Label text="用户名" GridPane.rowIndex="1" />
             <Label text="信用值" GridPane.rowIndex="2" />
-            <Label text="Label" GridPane.columnIndex="1" />
-            <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="idLabel" text="Label" GridPane.columnIndex="1" />
+            <Label fx:id="nameLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="creditLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="充值金额" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="rechargefield" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -30,7 +29,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
       </GridPane>
-      <Button layoutX="109.0" layoutY="232.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="79.0" text="确认" />
-      <Button layoutX="219.0" layoutY="232.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="79.0" text="取消" />
+      <Button fx:id="confirm" layoutX="109.0" layoutY="232.0" mnemonicParsing="false" onAction="#saveAddedCredit" prefHeight="23.0" prefWidth="79.0" text="确认" />
+      <Button fx:id="cancel" layoutX="219.0" layoutY="232.0" mnemonicParsing="false" onAction="#giveup" prefHeight="23.0" prefWidth="79.0" text="取消" />
    </children>
 </AnchorPane>

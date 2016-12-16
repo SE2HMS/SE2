@@ -3,8 +3,9 @@ package login_ui;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import rmi.RemoteRunner;
-import websaler_main_ui.MainController;
-
+import user_main_ui.OrderDetailsController;
+import user_main_ui.OrderInfoController;
+import user_main_ui.OrderTableController;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -47,6 +48,9 @@ public class MainApp extends Application {
 	
 	public void showWebSalerMain(){
 		try {
+			CreditRechargeController.setMainApp(this);
+			OrderTableController.setUp(null, this);  //显示所有人的，等下看看
+			OrderInfoController.setUp(null, this);//显示所有人的，等下看看
 			MainController controller=(MainController) replaceSceneContent("Main.fxml");
 			controller.setMainApp(this);
 		} catch (Exception e) {
@@ -55,7 +59,29 @@ public class MainApp extends Application {
 		}
 	}
 	
+	public void showCreditRecharge(String id){
+		CreditRechargeDialogController controller;
+		CreditRechargeDialogController.setID(id);
+		try {
+			controller=(CreditRechargeDialogController) replaceSceneContent("CreditRechargeDialog.fxml");
+			controller.setDialogStage(diaStage);
+			controller.setMainApp(this);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
+	public void showOrderDetailsUI(String orderID){
+		OrderDetailsController controller;
+		OrderDetailsController.setUp(this, orderID);
+		try {
+			controller = (OrderDetailsController) replaceDiaSceneContent("OrderDetailsUI.fxml");
+			controller.setDialogStage(diaStage);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	/**
      * Returns the main stage.

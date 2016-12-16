@@ -1,4 +1,4 @@
-package websaler_main_ui;
+package login_ui;
 
 import javafx.beans.property.SimpleStringProperty;
 

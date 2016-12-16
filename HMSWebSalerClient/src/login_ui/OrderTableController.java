@@ -1,4 +1,4 @@
-package websaler_main_ui;
+package login_ui;
 
 import java.util.Iterator;
 
@@ -8,7 +8,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import login_ui.MainApp;
 import order_bl_serv.OrderBlServ;
 import order_bl_servlmpl.OrderBlServImpl;
 

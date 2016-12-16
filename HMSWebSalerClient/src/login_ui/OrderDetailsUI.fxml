@@ -4,7 +4,6 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="user_main_ui.OrderDetailsController">
    <children>
       <GridPane layoutX="38.0" layoutY="30.0" prefHeight="210.0" prefWidth="274.0">
@@ -48,7 +47,8 @@
       </TableView>
       <Label layoutX="184.0" layoutY="411.0" text="折后价" />
       <Label fx:id="totellabel" layoutX="281.0" layoutY="411.0" text="Label" />
-      <Button fx:id="revokebutton" layoutX="74.0" layoutY="443.0" mnemonicParsing="false" text="撤销" onAction="#revoke"/>
-      <Button fx:id="commentbutton" layoutX="202.0" layoutY="443.0" mnemonicParsing="false" text="评论" onAction="#comment"/>
+      <Button fx:id="revokebutton" layoutX="37.0" layoutY="443.0" mnemonicParsing="false" onAction="#revoke" text="恢复一半信用值" />
+      <Button fx:id="commentbutton" layoutX="272.0" layoutY="443.0" mnemonicParsing="false" onAction="#comment" text="返回" />
+      <Button fx:id="commentbutton1" layoutX="155.0" layoutY="443.0" mnemonicParsing="false" onAction="#comment" text="恢复全部信用值" />
    </children>
 </AnchorPane>
