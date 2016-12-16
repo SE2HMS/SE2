@@ -29,6 +29,10 @@ public class UserPO implements Serializable{
 		this.isLogin=isLogin;
 		//to be continue...
 	}
+
+	public void setSpecialInfo(String info) {
+		this.specialInfo = info;
+	}
 	
 	
 	public String getID(){

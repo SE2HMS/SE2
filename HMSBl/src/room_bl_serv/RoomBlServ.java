@@ -24,21 +24,6 @@ public interface RoomBlServ {
 	public boolean deleteRoom(String hotelName, String type);
 
 	/**
-	 * 这个是线上预定的用
-	 * 入住了减一（传-1）
-	 * 退房了加一
-	 * 撤销了也加
-	 * inTime和outTime不要传0进来= =
-	 * @param hotelName
-	 * @param type
-	 * @param num
-	 * @param inTime
-	 * @param outTime
-     * @return
-     */
-	public boolean changeRoomNum(String hotelName, ArrayList<String> type, ArrayList<Integer> num, int inTime, int outTime);
-
-	/**
 	 * 这个是用来手动改的时候调用的
 	 * （线下有人入住的时候用这个）
 	 * num可以是负的（入住的时候传负数，退房的时候传正数）
@@ -49,5 +34,13 @@ public interface RoomBlServ {
      */
 	public boolean offlineOrder(String hotelName,String type,int num);
 
+	/**
+	 * 订单状态修改时，应当调用此方法
+	 * 订单生成，订单撤销，订单异常时，都应该调用此方法
+	 * 订单生成时减少相应的房间数量
+	 * 异常和撤销时，增加房间数量
+	 * @param orderVO 相关的订单
+	 * @return 返回是否成功
+     */
 	public boolean changeRoomNum(OrderVO orderVO);
 }

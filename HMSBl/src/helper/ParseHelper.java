@@ -348,7 +348,7 @@ public abstract class ParseHelper {
         if (creditVO == null) {
             return null;
         }
-        String id = creditVO.getNum();
+        String id = null; // 订单id在数据库生成
         String time = creditVO.getTime().toString();
         String userId = creditVO.getUserId();
         double total = creditVO.getCredit();
@@ -360,6 +360,9 @@ public abstract class ParseHelper {
     }
 
     public static String orderActionToString(OrderAction action) {
+        if(action == null) {
+            return null;
+        }
         String result = "";
         switch (action) {
             case ABNORMAL:

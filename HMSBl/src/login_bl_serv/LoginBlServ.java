@@ -36,6 +36,16 @@ public interface LoginBlServ {
 
 	public HotelStaff getHotelStaff(String id);
 
+	/**
+	 * 只能给UserVO的用户用
+	 * 也就是NORMAL和SPECIAL类型
+	 * @param name
+	 * @param specialInfo
+	 * @param contact
+     * @return
+     */
+	public boolean modigyUserInfo(String id,String name,String specialInfo,String contact);
+
 	public WebManager getWebManager(String id);
 	/**
 	 * 登出

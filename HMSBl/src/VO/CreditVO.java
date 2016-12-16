@@ -34,6 +34,10 @@ public class CreditVO {
         return time;
     }
 
+    /**
+     * 这个是对应的订单id，似乎没有用呀
+     * @return
+     */
     public String getNum() {
         return num;
     }

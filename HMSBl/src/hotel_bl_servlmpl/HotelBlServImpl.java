@@ -19,7 +19,7 @@ public class HotelBlServImpl implements HotelBlServ {
 
     private String[] locations = new String[]{"NANJING"};
     private String[][] businessCIrcles = new String[][]{{"XIANLIN","XINJIEKOU"},{},{}};
-    private String[] roomTypes = new String[]{"SINGLE","DOUBLE"};
+    private String[] roomTypes = new String[]{"","SINGLE","DOUBLE"};
 
     private String getLocationString(int i) {
         return locations[i];
@@ -160,12 +160,23 @@ public class HotelBlServImpl implements HotelBlServ {
         ArrayList<HotelVO> hotelVOs = new ArrayList<>();
         while(hotelVOIterator.hasNext()) {
             HotelVO hotelVO = hotelVOIterator.next();
-            if(hotelVO.getName().matches("*" + name + "*")) {
+            if(hotelVO.getName().matches(".*" + name + ".*")) {
                 hotelVOs.add(hotelVO);
             }
         }
         return hotelVOs.iterator();
     }
+
+//    public static void main(String[] args) {
+//        HotelBlServImpl hotelBlServ = new HotelBlServImpl();
+//        ArrayList<HotelVO> hotelVOs = new ArrayList<>();
+//        HotelVO hotelVO = new HotelVO("you","","",null,0,"",null,0,null,null);
+//        hotelVOs.add(hotelVO);
+//        Iterator<HotelVO> hotelVOIterator = hotelBlServ.matchName(hotelVOs.iterator(),"ou");
+//        while(hotelVOIterator.hasNext()) {
+//            System.out.println(hotelVOIterator.next().getName());
+//        }
+//    }
 
     private Iterator<HotelVO> matchOrdered(Iterator<HotelVO> hotelVOIterator,boolean ordered,String userId) {
         if(hotelVOIterator == null) {

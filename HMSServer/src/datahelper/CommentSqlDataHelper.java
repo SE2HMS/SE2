@@ -55,7 +55,7 @@ public class CommentSqlDataHelper implements CommentDataHelper{
 		Connection conn=getConn();
 		int i=0;
 		PreparedStatement pstmt;
-		String sql="insert into comment (hotelname,details) values ("+"'"+c.getHotelName()+"','"+c.getDetials()+"')";
+		String sql="insert into comment (hotelname,details,commentlevel) values ("+"'"+c.getHotelName()+"','"+c.getDetials()+"','" +c.getCommentLevel() +"')";
 		 try {
 		        pstmt = (PreparedStatement) conn.prepareStatement(sql);
 		        i = pstmt.executeUpdate();

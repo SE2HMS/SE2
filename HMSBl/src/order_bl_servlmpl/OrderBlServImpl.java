@@ -20,18 +20,20 @@ import java.util.Iterator;
 public class OrderBlServImpl implements OrderBlServ {
 
     @Override
-    //加上修改信用,已添加
-    public boolean modifyOrderState(String orderId,OrderState state) {
-        OrderPO orderPO = null;
+    public boolean modifyOrderState(String orderId, OrderState state) {
+        if (orderId == null || state == null) {
+            return false;
+        }
+        OrderPO orderPO;
         boolean success = false;
         try {
-            orderPO  =RemoteHelper.getInstance().getOrderDataServ().getOrder(orderId);
+            orderPO = RemoteHelper.getInstance().getOrderDataServ().getOrder(orderId);
             orderPO.setType(state.toString());
             success = RemoteHelper.getInstance().getOrderDataServ().modifiedOrder(orderPO);
             OrderVO orderVO = ParseHelper.toOrderVO(orderPO);
             CreditBlServ.getInstance().changeCredit(orderVO);
             RoomBlServ.getInstance().changeRoomNum(orderVO);
-        }catch (RemoteException e) {
+        } catch (RemoteException e) {
             e.printStackTrace();
         }
         return success;
@@ -53,15 +55,15 @@ public class OrderBlServImpl implements OrderBlServ {
 
     @Override
     public Iterator<OrderVO> getNotInOrderList(String userId) {
-        return this.getOrderByState(OrderState.WAITING,userId);
+        return this.getOrderByState(OrderState.WAITING, userId);
     }
 
-    private Iterator<OrderVO> getOrderByState(OrderState state,String userId) {
+    private Iterator<OrderVO> getOrderByState(OrderState state, String userId) {
         Iterator<OrderVO> orderVOIterator = this.getOrderList(userId);
         ArrayList<OrderVO> orderVOs = new ArrayList<>();
-        while(orderVOIterator.hasNext()) {
+        while (orderVOIterator.hasNext()) {
             OrderVO orderVO = orderVOIterator.next();
-            if(orderVO.getState().equals(state)) {
+            if (orderVO.getState().equals(state)) {
                 orderVOs.add(orderVO);
             }
         }
@@ -70,17 +72,17 @@ public class OrderBlServImpl implements OrderBlServ {
 
     @Override
     public Iterator<OrderVO> getAbnormalOrderList(String userId) {
-        return this.getOrderByState(OrderState.ABNORMAL,userId);
+        return this.getOrderByState(OrderState.ABNORMAL, userId);
     }
 
     @Override
     public Iterator<OrderVO> getRevokeOrderList(String userId) {
-        return this.getOrderByState(OrderState.REVOKE,userId);
+        return this.getOrderByState(OrderState.REVOKE, userId);
     }
 
     @Override
     public Iterator<OrderVO> getFinishOrderList(String userId) {
-        return this.getOrderByState(OrderState.FINISH,userId);
+        return this.getOrderByState(OrderState.FINISH, userId);
     }
 
     @Override
@@ -89,12 +91,12 @@ public class OrderBlServImpl implements OrderBlServ {
         ArrayList<OrderVO> orderVOs = new ArrayList<>();
         try {
             orderPOs = RemoteHelper.getInstance().getOrderDataServ().getOrders(userId);
-        }catch (RemoteException e) {
+        } catch (RemoteException e) {
             e.printStackTrace();
         }
-        if(orderPOs == null) {
+        if (orderPOs == null) {
             return null;
-        }else {
+        } else {
             orderPOs.forEach(orderPO -> orderVOs.add(ParseHelper.toOrderVO(orderPO)));
         }
         return orderVOs.iterator();
@@ -103,11 +105,11 @@ public class OrderBlServImpl implements OrderBlServ {
     public OrderVO getLatestOrder(String userId) {
         Iterator<OrderVO> orderVOIterator = this.getOrderList(userId);
         OrderVO latest = null;
-        while(orderVOIterator.hasNext()) {
+        while (orderVOIterator.hasNext()) {
             OrderVO orderVO = orderVOIterator.next();
-            if(latest == null) {
+            if (latest == null) {
                 latest = orderVO;
-            }else if( Integer.parseInt(orderVO.getId()) > Integer.parseInt(latest.getId())) {
+            } else if (Integer.parseInt(orderVO.getId()) > Integer.parseInt(latest.getId())) {
                 latest = orderVO;
             }
         }
@@ -120,7 +122,7 @@ public class OrderBlServImpl implements OrderBlServ {
         try {
             ArrayList<OrderPO> orderPOs = RemoteHelper.getInstance().getOrderDataServ().getAllOrders();
             orderPOs.forEach(orderPO -> orderVOs.add(ParseHelper.toOrderVO(orderPO)));
-        }catch (RemoteException e) {
+        } catch (RemoteException e) {
             e.printStackTrace();
         }
         return orderVOs.iterator();
@@ -130,7 +132,7 @@ public class OrderBlServImpl implements OrderBlServ {
         Iterator<OrderVO> orderVOIterator = this.getAllOrderList();
         ArrayList<OrderVO> orderVOs = new ArrayList<>();
         orderVOIterator.forEachRemaining(orderVO -> {
-            if(orderVO.getState().equals(state))
+            if (orderVO.getState().equals(state))
                 orderVOs.add(orderVO);
         });
         return orderVOs.iterator();
@@ -138,27 +140,26 @@ public class OrderBlServImpl implements OrderBlServ {
 
     @Override
     public boolean revokeOrder(String orderId) {
-        boolean success = false;
+        if (orderId == null) {
+            return false;
+        }
+        OrderPO orderPO = null;
         try {
-            OrderPO orderPO = RemoteHelper.getInstance().getOrderDataServ().getOrder(orderId);
-            orderPO.setType("REVOKE");
-            String userId = orderPO.getUserID();
-            CreditBlServ.getInstance().addCredit(userId,"REVOKE",orderPO.getTotel()/2);
-            String hotelName = orderPO.getHotel();
-            ArrayList<String> roomType = orderPO.getRoom();
-            ArrayList<Integer> roomNum = orderPO.getNum();
-            Calendar calendar = Calendar.getInstance();
-            long millis = calendar.getTimeInMillis();
-            Date inDate = ParseHelper.stringToDate(orderPO.getInTime());
-            Date outDate = ParseHelper.stringToDate(orderPO.getOutTime());
-            int inTime = (int)(inDate.getTime() % 86400 - millis % 86400);
-            int outTime = (int)(outDate.getTime() % 86400 - millis % 86400);
-            RoomBlServ.getInstance().changeRoomNum(hotelName,roomType,roomNum,inTime,outTime);
-            success = RemoteHelper.getInstance().getOrderDataServ().modifiedOrder(orderPO);
-        }catch (RemoteException e) {
+            orderPO = RemoteHelper.getInstance().getOrderDataServ().getOrder(orderId);
+        } catch (RemoteException e) {
             e.printStackTrace();
         }
-        return  success;
+        orderPO.setType(OrderState.REVOKE.toString());
+        OrderVO orderVO = ParseHelper.toOrderVO(orderPO);
+        CreditBlServ.getInstance().changeCredit(orderVO);
+        RoomBlServ.getInstance().changeRoomNum(orderVO);
+        boolean success = false;
+        try {
+            success = RemoteHelper.getInstance().getOrderDataServ().modifiedOrder(orderPO);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return success;
     }
 
     @Override

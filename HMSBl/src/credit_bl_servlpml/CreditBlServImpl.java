@@ -22,6 +22,9 @@ public class CreditBlServImpl implements CreditBlServ {
 
     @Override
     public CreditVO getCreditInfo(String userId, String creditId) {
+        if(userId == null || creditId == null) {
+            return null;
+        }
         CreditPO creditPO = null;
         try {
             ArrayList<CreditPO> creditPOs = RemoteHelper.getInstance().getCreditDataServ().getDetial(userId);
@@ -38,6 +41,9 @@ public class CreditBlServImpl implements CreditBlServ {
 
     @Override
     public Iterator<CreditVO> getAllCreditInfo(String userId) {
+        if(userId == null) {
+            return null;
+        }
         ArrayList<CreditPO> creditPOs;
         ArrayList<CreditVO> creditVOs = new ArrayList<>();
         try {
@@ -54,6 +60,9 @@ public class CreditBlServImpl implements CreditBlServ {
 
     @Override
     public boolean addCredit(CreditVO creditVO) {
+        if(creditVO == null) {
+            return false;
+        }
         CreditPO creditPO = ParseHelper.toCreditPO(creditVO);
         boolean success = false;
         try {
@@ -66,6 +75,9 @@ public class CreditBlServImpl implements CreditBlServ {
 
     @Override
     public double getTotal(String userId) {
+        if(userId == null) {
+            return 0;
+        }
         double total = 0;
         try {
             ArrayList<CreditPO> creditPOs = RemoteHelper.getInstance().getCreditDataServ().getDetial(userId);
@@ -80,6 +92,9 @@ public class CreditBlServImpl implements CreditBlServ {
 
     @Override
     public void changeCredit(OrderVO orderVO) {
+        if(orderVO == null) {
+            return;
+        }
         Date time = Calendar.getInstance().getTime();
         String userId = orderVO.getUser().getId();
         String num = orderVO.getId();
@@ -90,8 +105,10 @@ public class CreditBlServImpl implements CreditBlServ {
             change = orderVO.getTotal();
             orderAction = OrderAction.CHECK_IN;
         }else if(orderVO.getState() == OrderState.REVOKE) {
-            change = orderVO.getTotal()/2;
-            orderAction = OrderAction.REVOKE;
+            if((orderVO.getExecTime().getTime() - time.getTime()) > 3600 * 6 ) {
+                change = orderVO.getTotal() / 2;
+                orderAction = OrderAction.REVOKE;
+            }
         }else if(orderVO.getState() == OrderState.ABNORMAL) {
             change = -orderVO.getTotal();
             orderAction = OrderAction.ABNORMAL;
@@ -102,28 +119,12 @@ public class CreditBlServImpl implements CreditBlServ {
     }
 
     @Override
-    public boolean addCredit(String userId, String action,double num) {
+    public boolean charge(String userId, double num) {
         if(userId == null) {
             return false;
         }
-        boolean success = false;
-        try {
-            Date time = RemoteHelper.getInstance().getTimeServ().getTime();
-            String timeString = ParseHelper.dateToString(time);
-            double total = CreditBlServ.getInstance().getTotal(userId);
-            total += num;
-            CreditPO creditPO = new CreditPO(null,timeString,userId,total,num,action);
-            success = RemoteHelper.getInstance().getCreditDataServ().insertCredit(creditPO);
-        }catch (RemoteException e) {
-            e.printStackTrace();
-        }
-        return success;
-    }
-
-    @Override
-    public boolean charge(String userId, double num) {
         double total = this.getTotal(userId);
-        total += num;
+        total += num * 100;
         Date time = null;
         try {
             time = RemoteHelper.getInstance().getTimeServ().getTime();

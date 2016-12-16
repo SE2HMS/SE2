@@ -12,10 +12,10 @@ import java.rmi.RemoteException;
 public class CommentBlServImpl implements CommentBlServ{
 
 	@Override
-	/**
-	 * 分数还要加上去
-	 */
 	public boolean comment(String hotelName, String comment, double commentLevel) {
+		if(hotelName == null || comment == null || (commentLevel < 0 || commentLevel >5)) {
+			return false;
+		}
 		boolean success = false;
 		try {
 			CommentPO commentPO = new CommentPO(hotelName,comment,commentLevel);

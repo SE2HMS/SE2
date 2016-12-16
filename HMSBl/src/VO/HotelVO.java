@@ -1,6 +1,8 @@
 package VO;
 
 
+import order_bl_serv.OrderBlServ;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -53,6 +55,29 @@ public class HotelVO {
 
     public String getIntro() {
         return intro;
+    }
+
+    public double getAverageCommentLv() {
+        Iterator<CommentVO> commentVOIterator = this.getComments();
+        double totalLv = 0;
+        int count = 0;
+        while(commentVOIterator.hasNext()) {
+            double lv = commentVOIterator.next().getLevel();
+            totalLv += lv;
+            count++;
+        }
+        return totalLv/count;
+    }
+
+    public boolean haveOrdered(String userId) {
+        Iterator<OrderVO> orderVOIterator = OrderBlServ.getInstance().getOrderList(userId);
+        while(orderVOIterator.hasNext()) {
+            OrderVO orderVO = orderVOIterator.next();
+            if(orderVO.getHotel().getHotelName().equals(this.getName())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public double getMinPrice() {
