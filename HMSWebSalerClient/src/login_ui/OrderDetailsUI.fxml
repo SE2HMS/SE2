@@ -4,7 +4,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="user_main_ui.OrderDetailsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login_ui.OrderDetailsController">
    <children>
       <GridPane layoutX="38.0" layoutY="30.0" prefHeight="210.0" prefWidth="274.0">
         <columnConstraints>
@@ -42,13 +42,13 @@
           <TableColumn fx:id="roomtypecol" prefWidth="69.0" text="房间类型" />
           <TableColumn fx:id="roomnumcol" prefWidth="76.0" text="预定数目" />
             <TableColumn fx:id="pricecol" prefWidth="67.0" text="房间价格" />
-            <TableColumn fx:id="subtotelcol" prefWidth="61.0" text="小计" />
+            <TableColumn fx:id="subtotalcol" prefWidth="61.0" text="小计" />
         </columns>
       </TableView>
       <Label layoutX="184.0" layoutY="411.0" text="折后价" />
-      <Label fx:id="totellabel" layoutX="281.0" layoutY="411.0" text="Label" />
-      <Button fx:id="revokebutton" layoutX="37.0" layoutY="443.0" mnemonicParsing="false" onAction="#revoke" text="恢复一半信用值" />
-      <Button fx:id="commentbutton" layoutX="272.0" layoutY="443.0" mnemonicParsing="false" onAction="#comment" text="返回" />
-      <Button fx:id="commentbutton1" layoutX="155.0" layoutY="443.0" mnemonicParsing="false" onAction="#comment" text="恢复全部信用值" />
+      <Label fx:id="totallabel" layoutX="281.0" layoutY="411.0" text="Label" />
+      <Button fx:id="halfButton" layoutX="37.0" layoutY="443.0" mnemonicParsing="false" onAction="#resumeHalf" text="恢复一半信用值" />
+      <Button fx:id="closeButton" layoutX="272.0" layoutY="443.0" mnemonicParsing="false" onAction="#comment" text="返回" />
+      <Button fx:id="allButton" layoutX="155.0" layoutY="443.0" mnemonicParsing="false" onAction="#resumrAll" text="恢复全部信用值" />
    </children>
 </AnchorPane>

@@ -3,9 +3,7 @@ package login_ui;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import rmi.RemoteRunner;
-import user_main_ui.OrderDetailsController;
-import user_main_ui.OrderInfoController;
-import user_main_ui.OrderTableController;
+
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -49,8 +47,8 @@ public class MainApp extends Application {
 	public void showWebSalerMain(){
 		try {
 			CreditRechargeController.setMainApp(this);
-			OrderTableController.setUp(null, this);  //显示所有人的，等下看看
-			OrderInfoController.setUp(null, this);//显示所有人的，等下看看
+			OrderTableController.setUp(this);  
+			OrderInfoController.setUp(this);
 			MainController controller=(MainController) replaceSceneContent("Main.fxml");
 			controller.setMainApp(this);
 		} catch (Exception e) {

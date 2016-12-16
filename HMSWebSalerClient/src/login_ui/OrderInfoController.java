@@ -4,8 +4,10 @@ import java.util.Iterator;
 
 import VO.OrderVO;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import login_ui.MainApp;
 import order_bl_serv.OrderBlServ;
@@ -22,24 +24,15 @@ public class OrderInfoController {
 	private Button checkbutton;
 	
 	@FXML
-	private Button allbutton;
-	
-	@FXML
 	private Button undobutton;
-	
-	@FXML
-	private Button dobutton;
-	
-	@FXML
-	private Button revokebutton;
-	
+
+
 	@FXML
 	private Button abnormalbutton;
 	
 	@FXML
 	private TextField idfield;
 	
-	private static String id;
 	
 	private static MainApp mainApp;
 	
@@ -47,8 +40,8 @@ public class OrderInfoController {
 	
 	private Iterator<OrderVO> orderList;
 	
-	public static void setUp(String id,MainApp mainApp){
-		OrderInfoController.id=id;
+	public static void setUp(MainApp mainApp){
+
 		OrderInfoController.mainApp=mainApp;
 	}
 	
@@ -58,33 +51,19 @@ public class OrderInfoController {
 		OrderTable.setVisible(true);
 	}
 	
-	@FXML
-	public void all(){
-		orderList=orderBlServ.getOrderList(id);
-		OrderTableController.setData(orderList);
-	}
+
 	
 	@FXML 
 	public void undo(){
-		orderList=orderBlServ.getNotInOrderList(id);
+		orderList = orderBlServ.getAllNotInOrderList();
 		OrderTableController.setData(orderList);
 	}
 	
-	@FXML
-	public void hasdone(){
-		orderList=orderBlServ.getFinishOrderList(id);
-		OrderTableController.setData(orderList);
-	}
 	
-	@FXML
-	public void revoke(){
-		orderList=orderBlServ.getRevokeOrderList(id);
-		OrderTableController.setData(orderList);
-	}
 	
 	@FXML
 	public void abnormal(){
-		orderList=orderBlServ.getAbnormalOrderList(id);
+		orderList = orderBlServ.getAllAbnormalOrderList();
 		OrderTableController.setData(orderList);
 	}
 	
@@ -93,8 +72,14 @@ public class OrderInfoController {
 		
 		if(orderBlServ.getOrderInfo(idfield.getText())!=null)
 			mainApp.showOrderDetailsUI(idfield.getText());
-		else
-			mainApp.showErrorMessage("���������ڣ�");
+		else{
+			Alert alert = new Alert(AlertType.INFORMATION);
+	        alert.setTitle("Message");
+	        alert.setHeaderText("错误");
+	        alert.setContentText("找不到该ID的订单！");
+	        alert.showAndWait();
+		}
+			
 	}
 
 }

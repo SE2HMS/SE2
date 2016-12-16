@@ -5,6 +5,10 @@ import java.util.ResourceBundle;
 
 import VO.OrderState;
 import VO.OrderVO;
+import VO.UserInOrder;
+import VO.UserVO;
+import credit_bl_serv.CreditBlServ;
+import credit_bl_servlpml.CreditBlServImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -56,12 +60,12 @@ public class OrderDetailsController implements Initializable{
 	@FXML
 	private Label totallabel;
 	
-	@FXML 
-	private Button revokebutton;
-	
-	@FXML 
-	private Button commentbutton;
-	
+	@FXML
+	private Button halfButton;
+	@FXML
+	private Button allButton;
+	@FXML
+	private Button closeButton;
 	@FXML
 	private TableView<RoomTable> table;
 	
@@ -75,13 +79,13 @@ public class OrderDetailsController implements Initializable{
 	private TableColumn<RoomTable,String> pricecol;
 	
 	@FXML
-	private TableColumn<RoomTable,String> subtotelcol;
+	private TableColumn<RoomTable,String> subtotalcol;
 	
-	private OrderBlServ orderBlServ=new OrderBlServImpl();
-	
+	private OrderBlServ orderBlServ = new OrderBlServImpl();
+	private CreditBlServ creditBlServ = new CreditBlServImpl();
 	private final ObservableList<RoomTable> data = FXCollections.observableArrayList(); 
-	
-	
+	OrderVO o;
+	UserInOrder user;
 
 	public void setDialogStage(Stage diaStage) {
 		// TODO Auto-generated method stub
@@ -97,14 +101,11 @@ public class OrderDetailsController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		revokebutton.setDisable(true);
+		;
 
-		OrderVO o=orderBlServ.getOrderInfo(orderID);
-		
-		if(o.getState().equals(OrderState.WAITING))
-			revokebutton.setDisable(false);
-		if(o.getState().equals(OrderState.FINISH))
-			commentbutton.setDisable(false);
+		o=orderBlServ.getOrderInfo(orderID);
+		user = o.getUser();
+		userID = user.getName();
 		if(o.getState().equals(OrderState.REVOKE))
 			changeablelabel.setText("����ʱ��");
 			orderidlabel.setText(o.getId());
@@ -120,22 +121,24 @@ public class OrderDetailsController implements Initializable{
 			roomtypecol.setCellValueFactory(cellData->cellData.getValue().roomtypeProperty());
 			roomnumcol.setCellValueFactory(cellData->cellData.getValue().ordernumProperty());
 			pricecol.setCellValueFactory(cellData->cellData.getValue().priceProperty());
-			subtotelcol.setCellValueFactory(cellData->cellData.getValue().subtotelProperty());
+			subtotalcol.setCellValueFactory(cellData->cellData.getValue().subtotelProperty());
 	}
 	
 	@FXML
-	public void revoke(){
-		
+	public void giveup(){
+		this.stage.close();
 	}
 	
 	@FXML
 	public void resumeHalf(){
-		
+		double num = o.getTotal()/2.0;
+		creditBlServ.charge(userID, num);
 	}
 	
 	@FXML
-	public void resumrAll(){
-		
+	public void resumeAll(){
+		double num = o.getTotal();
+		creditBlServ.charge(userID, num);
 	}
 
 }

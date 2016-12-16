@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="461.0" prefWidth="629.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="websaler_main_ui.OrderCheckController">
+<AnchorPane prefHeight="461.0" prefWidth="629.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login_ui.OrderInfoController">
    <children>
       <Button fx:id="searchbutton" layoutX="441.0" layoutY="21.0" mnemonicParsing="false" onAction="#search" prefHeight="23.0" prefWidth="77.0" text="搜索" />
       <TextField fx:id="idfield" layoutX="175.0" layoutY="21.0" prefHeight="23.0" prefWidth="229.0" />

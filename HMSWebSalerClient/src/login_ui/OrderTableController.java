@@ -2,16 +2,19 @@ package login_ui;
 
 import java.util.Iterator;
 
-import VO.*;
+import VO.OrderVO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import order_bl_serv.OrderBlServ;
 import order_bl_servlmpl.OrderBlServImpl;
 
 public class OrderTableController {
+	@FXML
+	private Button checkButton;
 	@FXML
 	private TableView<OrderTable> table;
 	
@@ -42,12 +45,12 @@ public class OrderTableController {
 	
 	private static final ObservableList<OrderTable> data = FXCollections.observableArrayList(); 
 	
-	private static String id;
+
 	
 	private static MainApp mainApp;
 	
-	public static void setUp(String id,MainApp mainApp){
-		OrderTableController.id=id;
+	public static void setUp(MainApp mainApp){
+		
 		OrderTableController.mainApp=mainApp;
 	}
 	
@@ -86,5 +89,12 @@ public class OrderTableController {
 	public void check(){
 //		if(table.getSelectionModel().getSelectedItem()!=null)
 //			mainApp.showOrderDetailsUI(table.getSelectionModel().getSelectedItem().getOrderID());
+//		else{
+//			Alert alert = new Alert(AlertType.INFORMATION);
+//	        alert.setTitle("Message");
+//	        alert.setHeaderText("错误");
+//	        alert.setContentText("请选择一条订单！");
+//	        alert.showAndWait();
+//		}
 	}
 }
