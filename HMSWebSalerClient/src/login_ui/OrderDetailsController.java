@@ -82,7 +82,7 @@ public class OrderDetailsController implements Initializable{
 	private TableColumn<RoomTable,String> subtotalcol;
 	
 	private OrderBlServ orderBlServ = new OrderBlServImpl();
-	private CreditBlServ creditBlServ = new CreditBlServImpl();
+
 	private final ObservableList<RoomTable> data = FXCollections.observableArrayList(); 
 	OrderVO o;
 	UserInOrder user;
@@ -131,14 +131,12 @@ public class OrderDetailsController implements Initializable{
 	
 	@FXML
 	public void resumeHalf(){
-		double num = o.getTotal()/2.0;
-		creditBlServ.charge(userID, num);
+		orderBlServ.revokeExceptionOrder(orderID, true);
 	}
 	
 	@FXML
 	public void resumeAll(){
-		double num = o.getTotal();
-		creditBlServ.charge(userID, num);
+		orderBlServ.revokeExceptionOrder(orderID, false);
 	}
 
 }

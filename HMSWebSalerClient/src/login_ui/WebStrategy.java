@@ -2,11 +2,11 @@ package login_ui;
 
 import javafx.beans.property.SimpleStringProperty;
 
-public class WebStrategyTable { 
+public class WebStrategy { 
 	private final SimpleStringProperty type;
 	private final SimpleStringProperty name;
 
-	public WebStrategyTable(String type,String name){
+	public WebStrategy(String type,String name){
 		this.type=new SimpleStringProperty(type);
 		this.name=new SimpleStringProperty(name);
 
@@ -20,7 +20,7 @@ public class WebStrategyTable {
 		return type;
 	}
 	
-	public SimpleStringProperty hotelnameProperty(){
+	public SimpleStringProperty nameProperty(){
 		return name;
 	}
 	

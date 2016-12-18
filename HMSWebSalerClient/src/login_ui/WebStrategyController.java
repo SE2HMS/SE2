@@ -2,47 +2,32 @@ package login_ui;
 
 import java.util.Iterator;
 
-import VO.OrderVO;
-import VO.UserVO;
+import VO.StrategyVO;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
-import login_bl_serv.LoginBlServ;
-import login_bl_servlmpl.LoginBlServImpl;
-import order_bl_serv.OrderBlServ;
-import order_bl_servlmpl.OrderBlServImpl;
+import strategy_bl_serv.WebStrategyBlServ;
+import strategy_bl_servlmpl.WebStrategyBlServlmpl;
 
 public class WebStrategyController {
 	@FXML
-	private AnchorPane OrderTable;
-	
-	@FXML
-	private Button searchbutton;
+	private AnchorPane webStrategyTable;
 	
 	@FXML
 	private Button checkbutton;
-	
-	@FXML
-	private Button undobutton;
-
 
 	@FXML
-	private Button abnormalbutton;
-	
+	private Hyperlink addNewdate;
 	@FXML
-	private TextField idfield;
-	
+	private Hyperlink addNewCBD;
 	
 	private static MainApp mainApp;
-	
-	private OrderBlServ orderBlServ=new OrderBlServImpl();
-	
-	private Iterator<OrderVO> orderList;
-	
+
+	private WebStrategyBlServ strategyBlServ = new WebStrategyBlServlmpl();
+
+	private Iterator<StrategyVO> strategyList;
 	public static void setUp(MainApp mainApp){
 
 		WebStrategyController.mainApp=mainApp;
@@ -51,25 +36,19 @@ public class WebStrategyController {
 		
 	@FXML
 	public void initialize(){
-		OrderTable.setVisible(true);
+		webStrategyTable.setVisible(true);
+		strategyList = strategyBlServ.getStrategy();
+		WebStrategyTableController.setData(strategyList);
 	}
-	
 
-	
-	@FXML 
-	public void undo(){
-		orderList = orderBlServ.getAllNotInOrderList();
-		OrderTableController.setData(orderList);
-	}
-	
-	
-	
 	@FXML
-	public void abnormal(){
-		orderList = orderBlServ.getAllAbnormalOrderList();
-		OrderTableController.setData(orderList);
+	public void checkDetails(){
+//		mainApp.
 	}
-	
-	
+
+	@FXML
+	public void addNewStrategy(){
+		
+	}
 	
 }
