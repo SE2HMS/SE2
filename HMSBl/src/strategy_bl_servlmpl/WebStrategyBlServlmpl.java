@@ -22,7 +22,7 @@ public class WebStrategyBlServlmpl implements WebStrategyBlServ {
         ArrayList<WebStrategyPO> webStrategyPOs;
         ArrayList<StrategyVO> strategyVOs = new ArrayList<>();
         try {
-            webStrategyPOs = RemoteHelper.getInstance().getWebStrategyDataServ().getStrategyList();
+            webStrategyPOs = RemoteHelper.getInstance().getWebStrategyDataServ().getWebStrategyList();
             webStrategyPOs.forEach(webStrategyPO -> strategyVOs.add(ParseHelper.toStrategyVO(webStrategyPO)));
         } catch (RemoteException e) {
             e.printStackTrace();
@@ -35,7 +35,7 @@ public class WebStrategyBlServlmpl implements WebStrategyBlServ {
         WebStrategyPO webStrategyPO = ParseHelper.toWebStrategyPO(strategy);
         boolean success = false;
         try {
-            success = RemoteHelper.getInstance().getWebStrategyDataServ().insertStrategy(webStrategyPO);
+            success = RemoteHelper.getInstance().getWebStrategyDataServ().insertWebStrategy(webStrategyPO);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -47,7 +47,7 @@ public class WebStrategyBlServlmpl implements WebStrategyBlServ {
         WebStrategyPO webStrategyPO = ParseHelper.toWebStrategyPO(strategy);
         boolean success = false;
         try {
-            success = RemoteHelper.getInstance().getWebStrategyDataServ().modifiedStrategy(webStrategyPO);
+            success = RemoteHelper.getInstance().getWebStrategyDataServ().modifiedWebStrategy(webStrategyPO);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -56,10 +56,10 @@ public class WebStrategyBlServlmpl implements WebStrategyBlServ {
 
     @Override
     public boolean delStrategy(StrategyVO strategy) {
-        String id = "id";
         boolean success = false;
         try {
-            success = RemoteHelper.getInstance().getWebStrategyDataServ().deleteStrategy(id);
+            WebStrategyPO webStrategyPO = ParseHelper.toWebStrategyPO(strategy);
+            success = RemoteHelper.getInstance().getWebStrategyDataServ().deleteWebStrategy(webStrategyPO);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -116,5 +116,29 @@ public class WebStrategyBlServlmpl implements WebStrategyBlServ {
             }
         }
         return 0;
+    }
+
+    @Override
+    public boolean addDoubleElevenStrategy(String strategyName,double discount,Date startTime,Date endTime) {
+        DoubleElevenStrategy doubleElevenStrategy = new DoubleElevenStrategy(strategyName,discount,startTime,endTime);
+        boolean success = this.addStrategy(doubleElevenStrategy);
+        return success;
+    }
+
+    @Override
+    public boolean addLevelStrategy(String strategyName,int upgradeCredit) {
+        LevelStrategy levelStrategy = new LevelStrategy(strategyName,upgradeCredit);
+        if(this.getLevelStrategy() != null) {
+            this.delStrategy(this.getLevelStrategy());
+        }
+        boolean success = this.addStrategy(levelStrategy);
+        return success;
+    }
+
+    @Override
+    public boolean addCBDStrategy(String name,double lev0,double lev1,double lev2,String CBD) {
+        CBDStrategy cbdStrategy = new CBDStrategy(name,lev0,lev1, lev2,CBD);
+        boolean success = this.addStrategy(cbdStrategy);
+        return success;
     }
 }

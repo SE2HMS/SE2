@@ -4,20 +4,20 @@ package VO;
  * Created by Administrator on 2016/11/22.
  */
 public class RoomInOrder {
-    private final String type;
+    private final String name;
     private final int num;
     private final double price;
     private final double total;
 
-    public RoomInOrder(String type,int num,double price,double total) {
-        this.type = type;
+    public RoomInOrder(String name, int num, double price, double total) {
+        this.name = name;
         this.num = num;
         this.price = price;
         this.total = total;
     }
 
-    public String getType() {
-        return type;
+    public String getName() {
+        return name;
     }
 
     public int getNum() {

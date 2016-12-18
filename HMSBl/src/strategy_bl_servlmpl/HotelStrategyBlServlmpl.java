@@ -20,7 +20,7 @@ public class HotelStrategyBlServlmpl implements HotelStrategyBlServ{
 		ArrayList<StrategyVO> strategyVOs = new ArrayList<>();
 		ArrayList<HotelStrategyPO> hotelStrategyPOs;
 		try {
-			hotelStrategyPOs = RemoteHelper.getInstance().getHotelStrategyDataServ().getStrategyList(hotelName);
+			hotelStrategyPOs = RemoteHelper.getInstance().getHotelStrategyDataServ().getHotelStrategyList(hotelName);
 			hotelStrategyPOs.forEach(hotelStrategyPO -> strategyVOs.add(ParseHelper.toStrategyVO(hotelStrategyPO)));
 		}catch (RemoteException e) {
 			e.printStackTrace();
@@ -33,7 +33,7 @@ public class HotelStrategyBlServlmpl implements HotelStrategyBlServ{
 		boolean success = false;
 		try {
 			HotelStrategyPO hotelStrategyPO = ParseHelper.toHotelStrategyPO(hotelName,strategy);
-			success = RemoteHelper.getInstance().getHotelStrategyDataServ().insertStrategy(hotelStrategyPO);
+			success = RemoteHelper.getInstance().getHotelStrategyDataServ().insertHotelStrategy(hotelStrategyPO);
 		}catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -45,7 +45,7 @@ public class HotelStrategyBlServlmpl implements HotelStrategyBlServ{
 		boolean success = false;
 		try {
 			HotelStrategyPO hotelStrategyPO = ParseHelper.toHotelStrategyPO(hotelName,strategy);
-			success = RemoteHelper.getInstance().getHotelStrategyDataServ().modifiedStrategy(hotelStrategyPO);
+			success = RemoteHelper.getInstance().getHotelStrategyDataServ().modifiedHotelStrategy(hotelStrategyPO);
 		}catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -60,7 +60,7 @@ public class HotelStrategyBlServlmpl implements HotelStrategyBlServ{
 		boolean success = false;
 		try {
 			HotelStrategyPO hotelStrategyPO = ParseHelper.toHotelStrategyPO(hotelName,strategy);
-			success = RemoteHelper.getInstance().getHotelStrategyDataServ().deleteStrategy("id");
+			success = RemoteHelper.getInstance().getHotelStrategyDataServ().deleteHotelStrategy(hotelStrategyPO);
 		}catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -119,7 +119,7 @@ public class HotelStrategyBlServlmpl implements HotelStrategyBlServ{
 		}
 		ArrayList<HotelStrategyPO> strategyPOs = new ArrayList<>();
 		try {
-			strategyPOs = RemoteHelper.getInstance().getHotelStrategyDataServ().getStrategyList(hotelName);
+			strategyPOs = RemoteHelper.getInstance().getHotelStrategyDataServ().getHotelStrategyList(hotelName);
 		}catch (RemoteException e) {
 			e.printStackTrace();
 		}

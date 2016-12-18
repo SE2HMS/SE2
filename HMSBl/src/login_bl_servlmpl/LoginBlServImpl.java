@@ -246,9 +246,16 @@ public class LoginBlServImpl implements LoginBlServ {
     }
 
     @Override
-    public boolean modigyUserInfo(String id, String name, String specialInfo, String contact) {
+    public boolean modifyUserInfo(String id, String name, String specialInfo, String contact) {
+        if(id == null) {
+            return false;
+        }
         boolean success = false;
         try {
+            UserPO test = RemoteHelper.getInstance().getUserDataServ().getUser(name,contact);
+            if(test != null) {
+                return false;
+            }
             UserPO userPO = RemoteHelper.getInstance().getUserDataServ().getUser(id);
             userPO.setName(name);
             userPO.setContactInfo(contact);

@@ -32,13 +32,13 @@ public class RoomBlServImpl implements RoomBlServ {
     }
 
     @Override
-    public boolean addRoom(String hotelName, String type, int total, double price) {
+    public boolean addRoom(String hotelName, String type, int total, double price, String name) {
         if (hotelName == null || type == null) {
             return false;
         }
         boolean success = false;
         try {
-            RoomPO roomPO = new RoomPO(hotelName, type, new int[]{total, total, total}, total, 0, price);
+            RoomPO roomPO = new RoomPO(hotelName, type, new int[]{total, total, total}, total, 0, price, name);
             success = RemoteHelper.getInstance().getRoomDataServ().insertRoom(roomPO);
         } catch (RemoteException e) {
             e.printStackTrace();
@@ -47,17 +47,17 @@ public class RoomBlServImpl implements RoomBlServ {
     }
 
     @Override
-    public boolean deleteRoom(String hotelName, String type) {
-        if (hotelName == null || type == null) {
+    public boolean deleteRoom(String hotelName, String name) {
+        if (hotelName == null || name == null) {
             return false;
         }
         boolean success = false;
         try {
-            RoomPO roomPO = RemoteHelper.getInstance().getRoomDataServ().getRoom(hotelName, type);
+            RoomPO roomPO = RemoteHelper.getInstance().getRoomDataServ().getRoom(hotelName, name);
             if (roomPO == null) {
                 return false;
             }
-            success = RemoteHelper.getInstance().getRoomDataServ().deleteRoom(hotelName, type);
+            success = RemoteHelper.getInstance().getRoomDataServ().deleteRoom(hotelName, name);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -70,22 +70,22 @@ public class RoomBlServImpl implements RoomBlServ {
      * 传入正数就是正数，传入负数就是负数
      *
      * @param hotelName 酒店名
-     * @param type      房间类型的表
+     * @param name      房间名称的表
      * @param num       房间数量的表
      * @param inTime    入住时间
      * @param outTime   退房时间
      * @return 返回是否成功
      */
-    private boolean changeRoomNum(String hotelName, ArrayList<String> type, ArrayList<Integer> num, int inTime, int outTime) {
-        if (inTime == 0 || outTime == 0 || hotelName == null || type == null) {
+    private boolean changeRoomNum(String hotelName, ArrayList<String> name, ArrayList<Integer> num, int inTime, int outTime) {
+        if (inTime == 0 || outTime == 0 || hotelName == null || name == null) {
             return false;
         }
         boolean success = true;
         try {
-            for (int i = 0; i < type.size(); i++) {
-                String aType = type.get(i);
+            for (int i = 0; i < name.size(); i++) {
+                String aName = name.get(i);
                 int aNum = num.get(i);
-                RoomPO roomPO = RemoteHelper.getInstance().getRoomDataServ().getRoom(hotelName, aType);
+                RoomPO roomPO = RemoteHelper.getInstance().getRoomDataServ().getRoom(hotelName, aName);
                 int avail[] = roomPO.getNum();
                 for (int j = inTime; j < outTime; j++) {
                     avail[i] += aNum;
@@ -126,7 +126,7 @@ public class RoomBlServImpl implements RoomBlServ {
         ArrayList<Integer> nums = new ArrayList<>();
         for (int i = 0; i < rooms.size(); i++) {
             RoomInOrder roomInOrder = rooms.get(i);
-            types.add(roomInOrder.getType());
+            types.add(roomInOrder.getName());
             //预定减少，异常撤销增加
             if (orderVO.getState().equals(OrderState.WAITING)) {
                 nums.add(-roomInOrder.getNum());

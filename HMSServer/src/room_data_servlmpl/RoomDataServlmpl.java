@@ -53,14 +53,24 @@ public class RoomDataServlmpl implements RoomDataServ{
 			}
 		}).start();
 	}
-	
-	
 
 	@Override
-	public RoomPO getRoom(String hotelname, String type) throws RemoteException {
+	public ArrayList<RoomPO> getRoomByType(String hotelname,String type) throws RemoteException {
+		ArrayList<RoomPO> roomPOs = new ArrayList<>();
+		for(int i = 0;i<list.size();i++) {
+			if(list.get(i).getHn().equals(hotelname)
+				&&list.get(i).getType().equals(type)) {
+				roomPOs.add(list.get(i));
+			}
+		}
+		return roomPOs;
+	}
+
+	@Override
+	public RoomPO getRoom(String hotelname, String name) throws RemoteException {
 		for(int i=0;i<list.size();i++){
 			if(list.get(i).getHn().equals(hotelname)
-					&&list.get(i).getType().equals(type))
+					&&list.get(i).getName().equals(name))
 				return list.get(i);
 		}
 		return null;

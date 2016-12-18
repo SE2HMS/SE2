@@ -18,25 +18,61 @@ public interface ManageBlServ {
      */
     public Iterator<UserVO> getAllUserInfo();
 
+    /**
+     * 得到所有的酒店工作人员
+     *
+     * @return
+     */
     public Iterator<HotelStaff> getAllHotelStaff();
 
+    /**
+     * 得到所有的网站销售人员
+     *
+     * @return
+     */
     public Iterator<WebSaler> getAllWebSaler();
 
     /**
      * 增加一条用户信息
      *
-     * @param user
-     * @param info
+     * @param user 用户
+     * @param info 只要密码
      * @return 返回是否成功
      */
     public boolean addUserInfo(UserVO user, UserLoginInfo info);
 
-    public boolean addWebSaler(WebSaler webSaler,UserLoginInfo info);
+    /**
+     * 增加网站销售人员
+     *
+     * @param webSaler 网站销售人员
+     * @param info     登录信息，实际上只要密码
+     * @return 返回是否成功
+     */
+    public boolean addWebSaler(WebSaler webSaler, UserLoginInfo info);
 
-    public boolean addHotelStaff(HotelStaff hotelStaff,UserLoginInfo info);
+    /**
+     * 增加酒店工作人员
+     *
+     * @param hotelStaff 该酒店工作人员
+     * @param info       只要面
+     * @return 返回是否成功
+     */
+    public boolean addHotelStaff(HotelStaff hotelStaff, UserLoginInfo info);
 
+    /**
+     * 修改网站销售人员的方法，需要修改
+     *
+     * @param webSaler 网站销售人员
+     * @return 是否成功
+     */
     public boolean modifyWebSaler(WebSaler webSaler);
 
+    /**
+     * 修改酒店工作人员
+     *
+     * @param hotelStaff 酒店工作人员
+     * @return 返回是否成功
+     */
     public boolean modifyHotelStaff(HotelStaff hotelStaff);
 
     /**

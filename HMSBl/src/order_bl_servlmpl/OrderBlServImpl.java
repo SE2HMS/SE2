@@ -55,15 +55,14 @@ public class OrderBlServImpl implements OrderBlServ {
 
     @Override
     public Iterator<OrderVO> getNotInOrderList(String userId) {
-        return this.getOrderByState(OrderState.WAITING, userId);
+        return this.getOrderByState(this.getOrderList(userId),OrderState.WAITING);
     }
 
-    private Iterator<OrderVO> getOrderByState(OrderState state, String userId) {
-        Iterator<OrderVO> orderVOIterator = this.getOrderList(userId);
+    private Iterator<OrderVO> getOrderByState(Iterator<OrderVO> orderVOIterator,OrderState state) {
         ArrayList<OrderVO> orderVOs = new ArrayList<>();
-        while (orderVOIterator.hasNext()) {
+        while(orderVOIterator.hasNext()) {
             OrderVO orderVO = orderVOIterator.next();
-            if (orderVO.getState().equals(state)) {
+            if(orderVO.getState().equals(state)) {
                 orderVOs.add(orderVO);
             }
         }
@@ -72,17 +71,17 @@ public class OrderBlServImpl implements OrderBlServ {
 
     @Override
     public Iterator<OrderVO> getAbnormalOrderList(String userId) {
-        return this.getOrderByState(OrderState.ABNORMAL, userId);
+        return this.getOrderByState(this.getOrderList(userId),OrderState.ABNORMAL);
     }
 
     @Override
     public Iterator<OrderVO> getRevokeOrderList(String userId) {
-        return this.getOrderByState(OrderState.REVOKE, userId);
+        return this.getOrderByState(this.getOrderList(userId),OrderState.REVOKE);
     }
 
     @Override
     public Iterator<OrderVO> getFinishOrderList(String userId) {
-        return this.getOrderByState(OrderState.FINISH, userId);
+        return this.getOrderByState(this.getOrderList(userId),OrderState.FINISH);
     }
 
     @Override
@@ -128,16 +127,6 @@ public class OrderBlServImpl implements OrderBlServ {
         return orderVOs.iterator();
     }
 
-    private Iterator<OrderVO> getStateAllOrderList(OrderState state) {
-        Iterator<OrderVO> orderVOIterator = this.getAllOrderList();
-        ArrayList<OrderVO> orderVOs = new ArrayList<>();
-        orderVOIterator.forEachRemaining(orderVO -> {
-            if (orderVO.getState().equals(state))
-                orderVOs.add(orderVO);
-        });
-        return orderVOs.iterator();
-    }
-
     @Override
     public boolean revokeOrder(String orderId) {
         if (orderId == null) {
@@ -164,21 +153,72 @@ public class OrderBlServImpl implements OrderBlServ {
 
     @Override
     public Iterator<OrderVO> getAllNotInOrderList() {
-        return this.getStateAllOrderList(OrderState.WAITING);
+        return this.getOrderByState(this.getAllOrderList(),OrderState.WAITING);
     }
 
     @Override
     public Iterator<OrderVO> getAllAbnormalOrderList() {
-        return this.getStateAllOrderList(OrderState.ABNORMAL);
+        return this.getOrderByState(this.getAllOrderList(),OrderState.ABNORMAL);
     }
 
     @Override
     public Iterator<OrderVO> getAllRevokeOrderList() {
-        return this.getStateAllOrderList(OrderState.REVOKE);
+        return this.getOrderByState(this.getAllOrderList(),OrderState.REVOKE);
     }
 
     @Override
     public Iterator<OrderVO> getAllFinishOrderList() {
-        return this.getStateAllOrderList(OrderState.FINISH);
+        return this.getOrderByState(this.getAllOrderList(),OrderState.FINISH);
+    }
+
+    @Override
+    public Iterator<OrderVO> getHotelOrderList(String hotelName) {
+        if (hotelName == null) {
+            return null;
+        }
+        Iterator<OrderVO> orderVOIterator = this.getAllOrderList();
+        ArrayList<OrderVO> orderVOs = new ArrayList<>();
+        while(orderVOIterator.hasNext()) {
+            OrderVO orderVO = orderVOIterator.next();
+            if(orderVO.getHotel().getHotelName().equals(hotelName)) {
+                orderVOs.add(orderVO);
+            }
+        }
+        return orderVOs.iterator();
+    }
+
+    @Override
+    public Iterator<OrderVO> getHotelNotInOrderList(String hotelName) {
+        return this.getOrderByState(this.getHotelOrderList(hotelName),OrderState.WAITING);
+    }
+
+    @Override
+    public Iterator<OrderVO> getHotelFinishOrderList(String hotelName) {
+        return this.getOrderByState(this.getHotelOrderList(hotelName),OrderState.FINISH);
+    }
+
+    @Override
+    public Iterator<OrderVO> getHotelAbnomalOrderList(String hotelName) {
+        return this.getOrderByState(this.getHotelOrderList(hotelName),OrderState.ABNORMAL);
+    }
+
+    @Override
+    public Iterator<OrderVO> getHotelRevokeOrderList(String hotelName) {
+        return this.getOrderByState(this.getHotelOrderList(hotelName),OrderState.REVOKE);
+    }
+
+    @Override
+    public boolean checkIn(String orderId) {
+        return this.modifyOrderState(orderId,OrderState.FINISH);
+    }
+
+    @Override
+    public boolean checkOut(String orderId) {
+        return this.modifyOrderState(orderId,OrderState.FINISH);
+    }
+
+    @Override
+    public boolean delayCheckIn(String orderId) {
+        return this.modifyOrderState(orderId,OrderState.FINISH);
     }
 }
