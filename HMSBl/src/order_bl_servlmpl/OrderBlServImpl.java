@@ -10,8 +10,6 @@ import room_bl_serv.RoomBlServ;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Iterator;
 
 /**
@@ -20,19 +18,25 @@ import java.util.Iterator;
 public class OrderBlServImpl implements OrderBlServ {
 
     @Override
-    public boolean modifyOrderState(String orderId, OrderState state) {
-        if (orderId == null || state == null) {
+    public boolean modifyOrderState(String orderId, UserOrderAction action) {
+        if(orderId == null || action == null) {
             return false;
         }
         OrderPO orderPO;
         boolean success = false;
         try {
             orderPO = RemoteHelper.getInstance().getOrderDataServ().getOrder(orderId);
-            orderPO.setType(state.toString());
+            if(action.equals(UserOrderAction.CHECK_IN) || action.equals(UserOrderAction.CHECK_OUT) || action.equals(UserOrderAction.DELAY)) {
+                orderPO.setType("FINISH");
+            }else if(action.equals(UserOrderAction.EXCEPTION)) {
+                orderPO.setType("EXCEPTION");
+            }else if(action.equals(UserOrderAction.REVOKE)) {
+                orderPO.setType("REVOKE");
+            }
             success = RemoteHelper.getInstance().getOrderDataServ().modifiedOrder(orderPO);
             OrderVO orderVO = ParseHelper.toOrderVO(orderPO);
-            CreditBlServ.getInstance().changeCredit(orderVO);
-            RoomBlServ.getInstance().changeRoomNum(orderVO);
+            CreditBlServ.getInstance().changeCredit(orderVO,action);
+            RoomBlServ.getInstance().changeRoomNum(orderVO,action);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -140,8 +144,8 @@ public class OrderBlServImpl implements OrderBlServ {
         }
         orderPO.setType(OrderState.REVOKE.toString());
         OrderVO orderVO = ParseHelper.toOrderVO(orderPO);
-        CreditBlServ.getInstance().changeCredit(orderVO);
-        RoomBlServ.getInstance().changeRoomNum(orderVO);
+        CreditBlServ.getInstance().changeCredit(orderVO,UserOrderAction.REVOKE);
+        RoomBlServ.getInstance().changeRoomNum(orderVO,UserOrderAction.REVOKE);
         boolean success = false;
         try {
             success = RemoteHelper.getInstance().getOrderDataServ().modifiedOrder(orderPO);
@@ -209,16 +213,25 @@ public class OrderBlServImpl implements OrderBlServ {
 
     @Override
     public boolean checkIn(String orderId) {
-        return this.modifyOrderState(orderId,OrderState.FINISH);
+        return this.modifyOrderState(orderId,UserOrderAction.CHECK_IN);
     }
 
     @Override
     public boolean checkOut(String orderId) {
-        return this.modifyOrderState(orderId,OrderState.FINISH);
+        return this.modifyOrderState(orderId,UserOrderAction.CHECK_OUT);
     }
 
     @Override
     public boolean delayCheckIn(String orderId) {
-        return this.modifyOrderState(orderId,OrderState.FINISH);
+        return this.modifyOrderState(orderId,UserOrderAction.DELAY);
+    }
+
+    @Override
+    public boolean revokeExceptionOrder(String orderId, boolean all) {
+        if(all) {
+            return this.modifyOrderState(orderId, UserOrderAction.REVOKE_ALL);
+        }else {
+            return this.modifyOrderState(orderId,UserOrderAction.REVOKE_HALF);
+        }
     }
 }

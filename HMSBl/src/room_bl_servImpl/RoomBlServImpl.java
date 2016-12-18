@@ -113,11 +113,14 @@ public class RoomBlServImpl implements RoomBlServ {
     }
 
     @Override
-    public boolean changeRoomNum(OrderVO orderVO) {
+    public boolean changeRoomNum(OrderVO orderVO,UserOrderAction action) {
         if (orderVO == null) {
             return false;
         }
-        if (orderVO.getState().equals(OrderState.FINISH)) {
+        if (orderVO.getState().equals(OrderState.FINISH) && !action.equals(UserOrderAction.CHECK_OUT)) {
+            return false;
+        }
+        if(action.equals(UserOrderAction.REVOKE_ALL) || action.equals(UserOrderAction.REVOKE_HALF)) {
             return false;
         }
         String hotelName = orderVO.getHotel().getHotelName();
@@ -128,7 +131,7 @@ public class RoomBlServImpl implements RoomBlServ {
             RoomInOrder roomInOrder = rooms.get(i);
             types.add(roomInOrder.getName());
             //预定减少，异常撤销增加
-            if (orderVO.getState().equals(OrderState.WAITING)) {
+            if (orderVO.getState().equals(OrderState.WAITING) || action.equals(UserOrderAction.DELAY)) {
                 nums.add(-roomInOrder.getNum());
             } else {
                 nums.add(roomInOrder.getNum());

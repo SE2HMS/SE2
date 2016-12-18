@@ -2,6 +2,7 @@ package room_bl_serv;
 
 import VO.OrderVO;
 import VO.RoomVO;
+import VO.UserOrderAction;
 import room_bl_servImpl.RoomBlServImpl;
 
 import java.util.ArrayList;
@@ -58,7 +59,8 @@ public interface RoomBlServ {
      * 异常和撤销时，增加房间数量
      *
      * @param orderVO 相关的订单
+     * @param action 动作
      * @return 返回是否成功
      */
-    public boolean changeRoomNum(OrderVO orderVO);
+    public boolean changeRoomNum(OrderVO orderVO, UserOrderAction action);
 }

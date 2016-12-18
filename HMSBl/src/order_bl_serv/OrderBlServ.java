@@ -2,6 +2,7 @@ package order_bl_serv;
 
 import VO.OrderState;
 import VO.OrderVO;
+import VO.UserOrderAction;
 import order_bl_servlmpl.OrderBlServImpl;
 
 import java.util.Iterator;
@@ -67,10 +68,10 @@ public interface OrderBlServ {
      * 以及信用信息
      *
      * @param orderId 订单的id
-     * @param state   状态
+     * @param action  动作
      * @return 返回是否成功
      */
-    public boolean modifyOrderState(String orderId, OrderState state);
+    public boolean modifyOrderState(String orderId, UserOrderAction action);
 
     /**
      * 得到一个用户的未执行订单列表
@@ -127,6 +128,8 @@ public interface OrderBlServ {
     public boolean checkOut(String orderId);
 
     public boolean delayCheckIn(String orderId);
+
+    public boolean revokeExceptionOrder(String orderId,boolean all);
 
     /**
      * 撤销订单
