@@ -17,6 +17,14 @@ public class CooperativeStrategy implements StrategyVO {
         this.companies = companies;
     }
 
+    public CooperativeStrategy(String name,double discount,Iterator<String> companies) {
+        this.name = name;
+        this.discount = discount;
+        ArrayList<String> list = new ArrayList<>();
+        companies.forEachRemaining(s -> list.add(s));
+        this.companies = list;
+    }
+
     public String getName() {
         return name;
     }

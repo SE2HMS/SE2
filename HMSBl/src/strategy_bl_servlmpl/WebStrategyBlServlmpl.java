@@ -54,8 +54,8 @@ public class WebStrategyBlServlmpl implements WebStrategyBlServ {
         return success;
     }
 
-    @Override
-    public boolean delStrategy(StrategyVO strategy) {
+//    @Override
+    private boolean delStrategy(StrategyVO strategy) {
         boolean success = false;
         try {
             WebStrategyPO webStrategyPO = ParseHelper.toWebStrategyPO(strategy);
@@ -135,10 +135,40 @@ public class WebStrategyBlServlmpl implements WebStrategyBlServ {
         return success;
     }
 
+    private StrategyVO getOneStrategy(String strategyName) {
+        Iterator<StrategyVO> strategyVOIterator = this.getStrategy();
+        while(strategyVOIterator.hasNext()) {
+            StrategyVO strategyVO = strategyVOIterator.next();
+            if(strategyVO.getType().equals("date")) {
+                DoubleElevenStrategy strategy = (DoubleElevenStrategy) strategyVO;
+                if(strategy.getName().equals(strategyName)) {
+                    return strategy;
+                }
+            }if(strategyVO.getType().equals("level")) {
+                LevelStrategy strategy = (LevelStrategy) strategyVO;
+                if(strategy.getName().equals(strategyName)) {
+                    return strategy;
+                }
+            }if(strategyVO.getType().equals("CBD")) {
+                CBDStrategy strategy = (CBDStrategy) strategyVO;
+                if(strategy.getName().equals(strategyName)) {
+                    return strategy;
+                }
+            }
+        }
+        return null;
+    }
+
     @Override
     public boolean addCBDStrategy(String name,double lev0,double lev1,double lev2,String CBD) {
         CBDStrategy cbdStrategy = new CBDStrategy(name,lev0,lev1, lev2,CBD);
         boolean success = this.addStrategy(cbdStrategy);
         return success;
+    }
+
+    @Override
+    public boolean delStrategy(String strategyName) {
+        StrategyVO strategyVO = this.getOneStrategy(strategyName);
+        return this.delStrategy(strategyVO);
     }
 }

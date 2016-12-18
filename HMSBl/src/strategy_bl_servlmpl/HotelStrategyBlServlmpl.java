@@ -52,11 +52,11 @@ public class HotelStrategyBlServlmpl implements HotelStrategyBlServ{
 		return success;
 	}
 
-	@Override
-	/**
-	 * id是啥
-	 */
-	public boolean delStrategy(String hotelName, StrategyVO strategy) {
+//	@Override
+//	/**
+//	 * id是啥
+//	 */
+	private boolean delStrategy(String hotelName, StrategyVO strategy) {
 		boolean success = false;
 		try {
 			HotelStrategyPO hotelStrategyPO = ParseHelper.toHotelStrategyPO(hotelName,strategy);
@@ -65,6 +65,18 @@ public class HotelStrategyBlServlmpl implements HotelStrategyBlServ{
 			e.printStackTrace();
 		}
 		return success;
+	}
+
+	@Override
+	public boolean delStrategy(String hotelName, String strategyName) {
+		if(hotelName == null || strategyName == null) {
+			return false;
+		}
+		StrategyVO strategyVO = this.getOneStrategy(hotelName,strategyName);
+		if(strategyVO == null) {
+			return false;
+		}
+		return this.delStrategy(hotelName,strategyVO);
 	}
 
 	@Override
@@ -129,5 +141,28 @@ public class HotelStrategyBlServlmpl implements HotelStrategyBlServ{
 			strategyVO = ParseHelper.toStrategyVO(hotelStrategyPO);
 		}
 		return strategyVO;
+	}
+
+	@Override
+	public boolean modifyStrategy(String hotelName, String strategyName, Date startTime, Date endTime, double discount) {
+		if(hotelName == null || strategyName == null) {
+			return false;
+		}
+		StrategyVO strategyVO = this.getOneStrategy(hotelName, strategyName);
+		if(strategyVO == null) {
+			return false;
+		}else if(strategyVO.getType().equals("date")) {
+			DoubleElevenStrategy newStrategy = new DoubleElevenStrategy(strategyName,discount,startTime,endTime);
+			return this.modifyStrategy(hotelName,newStrategy);
+		}else if(strategyVO.getType().equals("companies")) {
+			CooperativeStrategy strategy = (CooperativeStrategy) strategyVO;
+			CooperativeStrategy newStrategy  =new CooperativeStrategy(strategyName,discount,strategy.getCompanies());
+			return this.modifyStrategy(hotelName,newStrategy);
+		}else if(strategyVO.getType().equals("roomnum")) {
+			RoomNumberStrategy newStrategy = new RoomNumberStrategy(strategyName,discount);
+			return this.modifyStrategy(hotelName,newStrategy);
+		}else {
+			return false;
+		}
 	}
 }

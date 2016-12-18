@@ -54,12 +54,14 @@ public interface WebStrategyBlServ {
      */
     public boolean modifyStrategy(StrategyVO strategy);
 
-    /**
-     * 删除一条策略
-     * 这个参数似乎不太对
-     *
-     * @param strategy
-     * @return
-     */
-    public boolean delStrategy(StrategyVO strategy);
+//    /**
+//     * 删除一条策略
+//     * 这个参数似乎不太对
+//     *
+//     * @param strategy
+//     * @return
+//     */
+//    public boolean delStrategy(StrategyVO strategy);
+
+    public boolean delStrategy(String strategyName);
 }

@@ -46,6 +46,8 @@ public interface HotelStrategyBlServ {
      */
     public boolean addStrategy(String hotelName, StrategyVO strategy);
 
+    public boolean modifyStrategy(String hotelName,String strategyName,Date startTime,Date endTime,double discount);
+
     /**
      * 修改一个促销策略
      *
@@ -55,12 +57,20 @@ public interface HotelStrategyBlServ {
      */
     public boolean modifyStrategy(String hotelName, StrategyVO strategy);
 
+//    /**
+//     * 删除一个促销策略
+//     *
+//     * @param hotelName 策略所属酒店名
+//     * @param strategy  应删除的策略
+//     * @return
+//     */
+//    public boolean delStrategy(String hotelName, StrategyVO strategy);
+
     /**
-     * 删除一个促销策略
      *
-     * @param hotelName 策略所属酒店名
-     * @param strategy  应删除的策略
+     * @param hotelName
+     * @param strategyName
      * @return
      */
-    public boolean delStrategy(String hotelName, StrategyVO strategy);
+    public boolean delStrategy(String hotelName,String strategyName);
 }
