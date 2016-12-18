@@ -94,7 +94,23 @@ public class HotelBlServImpl implements HotelBlServ {
         return hotelVOs.iterator();
     }
 
-    private Iterator<HotelVO> matchPrice(Iterator<HotelVO> hotelVOIterator,double min,double max) {
+    @Override
+    public boolean modifyHotelInfo(String hotelName,double star, int location, int businessCircle, String intro) {
+        boolean success = false;
+        try {
+            HotelPO hotelPO = RemoteHelper.getInstance().getHotelDataServ().getHotel(hotelName);
+            hotelPO.setStars(star);
+            hotelPO.setAddress(this.getLocationString(location));
+            hotelPO.setBC(this.getBusinessCircle(location,businessCircle));
+            hotelPO.setINTRO(intro);
+            success = RemoteHelper.getInstance().getHotelDataServ().modifiedHotel(hotelPO);
+        }catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return success;
+    }
+
+    private Iterator<HotelVO> matchPrice(Iterator<HotelVO> hotelVOIterator, double min, double max) {
         if(hotelVOIterator == null) {
             return null;
         }else if(min == 0&& max == 0) {

@@ -10,7 +10,7 @@ public interface WebStrategyDataServ extends Remote{
 	
 	public boolean insertWebStrategy(WebStrategyPO strategyPO) throws RemoteException;
 	
-	public ArrayList<WebStrategyPO> getWebStrategyList(String strategynaem,String bc) throws RemoteException;
+	public ArrayList<WebStrategyPO> getWebStrategyList() throws RemoteException;
 	
 	public boolean deleteWebStrategy(WebStrategyPO w) throws RemoteException;
 	

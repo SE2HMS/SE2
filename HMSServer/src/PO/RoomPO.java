@@ -3,12 +3,12 @@ package PO;
 import java.io.Serializable;
 
 public class RoomPO implements Serializable{
-	private String hotelname,type;
+	private String hotelname,type,name;
 	private int[] number;
 	private int totel,offlineOrdered;
 	private double price;
 	
-	public RoomPO(String hn,String t,int[] num,int totel,int offlineOrdered,double price){
+	public RoomPO(String hn,String t,int[] num,int totel,int offlineOrdered,double price,String name){
 		super();
 		this.hotelname=hn;
 		this.type=t;
@@ -16,6 +16,11 @@ public class RoomPO implements Serializable{
 		this.totel=totel;
 		this.offlineOrdered = offlineOrdered;
 		this.price=price;
+		this.name = name;
+	}
+
+	public String getName() {
+		return name;
 	}
 	
 	public String getHn(){

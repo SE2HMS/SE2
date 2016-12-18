@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import PO.HotelStrategyPO;
 
 public interface HotelStrategyDataServ extends Remote{
-	
-	public boolean insertStrategy(HotelStrategyPO strategyPO) throws RemoteException;
-	
-	public ArrayList<HotelStrategyPO> getStrategyList (String hotelName) throws RemoteException;
-	
-	public boolean deleteStrategy(String id) throws RemoteException;
-	
-	public boolean modifiedStrategy(HotelStrategyPO strategy) throws RemoteException;
-	
+
+	public boolean insertHotelStrategy(HotelStrategyPO strategyPO) throws RemoteException;
+
+	public ArrayList<HotelStrategyPO> getHotelStrategyList(String hotelname) throws RemoteException;
+
+	public boolean deleteHotelStrategy(HotelStrategyPO strategyPO) throws RemoteException;
+
+	public boolean modifiedHotelStrategy(HotelStrategyPO strategy) throws RemoteException;
+
 }

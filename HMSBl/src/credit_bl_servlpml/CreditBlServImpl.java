@@ -1,10 +1,7 @@
 package credit_bl_servlpml;
 
 import PO.CreditPO;
-import VO.CreditVO;
-import VO.OrderAction;
-import VO.OrderState;
-import VO.OrderVO;
+import VO.*;
 import credit_bl_serv.CreditBlServ;
 import helper.ParseHelper;
 import rmi.RemoteHelper;
@@ -91,8 +88,8 @@ public class CreditBlServImpl implements CreditBlServ {
     }
 
     @Override
-    public void changeCredit(OrderVO orderVO) {
-        if(orderVO == null) {
+    public void changeCredit(OrderVO orderVO, UserOrderAction action) {
+        if(orderVO == null || action == null) {
             return;
         }
         Date time = Calendar.getInstance().getTime();
@@ -102,12 +99,26 @@ public class CreditBlServImpl implements CreditBlServ {
         double change = 0;
         double total = this.getTotal(userId);
         if(orderVO.getState() == OrderState.FINISH) {
-            change = orderVO.getTotal();
-            orderAction = OrderAction.CHECK_IN;
+            if(action.equals(UserOrderAction.CHECK_IN) || action.equals(UserOrderAction.DELAY)) {
+                change = orderVO.getTotal();
+                orderAction = OrderAction.CHECK_IN;
+            }else if(action.equals(UserOrderAction.CHECK_OUT)) {
+                return;
+            }
         }else if(orderVO.getState() == OrderState.REVOKE) {
-            if((orderVO.getExecTime().getTime() - time.getTime()) > 3600 * 6 ) {
-                change = orderVO.getTotal() / 2;
+            if (action.equals(UserOrderAction.REVOKE)) {
+                if ((orderVO.getExecTime().getTime() - time.getTime()) > 3600 * 6) {
+                    change = orderVO.getTotal() / 2;
+                    orderAction = OrderAction.REVOKE;
+                } else {
+                    return;
+                }
+            } else if(action.equals(UserOrderAction.REVOKE_ALL)) {
+                change = orderVO.getTotal();
                 orderAction = OrderAction.REVOKE;
+            } else if(action.equals(UserOrderAction.REVOKE_HALF)) {
+                change = orderVO.getTotal() / 2;
+                orderAction = orderAction.REVOKE;
             }
         }else if(orderVO.getState() == OrderState.ABNORMAL) {
             change = -orderVO.getTotal();

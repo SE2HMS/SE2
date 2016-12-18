@@ -7,13 +7,14 @@ import java.util.ArrayList;
 import PO.WebStrategyPO;
 
 public interface WebStrategyDataServ extends Remote{
-	
-	public boolean insertStrategy(WebStrategyPO strategyPO) throws RemoteException;
-	
-	public ArrayList<WebStrategyPO> getStrategyList () throws RemoteException;
-	
-	public boolean deleteStrategy(String id) throws RemoteException;
-	
-	public boolean modifiedStrategy(WebStrategyPO strategy) throws RemoteException;
-	
+
+	public boolean insertWebStrategy(WebStrategyPO strategyPO) throws RemoteException;
+
+	public ArrayList<WebStrategyPO> getWebStrategyList() throws RemoteException;
+
+	public boolean deleteWebStrategy(WebStrategyPO w) throws RemoteException;
+
+	public boolean modifiedWebStrategy(WebStrategyPO strategy) throws RemoteException;
+
+
 }

@@ -40,7 +40,7 @@ public class RoomSqlDataHelper implements RoomDataHelper{
 	        while(rs.next()){
 	        	int[] a={(int)rs.getByte("day0"),(int)rs.getByte("day1"),(int)rs.getByte("day2")};
 	        	RoomPO r=new RoomPO(rs.getString("hotelname"),rs.getString("roomtype"),a,
-	        			rs.getInt("totel"),rs.getInt("offline"),rs.getDouble("price"));
+	        			rs.getInt("totel"),rs.getInt("offline"),rs.getDouble("price"),rs.getString("name"));
 	        	list.add(r);
 	        }
 	        conn.close();
@@ -58,7 +58,7 @@ public class RoomSqlDataHelper implements RoomDataHelper{
 		PreparedStatement pstmt;
 		String sql="update rooms set day0=" + r.getNum()[0] +
 				", day1="+r.getNum()[1]+", day2="+r.getNum()[2]+
-				",totel="+r.getTotel()+",price="+r.getPrice()+ ",offline=" + r.getOfflineOrdered() +
+				",totel="+r.getTotel()+",price="+r.getPrice()+ ",offline=" + r.getOfflineOrdered() +",name=" + r.getName()+
 				"where hotelname='" + r.getHn() + "' and roomtype='"+r.getType()+"'";
 		try {
 	        pstmt = (PreparedStatement) conn.prepareStatement(sql);
@@ -75,9 +75,9 @@ public class RoomSqlDataHelper implements RoomDataHelper{
 		Connection conn=getConn();
 		int i=0;
 		PreparedStatement pstmt;
-		String sql="insert into rooms(hotelname,roomtype,day0,day1,day2,totel,price,offline) values("+
+		String sql="insert into rooms(hotelname,roomtype,day0,day1,day2,totel,price,offline,name) values("+
 		"'"+r.getHn()+"','"+r.getType()+"',"+r.getNum()[0]+","+r.getNum()[1]+
-		","+r.getNum()[2]+","+r.getTotel()+","+r.getPrice() +r.getOfflineOrdered() +")";
+		","+r.getNum()[2]+","+r.getTotel()+","+r.getPrice() +r.getOfflineOrdered() + r.getName() +")";
 		 try {
 		        pstmt = (PreparedStatement) conn.prepareStatement(sql);
 		        i = pstmt.executeUpdate();

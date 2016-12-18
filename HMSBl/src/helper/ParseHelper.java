@@ -152,11 +152,12 @@ public abstract class ParseHelper {
     public static RoomVO toRoomVO(RoomPO roomPO) {
         String hotelName = roomPO.getHn();
         String type = roomPO.getType();
+        String name = roomPO.getName();
         double price = roomPO.getPrice();
         int total = roomPO.getTotel();
         int[] available = roomPO.getNum();
         int offlineOrdered = roomPO.getOfflineOrdered();
-        RoomVO roomVO = new RoomVO(hotelName,type,price,total,offlineOrdered,available);
+        RoomVO roomVO = new RoomVO(hotelName,type,name,price,total,offlineOrdered,available);
         return roomVO;
     }
 
@@ -168,11 +169,12 @@ public abstract class ParseHelper {
     public static RoomPO toRoomPO(RoomVO roomVO) {
         String hotelName = roomVO.getHotelName();
         String type = roomVO.getType();
+        String name = roomVO.getName();
         double price = roomVO.getPrice();
         int total = roomVO.getTotal();
         int[] available = roomVO.getAvailable();
         int offlineOrdered = roomVO.getOfflineOrdered();
-        RoomPO roomPO = new RoomPO(hotelName,type,available,total,offlineOrdered,price);
+        RoomPO roomPO = new RoomPO(hotelName,type,available,total,offlineOrdered,price,name);
         return roomPO;
     }
 

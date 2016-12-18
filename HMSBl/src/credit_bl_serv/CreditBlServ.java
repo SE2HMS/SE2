@@ -2,6 +2,7 @@ package credit_bl_serv;
 
 import VO.CreditVO;
 import VO.OrderVO;
+import VO.UserOrderAction;
 import credit_bl_servlpml.CreditBlServImpl;
 
 import java.util.Iterator;
@@ -32,8 +33,9 @@ public interface CreditBlServ {
      * 改为撤销，如果在最晚入住时间六小时内，扣一半的信用
      * 改为未执行，是不可能的，所以直接啥都不干
      * @param orderVO 该订单
+     * @param action 动作
      */
-    public void changeCredit(OrderVO orderVO);
+    public void changeCredit(OrderVO orderVO, UserOrderAction action);
 
     /**
      * 得到一个用户的所有信用记录

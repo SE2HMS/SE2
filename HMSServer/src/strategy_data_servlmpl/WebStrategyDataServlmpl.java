@@ -41,13 +41,10 @@ public class WebStrategyDataServlmpl implements WebStrategyDataServ{
 	}
 
 	@Override
-	public ArrayList<WebStrategyPO> getWebStrategyList(String strategynaem,String bc) throws RemoteException {
+	public ArrayList<WebStrategyPO> getWebStrategyList() throws RemoteException {
 		ArrayList<WebStrategyPO> res=new ArrayList<WebStrategyPO>();
 		for(int i=0;i<list.size();i++){
-			if(list.get(i).getStrategyName().equals(strategynaem)
-					&&list.get(i).getBusinessCircle().equals(bc)){
-				res.add(list.get(i));
-			}
+			res.add(list.get(i));
 		}
 		return res;
 	}
