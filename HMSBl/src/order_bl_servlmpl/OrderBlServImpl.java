@@ -10,6 +10,7 @@ import room_bl_serv.RoomBlServ;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 
 /**
@@ -218,6 +219,15 @@ public class OrderBlServImpl implements OrderBlServ {
 
     @Override
     public boolean checkOut(String orderId) {
+        OrderVO orderVO = this.getOrderInfo(orderId);
+        OrderPO orderPO = ParseHelper.toOrderPO(orderVO);
+        try {
+            Date time = RemoteHelper.getInstance().getTimeServ().getTime();
+            orderPO.setLastTime(ParseHelper.dateToString(time));
+            RemoteHelper.getInstance().getOrderDataServ().modifiedOrder(orderPO);
+        }catch (RemoteException e) {
+            e.printStackTrace();
+        }
         return this.modifyOrderState(orderId,UserOrderAction.CHECK_OUT);
     }
 

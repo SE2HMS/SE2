@@ -24,7 +24,7 @@ public class RoomBlServImplTest {
 
     @Test
     public void testParseRoomVO() {
-        RoomPO po = new RoomPO("hotelname", "type", new int[]{0, 0, 0}, 0, 0,0);
+        RoomPO po = new RoomPO("hotelname", "type", new int[]{0, 0, 0}, 0, 0,0,"hello");
         Method[] methods = roomBlServImpl.getClass().getDeclaredMethods();
         for (Method method : methods) {
             if (method.getName().equals("parseRoomVO")) {

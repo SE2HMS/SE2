@@ -139,7 +139,7 @@ public class BookBlServImpl implements BookBlServ {
             if (!success) {
                 return new FailBookResult("Exception");
             } else {
-                RoomBlServ.getInstance().changeRoomNum(orderVO);
+                RoomBlServ.getInstance().changeRoomNum(orderVO,null);
             }
             id = OrderBlServ.getInstance().getLatestOrder(userId).getId();
         } catch (RemoteException e) {

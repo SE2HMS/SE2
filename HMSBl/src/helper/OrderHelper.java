@@ -63,7 +63,7 @@ public class OrderHelper {
             if (state == OrderState.WAITING && execTime.compareTo(sysTime) == 1) {
                 state = OrderState.ABNORMAL;
                 orderPO.setType("ABNORMAL");
-                OrderBlServ.getInstance().modifyOrderState(orderId,state);
+                OrderBlServ.getInstance().modifyOrderState(orderId,UserOrderAction.EXCEPTION);
             }
         }catch (RemoteException e) {
             e.printStackTrace();

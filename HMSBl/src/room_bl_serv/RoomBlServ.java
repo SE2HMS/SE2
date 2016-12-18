@@ -5,8 +5,6 @@ import VO.RoomVO;
 import VO.UserOrderAction;
 import room_bl_servImpl.RoomBlServImpl;
 
-import java.util.ArrayList;
-
 public interface RoomBlServ {
     public static RoomBlServ getInstance() {
         return new RoomBlServImpl();

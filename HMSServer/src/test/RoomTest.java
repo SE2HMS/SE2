@@ -20,9 +20,9 @@ public class RoomTest {
 	public void setup(){
 		roomDataServ=RoomDataServlmpl.getInstance();
 		int a[]={3,3,3,};
-		r1=new RoomPO("jinling","a",a,3,0,120);
-		r2=new RoomPO("jinling","b",a,3,0,60);
-		r3=new RoomPO("yinling","a",a,3,0,240);
+		r1=new RoomPO("jinling","a",a,3,0,120,"chacha");
+		r2=new RoomPO("jinling","b",a,3,0,60,"chacha");
+		r3=new RoomPO("yinling","a",a,3,0,240,"chacha");
 	}
 	
 	@Test
