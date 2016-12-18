@@ -32,10 +32,33 @@ public interface WebStrategyBlServ {
      */
     public double getMinDiscount(String useId, Date inTime, String CBD);
 
+    /**
+     * 增加一个特殊日期的策略
+     * @param strategyName 策略名
+     * @param discount 折扣
+     * @param startTime 开始时间
+     * @param endTime 结束时间
+     * @return 返回是否成功
+     */
     public boolean addDoubleElevenStrategy(String strategyName,double discount,Date startTime,Date endTime);
 
+    /**
+     * 增加一个等级策略
+     * @param strategyName 策略名称
+     * @param upgradeCredit 升级信用
+     * @return 返回是否成功
+     */
     public boolean addLevelStrategy(String strategyName,int upgradeCredit);
 
+    /**
+     * 增加一条商圈策略
+     * @param strategyName 策略名
+     * @param lev0 最低等级折扣
+     * @param lev1 升一级后折扣
+     * @param lev2 最高级折扣
+     * @param CBD 商圈名称
+     * @return 返回是否成功
+     */
     public boolean addCBDStrategy(String strategyName,double lev0,double lev1,double lev2,String CBD);
 
     /**
@@ -54,14 +77,10 @@ public interface WebStrategyBlServ {
      */
     public boolean modifyStrategy(StrategyVO strategy);
 
-//    /**
-//     * 删除一条策略
-//     * 这个参数似乎不太对
-//     *
-//     * @param strategy
-//     * @return
-//     */
-//    public boolean delStrategy(StrategyVO strategy);
-
+    /**
+     * 删除一条策略
+     * @param strategyName 策略名称
+     * @return 返回是否成功
+     */
     public boolean delStrategy(String strategyName);
 }

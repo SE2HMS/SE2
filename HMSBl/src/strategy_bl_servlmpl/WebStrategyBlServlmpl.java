@@ -54,7 +54,12 @@ public class WebStrategyBlServlmpl implements WebStrategyBlServ {
         return success;
     }
 
-//    @Override
+    /**
+     * 删除一条策略
+     *
+     * @param strategy 该策略的VO
+     * @return 返回是否成功
+     */
     private boolean delStrategy(StrategyVO strategy) {
         boolean success = false;
         try {
@@ -66,6 +71,11 @@ public class WebStrategyBlServlmpl implements WebStrategyBlServ {
         return success;
     }
 
+    /**
+     * 得到升级策略，由于只有一个，所以只要返回一个就可以了
+     *
+     * @return
+     */
     private LevelStrategy getLevelStrategy() {
         LevelStrategy levelStrategy = null;
         Iterator<StrategyVO> strategyVOIterator = this.getStrategy();
@@ -119,39 +129,47 @@ public class WebStrategyBlServlmpl implements WebStrategyBlServ {
     }
 
     @Override
-    public boolean addDoubleElevenStrategy(String strategyName,double discount,Date startTime,Date endTime) {
-        DoubleElevenStrategy doubleElevenStrategy = new DoubleElevenStrategy(strategyName,discount,startTime,endTime);
+    public boolean addDoubleElevenStrategy(String strategyName, double discount, Date startTime, Date endTime) {
+        DoubleElevenStrategy doubleElevenStrategy = new DoubleElevenStrategy(strategyName, discount, startTime, endTime);
         boolean success = this.addStrategy(doubleElevenStrategy);
         return success;
     }
 
     @Override
-    public boolean addLevelStrategy(String strategyName,int upgradeCredit) {
-        LevelStrategy levelStrategy = new LevelStrategy(strategyName,upgradeCredit);
-        if(this.getLevelStrategy() != null) {
+    public boolean addLevelStrategy(String strategyName, int upgradeCredit) {
+        LevelStrategy levelStrategy = new LevelStrategy(strategyName, upgradeCredit);
+        if (this.getLevelStrategy() != null) {
             this.delStrategy(this.getLevelStrategy());
         }
         boolean success = this.addStrategy(levelStrategy);
         return success;
     }
 
+    /**
+     * 得到一条网站营销策略，通过策略名来实现
+     *
+     * @param strategyName 策略名
+     * @return 返回该策略
+     */
     private StrategyVO getOneStrategy(String strategyName) {
         Iterator<StrategyVO> strategyVOIterator = this.getStrategy();
-        while(strategyVOIterator.hasNext()) {
+        while (strategyVOIterator.hasNext()) {
             StrategyVO strategyVO = strategyVOIterator.next();
-            if(strategyVO.getType().equals("date")) {
+            if (strategyVO.getType().equals("date")) {
                 DoubleElevenStrategy strategy = (DoubleElevenStrategy) strategyVO;
-                if(strategy.getName().equals(strategyName)) {
+                if (strategy.getName().equals(strategyName)) {
                     return strategy;
                 }
-            }if(strategyVO.getType().equals("level")) {
+            }
+            if (strategyVO.getType().equals("level")) {
                 LevelStrategy strategy = (LevelStrategy) strategyVO;
-                if(strategy.getName().equals(strategyName)) {
+                if (strategy.getName().equals(strategyName)) {
                     return strategy;
                 }
-            }if(strategyVO.getType().equals("CBD")) {
+            }
+            if (strategyVO.getType().equals("CBD")) {
                 CBDStrategy strategy = (CBDStrategy) strategyVO;
-                if(strategy.getName().equals(strategyName)) {
+                if (strategy.getName().equals(strategyName)) {
                     return strategy;
                 }
             }
@@ -160,8 +178,8 @@ public class WebStrategyBlServlmpl implements WebStrategyBlServ {
     }
 
     @Override
-    public boolean addCBDStrategy(String name,double lev0,double lev1,double lev2,String CBD) {
-        CBDStrategy cbdStrategy = new CBDStrategy(name,lev0,lev1, lev2,CBD);
+    public boolean addCBDStrategy(String name, double lev0, double lev1, double lev2, String CBD) {
+        CBDStrategy cbdStrategy = new CBDStrategy(name, lev0, lev1, lev2, CBD);
         boolean success = this.addStrategy(cbdStrategy);
         return success;
     }

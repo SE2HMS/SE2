@@ -11,13 +11,13 @@ public class CooperativeStrategy implements StrategyVO {
     private final double discount;
     private final ArrayList<String> companies;
 
-    public CooperativeStrategy(String name,double discount,ArrayList<String> companies) {
+    public CooperativeStrategy(String name, double discount, ArrayList<String> companies) {
         this.name = name;
         this.discount = discount;
         this.companies = companies;
     }
 
-    public CooperativeStrategy(String name,double discount,Iterator<String> companies) {
+    public CooperativeStrategy(String name, double discount, Iterator<String> companies) {
         this.name = name;
         this.discount = discount;
         ArrayList<String> list = new ArrayList<>();

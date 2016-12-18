@@ -62,14 +62,16 @@ public interface HotelBlServ {
     public Iterator<HotelVO> search(String userId, int location, int businesscircle, String name, boolean haveOrdered, int roomType, int price, int roomNum, int inTime, int outTime, int starLevel, int commentLevel);
 
     /**
-     * 修改酒店信息，意思很明显。。
+     * 修改酒店信息
      *
-     * @param hotel
-     * @return
+     * @param hotelName      酒店名
+     * @param star           星级
+     * @param location       位置
+     * @param businessCircle 商圈
+     * @param intro          简介
+     * @return 返回是否成功
      */
-    public boolean modifyHotelInfo(HotelVO hotel);
-
-    public boolean modifyHotelInfo(String hotelName,double star,int location,int businessCircle ,String intro);
+    public boolean modifyHotelInfo(String hotelName, double star, int location, int businessCircle, String intro);
 
     /**
      * 得到某个酒店所有的策略
