@@ -81,6 +81,14 @@ public class MainApp extends Application {
 		}
 	}
 	
+	
+	public void addNewWebStrategy(){
+		
+	}
+	public void showWebStrategyDetails(String strategyName){
+		
+	}
+	
 	/**
      * Returns the main stage.
      * @return

@@ -5,6 +5,7 @@ import java.util.Iterator;
 import VO.CBDStrategy;
 import VO.DoubleElevenStrategy;
 import VO.OrderVO;
+import VO.StrategyVO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,21 +19,17 @@ public class WebStrategyTableController {
 	@FXML
 	private Button checkButton;
 	@FXML
-	private TableView<WebStrategyTable> table;
+	private TableView<WebStrategy> table;
 	
 	@FXML
-	private TableColumn<WebStrategyTable,String> typecol;
+	private TableColumn<WebStrategy,String> typecol;
 	
 	@FXML
-	private TableColumn<WebStrategyTable,String> namecol;
+	private TableColumn<WebStrategy,String> namecol;
 	
+
 	
-	
-	private Iterator<DoubleElevenStrategy> dateStrategy;
-	private Iterator<CBDStrategy> cbdStrategy;
-	
-	
-	private static final ObservableList<WebStrategyTable> data = FXCollections.observableArrayList(); 
+	private static final ObservableList<WebStrategy> data = FXCollections.observableArrayList(); 
 	
 
 	
@@ -43,51 +40,42 @@ public class WebStrategyTableController {
 		WebStrategyTableController.mainApp=mainApp;
 	}
 	
-	public static void setData(Iterator<DoubleElevenStrategy> dateStrategy,
-			Iterator<CBDStrategy> cbdStrategy){
+	public static void setData(Iterator<StrategyVO> strategyVO){
+		DoubleElevenStrategy des = null;
+		CBDStrategy cbds = null;
 		data.removeAll(data);
-		if(dateStrategy!=null)
-			while(dateStrategy.hasNext()){
-				DoubleElevenStrategy des = dateStrategy.next();
-				data.add(new WebStrategyTable(des.getType(), des.getName()));
-			}
-		
-		if(cbdStrategy!=null)
-			while(cbdStrategy.hasNext()){
-				CBDStrategy cbds = cbdStrategy.next();
-				data.add(new WebStrategyTable(cbds.getType(), cbds.getName()));
+		if(strategyVO!=null)
+			while(strategyVO.hasNext()){
+				StrategyVO vo = strategyVO.next();
+				if(vo.getType().equals("date")){
+					des = (DoubleElevenStrategy)vo;
+					data.add(new WebStrategy(des.getType(), des.getName()));
+				}else if(vo.getType().equals("CBD")){
+					cbds = (CBDStrategy)vo;
+					data.add(new WebStrategy(cbds.getType(), cbds.getName()));
+				}
 			}
 	}
 	
 	@FXML
 	public void initialize(){
-//		orderList=orderBlServ.getAllNotInOrderList();
-//		while(orderList.hasNext()){
-//			OrderVO o=orderList.next();
-//			data.add(new OrderTable(o.getId(),o.getHotel().getHotelName(),o.getInTime().toString(),
-//					o.getOutTime().toString(),o.getExecTime().toString()
-//					,String.valueOf(o.getTotal()),o.getState().toString()));
-//		}
+
 //		table.setItems(data);
-//		idcol.setCellValueFactory(cellData->cellData.getValue().idProperty());
-//		hotelnamecol.setCellValueFactory(cellData->cellData.getValue().hotelnameProperty());
-//		intimecol.setCellValueFactory(cellData->cellData.getValue().inttimeProperty());
-//		outtimecol.setCellValueFactory(cellData->cellData.getValue().outimeProperty());
-//		lasttimecol.setCellValueFactory(cellData->cellData.getValue().lasttimeProperty());
-//		totalcol.setCellValueFactory(cellData->cellData.getValue().totelProperty());
-//		statecol.setCellValueFactory(cellData->cellData.getValue().stateProperty());
+//		typecol.setCellValueFactory(cellData->cellData.getValue().typeProperty());
+//		namecol.setCellValueFactory(cellData->cellData.getValue().nameProperty());
+
 		
 	}
 	
 	@FXML
 	public void check(){
 //		if(table.getSelectionModel().getSelectedItem()!=null)
-//			mainApp.showOrderDetailsUI(table.getSelectionModel().getSelectedItem().getOrderID());
+//			mainApp.showStrategyDetails(table.getSelectionModel().getSelectedItem().getName());
 //		else{
 //			Alert alert = new Alert(AlertType.INFORMATION);
 //	        alert.setTitle("Message");
 //	        alert.setHeaderText("错误");
-//	        alert.setContentText("请选择一条订单！");
+//	        alert.setContentText("请选择一条策略！");
 //	        alert.showAndWait();
 //		}
 	}
