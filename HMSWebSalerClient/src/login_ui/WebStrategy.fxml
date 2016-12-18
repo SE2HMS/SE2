@@ -7,14 +7,14 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="450.0" prefWidth="635.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="450.0" prefWidth="635.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login_ui.WebStrategyController">
    <children>
       <AnchorPane fx:id="OrderTable" layoutX="4.0" layoutY="52.0" prefHeight="347.0" prefWidth="614.0">
          <children>
             <fx:include source="WebStrategyTableUI.fxml" />
          </children>
       </AnchorPane>
-      <Hyperlink layoutX="436.0" layoutY="25.0" text="新增(date)" />
-      <Hyperlink layoutX="523.0" layoutY="25.0" text="新增(CBD)" />
+      <Hyperlink fx:id="addNewdate" layoutX="436.0" layoutY="25.0" onAction="#addNewdateStrategy" text="新增(date)" />
+      <Hyperlink fx:id="addNewCBD" layoutX="523.0" layoutY="25.0" onAction="#addNewCBDStrategy" text="新增(CBD)" />
    </children>
 </AnchorPane>

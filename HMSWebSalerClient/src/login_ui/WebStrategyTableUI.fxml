@@ -4,14 +4,15 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="347.0" prefWidth="628.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login_ui.OrderTableController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="347.0" prefWidth="628.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login_ui.WebStrategyTableController">
    <children>
       <TableView fx:id="table" prefHeight="347.0" prefWidth="628.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columns>
-          <TableColumn fx:id="idcol" prefWidth="250.0" text="类型" />
-          <TableColumn fx:id="hotelnamecol" minWidth="0.0" prefWidth="377.0" text="名称" />
+          <TableColumn fx:id="typecol" prefWidth="250.0" text="类型" />
+          <TableColumn fx:id="namecol" minWidth="0.0" prefWidth="377.0" text="名称" />
         </columns>
       </TableView>
-      <Button fx:id="checkButton" layoutX="294.0" layoutY="317.0" mnemonicParsing="false" onAction="#check" text="查看" />
+      <Button fx:id="checkButton" layoutX="260.0" layoutY="317.0" mnemonicParsing="false" onAction="#check" text="查看" />
+      <Button fx:id="delButton" layoutX="330.0" layoutY="317.0" mnemonicParsing="false" onAction="#delete" text="删除" />
    </children>
 </AnchorPane>

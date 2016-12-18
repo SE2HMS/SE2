@@ -82,9 +82,65 @@ public class MainApp extends Application {
 	}
 	
 	
-	public void addNewWebStrategy(){
-		
+	public void AddWebStrategyDate(){
+		StrategydateAddController controller;
+		try {
+			// Set the person into the controller.
+			controller = (StrategydateAddController)replaceDiaSceneContent("StrategydateAdd.fxml");
+			controller.setDialogStage(this.diaStage);
+			controller.setMainApp(this);
+
+//        return controller.isOkClicked();
+		} catch (Exception e) {
+			e.printStackTrace();
+//        return false;
+		}
 	}
+	
+	public void showWebStrategyDateDetail(String strategyName){
+		StrategydateAddController controller;
+		try {
+			// Set the person into the controller.
+			controller = (StrategydateAddController)replaceDiaSceneContent("StrategydateAdd.fxml");
+			controller.setDialogStage(this.diaStage);
+			controller.setMainApp(this);
+
+//        return controller.isOkClicked();
+		} catch (Exception e) {
+			e.printStackTrace();
+//        return false;
+		}
+	}
+	
+	public void AddWebStrategyCBD(){
+		StrategydateAddController controller;
+		try {
+			// Set the person into the controller.
+			controller = (StrategydateAddController)replaceDiaSceneContent("StrategyCBDAdd.fxml");
+			controller.setDialogStage(this.diaStage);
+			controller.setMainApp(this);
+
+//        return controller.isOkClicked();
+		} catch (Exception e) {
+			e.printStackTrace();
+//        return false;
+		}
+	}
+	public void showWebStrategyCBDDetail(String strategyName){
+		StrategydateAddController controller;
+		try {
+			// Set the person into the controller.
+			controller = (StrategydateAddController)replaceDiaSceneContent("StrategyCBDAdd.fxml");
+			controller.setDialogStage(this.diaStage);
+			controller.setMainApp(this);
+
+//        return controller.isOkClicked();
+		} catch (Exception e) {
+			e.printStackTrace();
+//        return false;
+		}
+	}
+	
 	public void showWebStrategyDetails(String strategyName){
 		
 	}
