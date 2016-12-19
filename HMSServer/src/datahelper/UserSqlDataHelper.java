@@ -42,7 +42,7 @@ public class UserSqlDataHelper implements UserDataHelper{
 	        while(rs.next()){
 	        	UserPO p=new UserPO(rs.getInt("id")+"",rs.getString("password"),
 	        			rs.getString("contact"),rs.getString("name"),rs.getString("specialInfo"),
-	        			rs.getInt("creditTol"),(int)rs.getByte("vipLev"),rs.getInt("islogin"),rs.getString("type"));
+	        			rs.getDouble("creditTol"),(int)rs.getByte("vipLev"),rs.getInt("islogin"),rs.getString("type"));
 	        	list.add(p);
 	        }
 	        pstmt.close();

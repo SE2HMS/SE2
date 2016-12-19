@@ -84,7 +84,7 @@ public class BookBlServImpl implements BookBlServ {
         String id = null;
         try {
             UserPO userPO = RemoteHelper.getInstance().getUserDataServ().getUser(userId);
-            int totalCredit = userPO.getCreditTol();
+            double totalCredit = userPO.getCreditTol();
             if (totalCredit < 0) {
                 return new FailBookResult("not enough credit");
             }

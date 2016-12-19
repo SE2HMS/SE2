@@ -95,7 +95,7 @@ public class WebStrategyBlServlmpl implements WebStrategyBlServ {
         }
         LevelStrategy levelStrategy = this.getLevelStrategy();
         UserVO userVO = LoginBlServ.getInstance().getUserInfo(useId);
-        int level = userVO.getCredit() / levelStrategy.getUpgradeNum();
+        int level = (int)(userVO.getCredit() / levelStrategy.getUpgradeNum());
         if (level > 3) {
             level = 3;
         }

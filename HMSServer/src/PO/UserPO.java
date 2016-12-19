@@ -10,13 +10,14 @@ public class UserPO implements Serializable{
 	 */
 	private static final long serialVersionUID = 3996305783368778968L;
 	private String id,name,contactInof,specialInfo;
-	private int creditTol,vipLev,isLogin;
+	private double creditTol;
+	private int vipLev,isLogin;
 	private String password;
 	private ArrayList<CreditPO> credits;
 	private String type;
 	
 	public UserPO(String id,String password,String contactInfo,String name,String specialInfo,
-			int creditTol,int vipLev,int isLogin,String type){
+			double creditTol,int vipLev,int isLogin,String type){
 		super();
 		this.id=id;
 		this.password=password;
@@ -63,11 +64,11 @@ public class UserPO implements Serializable{
 		return this.name;
 	}
 	
-	public void setCreditTol(int i){
+	public void setCreditTol(double i){
 		this.creditTol=i;
 	}
 	
-	public int getCreditTol(){
+	public double getCreditTol(){
 		return this.creditTol;
 	}
 	

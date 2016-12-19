@@ -134,26 +134,7 @@ public class OrderBlServImpl implements OrderBlServ {
 
     @Override
     public boolean revokeOrder(String orderId) {
-        if (orderId == null) {
-            return false;
-        }
-        OrderPO orderPO = null;
-        try {
-            orderPO = RemoteHelper.getInstance().getOrderDataServ().getOrder(orderId);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-        orderPO.setType(OrderState.REVOKE.toString());
-        OrderVO orderVO = ParseHelper.toOrderVO(orderPO);
-        CreditBlServ.getInstance().changeCredit(orderVO,UserOrderAction.REVOKE);
-        RoomBlServ.getInstance().changeRoomNum(orderVO,UserOrderAction.REVOKE);
-        boolean success = false;
-        try {
-            success = RemoteHelper.getInstance().getOrderDataServ().modifiedOrder(orderPO);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-        return success;
+        return this.modifyOrderState(orderId,UserOrderAction.REVOKE);
     }
 
     @Override

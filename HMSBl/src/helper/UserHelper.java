@@ -49,7 +49,7 @@ public class UserHelper {
         String contact = userVO.getContact();
         String name = userVO.getName();
         String specialInfo = userVO.getAdditionalInfo();
-        int credit = userVO.getCredit();
+        double credit = userVO.getCredit();
         int vipLevel = userVO.getGrade();
         int isLogin = 0;
         String type = userVO.getType().toString();
@@ -66,7 +66,7 @@ public class UserHelper {
         }
         String name = userPO.getName();
         String contact = userPO.getContactInfo();
-        int credit = userPO.getCreditTol();
+        double credit = userPO.getCreditTol();
         int grade = userPO.getVipLev();
         ArrayList<OrderVO> orderVOs = new ArrayList<>();
         UserType type = ParseHelper.stringToUserType(userPO.getType());

@@ -24,7 +24,6 @@ public class CreditPO implements Serializable{
 	public double getTotel(){
 		return totel;
 	}
-	
 
 	public String getTime(){
 		return this.time;

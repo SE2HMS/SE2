@@ -1,6 +1,8 @@
 package credit_bl_servlpml;
 
 import PO.CreditPO;
+import PO.OrderPO;
+import PO.UserPO;
 import VO.*;
 import credit_bl_serv.CreditBlServ;
 import helper.ParseHelper;
@@ -72,19 +74,16 @@ public class CreditBlServImpl implements CreditBlServ {
 
     @Override
     public double getTotal(String userId) {
-        if(userId == null) {
+        if (userId == null) {
             return 0;
         }
-        double total = 0;
+        double creditTotal = 0;
         try {
-            ArrayList<CreditPO> creditPOs = RemoteHelper.getInstance().getCreditDataServ().getDetial(userId);
-            for (CreditPO creditPO : creditPOs) {
-                total += creditPO.getTotel();
-            }
-        } catch (RemoteException e) {
+            creditTotal = RemoteHelper.getInstance().getUserDataServ().getUser(userId).getCreditTol();
+        }catch (RemoteException e) {
             e.printStackTrace();
         }
-        return total;
+        return creditTotal;
     }
 
     @Override
@@ -108,7 +107,7 @@ public class CreditBlServImpl implements CreditBlServ {
         }else if(orderVO.getState() == OrderState.REVOKE) {
             if (action.equals(UserOrderAction.REVOKE)) {
                 if ((orderVO.getExecTime().getTime() - time.getTime()) > 3600 * 6) {
-                    change = orderVO.getTotal() / 2;
+                    change = -orderVO.getTotal() / 2;
                     orderAction = OrderAction.REVOKE;
                 } else {
                     return;
@@ -125,6 +124,13 @@ public class CreditBlServImpl implements CreditBlServ {
             orderAction = OrderAction.ABNORMAL;
         }
         total += change;
+        try {
+            UserPO userPO = RemoteHelper.getInstance().getUserDataServ().getUser(orderVO.getUser().getId());
+            userPO.setCreditTol((int)total);
+            RemoteHelper.getInstance().getUserDataServ().modifiedUser(userPO);
+        }catch (RemoteException e) {
+            e.printStackTrace();
+        }
         CreditVO creditVO = new CreditVO(time,num,userId,orderAction,change,total);
         this.addCredit(creditVO);
     }

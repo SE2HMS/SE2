@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class UserVO {
     private final String name;
     private final String contact;
-    private final int credit;
+    private final double credit;
     private final int grade;
     private final ArrayList<OrderVO> orders;
     private final UserType type;
@@ -24,7 +24,7 @@ public class UserVO {
      * @param type 会员类型，包括普通和企业
      * @param additionalInfo 普通会员的生日或者企业会员的企业
      */
-    public UserVO(String name,String contact,int credit,int grade,ArrayList<OrderVO> orders,UserType type,String additionalInfo) {
+    public UserVO(String name,String contact,double credit,int grade,ArrayList<OrderVO> orders,UserType type,String additionalInfo) {
         this.name = name;
         this.contact = contact;
         this.credit = credit;
@@ -53,7 +53,7 @@ public class UserVO {
         return contact;
     }
 
-    public int getCredit() {
+    public double getCredit() {
         return credit;
     }
 
