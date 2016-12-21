@@ -15,7 +15,9 @@ public class WebStrategy {
 	public String getWebStrategyType(){
 		return type.get();
 	}
-	
+	public String getName(){
+		return name.get();
+	}
 	public SimpleStringProperty typeProperty(){
 		return type;
 	}

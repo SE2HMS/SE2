@@ -41,14 +41,13 @@ public class WebStrategyController {
 		WebStrategyTableController.setData(strategyList);
 	}
 
-	@FXML
-	public void checkDetails(){
-//		mainApp.
-	}
 
 	@FXML
-	public void addNewStrategy(){
-		
+	public void addNewdateStrategy(){
+		mainApp.AddWebStrategyDate();
 	}
-	
+	@FXML
+	public void addNewCBDStrategy(){
+		mainApp.AddWebStrategyCBD();
+	}
 }

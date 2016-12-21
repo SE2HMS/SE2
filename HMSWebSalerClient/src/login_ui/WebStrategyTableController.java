@@ -4,20 +4,23 @@ import java.util.Iterator;
 
 import VO.CBDStrategy;
 import VO.DoubleElevenStrategy;
-import VO.OrderVO;
 import VO.StrategyVO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import order_bl_serv.OrderBlServ;
-import order_bl_servlmpl.OrderBlServImpl;
+import strategy_bl_serv.WebStrategyBlServ;
+import strategy_bl_servlmpl.WebStrategyBlServlmpl;
 
 public class WebStrategyTableController {
 	@FXML
 	private Button checkButton;
+	@FXML
+	private Button delButton;
 	@FXML
 	private TableView<WebStrategy> table;
 	
@@ -34,7 +37,7 @@ public class WebStrategyTableController {
 
 	
 	private static MainApp mainApp;
-	
+	private WebStrategyBlServ serv = new WebStrategyBlServlmpl();
 	public static void setUp(MainApp mainApp){
 		
 		WebStrategyTableController.mainApp=mainApp;
@@ -69,8 +72,15 @@ public class WebStrategyTableController {
 	
 	@FXML
 	public void check(){
-//		if(table.getSelectionModel().getSelectedItem()!=null)
-//			mainApp.showStrategyDetails(table.getSelectionModel().getSelectedItem().getName());
+//		if(table.getSelectionModel().getSelectedItem()!=null){
+//			if(table.getSelectionModel().getSelectedItem().equals("date")){
+//				mainApp.showWebStrategyDateDetail(table.getSelectionModel().getSelectedItem().getName());
+//			}else{
+//				mainApp.showWebStrategyCBDDetail(table.getSelectionModel().getSelectedItem().getName());
+//			}
+//			
+//		}
+//			
 //		else{
 //			Alert alert = new Alert(AlertType.INFORMATION);
 //	        alert.setTitle("Message");
@@ -78,5 +88,18 @@ public class WebStrategyTableController {
 //	        alert.setContentText("请选择一条策略！");
 //	        alert.showAndWait();
 //		}
+	}
+	
+	@FXML
+	public void delete(){
+		String strategyName = table.getSelectionModel().getSelectedItem().getName();
+		boolean success = serv.delStrategy(strategyName);
+		if(success){
+			Alert alert = new Alert(AlertType.INFORMATION);
+	        alert.setTitle("Message");
+	        alert.setHeaderText("成功");
+	        alert.setContentText("删除促销策略成功！");
+	        alert.showAndWait();
+		}
 	}
 }
