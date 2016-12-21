@@ -1,11 +1,13 @@
 package login_bl_servlmpl;
 
+import DataService.UserDataServ;
 import VO.*;
 import helper.ParseHelper;
 import hotel_bl_serv.HotelBlServ;
 import login_bl_serv.LoginBlServ;
 import PO.UserPO;
 import rmi.RemoteHelper;
+import rmi.RemoteRunner;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -72,6 +74,9 @@ public class LoginBlServImpl implements LoginBlServ {
 
     @Override
     public LogoutResult logout(String id) {
+        if(id == null) {
+            return null;
+        }
         LogoutResult result;
         try {
             UserPO userPO = RemoteHelper.getInstance().getUserDataServ().getUser(id);
@@ -107,14 +112,34 @@ public class LoginBlServImpl implements LoginBlServ {
         return userVO;
     }
 
+//    public static void main(String[] args) {
+//        new RemoteRunner();
+//        try {
+//            String password = "sa112";
+//            String contact = "cssc2c";
+//            String name =  "ass223";
+//            LoginBlServ.getInstance().registerWebSaler(password,name,contact);
+//            UserPO user = new UserPO(null,password,contact,name,"",0,0,0,UserType.WEB_SALER.toString());
+//            RemoteHelper.getInstance().getUserDataServ().insertUser(user);
+//            UserPO userPO = RemoteHelper.getInstance().getUserDataServ().getUser(name,contact);
+//            System.out.println(userPO.getID());
+//        }catch (RemoteException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
     @Override
     public RegisterResult registerWebSaler(String password, String name, String contact) {
+        if(name == null || contact == null || password == null) {
+            return null;
+        }
         WebSaler webSaler = new WebSaler(name, contact);
         UserLoginInfo userLoginInfo = new UserLoginInfo("", password);
         UserPO testExist = null;
         RegisterResult registerResult;
         try {
-            testExist = RemoteHelper.getInstance().getUserDataServ().getUser(name, contact);
+            UserDataServ userDataServ = RemoteHelper.getInstance().getUserDataServ();
+            testExist = userDataServ.getUser(name, contact);
             if (testExist != null) {
                 registerResult = new RegisterResult(RegisterState.ALREADY_REGISTERED, null);
                 return registerResult;
@@ -126,7 +151,7 @@ public class LoginBlServImpl implements LoginBlServ {
             e.printStackTrace();
         }
         if (testExist == null) {
-            registerResult = new RegisterResult(RegisterState.ALREADY_REGISTERED, null);
+            registerResult = new RegisterResult(RegisterState.EXCEPTION, null);
             return registerResult;
         } else {
             registerResult = new RegisterResult(RegisterState.SUCCESS, testExist.getID());

@@ -19,10 +19,10 @@ import login_bl_servlmpl.LoginBlServImpl;
 
 /**
  * Dialog to edit details of a person.
- * 
+ *
  * @author ObserverZQ
  */
-public class AddWebSalerDialogController implements Initializable{
+public class AddWebSalerDialogController implements Initializable {
 
     @FXML
     private TextField nameField;
@@ -51,7 +51,7 @@ public class AddWebSalerDialogController implements Initializable{
 
     /**
      * Sets the stage of this dialog.
-     * 
+     *
      * @param dialogStage
      */
     public void setDialogStage(Stage dialogStage) {
@@ -61,11 +61,11 @@ public class AddWebSalerDialogController implements Initializable{
 
     /**
      * Returns true if the user clicked OK, false otherwise.
-     * 
+     *
      * @return
      */
     public boolean isOkClicked() {
-    	
+
         return okClicked;
     }
 
@@ -74,46 +74,41 @@ public class AddWebSalerDialogController implements Initializable{
      */
     @FXML
     private void handleOk() {
-        if (isInputValid()) {;
-        	RegisterResult result = bl.registerWebSaler(passwordField.getText(), nameField.getText(), 
-        			contactField.getText());
-        	if(result.equals(RegisterState.SUCCESS)){
-        		okClicked = true;
+        if (isInputValid()) {
+            RegisterResult result = bl.registerWebSaler(passwordField.getText(), nameField.getText(),
+                    contactField.getText());
+            if (result.getState().equals(RegisterState.SUCCESS)) {
+                okClicked = true;
                 dialogStage.close();
-        	}else{ //result.equals(RegisterState.ALREADY_REGISTERED)
-        		Alert alert = new Alert(AlertType.WARNING);
+            } else { //result.equals(RegisterState.ALREADY_REGISTERED)
+                Alert alert = new Alert(AlertType.WARNING);
                 alert.initOwner(dialogStage);
                 alert.setTitle("Message");
                 alert.setHeaderText("错误");
                 alert.setContentText("用户名已存在！");
                 alert.showAndWait();
-        	}
+            }
         }
     }
 
 
-
     /**
      * Validates the user input in the text fields.
-     * 
+     *
      * @return true if the input is valid
      */
     private boolean isInputValid() {
         String errorMessage = "";
-        LoginBlServ bl = new LoginBlServImpl();
+        LoginBlServ bl = LoginBlServ.getInstance();
         if (nameField.getText() == null || nameField.getText().length() == 0) {
-            errorMessage += "No valid name!\n"; 
+            errorMessage += "No valid name!\n";
         }
         if (passwordField.getText() == null || passwordField.getText().length() == 0) {
-            errorMessage += "No valid contact!\n"; 
+            errorMessage += "No valid password!\n";
         }
-        
         if (contactField.getText() == null || contactField.getText().length() == 0) {
-            errorMessage += "No valid contact!\n"; 
+            errorMessage += "No valid contact!\n";
         }
-        
-
-
         if (errorMessage.length() == 0) {
             return true;
         } else {
@@ -123,20 +118,18 @@ public class AddWebSalerDialogController implements Initializable{
             alert.setTitle("Message");
             alert.setHeaderText("请将新增信息填写完整！");
             alert.setContentText(errorMessage);
-
             alert.showAndWait();
-
             return false;
         }
     }
-    
-    public void setMainApp(MainApp mainApp){
-    	this.mainApp = mainApp;
+
+    public void setMainApp(MainApp mainApp) {
+        this.mainApp = mainApp;
     }
 
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        // TODO Auto-generated method stub
+
+    }
 }

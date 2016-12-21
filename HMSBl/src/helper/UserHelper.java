@@ -22,7 +22,7 @@ public class UserHelper {
         int vip = 0;
         int isLogin = 0;
         String type = webSaler.getType().toString();
-        UserPO userPO = new UserPO(id,password,name,contact,spec,credit,vip,isLogin,type);
+        UserPO userPO = new UserPO(id,password,contact,name,spec,credit,vip,isLogin,type);
         return userPO;
     }
 
@@ -82,6 +82,9 @@ public class UserHelper {
     }
 
     public static WebSaler toWebSaler(UserPO userPO) {
+        if(userPO == null) {
+            return null;
+        }
         if(!userPO.getType().equals("WEB_SALER")) {
             return null;
         }

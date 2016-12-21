@@ -1,6 +1,8 @@
 package login_ui;
+
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
 
 import VO.LoginResult;
 import javafx.fxml.FXML;
@@ -13,100 +15,80 @@ import javafx.scene.control.TextField;
 import login_bl_serv.LoginBlServ;
 import login_bl_servlmpl.LoginBlServImpl;
 
-public class LoginController implements Initializable{
+public class LoginController implements Initializable {
 
-	@FXML
-	private Button Confirm;
-	
-	@FXML
-	private TextField userNameField;
-	
-	@FXML
-	private TextField passwordField;
-	
-	
-	@FXML
-	private Hyperlink signUp;
-	
+    @FXML
+    private Button Confirm;
 
-	
-	
+    @FXML
+    private Button registerButton;
 
-	
-	//鐎电ain application閻ㄥ嫬绱╅悽锟�
-	private MainApp mainApp;
+    @FXML
+    private TextField userNameField;
 
+    @FXML
+    private TextField passwordField;
 
+    @FXML
+    private Hyperlink signUp;
 
-    
+    @FXML
+    private MainApp mainApp;
 
+    @FXML
+    public void checkLoginInfo() {
+        if (isInputValid()) {
+            LoginBlServ l = new LoginBlServImpl();
+            LoginResult result = l.login(userNameField.getText(), passwordField.getText());
+            if (result.equals(LoginResult.SUCCESS)) {
+                mainApp.showWebSalerMain();
+            } else {
+                System.out.println(result);
+            }
+        } else {
+            // Nothing selected.
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.initOwner(mainApp.getPrimaryStage());
+            alert.setTitle("Message");
+            alert.setHeaderText("错误");
+            alert.setContentText("用户名或密码错误，请重新输入");
+            alert.showAndWait();
+        }
+    }
 
-     @FXML
-     public void checkLoginInfo(){
-    	 if(isInputValid()){
-//    		 LoginBlServ l=new LoginBlServImpl();
-//    		 LoginResult result=l.login(userNameField.getText(), passwordField.getText());
-//    		 if(result.equals(LoginResult.SUCCESS)){
-    			 mainApp.showWebSalerMain();
-//    		 }
-//    		 else
-//    			 System.out.println(result);
-    	 }
-    	 else{
-    		 // Nothing selected.
-    	     Alert alert = new Alert(AlertType.INFORMATION);
-    	     alert.initOwner(mainApp.getPrimaryStage());
-    	     alert.setTitle("Message");
-    	     alert.setHeaderText("错误");
-    	     alert.setContentText("用户名或密码错误，请重新输入");
+    /**
+     * Initializes the controller class. This method is automatically called
+     * after the fxml file has been loaded.
+     */
+    @FXML
+    public void initialize() {
+    }
 
-    	     alert.showAndWait();    		 
-    	 }
-     }
-     
+    private boolean isInputValid() {
+        String errorMessage = "";
+        if (userNameField.getText() == null || userNameField.getText().length() == 0) {
+            errorMessage += "No valid username!\n";
+        } else if (passwordField.getText() == null || passwordField.getText().length() == 0) {
+            errorMessage += "No valid password!\n";
+        }
+        if (errorMessage.length() == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-     
-     /**
-      * Initializes the controller class. This method is automatically called
-      * after the fxml file has been loaded.
-      */
- 	@FXML
- 	public void initialize(){
- 	}
- 	
- 	
- 	private boolean isInputValid(){
- 		String errorMessage = "";
- 		
- 		if(userNameField.getText()==null || userNameField.getText().length()==0){
- 			errorMessage += "No valid username!\n";
- 		}
- 		else if(passwordField.getText()==null || passwordField.getText().length()==0){
- 			errorMessage += "No valid password!\n";
- 		}
- 		
- 		if(errorMessage.length()==0){
- 			return true;
- 		}else{
- 			return false;
- 		}	
- 	}
- 	
     /**
      * Is called by the main application to give a reference back to itself.
-     * 
+     *
      * @param mainApp
      */
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
-   
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
 
-
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		
-	}
+    }
 }

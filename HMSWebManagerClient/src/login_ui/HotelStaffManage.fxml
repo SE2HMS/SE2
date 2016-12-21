@@ -29,13 +29,13 @@
               </rowConstraints>
                <children>
                   <Label text="酒店名称" />
-                  <Label fx:id="hotelNameLabel" text="Label" GridPane.columnIndex="1" />
+                  <Label fx:id="hotelNameLabel" GridPane.columnIndex="1" />
                   <Label text="ID" GridPane.rowIndex="2" />
-                  <Label fx:id="idLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label fx:id="idLabel" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label text="联系方式" GridPane.rowIndex="3" />
-                  <Label fx:id="contactLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label fx:id="contactLabel" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Label text="用户名" GridPane.rowIndex="1" />
-                  <Label fx:id="nameLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="nameLabel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
             <Button fx:id="edit" layoutX="320.0" layoutY="235.0" mnemonicParsing="false" onAction="#editHotelStaffInfo" prefHeight="23.0" prefWidth="74.0" text="编辑" />

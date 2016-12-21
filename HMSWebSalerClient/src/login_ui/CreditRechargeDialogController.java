@@ -38,8 +38,8 @@ public class CreditRechargeDialogController implements Initializable{
 	@FXML
 	private Button cancel;
 	
-	private LoginBlServ userBlServ = new LoginBlServImpl();
-	private CreditBlServ creditBl = new CreditBlServImpl();
+	private LoginBlServ userBlServ = LoginBlServ.getInstance();
+	private CreditBlServ creditBl = CreditBlServ.getInstance();
 	UserVO user;
 	
 	public void setDialogStage(Stage diaStage) {

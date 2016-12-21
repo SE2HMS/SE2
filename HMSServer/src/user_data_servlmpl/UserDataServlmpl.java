@@ -67,9 +67,7 @@ public class UserDataServlmpl implements UserDataServ {
 		return user;
 	}
 
-
-
-
+	@Override
 	public UserPO getUser(String userName,String contact) throws RemoteException {
 		UserPO usr = null;
 		for(int i = 0;i<list.size();i++) {
