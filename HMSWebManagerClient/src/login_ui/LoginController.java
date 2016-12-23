@@ -4,6 +4,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import VO.LoginResult;
+import VO.UserVO;
+import VO.WebManager;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -34,9 +36,24 @@ public class LoginController implements Initializable {
             LoginResult result = l.login(userNameField.getText(), passwordField.getText());
             if (result.equals(LoginResult.SUCCESS)) {
                 mainApp.setCurrentId(userNameField.getText());
+                WebManager webManager = LoginBlServ.getInstance().getWebManager(userNameField.getText());
+                mainApp.setCurrentUserName(webManager.getUserName());
                 mainApp.showWebManagerMain();
-            } else
-                System.out.println(result);
+            } else if(result.equals(LoginResult.ALREADY_LOGIN)) {
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.initOwner(mainApp.getPrimaryStage());
+                alert.setTitle("Error");
+                alert.setHeaderText("错误");
+                alert.setContentText("您已登录，请勿重复登录");
+                alert.showAndWait();
+            } else {
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.initOwner(mainApp.getPrimaryStage());
+                alert.setTitle("Error");
+                alert.setHeaderText("错误");
+                alert.setContentText("发生了一些错误，请稍候重试");
+                alert.showAndWait();
+            }
         } else {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.initOwner(mainApp.getPrimaryStage());

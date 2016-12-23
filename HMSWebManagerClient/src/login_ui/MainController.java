@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
 public class MainController implements Initializable {
@@ -15,6 +16,9 @@ public class MainController implements Initializable {
      */
     @FXML
     private Button memberManageButton;
+
+    @FXML
+    private Label nameLabel;
 
     @FXML
     private Button hotelStaffManageButton;
@@ -43,6 +47,10 @@ public class MainController implements Initializable {
     @FXML
     public void initialize() {
         memberManagePane.setVisible(true);
+    }
+
+    public void setUserName(String userName) {
+        nameLabel.setText("你好，" + userName);
     }
 
     /**

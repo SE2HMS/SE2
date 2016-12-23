@@ -23,7 +23,7 @@
             <TextField fx:id="contactfield" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <Button fx:id="confirm" layoutX="106.0" layoutY="183.0" mnemonicParsing="false" onAction="#handleOk" prefHeight="23.0" prefWidth="94.0" text="确认" />
-      <Button fx:id="cancel" layoutX="267.0" layoutY="183.0" mnemonicParsing="false" onAction="#handleOk" prefHeight="23.0" prefWidth="94.0" text="取消" />
+      <Button fx:id="confirm" layoutX="106.0" layoutY="183.0" mnemonicParsing="false" onAction="#saveChangedInfo" prefHeight="23.0" prefWidth="94.0" text="确认" />
+      <Button fx:id="cancel" layoutX="267.0" layoutY="183.0" mnemonicParsing="false" onAction="#giveup" prefHeight="23.0" prefWidth="94.0" text="取消" />
    </children>
 </AnchorPane>

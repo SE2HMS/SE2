@@ -1,7 +1,10 @@
 package login_ui;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+import login_bl_serv.LoginBlServ;
 import rmi.RemoteRunner;
 
 
@@ -21,16 +24,25 @@ import javafx.scene.layout.AnchorPane;
 public class MainApp extends Application {
 
     private Stage primaryStage, diaStage;
+    private String currentId;
 
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.primaryStage.setResizable(false);
         this.primaryStage.setTitle("Hotel Management System");
+        this.primaryStage.setOnCloseRequest((event) -> logout(currentId));
         this.diaStage = new Stage();
         showLoginUI();
     }
 
+    private void logout(String id) {
+        LoginBlServ.getInstance().logout(currentId);
+    }
+
+    public void setCurrentId(String id) {
+        currentId = id;
+    }
 
     /**
      * 显示登录界面
@@ -41,7 +53,6 @@ public class MainApp extends Application {
             login.setMainApp(this);
         } catch (Exception ex) {
             ex.printStackTrace();
-//<<<<<<< HEAD
         }
     }
 
@@ -62,7 +73,7 @@ public class MainApp extends Application {
         CreditRechargeDialogController controller;
         CreditRechargeDialogController.setID(id);
         try {
-            controller = (CreditRechargeDialogController) replaceSceneContent("CreditRechargeDialog.fxml");
+            controller = (CreditRechargeDialogController) replaceDiaSceneContent("CreditRechargeDialog.fxml");
             controller.setDialogStage(diaStage);
             controller.setMainApp(this);
         } catch (Exception e) {

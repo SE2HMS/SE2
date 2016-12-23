@@ -21,10 +21,10 @@ import manage_bl_servlmpl.ManageBlServImpl;
 
 /**
  * Dialog to edit details of a person.
- * 
+ *
  * @author ObserverZQ
  */
-public class AddHotelStaffDialogController implements Initializable{
+public class AddHotelStaffDialogController implements Initializable {
 
     @FXML
     private TextField hotelNameField;
@@ -34,21 +34,21 @@ public class AddHotelStaffDialogController implements Initializable{
     private TextField passwordField;
     @FXML
     private TextField contactField;
-    
-    
+
+
     @FXML
     private Button confirm;
     @FXML
     private Button cancel;
-    
+
     private Stage dialogStage;
     private HotelStaff staff;
     private boolean okClicked = false;
     private LoginBlServ staffBlServ = new LoginBlServImpl();
 
 
-
     private MainApp mainApp;
+
     /**
      * Initializes the controller class. This method is automatically called
      * after the fxml file has been loaded.
@@ -57,14 +57,14 @@ public class AddHotelStaffDialogController implements Initializable{
     private void initialize() {
     }
 
-    
-    public void setMainApp(MainApp mainApp){
-    	this.mainApp = mainApp;
+
+    public void setMainApp(MainApp mainApp) {
+        this.mainApp = mainApp;
     }
 
     /**
      * Sets the stage of this dialog.
-     * 
+     *
      * @param dialogStage
      */
     public void setDialogStage(Stage dialogStage) {
@@ -74,11 +74,11 @@ public class AddHotelStaffDialogController implements Initializable{
 
     /**
      * Returns true if the user clicked OK, false otherwise.
-     * 
+     *
      * @return
      */
     public boolean isOkClicked() {
-    	
+
         return okClicked;
     }
 
@@ -88,20 +88,29 @@ public class AddHotelStaffDialogController implements Initializable{
     @FXML
     private void handleOk() {
         if (isInputValid()) {
-        	RegisterResult result = staffBlServ.registerHotelStaff(passwordField.getText(), 
-        			hotelNameField.getText(), contactField.getText(), userNameField.getText());
-        	if(result.equals(RegisterState.SUCCESS)){
-        		okClicked = true;
+            RegisterResult result = staffBlServ.registerHotelStaff(passwordField.getText(),
+                    hotelNameField.getText(), contactField.getText(), userNameField.getText());
+            if (result.getState().equals(RegisterState.SUCCESS)) {
+                okClicked = true;
+                showId(result.getId());
                 dialogStage.close();
-        	}else{ //result.equals(RegisterState.ALREADY_REGISTERED)
-        		Alert alert = new Alert(AlertType.WARNING);
+            } else { //result.equals(RegisterState.ALREADY_REGISTERED)
+                Alert alert = new Alert(AlertType.WARNING);
                 alert.initOwner(dialogStage);
                 alert.setTitle("Message");
                 alert.setHeaderText("错误");
                 alert.setContentText("酒店名称已存在（一个酒店只能拥有一个工作人员账号）！");
                 alert.showAndWait();
-        	}
+            }
         }
+    }
+
+    private void showId(String id) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.initOwner(dialogStage);
+        alert.setTitle("Success");
+        alert.setContentText("注册成功，id:" + id);
+        alert.showAndWait();
     }
 
 
@@ -109,16 +118,17 @@ public class AddHotelStaffDialogController implements Initializable{
      * Validates the user input in the text fields.
      * **一个酒店只能有一个工作人员**
      * 要检查看酒店名称是否已存在~~~~~~~~！！！
+     *
      * @return true if the input is valid
      */
     private boolean isInputValid() {
         String errorMessage = "";
 
         if (hotelNameField.getText() == null || hotelNameField.getText().length() == 0) {
-            errorMessage += "No valid hotel name!\n"; 
+            errorMessage += "No valid hotel name!\n";
         }
         if (contactField.getText() == null || contactField.getText().length() == 0) {
-            errorMessage += "No valid contact!\n"; 
+            errorMessage += "No valid contact!\n";
         }
 
 
@@ -139,14 +149,14 @@ public class AddHotelStaffDialogController implements Initializable{
     }
 
 
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub		
-	}
-	
-	
-	@FXML 
-	public void giveup(){
-		this.dialogStage.close();
-	}
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        // TODO Auto-generated method stub
+    }
+
+
+    @FXML
+    public void giveup() {
+        this.dialogStage.close();
+    }
 }

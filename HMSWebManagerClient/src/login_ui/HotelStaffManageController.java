@@ -40,6 +40,7 @@ public class HotelStaffManageController {
     private LoginBlServ staffBlServ = new LoginBlServImpl();
     HotelStaff staff = null;
     String id = "";
+    private boolean isShowing = false;
 
     /*
      * 输入酒店工作人员ID后点击搜索按钮，显示相应工作人员信息
@@ -62,6 +63,7 @@ public class HotelStaffManageController {
         idLabel.setText(id);
         nameLabel.setText(staff.getName());
         contactLabel.setText(staff.getContact());
+        isShowing = true;
     }
 
 
@@ -76,7 +78,10 @@ public class HotelStaffManageController {
 
     @FXML
     private void editHotelStaffInfo() {
-        mainApp.editHotelStaff(id);
+        if(isShowing) {
+            System.out.println("editHotelStaffInfo:" + id);
+            mainApp.editHotelStaff(id);
+        }
     }
 
     public static void setMainApp(MainApp mainApp) {

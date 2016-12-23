@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="450.0" prefWidth="635.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login_ui.HotelStaffManageController">
+<AnchorPane id="background2" stylesheets="@property.css" prefHeight="450.0" prefWidth="635.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login_ui.HotelStaffManageController">
 	<!-- TODO Add Nodes -->
 	<children>
       <TextField fx:id="inputField" layoutX="128.0" layoutY="58.0" prefHeight="23.0" prefWidth="282.0" promptText="酒店工作人员ID" />

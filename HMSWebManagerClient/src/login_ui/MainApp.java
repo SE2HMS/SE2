@@ -20,11 +20,13 @@ public class MainApp extends Application {
 
     private Stage primaryStage, diaStage;
     private String currentId;
+    private String currentUserName;
 
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Hotel Management System");
+        this.primaryStage.setResizable(false);
         this.primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
@@ -37,6 +39,10 @@ public class MainApp extends Application {
 
     private void logout() {
         LoginBlServ.getInstance().logout(currentId);
+    }
+
+    public void setCurrentUserName(String name) {
+        this.currentUserName = name;
     }
 
     public void setCurrentId(String id) {
@@ -63,9 +69,10 @@ public class MainApp extends Application {
         try {
             HotelStaffManageController.setMainApp(this);
             WebSalerManageController.setMainApp(this);
-
+            MemberManageController.setMainApp(this);
             MainController controller = (MainController) replaceSceneContent("Main.fxml");
             controller.setMainApp(this);
+            controller.setUserName(currentUserName);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -82,12 +89,8 @@ public class MainApp extends Application {
             controller = (EditMemberInfoDialogController) replaceDiaSceneContent("EditMemberInfoDialog.fxml");
             controller.setDialogStage(this.diaStage);
             controller.setMainApp(this);
-
-
-//        return controller.isOkClicked();
         } catch (Exception e) {
             e.printStackTrace();
-//        return false;
         }
     }
 
@@ -98,26 +101,26 @@ public class MainApp extends Application {
             controller = (AddHotelStaffDialogController) replaceDiaSceneContent("AddHotelStaffDialog.fxml");
             controller.setDialogStage(this.diaStage);
             controller.setMainApp(this);
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public void editHotelStaff(String id) {
+        if (id == null || id.equals("")) {
+            return;
+        }
+        EditHotelStaffInfoController.setID(id);
         EditHotelStaffInfoController controller;
         try {
             // Set the person into the controller.
-            controller = (EditHotelStaffInfoController) replaceDiaSceneContent("EditHotelStaffInfo.fxml");
+            controller = (EditHotelStaffInfoController) replaceDiaSceneContent("EditHotelStaff.fxml");
             controller.setDialogStage(this.diaStage);
             controller.setMainApp(this);
-            controller.setID(id);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 
     public void showAddWebSalerDialog() { //括号内应为WebSaler saler
         AddWebSalerDialogController controller;
@@ -126,28 +129,24 @@ public class MainApp extends Application {
             controller = (AddWebSalerDialogController) replaceDiaSceneContent("AddWebSalerDialog.fxml");
             controller.setDialogStage(this.diaStage);
             controller.setMainApp(this);
-
-//        controller.setWebSaler(saler);
-
-//        return controller.isOkClicked();
         } catch (Exception e) {
             e.printStackTrace();
-//        return false;
         }
     }
 
     public void editWebSaler(String id) {
+        if (id == null || id.equals("")) {
+            return;
+        }
+        EditWebSalerInfoController.setID(id);
         EditWebSalerInfoController controller;
         try {
             // Set the person into the controller.
             controller = (EditWebSalerInfoController) replaceDiaSceneContent("EditWebSalerInfo.fxml");
             controller.setDialogStage(this.diaStage);
             controller.setMainApp(this);
-            controller.setID(id);
-//        return controller.isOkClicked();
         } catch (Exception e) {
             e.printStackTrace();
-//        return false;
         }
     }
 
@@ -184,11 +183,11 @@ public class MainApp extends Application {
         loader.setBuilderFactory(new JavaFXBuilderFactory());
         loader.setLocation(MainApp.class.getResource(fxml));
         AnchorPane page;
-        try {
-            page = (AnchorPane) loader.load(in);
-        } finally {
-            in.close();
-        }
+//        try {
+        page = (AnchorPane) loader.load(in);
+//        } finally {
+//            in.close();
+//        }
         Scene scene = new Scene(page);
         diaStage.setScene(scene);
         diaStage.show();

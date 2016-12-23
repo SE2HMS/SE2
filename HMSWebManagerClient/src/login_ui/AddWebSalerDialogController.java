@@ -79,6 +79,7 @@ public class AddWebSalerDialogController implements Initializable {
                     contactField.getText());
             if (result.getState().equals(RegisterState.SUCCESS)) {
                 okClicked = true;
+                showId(result.getId());
                 dialogStage.close();
             } else { //result.equals(RegisterState.ALREADY_REGISTERED)
                 Alert alert = new Alert(AlertType.WARNING);
@@ -89,6 +90,14 @@ public class AddWebSalerDialogController implements Initializable {
                 alert.showAndWait();
             }
         }
+    }
+
+    private void showId(String id) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.initOwner(dialogStage);
+        alert.setTitle("Seccess");
+        alert.setContentText("注册成功，id:" + id);
+        alert.showAndWait();
     }
 
 

@@ -60,20 +60,22 @@ public interface ManageBlServ {
     public boolean addHotelStaff(HotelStaff hotelStaff, UserLoginInfo info);
 
     /**
-     * 修改网站销售人员的方法，需要修改
-     *
-     * @param webSaler 网站销售人员
+     * 修改网站营销人员
+     * @param id id
+     * @param name 名字
+     * @param contact 联系方式
      * @return 是否成功
      */
-    public boolean modifyWebSaler(WebSaler webSaler);
+    public boolean modifyWebSaler(String id,String name,String contact);
 
     /**
      * 修改酒店工作人员
-     *
-     * @param hotelStaff 酒店工作人员
-     * @return 返回是否成功
+     * @param id id
+     * @param name 名字
+     * @param contact 联系方式
+     * @return 是否成功
      */
-    public boolean modifyHotelStaff(HotelStaff hotelStaff);
+    public boolean modifyHotelStaff(String id,String name,String contact);
 
     /**
      * 修改一个用户的信息

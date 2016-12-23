@@ -82,20 +82,17 @@ public class UserHelper {
     }
 
     public static WebSaler toWebSaler(UserPO userPO) {
-        if(userPO == null) {
-            return null;
-        }
-        if(!userPO.getType().equals("WEB_SALER")) {
+        if(userPO == null || !userPO.getType().equals("WEB_SALER")) {
             return null;
         }
         String name = userPO.getName();
-        String contact = userPO.getName();
+        String contact = userPO.getContactInfo();
         WebSaler webSaler = new WebSaler(name,contact);
         return webSaler;
     }
 
     public static HotelStaff toHotelStaff(UserPO userPO) {
-        if(!userPO.getType().equals("HOTEL_STAFF")) {
+        if(userPO == null || !userPO.getType().equals("HOTEL_STAFF")) {
             return null;
         }
         String hotelName = userPO.getSpecialInfo();
@@ -106,6 +103,9 @@ public class UserHelper {
     }
 
     public static WebManager toWebManager(UserPO userPO) {
+        if(userPO == null || !userPO.getType().equals("WEB_MANAGER")) {
+            return null;
+        }
         String name = userPO.getName();
         String contact = userPO.getContactInfo();
         WebManager manager = new WebManager(name,contact);

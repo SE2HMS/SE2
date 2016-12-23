@@ -8,14 +8,14 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="450.0" prefWidth="635.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login_ui.MemberManageController">
+<AnchorPane id="background1" stylesheets="@property.css" prefHeight="450.0" prefWidth="635.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login_ui.MemberManageController">
 	<!-- TODO Add Nodes -->
 	<children>
       <TextField fx:id="inputField" layoutX="170.0" layoutY="45.0" prefHeight="23.0" prefWidth="248.0" promptText="会员ID" />
-      <Button fx:id="search" layoutX="438.0" layoutY="45.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="85.0" text="搜索" />
+      <Button fx:id="search" layoutX="438.0" layoutY="45.0" mnemonicParsing="false" onAction="#search" prefHeight="23.0" prefWidth="85.0" text="搜索" />
       <AnchorPane fx:id="infoPane" layoutX="35.0" layoutY="79.0" minHeight="0.0" minWidth="0.0" prefHeight="357.0" prefWidth="565.0" snapToPixel="false">
          <children>
-            <Button fx:id="edit" layoutX="443.0" layoutY="320.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="108.0" text="编辑" />
+            <Button fx:id="edit" layoutX="443.0" layoutY="320.0" mnemonicParsing="false" onAction="#editMemberInfo" prefHeight="23.0" prefWidth="108.0" text="编辑" />
             <ImageView fitHeight="52.0" fitWidth="65.0" layoutX="201.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
             <Label layoutX="359.0" layoutY="25.0" text="会员等级：" />
             <GridPane layoutX="94.0" layoutY="56.0" prefHeight="221.0" prefWidth="413.0">

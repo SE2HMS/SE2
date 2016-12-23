@@ -97,6 +97,26 @@ public class ManageBlServImpl implements ManageBlServ {
     }
 
     @Override
+    public boolean modifyWebSaler(String id,String name,String contact) {
+        if(id == null || name == null || contact == null) {
+            return false;
+        }
+        boolean success = false;
+        try {
+            UserPO userPO = RemoteHelper.getInstance().getUserDataServ().getUser(id);
+            if(!userPO.getType().equals("WEB_SALER")) {
+                return false;
+            }
+            userPO.setName(name);
+            userPO.setContactInfo(contact);
+            success = RemoteHelper.getInstance().getUserDataServ().modifiedUser(userPO);
+        }catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return success;
+    }
+
+    @Deprecated
     public boolean modifyWebSaler(WebSaler webSaler) {
         if(webSaler == null) {
             return false;
@@ -114,7 +134,27 @@ public class ManageBlServImpl implements ManageBlServ {
     }
 
     @Override
-    public boolean modifyHotelStaff(HotelStaff hotelStaff) {
+    public boolean modifyHotelStaff(String id,String name,String contact) {
+        if(id == null || name == null || contact == null) {
+            return false;
+        }
+        boolean success = false;
+        try {
+            UserPO userPO = RemoteHelper.getInstance().getUserDataServ().getUser(id);
+            if(!userPO.getType().equals("HOTEL_STAFF")) {
+                return false;
+            }
+            userPO.setName(name);
+            userPO.setContactInfo(contact);
+            success = RemoteHelper.getInstance().getUserDataServ().modifiedUser(userPO);
+        }catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return success;
+    }
+
+    @Deprecated
+    private boolean modifyHotelStaff(HotelStaff hotelStaff) {
         if(hotelStaff == null) {
             return false;
         }

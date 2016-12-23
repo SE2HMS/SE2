@@ -17,89 +17,81 @@ import strategy_bl_serv.WebStrategyBlServ;
 import strategy_bl_servlmpl.WebStrategyBlServlmpl;
 
 public class WebStrategyTableController {
-	@FXML
-	private Button checkButton;
-	@FXML
-	private Button delButton;
-	@FXML
-	private TableView<WebStrategy> table;
-	
-	@FXML
-	private TableColumn<WebStrategy,String> typecol;
-	
-	@FXML
-	private TableColumn<WebStrategy,String> namecol;
-	
+    @FXML
+    private Button checkButton;
+    @FXML
+    private Button delButton;
+    @FXML
+    private TableView<WebStrategy> table;
 
-	
-	private static final ObservableList<WebStrategy> data = FXCollections.observableArrayList(); 
-	
+    @FXML
+    private TableColumn<WebStrategy, String> typecol;
 
-	
-	private static MainApp mainApp;
-	private WebStrategyBlServ serv = new WebStrategyBlServlmpl();
-	public static void setUp(MainApp mainApp){
-		
-		WebStrategyTableController.mainApp=mainApp;
-	}
-	
-	public static void setData(Iterator<StrategyVO> strategyVO){
-		DoubleElevenStrategy des = null;
-		CBDStrategy cbds = null;
-		data.removeAll(data);
-		if(strategyVO!=null)
-			while(strategyVO.hasNext()){
-				StrategyVO vo = strategyVO.next();
-				if(vo.getType().equals("date")){
-					des = (DoubleElevenStrategy)vo;
-					data.add(new WebStrategy(des.getType(), des.getName()));
-				}else if(vo.getType().equals("CBD")){
-					cbds = (CBDStrategy)vo;
-					data.add(new WebStrategy(cbds.getType(), cbds.getName()));
-				}
-			}
-	}
-	
-	@FXML
-	public void initialize(){
+    @FXML
+    private TableColumn<WebStrategy, String> namecol;
 
-//		table.setItems(data);
-//		typecol.setCellValueFactory(cellData->cellData.getValue().typeProperty());
-//		namecol.setCellValueFactory(cellData->cellData.getValue().nameProperty());
+    private static final ObservableList<WebStrategy> data = FXCollections.observableArrayList();
 
-		
-	}
-	
-	@FXML
-	public void check(){
-//		if(table.getSelectionModel().getSelectedItem()!=null){
-//			if(table.getSelectionModel().getSelectedItem().equals("date")){
-//				mainApp.showWebStrategyDateDetail(table.getSelectionModel().getSelectedItem().getName());
-//			}else{
-//				mainApp.showWebStrategyCBDDetail(table.getSelectionModel().getSelectedItem().getName());
-//			}
-//			
-//		}
-//			
-//		else{
-//			Alert alert = new Alert(AlertType.INFORMATION);
-//	        alert.setTitle("Message");
-//	        alert.setHeaderText("错误");
-//	        alert.setContentText("请选择一条策略！");
-//	        alert.showAndWait();
-//		}
-	}
-	
-	@FXML
-	public void delete(){
-		String strategyName = table.getSelectionModel().getSelectedItem().getName();
-		boolean success = serv.delStrategy(strategyName);
-		if(success){
-			Alert alert = new Alert(AlertType.INFORMATION);
-	        alert.setTitle("Message");
-	        alert.setHeaderText("成功");
-	        alert.setContentText("删除促销策略成功！");
-	        alert.showAndWait();
-		}
-	}
+    private static MainApp mainApp;
+    private WebStrategyBlServ serv = new WebStrategyBlServlmpl();
+
+    public static void setUp(MainApp mainApp) {
+
+        WebStrategyTableController.mainApp = mainApp;
+    }
+
+    public static void setData(Iterator<StrategyVO> strategyVO) {
+        DoubleElevenStrategy des = null;
+        CBDStrategy cbds = null;
+        data.removeAll(data);
+        if (strategyVO != null)
+            while (strategyVO.hasNext()) {
+                StrategyVO vo = strategyVO.next();
+                if (vo.getType().equals("date")) {
+                    des = (DoubleElevenStrategy) vo;
+                    data.add(new WebStrategy(des.getType(), des.getName()));
+                } else if (vo.getType().equals("CBD")) {
+                    cbds = (CBDStrategy) vo;
+                    data.add(new WebStrategy(cbds.getType(), cbds.getName()));
+                }
+            }
+    }
+
+    @FXML
+    public void initialize() {
+        table.setItems(data);
+        typecol.setCellValueFactory(cellData -> cellData.getValue().typeProperty());
+        namecol.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+    }
+
+    @FXML
+    public void check() {
+        if (table.getSelectionModel().getSelectedItem() != null) {
+            if (table.getSelectionModel().getSelectedItem().equals("date")) {
+                mainApp.showWebStrategyDateDetail(table.getSelectionModel().getSelectedItem().getName());
+            } else {
+                mainApp.showWebStrategyCBDDetail(table.getSelectionModel().getSelectedItem().getName());
+            }
+
+        } else {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Message");
+            alert.setHeaderText("错误");
+            alert.setContentText("请选择一条策略！");
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    public void delete() {
+        String strategyName = table.getSelectionModel().getSelectedItem().getName();
+        boolean success = serv.delStrategy(strategyName);
+        if (success) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Message");
+            alert.setHeaderText("成功");
+            alert.setContentText("删除促销策略成功！");
+            alert.showAndWait();
+        }
+    }
 }

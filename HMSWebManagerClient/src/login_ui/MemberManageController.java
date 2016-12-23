@@ -41,6 +41,7 @@ public class MemberManageController {
     private LoginBlServ userBlServ = new LoginBlServImpl();
     UserVO user = null;
     String id = "";
+    private boolean infoShowing = false;
 
     /*
      * 输入会员ID后点击搜索按钮，显示相应会员信息
@@ -80,11 +81,14 @@ public class MemberManageController {
         nameLabel.setText(user.getName());
         creditLabel.setText(String.valueOf(user.getCredit()));
         contactLabel.setText(user.getContact());
+        infoShowing = true;
     }
 
     @FXML
     public void editMemberInfo() {
-        mainApp.editMemberInfo(id);
+        if(infoShowing) {
+            mainApp.editMemberInfo(id);
+        }
     }
 
     public static void setMainApp(MainApp mainApp) {

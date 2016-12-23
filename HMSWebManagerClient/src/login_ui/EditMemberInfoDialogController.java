@@ -8,6 +8,7 @@ import VO.UserType;
 import VO.UserVO;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -85,6 +86,9 @@ public class EditMemberInfoDialogController implements Initializable {
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         // TODO Auto-generated method stub
+        if(id == null || id == "") {
+            return;
+        }
         user = userBlServ.getUserInfo(id);
         if (user.getType().equals(UserType.NORMAL)) {
             companyfield.setText("无");
@@ -94,7 +98,6 @@ public class EditMemberInfoDialogController implements Initializable {
         } else {
             bdayPicker.setValue(null);
             bdayPicker.setEditable(false);
-
             companyfield.setText(user.getAdditionalInfo());
         }
         namefield.setText(user.getName());

@@ -152,7 +152,10 @@ public class CreditBlServImpl implements CreditBlServ {
         CreditPO creditPO = new CreditPO(null,timeString,userId,total,num,OrderAction.RECHARGE.toString());
         boolean success = false;
         try {
-            success = RemoteHelper.getInstance().getCreditDataServ().insertCredit(creditPO);
+            UserPO userPO = RemoteHelper.getInstance().getUserDataServ().getUser(userId);
+            userPO.setCreditTol(total);
+            success = RemoteHelper.getInstance().getUserDataServ().insertUser(userPO);
+            RemoteHelper.getInstance().getCreditDataServ().insertCredit(creditPO);
         }catch (RemoteException e) {
             e.printStackTrace();
         }

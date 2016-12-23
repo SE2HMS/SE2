@@ -22,11 +22,11 @@
             <Label text="酒店名称" />
             <Label text="联系方式" GridPane.rowIndex="3" />
             <TextField fx:id="hotelNameField" GridPane.columnIndex="1" />
-            <TextField fx:id="contactField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="密码" GridPane.rowIndex="2" />
             <Label text="用户名" GridPane.rowIndex="1" />
             <TextField fx:id="userNameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="contactField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
       <Button fx:id="confirm" layoutX="130.0" layoutY="202.0" mnemonicParsing="false" onAction="#handleOk" prefHeight="23.0" prefWidth="89.0" text="确认" />

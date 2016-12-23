@@ -1,13 +1,29 @@
-.root {
-    -fx-font-family:"微软雅黑";
-    -fx-font-size:16px;
-}
-
-.button {
+﻿.root {
     -fx-font-family:"微软雅黑";
     -fx-font-size:16px;
 }
 
 #login {
+    -fx-font-family:"微软雅黑";
+    -fx-font-size:16px;
     -fx-background-color:#5272c2;
 }
+
+#left0 {
+    -fx-background-color:#80dbf4;
+    -fx-background-radius:0,0,0,0;
+}
+
+#left1 {
+    -fx-background-color:#80fdff;
+    -fx-background-radius:0,0,0,0;
+}
+
+/*
+#background1 {
+    -fx-background-color:#80dbf4;
+}
+#background2 {
+    -fx-background-color:#80fdff;
+}
+*/

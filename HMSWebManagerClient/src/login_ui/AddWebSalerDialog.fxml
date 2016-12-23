@@ -21,8 +21,8 @@
             <Label text="用户名" />
             <Label text="联系方式" GridPane.rowIndex="2" />
             <TextField fx:id="nameField" GridPane.columnIndex="1" />
-            <TextField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="密码" GridPane.rowIndex="1" />
+            <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="contactField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>

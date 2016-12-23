@@ -8,19 +8,12 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="700.0" stylesheets="property.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login_ui.LoginController">
+<AnchorPane prefHeight="400.0" prefWidth="700.0" stylesheets="@property.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login_ui.LoginController">
     <children>
         <Button id="login" fx:id="Confirm" layoutX="193.0" layoutY="313.0" mnemonicParsing="false" onAction="#checkLoginInfo" prefHeight="35.0" prefWidth="300.0" stylesheets="@property.css" text="登 录" textFill="#fdfeff">
             <font>
                 <Font name="Microsoft YaHei Bold" size="16.0" />
             </font>
-            <!--<effect>-->
-                <!--<ImageInput>-->
-                    <!--<source>-->
-                        <!--<Image url="@login.png"/>-->
-                    <!--</source>-->
-                <!--</ImageInput>-->
-            <!--</effect>-->
         </Button>
         <TextField fx:id="userNameField" layoutX="193.0" layoutY="134.0" prefHeight="35.0" prefWidth="300.0" promptText="用户名" />
         <Label layoutX="283.0" layoutY="71.0" text="酒店管理系统">

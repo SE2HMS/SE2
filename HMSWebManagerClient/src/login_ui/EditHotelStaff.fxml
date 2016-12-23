@@ -18,12 +18,12 @@
         </rowConstraints>
          <children>
             <Label text="联系方式" GridPane.rowIndex="1" />
-            <TextField fx:id="contactfield" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="用户名" />
             <TextField fx:id="namefield" GridPane.columnIndex="1" />
+            <TextField fx:id="contactfield" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <Button fx:id="confirm" layoutX="130.0" layoutY="202.0" mnemonicParsing="false" onAction="#handleOk" prefHeight="23.0" prefWidth="89.0" text="确认" />
+      <Button fx:id="confirm" layoutX="130.0" layoutY="202.0" mnemonicParsing="false" onAction="#saveChangedInfo" prefHeight="23.0" prefWidth="89.0" text="确认" />
       <Button fx:id="cancel" layoutX="251.0" layoutY="202.0" mnemonicParsing="false" onAction="#giveup" prefHeight="23.0" prefWidth="89.0" text="取消" />
    </children>
 </AnchorPane>

@@ -41,9 +41,28 @@ public class LoginController implements Initializable {
             LoginBlServ l = new LoginBlServImpl();
             LoginResult result = l.login(userNameField.getText(), passwordField.getText());
             if (result.equals(LoginResult.SUCCESS)) {
+                mainApp.setCurrentId(userNameField.getText());
                 mainApp.showWebSalerMain();
             } else {
-                System.out.println(result);
+                String info = "";
+                switch (result) {
+                    case ALREADY_LOGIN:
+                        info = "您已登陆，请勿重复登录";
+                        break;
+                    case EXCEPTION:
+                        info = "网络异常，请稍后重试";
+                        break;
+                    case WRONG_ID:
+                        info = "账户不存在";
+                        break;
+                    case WRONG_PASSWORD:
+                        info = "密码错误，请重试";
+                        break;
+                }
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.initOwner(mainApp.getPrimaryStage());
+                alert.setContentText(info);
+                alert.showAndWait();
             }
         } else {
             // Nothing selected.
@@ -51,7 +70,7 @@ public class LoginController implements Initializable {
             alert.initOwner(mainApp.getPrimaryStage());
             alert.setTitle("Message");
             alert.setHeaderText("错误");
-            alert.setContentText("用户名或密码错误，请重新输入");
+            alert.setContentText("您输入的id或密码格式错误，请重新输入");
             alert.showAndWait();
         }
     }
@@ -89,6 +108,5 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
     }
 }

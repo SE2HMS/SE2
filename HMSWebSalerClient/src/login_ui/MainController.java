@@ -54,7 +54,7 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    public void showorderCheckPane() {
+    public void showOrderCheckPane() {
         creditRechargePane.setVisible(false);
         webStrategyPane.setVisible(false);
         orderCheckPane.setVisible(true);
@@ -80,8 +80,6 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // TODO Auto-generated method stub
-
     }
 
 

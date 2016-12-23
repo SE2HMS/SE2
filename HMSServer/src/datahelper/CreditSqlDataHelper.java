@@ -38,7 +38,6 @@ public class CreditSqlDataHelper  implements CreditDataHelper{
 	        ResultSet rs = pstmt.executeQuery();
 	        ArrayList<CreditPO> list=new ArrayList<CreditPO>();
 	        while(rs.next()){
-	        	System.out.println(rs.getInt("id"));
 	        	CreditPO c=new CreditPO(String.valueOf(rs.getInt("id")),rs.getString("time"),String.valueOf(rs.getInt("userid")),
 	        			rs.getDouble("totel"),rs.getDouble("chge"),rs.getString("behavior"));
 	        	list.add(c);
