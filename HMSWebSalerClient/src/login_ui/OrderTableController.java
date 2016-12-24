@@ -44,13 +44,10 @@ public class OrderTableController {
 	private OrderBlServ orderBlServ=new OrderBlServImpl();
 	
 	private static final ObservableList<OrderTable> data = FXCollections.observableArrayList(); 
-	
 
-	
 	private static MainApp mainApp;
 	
 	public static void setUp(MainApp mainApp){
-		
 		OrderTableController.mainApp=mainApp;
 	}
 	

@@ -4,7 +4,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import VO.LoginResult;
-import VO.UserVO;
 import VO.WebManager;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,21 +24,25 @@ public class LoginController implements Initializable {
     @FXML
     private TextField passwordField;
 
-
     private MainApp mainApp;
-
 
     @FXML
     public void checkLoginInfo() {
         if (isInputValid()) {
             LoginBlServ l = LoginBlServ.getInstance();
-            LoginResult result = l.login(userNameField.getText(), passwordField.getText());
+            String id = userNameField.getText();
+            LoginResult result = l.login(id, passwordField.getText());
             if (result.equals(LoginResult.SUCCESS)) {
                 mainApp.setCurrentId(userNameField.getText());
                 WebManager webManager = LoginBlServ.getInstance().getWebManager(userNameField.getText());
+                if (webManager == null) {
+                    showWrongAlert();
+                    l.logout(id);
+                    return;
+                }
                 mainApp.setCurrentUserName(webManager.getUserName());
                 mainApp.showWebManagerMain();
-            } else if(result.equals(LoginResult.ALREADY_LOGIN)) {
+            } else if (result.equals(LoginResult.ALREADY_LOGIN)) {
                 Alert alert = new Alert(AlertType.ERROR);
                 alert.initOwner(mainApp.getPrimaryStage());
                 alert.setTitle("Error");
@@ -55,15 +58,18 @@ public class LoginController implements Initializable {
                 alert.showAndWait();
             }
         } else {
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.initOwner(mainApp.getPrimaryStage());
-            alert.setTitle("Message");
-            alert.setHeaderText("错误");
-            alert.setContentText("用户名或密码错误，请重新输入");
-            alert.showAndWait();
+            showWrongAlert();
         }
     }
 
+    private void showWrongAlert() {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.initOwner(mainApp.getPrimaryStage());
+        alert.setTitle("Message");
+        alert.setHeaderText("错误");
+        alert.setContentText("用户名或密码错误，请重新输入");
+        alert.showAndWait();
+    }
 
     /**
      * Initializes the controller class. This method is automatically called
@@ -72,7 +78,6 @@ public class LoginController implements Initializable {
     @FXML
     public void initialize() {
     }
-
 
     private boolean isInputValid() {
         String errorMessage = "";
@@ -98,7 +103,6 @@ public class LoginController implements Initializable {
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

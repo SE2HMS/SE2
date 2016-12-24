@@ -13,6 +13,9 @@ import javafx.scene.layout.AnchorPane;
 public class MainController implements Initializable {
 
     @FXML
+    private Label nameLabel;
+
+    @FXML
     private Button creditRechargeButton;
 
     @FXML
@@ -68,13 +71,13 @@ public class MainController implements Initializable {
 
     }
 
-
     /**
      * Is called by the main application to give a reference back to itself.
      *
      * @param mainApp
      */
     public void setMainApp(MainApp mainApp) {
+        nameLabel.setText("hello," + mainApp.getCurrentName());
         this.mainApp = mainApp;
     }
 

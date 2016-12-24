@@ -1,17 +1,13 @@
 package login_ui;
 
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-import VO.UserType;
-import VO.UserVO;
 import VO.WebSaler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import login_bl_serv.LoginBlServ;
@@ -20,7 +16,7 @@ import manage_bl_serv.ManageBlServ;
 import manage_bl_servlmpl.ManageBlServImpl;
 
 public class EditWebSalerInfoController implements Initializable {
-    private static String id;
+    private String id;
     private MainApp mainApp;
     @FXML
     private Stage stage;
@@ -43,7 +39,7 @@ public class EditWebSalerInfoController implements Initializable {
     public void saveChangedInfo() {
         String name = namefield.getText();
         String contact = contactfield.getText();
-        boolean success = modify.modifyWebSaler(EditWebSalerInfoController.id,name,contact);
+        boolean success = modify.modifyWebSaler(id,name,contact);
         if(success) {
             this.stage.close();
         }else {
@@ -60,9 +56,8 @@ public class EditWebSalerInfoController implements Initializable {
         this.mainApp = mainApp;
     }
 
-
-    public static void setID(String id) {
-        EditWebSalerInfoController.id = id;
+    public  void setID(String id) {
+        this.id = id;
     }
 
     @Override
@@ -76,6 +71,5 @@ public class EditWebSalerInfoController implements Initializable {
     public void giveup() {
         this.stage.close();
     }
-
 
 }

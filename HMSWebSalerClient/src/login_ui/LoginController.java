@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 
 import VO.LoginResult;
+import VO.WebSaler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -39,11 +40,15 @@ public class LoginController implements Initializable {
     public void checkLoginInfo() {
         if (isInputValid()) {
             LoginBlServ l = new LoginBlServImpl();
-            LoginResult result = l.login(userNameField.getText(), passwordField.getText());
-            if (result.equals(LoginResult.SUCCESS)) {
-                mainApp.setCurrentId(userNameField.getText());
+            String id = userNameField.getText();
+            LoginResult result = l.login(id, passwordField.getText());
+            WebSaler saler = l.getWebSaler(id);
+            if (result.equals(LoginResult.SUCCESS) && saler != null) {
+                mainApp.setCurrentId(id);
+                mainApp.setCurrentName(saler.getName());
                 mainApp.showWebSalerMain();
             } else {
+                l.logout(id);
                 String info = "";
                 switch (result) {
                     case ALREADY_LOGIN:
@@ -53,7 +58,7 @@ public class LoginController implements Initializable {
                         info = "网络异常，请稍后重试";
                         break;
                     case WRONG_ID:
-                        info = "账户不存在";
+                        info = "改网站营销人员Id不存在";
                         break;
                     case WRONG_PASSWORD:
                         info = "密码错误，请重试";

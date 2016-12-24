@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="275.0" prefWidth="435.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login_ui.StrategydateAddController">
+<AnchorPane prefHeight="275.0" prefWidth="435.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login_ui.StrategydateEditController">
    <children>
       <GridPane layoutX="122.0" layoutY="37.0" prefHeight="165.0" prefWidth="200.0">
         <columnConstraints>
@@ -23,13 +23,13 @@
             <Label text="起始时间" GridPane.rowIndex="1" />
             <Label text="结束时间" GridPane.rowIndex="2" />
             <Label text="折扣额" GridPane.rowIndex="3" />
-            <TextField fx:id="nameField" GridPane.columnIndex="1" />
-            <DatePicker fx:id="begin" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <DatePicker fx:id="end" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="nameField" editable="false" GridPane.columnIndex="1" />
+            <DatePicker fx:id="startTimePicker" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <DatePicker fx:id="endTimePicker" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="discountField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
-      <Button fx:id="confirm" layoutX="111.0" layoutY="238.0" mnemonicParsing="false" onAction="#handleOK" prefHeight="23.0" prefWidth="73.0" text="保存更改" />
-      <Button fx:id="cancel" layoutX="260.0" layoutY="238.0" mnemonicParsing="false" onAction="#giveup" prefHeight="23.0" prefWidth="73.0" text="返回" />
+      <Button fx:id="confirm" layoutX="111.0" layoutY="238.0" mnemonicParsing="false" onAction="#onSaveClicked" prefHeight="23.0" prefWidth="73.0" text="保存更改" />
+      <Button fx:id="cancel" layoutX="260.0" layoutY="238.0" mnemonicParsing="false" onAction="#onReturnClicked" prefHeight="23.0" prefWidth="73.0" text="返回" />
    </children>
 </AnchorPane>

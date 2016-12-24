@@ -67,7 +67,7 @@ public class WebStrategyTableController {
     @FXML
     public void check() {
         if (table.getSelectionModel().getSelectedItem() != null) {
-            if (table.getSelectionModel().getSelectedItem().equals("date")) {
+            if (table.getSelectionModel().getSelectedItem().getWebStrategyType().equals("date")) {
                 mainApp.showWebStrategyDateDetail(table.getSelectionModel().getSelectedItem().getName());
             } else {
                 mainApp.showWebStrategyCBDDetail(table.getSelectionModel().getSelectedItem().getName());

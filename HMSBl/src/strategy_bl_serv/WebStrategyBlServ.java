@@ -1,8 +1,12 @@
 package strategy_bl_serv;
 
+import VO.CBDStrategy;
+import VO.DoubleElevenStrategy;
+import VO.LevelStrategy;
 import VO.StrategyVO;
 import strategy_bl_servlmpl.WebStrategyBlServlmpl;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Iterator;
 
@@ -67,6 +71,18 @@ public interface WebStrategyBlServ {
      * @return 返回是否成功
      */
     public boolean addStrategy(StrategyVO strategy);
+
+    public DoubleElevenStrategy getDoubleElevenStrategyByName(String strategyName);
+
+    public LevelStrategy getLevelStrategyByName(String strategyName);
+
+    public CBDStrategy getCBDStrategyByName(String strategyName);
+
+    public boolean modifyDoubleElevenStrategy(String name, LocalDate start, LocalDate end, double discount);
+
+    public boolean modifyLevelStrategy(String name,int upgradeNum);
+
+    public boolean modifyCBDStrategy(String name,double lev0,double lev1,double lev2,String cbd);
 
     /**
      * 修改一条策略

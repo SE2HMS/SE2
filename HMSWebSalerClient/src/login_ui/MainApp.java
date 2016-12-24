@@ -1,22 +1,13 @@
 package login_ui;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import login_bl_serv.LoginBlServ;
 import rmi.RemoteRunner;
 
-
-import java.io.IOException;
 import java.io.InputStream;
 
-import com.sun.javafx.logging.Logger;
-
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.fxml.JavaFXBuilderFactory;
+import javafx.fxml.*;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 
@@ -24,7 +15,7 @@ import javafx.scene.layout.AnchorPane;
 public class MainApp extends Application {
 
     private Stage primaryStage, diaStage;
-    private String currentId;
+    private String currentId, currentName;
 
     @Override
     public void start(Stage primaryStage) {
@@ -44,6 +35,14 @@ public class MainApp extends Application {
         currentId = id;
     }
 
+    public void setCurrentName(String name) {
+        currentName = name;
+    }
+
+    public String getCurrentName() {
+        return currentName;
+    }
+
     /**
      * 显示登录界面
      */
@@ -61,10 +60,11 @@ public class MainApp extends Application {
             CreditRechargeController.setMainApp(this);
             OrderTableController.setUp(this);
             OrderInfoController.setUp(this);
+            WebStrategyController.setUp(this);
+            WebStrategyTableController.setUp(this);
             MainController controller = (MainController) replaceSceneContent("Main.fxml");
             controller.setMainApp(this);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -77,7 +77,6 @@ public class MainApp extends Application {
             controller.setDialogStage(diaStage);
             controller.setMainApp(this);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -93,80 +92,48 @@ public class MainApp extends Application {
         }
     }
 
-
-    public void addNewWebStrategy() {
-
+    public void AddWebStrategyDate() {
+        StrategydateAddController controller;
+        try {
+            controller = (StrategydateAddController) replaceDiaSceneContent("StrategydateAdd.fxml");
+            controller.setDialogStage(this.diaStage);
+            controller.setMainApp(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public void showWebStrategyDetails(String strategyName) {
-
+    public void showWebStrategyDateDetail(String strategyName) {
+        StrategydateEditController controller;
+        try {
+            controller = (StrategydateEditController) replaceDiaSceneContent("StrategydateEdit.fxml");
+            controller.setup(diaStage, this, strategyName);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-	
-	public void AddWebStrategyDate(){
-		StrategydateAddController controller;
-		try {
-			// Set the person into the controller.
-			controller = (StrategydateAddController)replaceDiaSceneContent("StrategydateAdd.fxml");
-			controller.setDialogStage(this.diaStage);
-			controller.setMainApp(this);
 
-//        return controller.isOkClicked();
-		} catch (Exception e) {
-			e.printStackTrace();
-//        return false;
-		}
-	}
-	
-	public void showWebStrategyDateDetail(String strategyName){
-		StrategydateAddController controller;
-		try {
-			// Set the person into the controller.
-			controller = (StrategydateAddController)replaceDiaSceneContent("StrategydateAdd.fxml");
-			controller.setDialogStage(this.diaStage);
-			controller.setMainApp(this);
+    public void AddWebStrategyCBD() {
+        StrategyCBDAddController controller;
+        try {
+            controller = (StrategyCBDAddController) replaceDiaSceneContent("StrategyCBDAdd.fxml");
+            controller.setDialogStage(this.diaStage);
+            controller.setMainApp(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-//        return controller.isOkClicked();
-		} catch (Exception e) {
-			e.printStackTrace();
-//        return false;
-		}
-	}
-	
-	public void AddWebStrategyCBD(){
-		StrategydateAddController controller;
-		try {
-			// Set the person into the controller.
-			controller = (StrategydateAddController)replaceDiaSceneContent("StrategyCBDAdd.fxml");
-			controller.setDialogStage(this.diaStage);
-			controller.setMainApp(this);
+    public void showWebStrategyCBDDetail(String strategyName) {
+        StrategyCBDEditController controller;
+        try {
+            controller = (StrategyCBDEditController) replaceDiaSceneContent("StrategyCBDEdit.fxml");
+            controller.setup(diaStage, this, strategyName);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-//        return controller.isOkClicked();
-		} catch (Exception e) {
-			e.printStackTrace();
-//        return false;
-		}
-	}
-	public void showWebStrategyCBDDetail(String strategyName){
-		StrategydateAddController controller;
-		try {
-			// Set the person into the controller.
-			controller = (StrategydateAddController)replaceDiaSceneContent("StrategyCBDAdd.fxml");
-			controller.setDialogStage(this.diaStage);
-			controller.setMainApp(this);
-
-//        return controller.isOkClicked();
-		} catch (Exception e) {
-			e.printStackTrace();
-//        return false;
-		}
-	}
-	
-	/**
->>>>>>> 137ccbda0b1d70de1fc26930af11da1982293e67
-     * Returns the main stage.
-     *
-     * @return
-     */
     public Stage getPrimaryStage() {
         return primaryStage;
     }
@@ -178,7 +145,7 @@ public class MainApp extends Application {
         loader.setLocation(MainApp.class.getResource(fxml));
         AnchorPane page;
         try {
-            page = (AnchorPane) loader.load(in);
+            page = loader.load(in);
         } finally {
             in.close();
         }
@@ -195,7 +162,7 @@ public class MainApp extends Application {
         loader.setLocation(MainApp.class.getResource(fxml));
         AnchorPane page;
         try {
-            page = (AnchorPane) loader.load(in);
+            page = loader.load(in);
         } finally {
             in.close();
         }
@@ -206,7 +173,7 @@ public class MainApp extends Application {
     }
 
     public static void main(String[] args) {
-		new RemoteRunner();
+        new RemoteRunner();
         launch(args);
     }
 }

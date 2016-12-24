@@ -88,12 +88,10 @@ public class OrderDetailsController implements Initializable{
 	UserInOrder user;
 
 	public void setDialogStage(Stage diaStage) {
-		// TODO Auto-generated method stub
 		this.stage = diaStage;
 	}
 
 	public static void setUp(MainApp mainApp,String orderID) {
-		// TODO Auto-generated method stub
 		OrderDetailsController.orderID=orderID;
 		OrderDetailsController.mainApp=mainApp;
 	}

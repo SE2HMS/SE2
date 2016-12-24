@@ -1,9 +1,9 @@
 package login_ui;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.io.InputStream;
 
 import javafx.fxml.FXMLLoader;
@@ -11,7 +11,6 @@ import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.WindowEvent;
 import login_bl_serv.LoginBlServ;
 import rmi.RemoteRunner;
 
@@ -27,12 +26,7 @@ public class MainApp extends Application {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Hotel Management System");
         this.primaryStage.setResizable(false);
-        this.primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent event) {
-                logout();
-            }
-        });
+        this.primaryStage.setOnCloseRequest(event -> logout());
         this.diaStage = new Stage();
         showLoginUI();
     }
@@ -48,7 +42,6 @@ public class MainApp extends Application {
     public void setCurrentId(String id) {
         this.currentId = id;
     }
-
 
     /**
      * 显示登录界面
@@ -110,13 +103,12 @@ public class MainApp extends Application {
         if (id == null || id.equals("")) {
             return;
         }
-        EditHotelStaffInfoController.setID(id);
         EditHotelStaffInfoController controller;
         try {
-            // Set the person into the controller.
             controller = (EditHotelStaffInfoController) replaceDiaSceneContent("EditHotelStaff.fxml");
             controller.setDialogStage(this.diaStage);
             controller.setMainApp(this);
+            controller.setID(id);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -138,18 +130,16 @@ public class MainApp extends Application {
         if (id == null || id.equals("")) {
             return;
         }
-        EditWebSalerInfoController.setID(id);
         EditWebSalerInfoController controller;
         try {
-            // Set the person into the controller.
             controller = (EditWebSalerInfoController) replaceDiaSceneContent("EditWebSalerInfo.fxml");
             controller.setDialogStage(this.diaStage);
             controller.setMainApp(this);
+            controller.setID(id);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 
     /**
      * Returns the main stage.
@@ -160,34 +150,33 @@ public class MainApp extends Application {
         return primaryStage;
     }
 
-    private Initializable replaceSceneContent(String fxml) throws Exception {
+    /**
+     * 把scene换掉，返回controller
+     *
+     * @param fxml
+     * @return
+     * @throws IOException
+     */
+    private Initializable replaceSceneContent(String fxml) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         InputStream in = MainApp.class.getResourceAsStream(fxml);
         loader.setBuilderFactory(new JavaFXBuilderFactory());
         loader.setLocation(MainApp.class.getResource(fxml));
         AnchorPane page;
-        try {
-            page = (AnchorPane) loader.load(in);
-        } finally {
-            in.close();
-        }
+        page = loader.load(in);
         Scene scene = new Scene(page);
         primaryStage.setScene(scene);
         primaryStage.show();
         return (Initializable) loader.getController();
     }
 
-    private Initializable replaceDiaSceneContent(String fxml) throws Exception {
+    private Initializable replaceDiaSceneContent(String fxml) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         InputStream in = MainApp.class.getResourceAsStream(fxml);
         loader.setBuilderFactory(new JavaFXBuilderFactory());
         loader.setLocation(MainApp.class.getResource(fxml));
         AnchorPane page;
-//        try {
-        page = (AnchorPane) loader.load(in);
-//        } finally {
-//            in.close();
-//        }
+        page = loader.load(in);
         Scene scene = new Scene(page);
         diaStage.setScene(scene);
         diaStage.show();

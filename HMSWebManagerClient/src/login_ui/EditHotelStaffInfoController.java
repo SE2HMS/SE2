@@ -13,7 +13,7 @@ import login_bl_serv.LoginBlServ;
 import manage_bl_serv.ManageBlServ;
 
 public class EditHotelStaffInfoController implements Initializable {
-    private static String id;
+    private String id;
     private MainApp mainApp;
     @FXML
     private Stage stage;
@@ -48,8 +48,8 @@ public class EditHotelStaffInfoController implements Initializable {
         this.mainApp = mainApp;
     }
 
-    public static void setID(String id) {
-        EditHotelStaffInfoController.id = id;
+    public void setID(String id) {
+        this.id = id;
     }
 
     @Override

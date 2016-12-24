@@ -8,6 +8,9 @@ import rmi.RemoteHelper;
 import strategy_bl_serv.WebStrategyBlServ;
 
 import java.rmi.RemoteException;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -188,5 +191,99 @@ public class WebStrategyBlServlmpl implements WebStrategyBlServ {
     public boolean delStrategy(String strategyName) {
         StrategyVO strategyVO = this.getOneStrategy(strategyName);
         return this.delStrategy(strategyVO);
+    }
+
+    private StrategyVO getStrategyByName(String strategyName) {
+        if(strategyName == null) {
+            return null;
+        }
+        Iterator<StrategyVO> strategyVOIterator = this.getStrategy();
+        while(strategyVOIterator.hasNext()) {
+            StrategyVO strategyVO = strategyVOIterator.next();
+            if(strategyVO.getName().equals(strategyName)) {
+                return strategyVO;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public DoubleElevenStrategy getDoubleElevenStrategyByName(String strategyName) {
+        if(strategyName == null) {
+            return null;
+        }
+        StrategyVO strategyVO = this.getStrategyByName(strategyName);
+        DoubleElevenStrategy strategy;
+        try {
+            strategy = (DoubleElevenStrategy) strategyVO;
+        }catch (Exception e) {
+            return null;
+        }
+        return strategy;
+    }
+
+    @Override
+    public LevelStrategy getLevelStrategyByName(String strategyName) {
+        if(strategyName == null) {
+            return null;
+        }
+        StrategyVO strategyVO = this.getStrategyByName(strategyName);
+        LevelStrategy strategy;
+        try {
+            strategy = (LevelStrategy) strategyVO;
+        }catch (Exception e) {
+            return null;
+        }
+        return strategy;
+    }
+
+    @Override
+    public CBDStrategy getCBDStrategyByName(String strategyName) {
+        if(strategyName == null) {
+            return null;
+        }
+        StrategyVO strategyVO = this.getStrategyByName(strategyName);
+        CBDStrategy strategy;
+        try {
+            strategy = (CBDStrategy) strategyVO;
+        }catch (Exception e) {
+            return null;
+        }
+        return strategy;
+    }
+
+    @Override
+    public boolean modifyDoubleElevenStrategy(String name, LocalDate start, LocalDate end, double discount) {
+        if(name == null || start == null || end == null) {
+            return false;
+        }
+        ZoneId zone = ZoneId.systemDefault();
+        Instant instant1 = start.atStartOfDay().atZone(zone).toInstant();
+        Date startTime = Date.from(instant1);
+        Instant instant2 = end.atStartOfDay().atZone(zone).toInstant();
+        Date endTime = Date.from(instant2);
+        DoubleElevenStrategy modified = new DoubleElevenStrategy(name,discount,startTime,endTime);
+        boolean success = this.modifyStrategy(modified);
+        return success;
+    }
+
+    @Override
+    public boolean modifyLevelStrategy(String name, int upgradeNum) {
+        if(name == null) {
+            return false;
+        }
+        LevelStrategy modified = new LevelStrategy(name,upgradeNum);
+        boolean success = this.modifyStrategy(modified);
+        return success;
+    }
+
+    @Override
+    public boolean modifyCBDStrategy(String name, double lev0, double lev1, double lev2, String cbd) {
+        if(name == null || cbd == null) {
+            return false;
+        }
+        CBDStrategy modified = new CBDStrategy(name,lev0,lev1,lev2,cbd);
+        boolean success = this.modifyStrategy(modified);
+        return success;
     }
 }

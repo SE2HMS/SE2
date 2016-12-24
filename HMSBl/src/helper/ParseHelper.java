@@ -61,8 +61,11 @@ public abstract class ParseHelper {
      * @return
      */
     public static String dateToString(Date date) {
-        SimpleDateFormat format = new SimpleDateFormat("yy/MM/dd/hh/mm");
+        SimpleDateFormat format = new SimpleDateFormat("yy/MM/dd/HH/mm");
         String time = format.format(date);
+        if(time.endsWith("00/00")) {
+            time = time.substring(0,8);
+        }
 //        Calendar calendar = Calendar.getInstance();
 //        calendar.setTime(date);
 //        String time = "";

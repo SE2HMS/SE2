@@ -5,4 +5,5 @@ package VO;
  */
 public interface StrategyVO {
     public String getType();
+    public String getName();
 }
