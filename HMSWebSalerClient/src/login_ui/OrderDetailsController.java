@@ -1,6 +1,7 @@
 package login_ui;
 
 import java.net.URL;
+import java.util.AbstractCollection;
 import java.util.ResourceBundle;
 
 import VO.OrderState;
@@ -13,10 +14,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import login_ui.MainApp;
 import order_bl_serv.OrderBlServ;
@@ -98,14 +97,18 @@ public class OrderDetailsController implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		;
-
 		o=orderBlServ.getOrderInfo(orderID);
 		user = o.getUser();
 		userID = user.getName();
-		if(o.getState().equals(OrderState.REVOKE))
-			changeablelabel.setText("����ʱ��");
+		halfButton.setDisable(true);
+		allButton.setDisable(true);
+		if(o.getState().equals(OrderState.ABNORMAL)) {
+			halfButton.setDisable(false);
+			allButton.setDisable(false);
+		}
+		if(o.getState().equals(OrderState.REVOKE)) {
+			changeablelabel.setText("订单撤销时间");
+		}
 			orderidlabel.setText(o.getId());
 			usernamelabel.setText(o.getUser().getName());
 			hotelnamelabel.setText(o.getHotel().getHotelName());
@@ -129,12 +132,40 @@ public class OrderDetailsController implements Initializable{
 	
 	@FXML
 	public void resumeHalf(){
-		orderBlServ.revokeExceptionOrder(orderID, true);
+		boolean success = orderBlServ.revokeExceptionOrder(orderID, false);
+		if(success) {
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.initOwner(this.stage);
+			alert.setContentText("恢复成功");
+			alert.showAndWait();
+			mainApp.showWebSalerMain();
+			mainApp.controller.showOrderCheckPane();
+			this.stage.close();
+		}else {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.initOwner(this.stage);
+			alert.setContentText("发生了一些异常，请稍后重试");
+			alert.showAndWait();
+		}
 	}
 	
 	@FXML
 	public void resumeAll(){
-		orderBlServ.revokeExceptionOrder(orderID, false);
+		boolean success = orderBlServ.revokeExceptionOrder(orderID, true);
+		if(success) {
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.initOwner(this.stage);
+			alert.setContentText("恢复成功");
+			alert.showAndWait();
+			mainApp.showWebSalerMain();
+			mainApp.controller.showOrderCheckPane();
+			this.stage.close();
+		}else {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.initOwner(this.stage);
+			alert.setContentText("发生了一些异常，请稍后重试");
+			alert.showAndWait();
+		}
 	}
 
 }

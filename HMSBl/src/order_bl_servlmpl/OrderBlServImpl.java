@@ -6,6 +6,7 @@ import credit_bl_serv.CreditBlServ;
 import helper.ParseHelper;
 import order_bl_serv.OrderBlServ;
 import rmi.RemoteHelper;
+import rmi.RemoteRunner;
 import room_bl_serv.RoomBlServ;
 
 import java.rmi.RemoteException;
@@ -31,7 +32,7 @@ public class OrderBlServImpl implements OrderBlServ {
                 orderPO.setType("FINISH");
             }else if(action.equals(UserOrderAction.EXCEPTION)) {
                 orderPO.setType("EXCEPTION");
-            }else if(action.equals(UserOrderAction.REVOKE)) {
+            }else if(action.equals(UserOrderAction.REVOKE) || action.equals(UserOrderAction.REVOKE_ALL) || action.equals(UserOrderAction.REVOKE_HALF)) {
                 orderPO.setType("REVOKE");
             }
             success = RemoteHelper.getInstance().getOrderDataServ().modifiedOrder(orderPO);
@@ -57,6 +58,14 @@ public class OrderBlServImpl implements OrderBlServ {
         }
         return ParseHelper.toOrderVO(orderPO);
     }
+
+//    public static void main(String[] args) {
+//        new RemoteRunner();
+//        Iterator<OrderVO> list = OrderBlServ.getInstance().getAllNotInOrderList();
+//        while(list.hasNext()) {
+//            System.out.println(list.next().getHotel().getHotelName());
+//        }
+//    }
 
     @Override
     public Iterator<OrderVO> getNotInOrderList(String userId) {

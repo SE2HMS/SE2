@@ -18,9 +18,7 @@ public class WebStrategyController {
     private Button checkbutton;
 
     @FXML
-    private Hyperlink addNewdate;
-    @FXML
-    private Hyperlink addNewCBD;
+    private Hyperlink addNewdate,addNewCBD,addNewLevel;
 
     private static MainApp mainApp;
 
@@ -39,14 +37,18 @@ public class WebStrategyController {
         WebStrategyTableController.setData(strategyList);
     }
 
+    @FXML
+    public void addNewLevelStrategy() {
+        mainApp.addWebStrategyLevel();
+    }
 
     @FXML
     public void addNewdateStrategy() {
-        mainApp.AddWebStrategyDate();
+        mainApp.addWebStrategyDate();
     }
 
     @FXML
     public void addNewCBDStrategy() {
-        mainApp.AddWebStrategyCBD();
+        mainApp.addWebStrategyCBD();
     }
 }

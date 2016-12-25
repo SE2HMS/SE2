@@ -9,7 +9,6 @@ public class WebStrategy {
 	public WebStrategy(String type,String name){
 		this.type=new SimpleStringProperty(type);
 		this.name=new SimpleStringProperty(name);
-
 	}
 	
 	public String getWebStrategyType(){
@@ -21,7 +20,6 @@ public class WebStrategy {
 	public SimpleStringProperty typeProperty(){
 		return type;
 	}
-	
 	public SimpleStringProperty nameProperty(){
 		return name;
 	}

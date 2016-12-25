@@ -48,7 +48,9 @@ public class LoginController implements Initializable {
                 mainApp.setCurrentName(saler.getName());
                 mainApp.showWebSalerMain();
             } else {
-                l.logout(id);
+                if(result.equals(LoginResult.SUCCESS)) {
+                    l.logout(id);
+                }
                 String info = "";
                 switch (result) {
                     case ALREADY_LOGIN:

@@ -16,7 +16,7 @@ import manage_bl_serv.ManageBlServ;
 import manage_bl_servlmpl.ManageBlServImpl;
 
 public class EditWebSalerInfoController implements Initializable {
-    private String id;
+    private static String id;
     private MainApp mainApp;
     @FXML
     private Stage stage;
@@ -56,8 +56,8 @@ public class EditWebSalerInfoController implements Initializable {
         this.mainApp = mainApp;
     }
 
-    public  void setID(String id) {
-        this.id = id;
+    public static void setID(String id) {
+        EditWebSalerInfoController.id = id;
     }
 
     @Override

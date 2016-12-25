@@ -32,6 +32,7 @@ public class LoginController implements Initializable {
             LoginBlServ l = LoginBlServ.getInstance();
             String id = userNameField.getText();
             LoginResult result = l.login(id, passwordField.getText());
+            System.out.println(result.toString());
             if (result.equals(LoginResult.SUCCESS)) {
                 mainApp.setCurrentId(userNameField.getText());
                 WebManager webManager = LoginBlServ.getInstance().getWebManager(userNameField.getText());

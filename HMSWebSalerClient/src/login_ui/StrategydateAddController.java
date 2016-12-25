@@ -48,8 +48,9 @@ public class StrategydateAddController implements Initializable {
             String strategyName = nameField.getText();
             double discount = 0;
             try {
-                Double.parseDouble(discountField.getText());
-            }catch (NumberFormatException e) {
+                discount = Double.parseDouble(discountField.getText());
+//                System.out.println(discount);
+            } catch (NumberFormatException e) {
                 Alert alert = new Alert(AlertType.ERROR);
                 alert.initOwner(dialogStage);
                 alert.setTitle("错误");
@@ -73,6 +74,8 @@ public class StrategydateAddController implements Initializable {
                 alert.setContentText("新增网站促销策略成功！");
                 alert.showAndWait();
                 okClicked = true;
+                mainApp.showWebSalerMain();
+                mainApp.controller.showWebStrategyPane();
                 dialogStage.close();
             } else {
                 Alert alert = new Alert(AlertType.WARNING);

@@ -40,16 +40,19 @@ public class CreditRechargeDialogController implements Initializable {
 
     private LoginBlServ userBlServ = LoginBlServ.getInstance();
     private CreditBlServ creditBl = CreditBlServ.getInstance();
-    UserVO user;
+    private UserVO user;
+    private CreditRechargeController creditRechargeController;
 
     public void setDialogStage(Stage diaStage) {
-        // TODO Auto-generated method stub
         this.stage = diaStage;
     }
 
     public void setMainApp(MainApp mainApp) {
-        // TODO Auto-generated method stub
         this.mainApp = mainApp;
+    }
+
+    public void setCreditRechargeController(CreditRechargeController c) {
+        creditRechargeController = c;
     }
 
     public static void setID(String id) {
@@ -75,6 +78,7 @@ public class CreditRechargeDialogController implements Initializable {
             alert.setHeaderText("Message");
             alert.setContentText("充值成功！");
             alert.showAndWait();
+            creditRechargeController.search();
             this.stage.close();
         } else {
             System.out.println("发生错误！");
@@ -88,7 +92,6 @@ public class CreditRechargeDialogController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // TODO Auto-generated method stub
         user = userBlServ.getUserInfo(id);
         idLabel.setText(id);
         nameLabel.setText(user.getName());

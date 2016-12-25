@@ -17,17 +17,18 @@ public class MainApp extends Application {
     private Stage primaryStage, diaStage;
     private String currentId, currentName;
 
+     public MainController controller;
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.primaryStage.setResizable(false);
         this.primaryStage.setTitle("Hotel Management System");
-        this.primaryStage.setOnCloseRequest((event) -> logout(currentId));
+        this.primaryStage.setOnCloseRequest((event) -> logout());
         this.diaStage = new Stage();
         showLoginUI();
     }
 
-    private void logout(String id) {
+    private void logout() {
         LoginBlServ.getInstance().logout(currentId);
     }
 
@@ -62,20 +63,21 @@ public class MainApp extends Application {
             OrderInfoController.setUp(this);
             WebStrategyController.setUp(this);
             WebStrategyTableController.setUp(this);
-            MainController controller = (MainController) replaceSceneContent("Main.fxml");
+            controller = (MainController) replaceSceneContent("Main.fxml");
             controller.setMainApp(this);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void showCreditRecharge(String id) {
+    public void showCreditRecharge(String id,CreditRechargeController c) {
         CreditRechargeDialogController controller;
         CreditRechargeDialogController.setID(id);
         try {
             controller = (CreditRechargeDialogController) replaceDiaSceneContent("CreditRechargeDialog.fxml");
             controller.setDialogStage(diaStage);
             controller.setMainApp(this);
+            controller.setCreditRechargeController(c);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -92,7 +94,7 @@ public class MainApp extends Application {
         }
     }
 
-    public void AddWebStrategyDate() {
+    public void addWebStrategyDate() {
         StrategydateAddController controller;
         try {
             controller = (StrategydateAddController) replaceDiaSceneContent("StrategydateAdd.fxml");
@@ -113,13 +115,34 @@ public class MainApp extends Application {
         }
     }
 
-    public void AddWebStrategyCBD() {
+    public void showWebStrategyLevelDetail(String strategyName) {
+        StrategyLevelEditController controller;
+        try {
+            controller = (StrategyLevelEditController) replaceDiaSceneContent("StrategyLevelEdit.fxml");
+            controller.setup(diaStage,this,strategyName);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addWebStrategyCBD() {
         StrategyCBDAddController controller;
         try {
             controller = (StrategyCBDAddController) replaceDiaSceneContent("StrategyCBDAdd.fxml");
             controller.setDialogStage(this.diaStage);
             controller.setMainApp(this);
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addWebStrategyLevel() {
+        StrategyLevelAddController controller;
+        try {
+            controller = (StrategyLevelAddController) replaceDiaSceneContent("StrategyLevelAdd.fxml");
+            controller.setDialogStage(this.diaStage);
+            controller.setMainApp(this);
+        }catch (Exception e) {
             e.printStackTrace();
         }
     }

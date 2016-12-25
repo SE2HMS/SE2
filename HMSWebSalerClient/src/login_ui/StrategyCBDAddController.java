@@ -62,6 +62,8 @@ public class StrategyCBDAddController implements Initializable{
                 alert.showAndWait();
                 okClicked = true;
                 dialogStage.close();
+                mainApp.showWebSalerMain();
+                mainApp.controller.showWebStrategyPane();
 		    }else{
 		    	Alert alert = new Alert(AlertType.WARNING);
                 alert.initOwner(dialogStage);

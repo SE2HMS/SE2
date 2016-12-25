@@ -60,7 +60,7 @@ public class OrderHelper {
         Date execTime = ParseHelper.stringToDate(orderPO.getLastTime());
         try {
             Date sysTime = RemoteHelper.getInstance().getTimeServ().getTime();
-            if (state == OrderState.WAITING && execTime.compareTo(sysTime) == 1) {
+            if (state == OrderState.WAITING && execTime.compareTo(sysTime) < 0) {
                 state = OrderState.ABNORMAL;
                 orderPO.setType("ABNORMAL");
                 OrderBlServ.getInstance().modifyOrderState(orderId,UserOrderAction.EXCEPTION);

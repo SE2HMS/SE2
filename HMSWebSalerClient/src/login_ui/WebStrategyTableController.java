@@ -53,6 +53,8 @@ public class WebStrategyTableController {
                 } else if (vo.getType().equals("CBD")) {
                     cbds = (CBDStrategy) vo;
                     data.add(new WebStrategy(cbds.getType(), cbds.getName()));
+                } else if (vo.getType().equals("level")) {
+                    data.add(new WebStrategy(vo.getType(),vo.getName()));
                 }
             }
     }
@@ -66,13 +68,15 @@ public class WebStrategyTableController {
 
     @FXML
     public void check() {
-        if (table.getSelectionModel().getSelectedItem() != null) {
-            if (table.getSelectionModel().getSelectedItem().getWebStrategyType().equals("date")) {
-                mainApp.showWebStrategyDateDetail(table.getSelectionModel().getSelectedItem().getName());
+        WebStrategy webStrategy = table.getSelectionModel().getSelectedItem();
+        if (webStrategy != null) {
+            if (webStrategy.getWebStrategyType().equals("date")) {
+                mainApp.showWebStrategyDateDetail(webStrategy.getName());
+            } else if(webStrategy.getWebStrategyType().equals("CBD")){
+                mainApp.showWebStrategyCBDDetail(webStrategy.getName());
             } else {
-                mainApp.showWebStrategyCBDDetail(table.getSelectionModel().getSelectedItem().getName());
+                mainApp.showWebStrategyLevelDetail(webStrategy.getName());
             }
-
         } else {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Message");
@@ -92,6 +96,8 @@ public class WebStrategyTableController {
             alert.setHeaderText("成功");
             alert.setContentText("删除促销策略成功！");
             alert.showAndWait();
+            mainApp.showWebSalerMain();
+            mainApp.controller.showWebStrategyPane();
         }
     }
 }

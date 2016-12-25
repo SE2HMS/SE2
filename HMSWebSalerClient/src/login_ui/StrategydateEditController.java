@@ -47,6 +47,8 @@ public class StrategydateEditController implements Initializable{
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("修改成功");
             alert.showAndWait();
+            mainApp.showWebSalerMain();
+            mainApp.controller.showWebStrategyPane();
             this.dialogStage.close();
         }else {
             Alert alert = new Alert(Alert.AlertType.ERROR);

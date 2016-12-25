@@ -16,5 +16,6 @@
       </AnchorPane>
       <Hyperlink fx:id="addNewdate" layoutX="436.0" layoutY="25.0" onAction="#addNewdateStrategy" text="新增(date)" />
       <Hyperlink fx:id="addNewCBD" layoutX="523.0" layoutY="25.0" onAction="#addNewCBDStrategy" text="新增(CBD)" />
+      <Hyperlink fx:id="addNewLevel" layoutX="342.0" layoutY="25.0" onAction="#addNewLevelStrategy" text="新增(level)" />
    </children>
 </AnchorPane>

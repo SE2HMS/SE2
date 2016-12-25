@@ -41,7 +41,6 @@ public class OrderInfoController {
 	private Iterator<OrderVO> orderList;
 	
 	public static void setUp(MainApp mainApp){
-
 		OrderInfoController.mainApp=mainApp;
 	}
 	
@@ -51,16 +50,12 @@ public class OrderInfoController {
 		OrderTable.setVisible(true);
 	}
 	
-
-	
 	@FXML 
 	public void undo(){
 		orderList = orderBlServ.getAllNotInOrderList();
 		OrderTableController.setData(orderList);
 	}
-	
-	
-	
+
 	@FXML
 	public void abnormal(){
 		orderList = orderBlServ.getAllAbnormalOrderList();
@@ -69,7 +64,6 @@ public class OrderInfoController {
 	
 	@FXML
 	public void search(){
-		
 		if(orderBlServ.getOrderInfo(idfield.getText())!=null)
 			mainApp.showOrderDetailsUI(idfield.getText());
 		else{

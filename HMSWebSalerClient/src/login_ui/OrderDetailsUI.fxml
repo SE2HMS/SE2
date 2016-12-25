@@ -48,7 +48,7 @@
       <Label layoutX="184.0" layoutY="411.0" text="折后价" />
       <Label fx:id="totallabel" layoutX="281.0" layoutY="411.0" text="Label" />
       <Button fx:id="halfButton" layoutX="37.0" layoutY="443.0" mnemonicParsing="false" onAction="#resumeHalf" text="恢复一半信用值" />
-      <Button fx:id="closeButton" layoutX="272.0" layoutY="443.0" mnemonicParsing="false" onAction="#comment" text="返回" />
-      <Button fx:id="allButton" layoutX="155.0" layoutY="443.0" mnemonicParsing="false" onAction="#resumrAll" text="恢复全部信用值" />
+      <Button fx:id="closeButton" layoutX="272.0" layoutY="443.0" mnemonicParsing="false" onAction="#giveup" text="返回" />
+      <Button fx:id="allButton" layoutX="155.0" layoutY="443.0" mnemonicParsing="false" onAction="#resumeAll" text="恢复全部信用值" />
    </children>
 </AnchorPane>

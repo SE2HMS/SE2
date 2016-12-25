@@ -130,12 +130,13 @@ public class MainApp extends Application {
         if (id == null || id.equals("")) {
             return;
         }
+        EditWebSalerInfoController.setID(id);
         EditWebSalerInfoController controller;
         try {
             controller = (EditWebSalerInfoController) replaceDiaSceneContent("EditWebSalerInfo.fxml");
             controller.setDialogStage(this.diaStage);
             controller.setMainApp(this);
-            controller.setID(id);
+//            controller.setID(id);
         } catch (Exception e) {
             e.printStackTrace();
         }

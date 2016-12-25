@@ -354,7 +354,7 @@ public abstract class ParseHelper {
             return null;
         }
         String id = null; // 订单id在数据库生成
-        String time = creditVO.getTime().toString();
+        String time = ParseHelper.dateToString(creditVO.getTime());
         String userId = creditVO.getUserId();
         double total = creditVO.getCredit();
         double change = creditVO.getCreditChange();

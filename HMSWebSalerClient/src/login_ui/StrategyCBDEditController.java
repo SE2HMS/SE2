@@ -46,6 +46,8 @@ public class StrategyCBDEditController implements Initializable {
                 alert.setContentText("编辑网站促销策略成功！");
                 alert.showAndWait();
                 okClicked = true;
+                mainApp.showWebSalerMain();
+                mainApp.controller.showWebStrategyPane();
                 dialogStage.close();
             } else {
                 Alert alert = new Alert(AlertType.WARNING);
@@ -116,8 +118,5 @@ public class StrategyCBDEditController implements Initializable {
     }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        // TODO Auto-generated method stub
-
-    }
+    public void initialize(URL location, ResourceBundle resources) {}
 }

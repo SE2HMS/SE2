@@ -69,7 +69,7 @@ public class CreditRechargeController {
         if(id == null || id.equals("")) {
             return;
         }
-        mainApp.showCreditRecharge(id);
+        mainApp.showCreditRecharge(id,this);
     }
 
     public static void setMainApp(MainApp mainApp) {
